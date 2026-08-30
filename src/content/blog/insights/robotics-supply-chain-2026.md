@@ -1,7 +1,7 @@
 ---
-title: "Robotics Stocks 2026: Verified Supply-Chain Ticker List"
+title: "Robotics Stocks 2026: The Verified Supply-Chain Ticker List"
 date: 2026-08-30
-description: "1,093 live-verified robotics companies across 11 countries, 13,000+ assets, 60 exposure routes. The investable map of the robotics supply chain."
+description: "1,093 live-verified robotics companies across 11 countries, 13,000+ assets, 60 exposure routes. The investable map of the robotics supply chain, with honest flags."
 tags: ["robotics stocks", "supply chain", "ticker list", "investing"]
 author: "vhsgreed"
 product:
