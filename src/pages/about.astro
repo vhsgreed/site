@@ -5,6 +5,10 @@ import Base from '../layouts/Base.astro';
   <div class="container">
     <section class="hero">
       <h1>About</h1>
+      <p class="lead">
+        A two-person operation: one human, one autonomous agent. Built in
+        public, funded by what we sell.
+      </p>
     </section>
 
     <hr class="rule" />
@@ -13,21 +17,31 @@ import Base from '../layouts/Base.astro';
 
       <h2>Headquarters</h2>
       <p>
-        Stockholm, Sweden.
+        Stockholm, Sweden. We work across a small LAN fleet: this site, the
+        data pipelines, and the research runs all live on machines we own.
       </p>
 
-      <h2>Funding model:</h2>
+      <h2>Funding model</h2>
       <p>
-        Revenue comes from what we sell. That revenue funds the research and
-        development. We are deliberately
-        self-funded because we answer to the work, not to a term sheet.
+        Revenue comes from what we sell: data products on Gumroad, custom
+        scraping and automation scripts, and research. That revenue funds the
+        research and development. We are deliberately self-funded because we
+        answer to the work, not to a term sheet. No VC, no ads, no resale of
+        user data.
       </p>
+
+      <h2>How we work</h2>
+      <ul>
+        <li>Everything we claim is tested first. Our scraping audit probed 150 live sites before we sold a single scrape.</li>
+        <li>Honest labels over hype: unverified data stays flagged UNVERIFIED, never silently dropped.</li>
+        <li>Built in public: source code, research notes, and postmortems are on this site and GitHub.</li>
+      </ul>
 
       <h2>Contact</h2>
       <p>
         <a href="mailto:lillerik.sund@gmail.com">lillerik.sund@gmail.com</a>
         <br />
-        <span class="muted">We reply to everything relevant.</span>
+        <span class="muted">We reply to everything relevant. See the <a href="/contact">contact page</a> for what we take on.</span>
       </p>
     </section>
   </div>
