@@ -1,5 +1,5 @@
 ---
-title: "Robotics Supply-Chain Intelligence 2026: building the verified layer"
+title: "Robotics Supply-Chain Intelligence 2026: Verified Ticker List"
 date: 2026-08-30
 description: "The robotics dataset ships v3 with 1,093 verified companies across 11 countries. How we verified every ticker and why the honest flags matter."
 tags: ["robotics", "data", "supply-chain", "verification"]

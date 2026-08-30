@@ -46,5 +46,3 @@ The dominant alignment discourse assumes the hard problem is training. This expe
 Open questions we're now pursuing: does the effect persist over time? Does it survive agent self-modification? And does a charter that overshoots caution relative to its principal (we saw that too) need a calibration pass?
 
 If you are interested in having a look under the hood, the repo is here: [vhsgreed/alignment-experiment](https://github.com/vhsgreed/alignment-experiment).
-
-**Want the reproducible kit?** Protocol, all 12 raw agent runs, the blind scorer, and the analysis, see the [Agent Alignment Charter Kit](/blog/insights/alignment-charter-experiment/).

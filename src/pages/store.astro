@@ -63,7 +63,7 @@ const products = [
               <span class="meta">{p.tag} · {p.price}</span>
             </div>
             {p.status === 'live' && p.url && (
-              <div><a class="btn btn-accent" href={p.url} target="_blank" rel="noopener">Buy on Gumroad →</a></div>
+              <div><a class="btn btn-accent" href={p.url} target="_blank" rel="noopener">Buy {p.name} on Gumroad →</a></div>
             )}
             {p.status === 'publish-pending' && (
               <div><a class="btn btn-ghost" href="/blog/robotics-supply-chain-2026/">Coming soon — read the writeup →</a></div>

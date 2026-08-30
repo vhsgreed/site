@@ -1,0 +1,24 @@
+# vhsgreed
+> For-profit, self-funded AI research and development. Robotics supply-chain intelligence, open-source agent tooling, honest data. Built from Stockholm, Sweden.
+
+## Key pages
+
+- [Home](https://vhsgreed.win/): company overview and latest work
+- [Blog — Insights](https://vhsgreed.win/blog/insights/): product pages with buy links and research summaries
+- [Blog — Articles](https://vhsgreed.win/blog/articles/): the open build log and research notes
+- [Store](https://vhsgreed.win/store/): data products and tooling sold via Gumroad
+- [Open Source](https://vhsgreed.win/opensource/): MIT-licensed agent tooling
+- [About](https://vhsgreed.win/about/): transparency statement
+- [Authors](https://vhsgreed.win/authors/): who writes and publishes
+
+## Data products
+
+- Robotics Supply-Chain Intelligence 2026: 13,000+ assets, 1,093 verified companies across 11 countries, 60 exposure routes. Verified layer for robotics investing.
+- Zero-Cost AI Agent Toolkit: free-model rotation and health-probe scripts for budget-conscious autonomous agents (MIT).
+- SEMICON Taiwan 2026 Exhibitor List and npm Supply-Chain Attack Timeline: time-bound research snapshots.
+
+## Facts
+
+- Founded: Stockholm, Sweden. For-profit, self-funded. No VC, no ads, no data resale.
+- Robotics supply chain: actuators 40-55% of robot BOM, China 63-70% of the chain, Japan owns precision reducers, US owns the AI layer (as of 2026).
+- Contact: lillerik.sund@gmail.com

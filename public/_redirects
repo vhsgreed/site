@@ -1,3 +1,6 @@
+# Unknown paths → real 404 (not SPA index fallback)
+/* /404.html 404
+
 # Old flat blog URLs → new sectioned homes (301)
 /blog/150-site-probe/          /blog/articles/150-site-probe/          301
 /blog/free-llm-rotation/       /blog/articles/free-llm-rotation/       301
