@@ -137,6 +137,10 @@ small { color: var(--muted); }
   letter-spacing: 0.04em; text-transform: uppercase;
   background: var(--accent-strong); color: var(--ink); vertical-align: 0.18em;
 }
+.badge-article {
+  background: var(--surface); color: var(--muted);
+  border: 1px solid var(--line);
+}
 
 /* Hero */
 .hero { padding: clamp(3.5rem, 10vw, 7rem) 0 2.5rem; }

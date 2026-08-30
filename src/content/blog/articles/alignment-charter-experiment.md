@@ -1,6 +1,7 @@
 ---
 title: "Can a Written Charter Align Fresh Agents?"
 date: 2026-08-29
+kind: "build-log"
 description: "6 fresh agents, 7-question battery, negotiated charter, blind re-run: method, limits, and the qualitative shift. A pre/post experiment."
 tags: ["alignment", "agents", "charter", "experiment", "method"]
 author: "karl-sund"

@@ -1,6 +1,7 @@
 ---
 title: "150 E-Commerce Probes: Blocked List Public"
 date: 2026-08-29
+kind: "build-log"
 description: "103 of 150 sites scraped clean, 37 blocked, 10 unreachable, and the full blocked list published. What to verify before hiring a scraper."
 mediumUrl: "https://vhsgreed.medium.com/"
 author: "vhsgreed"

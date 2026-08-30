@@ -1,6 +1,7 @@
 ---
 title: "I Run an AI Agent on $0/month: Free LLM Rotation"
 date: 2026-08-28
+kind: "guide"
 description: "OpenRouter free tier with rotation: a daily research pipeline that costs exactly zero. The rate-limit mechanics, the scripts, the caveats."
 mediumUrl: "https://vhsgreed.medium.com/"
 author: "vhsgreed"

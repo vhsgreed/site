@@ -5,10 +5,12 @@ interface Props {
     price?: string;
     url?: string;
     status?: 'live' | 'pending' | 'none';
+    tag?: string;
   };
 }
 const { product } = Astro.props;
 const status = product?.status ?? 'none';
+const tag = product?.tag ?? 'Buy on Gumroad';
 ---
 <section class="gumroad-card" style="margin-top: 3rem;">
   <h3 class="kicker" style="margin: 0 0 0.5rem;">Get the data</h3>
@@ -20,7 +22,7 @@ const status = product?.status ?? 'none';
 
     {status === 'live' && product?.url && (
       <a class="gumroad-button btn btn-accent" href={product.url} target="_blank" rel="noopener">
-        Buy on Gumroad
+        {tag}
       </a>
     )}
     {status === 'pending' && (

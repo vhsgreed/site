@@ -5,6 +5,7 @@ const postSchema = z.object({
   title: z.string(),
   date: z.coerce.date(),
   description: z.string(),
+  kind: z.enum(['build-log', 'story', 'insight', 'guide']).optional(),
   mediumUrl: z.string().url().optional(),
   tags: z.array(z.string()).optional(),
   author: z.string().optional(),

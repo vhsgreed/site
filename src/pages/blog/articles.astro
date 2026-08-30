@@ -6,6 +6,7 @@ import { getAuthorName } from '../../lib/authors';
 const posts = (await getCollection('articles')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
+const kindLabel = (k) => ({ 'build-log': 'Build log', story: 'Story', guide: 'Guide', insight: 'Insight' }[k] ?? 'Article');
 ---
 <Base title="Articles" description="Build logs, research notes, and postmortems from vhsgreed, the open working record behind insights and products.">
   <div class="container">
@@ -30,7 +31,10 @@ const posts = (await getCollection('articles')).sort(
         {posts.map((p) => (
           <a class="card-row" href={`/blog/articles/${p.id}/`}>
             <div>
-              <div class="t">{p.data.title}</div>
+              <div class="t">
+                {p.data.kind && <span class="badge badge-article">{kindLabel(p.data.kind)}</span>}
+                {p.data.title}
+              </div>
               <div class="d">{p.data.description}</div>
             </div>
             <span class="meta">

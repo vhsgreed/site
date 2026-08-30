@@ -62,3 +62,5 @@ The full Robotics Supply-Chain Intelligence 2026 dataset ships as a single zip: 
 ## How the data was built
 
 Want the method, the catches, and the honest flags behind these tickers? The [build log](/blog/articles/robotics-supply-chain-2026/) walks through the harvest, the live Yahoo verification, and the bugs we caught (LAZR, SHA0.DE, 373220.KS). The dataset is only as good as the verification, so the full story is public.
+
+Prefer the narrative? The [story version](/blog/articles/robotics-supply-chain-narrative/) explains why "buy the robot stocks" is broken advice and how the tradeability layer fixes it; it also ran on [Medium](https://vhsgreed.medium.com/we-built-a-verified-map-of-the-robotics-supply-chain-half-the-tickers-were-not-tradeable-feb47260ca7a).

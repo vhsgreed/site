@@ -10,6 +10,7 @@ const insights = (await getCollection('insights')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 const authorName = getAuthorName;
+const kindLabel = (k) => ({ 'build-log': 'Build log', story: 'Story', guide: 'Guide', insight: 'Insight' }[k] ?? 'Article');
 ---
 <Base title="Blog — insights & articles" description="Product pages and open build logs from vhsgreed: robotics data, AI agent tooling, scraping audits, and the research behind it all.">
   <div class="container">
@@ -60,7 +61,10 @@ const authorName = getAuthorName;
         {articles.slice(0, 3).map((p) => (
           <a class="card-row" href={`/blog/articles/${p.id}/`}>
             <div>
-              <div class="t">{p.data.title}</div>
+              <div class="t">
+                {p.data.kind && <span class="badge badge-article">{kindLabel(p.data.kind)}</span>}
+                {p.data.title}
+              </div>
               <div class="d">{p.data.description}</div>
             </div>
             <span class="meta">

@@ -1,6 +1,7 @@
 ---
 title: "Building the Verified Robotics Dataset"
 date: 2026-08-30
+kind: "build-log"
 description: "How we built the 1,093-company verified layer: harvest, live verification, the ticker bugs caught (LAZR, SHA0.DE, 373220.KS), and the honest flags."
 tags: ["robotics", "data", "supply-chain", "verification"]
 author: "vhsgreed"

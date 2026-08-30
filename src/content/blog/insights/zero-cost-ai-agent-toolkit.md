@@ -9,6 +9,7 @@ product:
   price: "Pay what you want · $1 suggested"
   url: "https://store.vhsgreed.win/l/rkszjw"
   status: "live"
+  tag: "Free"
 ---
 Every "how I use AI" post starts with a budget panic. Ours does not, because the agent that does the bulk of our autonomous research runs on OpenRouter's free tier at exactly $0/month. Not "free for now", not "freemium until you scale": a daily research pipeline, spawning parallel AI subagents, running on free models for months.
 
