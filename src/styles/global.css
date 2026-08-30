@@ -153,6 +153,20 @@ small { color: var(--muted); }
 /* Explicit vertical variant (store products): stack name/price then action */
 .card-row--stack { flex-direction: column; align-items: stretch; gap: 0.6rem; }
 .card-row--stack .meta { align-self: flex-start; }
+/* Corner variant (opensource cards): content top, meta pinned bottom-right */
+.card-row--meta-corner {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7rem;
+  min-height: 100px;
+  justify-content: flex-start;
+}
+.card-row--meta-corner .meta {
+  margin-top: auto;
+  align-self: flex-end;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
 /* Small screens: the ONLY automatic stacking point */
 @media (max-width: 560px) {
   .card-row { flex-wrap: wrap; }
