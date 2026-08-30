@@ -129,16 +129,38 @@ small { color: var(--muted); }
 .card p { font-size: 0.93rem; color: var(--muted); margin: 0; }
 .card .go { margin-top: auto; font-weight: 650; font-size: 0.9rem; }
 .card-list { display: grid; gap: 1rem; }
+/*
+ * UNIFORM ROW RULE (Karl 08-30): layout is decided ONLY by explicit
+ * rules (breakpoints / modifier classes), never by content length.
+ * Default: content left, meta right on the same baseline, single line.
+ * Stacking happens ONLY via (a) the small-screen breakpoint below, or
+ * (b) an explicit modifier class (.card-row--stack). A long description
+ * must wrap INSIDE its column, never push the meta to another line.
+ */
 .card-row {
   border: 1px solid var(--line); border-radius: var(--radius);
   padding: 1.15rem 1.3rem; display: flex; justify-content: space-between;
   align-items: baseline; gap: 1rem; text-decoration: none; transition: border-color 0.15s;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
-.card-row:hover { border-color: var(--ink); }
-.card-row .t { font-weight: 650; }
-.card-row .d { color: var(--muted); font-size: 0.9rem; margin-top: 0.2rem; }
-.card-row .meta { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); white-space: normal; overflow-wrap: anywhere; }
+.card-row > div { min-width: 0; flex: 1 1 auto; }
+.card-row .t { font-weight: 650; overflow-wrap: anywhere; }
+.card-row .d { color: var(--muted); font-size: 0.9rem; margin-top: 0.2rem; overflow-wrap: anywhere; }
+.card-row .meta {
+  font-family: var(--mono); font-size: 0.78rem; color: var(--muted);
+  flex: 0 0 auto; white-space: nowrap;
+}
+/* Explicit vertical variant (store products): stack name/price then action */
+.card-row--stack { flex-direction: column; align-items: stretch; gap: 0.6rem; }
+.card-row--stack .meta { align-self: flex-start; }
+/* Small screens: the ONLY automatic stacking point */
+@media (max-width: 560px) {
+  .card-row { flex-wrap: wrap; }
+  .card-row .meta { white-space: normal; overflow-wrap: anywhere; }
+}
+@media (max-width: 560px) {
+  .card-row--stack { flex-direction: column; }
+}
 
 /* Blog preview */
 .blog-head {

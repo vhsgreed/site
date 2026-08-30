@@ -17,16 +17,24 @@ const products = [
     name: 'Zero-Cost AI Agent Toolkit',
     price: 'Pay what you want · $1 suggested',
     desc: 'Free-model rotation, health probes, and posting helpers for budget-conscious autonomous agents. MIT.',
-    url: 'https://gumroad.com/', // placeholder: set to real toolkit product link
+    url: 'https://1997479740986.gumroad.com/l/rkszjw', 
     status: 'live',
     tag: 'Tooling',
   },
   {
     name: 'SEMICON Taiwan 2026 Exhibitor List',
-    price: 'Free',
-    desc: 'The 2026 event exhibitor dataset. Time-bound research snapshot, now archived.',
-    url: '',
-    status: 'archived',
+    price: 'Pay what you want · $1 minimum',
+    desc: 'The 2026 event exhibitor dataset. Time-bound research snapshot',
+    url: 'https://1997479740986.gumroad.com/l/yinutw',
+    status: 'live',
+    tag: 'Data',
+  },
+  {
+    name: 'npm Supply-Chain Attack Timeline',
+    price: 'Pay what you want · $1 minimum',
+    desc: 'Complete timeline for 2026, 11 major incidents, packages, IOCs',
+    url: 'https://1997479740986.gumroad.com/l/mixqsd',
+    status: 'live',
     tag: 'Data',
   },
 ];
@@ -46,7 +54,7 @@ const products = [
     <section class="section-tight">
       <div class="card-list">
         {products.map((p) => (
-          <div class="card-row" style="flex-direction: column; gap: 0.6rem;">
+          <div class="card-row card-row--stack">
             <div style="display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
               <div>
                 <div class="t">{p.name}</div>
