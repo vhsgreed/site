@@ -3,6 +3,7 @@ title: "Robotics Supply-Chain Intelligence 2026: building the verified layer"
 date: 2026-08-30
 description: "The robotics dataset ships v3 with 1,093 verified companies across 11 countries. How we verified every ticker and why the honest flags matter."
 tags: ["robotics", "data", "supply-chain", "verification"]
+author: "vhsgreed"
 ---
 Two weeks after the Unitree IPO (+629% open, pre-IPO perps priced it 75% low), the robotics supply chain is the clearest concentration play in markets: actuators are 40-55% of BOM, China is 63-70% of the chain, Japan owns precision reducers, and the US owns the AI layer.
 

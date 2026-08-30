@@ -1,11 +1,14 @@
 ---
 const links = [
   { href: '/', label: 'Home' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/store', label: 'Store' },
+];
+const moreLinks = [
   { href: '/mission', label: 'Mission' },
   { href: '/opensource', label: 'Open Source' },
   { href: '/about', label: 'About' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/store', label: 'Store' },
+  { href: '/authors', label: 'Authors' },
 ];
 const current = Astro.url.pathname;
 ---
@@ -23,7 +26,14 @@ const current = Astro.url.pathname;
       {links.map((l) => (
         <a href={l.href} aria-current={current === l.href ? 'page' : undefined}>{l.label}</a>
       ))}
-      <a class="nav-cta" href="/store">Get the data</a>
+      <details class="nav-more">
+        <summary>More</summary>
+        <div class="nav-more-panel">
+          {moreLinks.map((l) => (
+            <a href={l.href} aria-current={current === l.href ? 'page' : undefined}>{l.label}</a>
+          ))}
+        </div>
+      </details>
     </nav>
 
     <!-- Mobile menu: plain HTML <details>, works without JavaScript -->
@@ -31,6 +41,9 @@ const current = Astro.url.pathname;
       <summary>Menu</summary>
       <nav class="nav-panel" aria-label="Mobile">
         {links.map((l) => (
+          <a href={l.href}>{l.label}</a>
+        ))}
+        {moreLinks.map((l) => (
           <a href={l.href}>{l.label}</a>
         ))}
       </nav>

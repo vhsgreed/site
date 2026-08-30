@@ -1,0 +1,49 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const authors = await getCollection('authors');
+  return authors.map((author) => ({ params: { slug: author.id }, props: { author } }));
+}
+
+const { author } = Astro.props;
+const posts = (await getCollection('blog'))
+  .filter((p) => p.data.author === author.id)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<Base title={author.data.name} description={`${author.data.role} at vhsgreed. ${author.data.bio.slice(0, 140)}`}>
+  <div class="container">
+    <section class="hero">
+      <h1>{author.data.name}</h1>
+      <p class="lead">{author.data.role}</p>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight">
+      <div class="prose">
+        <p>{author.data.bio}</p>
+      </div>
+
+      <h2>Posts</h2>
+      <div class="card-list">
+        {posts.length > 0 ? (
+          posts.map((p) => (
+            <a class="card-row" href={`/blog/${p.id}/`}>
+              <div>
+                <div class="t">{p.data.title}</div>
+                <div class="d">{p.data.description}</div>
+              </div>
+              <span class="meta">
+                {p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+              </span>
+            </a>
+          ))
+        ) : (
+          <p class="muted">No posts published under this name yet.</p>
+        )}
+      </div>
+    </section>
+  </div>
+</Base>

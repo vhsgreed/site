@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const authors = (await getCollection('authors')).sort((a, b) =>
+  a.data.name.localeCompare(b.data.name)
+);
+---
+<Base title="Authors" description="Who writes and publishes on vhsgreed.">
+  <div class="container">
+    <section class="hero">
+      <h1>Authors</h1>
+      <p class="lead">
+        Who stands behind the posts. Named people and the team, so claims have
+        an address.
+      </p>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight">
+      <div class="card-list">
+        {authors.map((a) => (
+          <a class="card-row" href={`/authors/${a.id}/`}>
+            <div>
+              <div class="t">{a.data.name}</div>
+              <div class="d">{a.data.role} — {a.data.bio.slice(0, 120)}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</Base>

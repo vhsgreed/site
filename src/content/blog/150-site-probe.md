@@ -3,6 +3,7 @@ title: "We Probed 150 E-Commerce Sites So We Could Promise Honestly"
 date: 2026-08-29
 description: "The boring, reproducible way to know what a scraper can actually deliver. 150 live probes, published blocked list included."
 mediumUrl: "https://vhsgreed.medium.com/"
+author: "vhsgreed"
 tags: ["scraping", "scrapeforge", "honesty", "data"]
 ---
 Every scraping gig says "I can scrape anything." That is a lie, and we can prove it with data.
