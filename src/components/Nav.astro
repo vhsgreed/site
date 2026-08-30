@@ -1,0 +1,39 @@
+---
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/mission', label: 'Mission' },
+  { href: '/opensource', label: 'Open Source' },
+  { href: '/about', label: 'About' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/store', label: 'Store' },
+];
+const current = Astro.url.pathname;
+---
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/" aria-label="vhsgreed home">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="12" fill="#0A0A0A" />
+        <path d="M14 18 L32 50 L50 18" fill="none" stroke="#A3E635" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      vhsgreed
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      {links.map((l) => (
+        <a href={l.href} aria-current={current === l.href ? 'page' : undefined}>{l.label}</a>
+      ))}
+      <a class="nav-cta" href="/store">Get the data</a>
+    </nav>
+
+    <!-- Mobile menu: plain HTML <details>, works without JavaScript -->
+    <details class="nav-toggle">
+      <summary>Menu</summary>
+      <nav class="nav-panel" aria-label="Mobile">
+        {links.map((l) => (
+          <a href={l.href}>{l.label}</a>
+        ))}
+      </nav>
+    </details>
+  </div>
+</header>

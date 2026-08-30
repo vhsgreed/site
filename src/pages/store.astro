@@ -1,0 +1,80 @@
+---
+import Base from '../layouts/Base.astro';
+
+// Product catalog for the store page. url = Gumroad product link.
+// Robotics goes live once Karl publishes the listing on Gumroad; until
+// then the card shows "Ready to publish" instead of a buy link.
+const products = [
+  {
+    name: 'Robotics Supply-Chain Intelligence 2026',
+    price: '$10 suggested · $5 minimum',
+    desc: '13,000+ assets, 1,093 verified companies across 11 countries, 60 exposure routes (direct / adjacent / indirect), prediction-market landscape, exposure guide.',
+    url: '', // pending Gumroad publish
+    status: 'publish-pending',
+    tag: 'Data',
+  },
+  {
+    name: 'Zero-Cost AI Agent Toolkit',
+    price: 'Pay what you want · $1 suggested',
+    desc: 'Free-model rotation, health probes, and posting helpers for budget-conscious autonomous agents. MIT.',
+    url: 'https://gumroad.com/', // placeholder: set to real toolkit product link
+    status: 'live',
+    tag: 'Tooling',
+  },
+  {
+    name: 'SEMICON Taiwan 2026 Exhibitor List',
+    price: 'Free',
+    desc: 'The 2026 event exhibitor dataset. Time-bound research snapshot, now archived.',
+    url: '',
+    status: 'archived',
+    tag: 'Data',
+  },
+];
+---
+<Base title="Store" description="Data products and tooling from vhsgreed, sold via Gumroad.">
+  <div class="container">
+    <section class="hero">
+      <h1>Store</h1>
+      <p class="lead">
+        Everything is sold through Gumroad: instant download, pay what you
+        want where it fits, no account required beyond checkout.
+      </p>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight">
+      <div class="card-list">
+        {products.map((p) => (
+          <div class="card-row" style="flex-direction: column; gap: 0.6rem;">
+            <div style="display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+              <div>
+                <div class="t">{p.name}</div>
+                <div class="d">{p.desc}</div>
+              </div>
+              <span class="meta">{p.tag} · {p.price}</span>
+            </div>
+            {p.status === 'live' && p.url && (
+              <div><a class="btn btn-accent" href={p.url} target="_blank" rel="noopener">Buy on Gumroad →</a></div>
+            )}
+            {p.status === 'publish-pending' && (
+              <div><a class="btn btn-ghost" href="/blog/robotics-supply-chain-2026/">Coming soon — read the writeup →</a></div>
+            )}
+            {p.status === 'archived' && (
+              <div class="muted"><small>Archived. Contact us for the dataset.</small></div>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="prose section-tight" style="max-width: 72ch;">
+      <h2>Why Gumroad</h2>
+      <p>
+        Instant delivery, our own pricing, and no monthly platform fee. If you
+        need something custom, we also build to order: scraping and automation
+        scripts, audits, and dataset work. <a href="mailto:lillerik.sund@gmail.com">Email us</a>.
+      </p>
+    </section>
+  </div>
+</Base>

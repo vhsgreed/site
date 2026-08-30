@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const latest = posts[0];
+---
+<Base title="For-profit, self-funded AI R&D" description="Robotics supply-chain intelligence, open-source agent tooling, and honest research from Stockholm.">
+  <div class="container">
+    <section class="hero">
+      <h1>
+        Data-led research, <span class="glow">openly built</span>.
+      </h1>
+      <p class="lead">
+        vhsgreed is a for-profit, self-funded R&amp;D shop: robotics supply-chain
+        intelligence, open-source agent tooling, and audits that tell you what
+        a dataset can and cannot do.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-accent" href="/store">Browse the store</a>
+        <a class="btn btn-ghost" href="/mission">Our mission</a>
+        <a class="btn btn-ghost" href="/opensource">Open source</a>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight">
+      <div class="grid">
+        <a class="card" href="/store">
+          <span class="kicker">Store</span>
+          <h3>Robotics supply-chain data</h3>
+          <p>13,000+ assets, 1,093 verified companies in 11 countries, exposure map across direct, adjacent, and indirect routes.</p>
+          <span class="go">Browse datasets →</span>
+        </a>
+        <a class="card" href="/opensource">
+          <span class="kicker">Open Source</span>
+          <h3>Agent tooling, MIT</h3>
+          <p>Typosquat scanning, probe-first scraping, attested benchmarking, free-model rotation. Built in public.</p>
+          <span class="go">See the repos →</span>
+        </a>
+        <a class="card" href="/blog">
+          <span class="kicker">Blog</span>
+          <h3>Research notes</h3>
+          <p>What we learn while building: site probes, free-tier AI pipelines, supply-chain postmortems, honest numbers.</p>
+          <span class="go">Read the latest →</span>
+        </a>
+        <a class="card" href="/about">
+          <span class="kicker">About</span>
+          <h3>Self-funded, transparent</h3>
+          <p>No VC, no ads, no data resale. Revenue funds the research. Full transparency statement and privacy policy.</p>
+          <span class="go">Who we are →</span>
+        </a>
+      </div>
+    </section>
+
+    {latest && (
+      <section class="blog-head">
+        <span class="kicker">Latest from the blog</span>
+        <h2><a href={`/blog/${latest.id}/`} style="color: inherit; text-decoration: none;">{latest.data.title}</a></h2>
+        <p class="muted">
+          {latest.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+          &nbsp;·&nbsp; {latest.data.description}
+        </p>
+        <p><a href={`/blog/${latest.id}/`}>Read the post →</a></p>
+      </section>
+    )}
+  </div>
+</Base>

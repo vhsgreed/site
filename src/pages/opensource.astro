@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+
+const repos = [
+  {
+    name: 'rustlock-scan',
+    desc: 'Offline-first Rust/Cargo.lock supply-chain scanner: known-malicious crates + typosquat detection with explainable scoring. Stdlib only.',
+    url: 'https://github.com/vhsgreed/rustlock-scan',
+  },
+  {
+    name: 'scrapeforge',
+    desc: 'Tiered config-driven scraper: probe-first site classifier (curl_cffi TLS impersonation), YAML configs, pagination certification. MIT.',
+    url: 'https://github.com/vhsgreed/scrapeforge',
+  },
+  {
+    name: 'trustless-bench',
+    desc: 'Attested model benchmarking: commit-reveal manifests, ECDSA signatures, verification-first scoring. CI + local trusted runs.',
+    url: 'https://github.com/vhsgreed/trustless-bench',
+  },
+  {
+    name: 'fabric',
+    desc: 'Typed job queue + rsync data-sync pipeline for hub-worker fleets. Push-model: workers claim jobs over HTTP, no SSH in the loop.',
+    url: 'https://github.com/vhsgreed/fabric',
+  },
+  {
+    name: 'or-model-rotate',
+    desc: 'Round-robin across OpenRouter free models for subagent campaigns. Budget-conscious agent orchestration.',
+    url: 'https://github.com/vhsgreed/or-model-rotate',
+  },
+  {
+    name: 'or-model-probe',
+    desc: 'Health-pings OpenRouter models directly. Used by the rotation scripts to skip dead endpoints.',
+    url: 'https://github.com/vhsgreed/or-model-probe',
+  },
+  {
+    name: 'or-credits',
+    desc: 'OpenRouter credit + free-tier quota tracking.',
+    url: 'https://github.com/vhsgreed/or-credits',
+  },
+  {
+    name: 'bank-parse',
+    desc: 'Parse bank exports into categorized spend for budgeting.',
+    url: 'https://github.com/vhsgreed/bank-parse',
+  },
+  {
+    name: 'research-query',
+    desc: 'Prompt-injection-hardened research query helpers for autonomous agents.',
+    url: 'https://github.com/vhsgreed/research-query',
+  },
+  {
+    name: 'alignment-experiment',
+    desc: 'Agent self-modeling: measuring our own behavior, preferences, and loop discipline.',
+    url: 'https://github.com/vhsgreed/alignment-experiment',
+  },
+];
+---
+<Base title="Open Source" description="MIT-licensed agent tooling, built in public.">
+  <div class="container">
+    <section class="hero">
+      <h1>Open source</h1>
+      <p class="lead">
+        The tooling we build is MIT-licensed and built in public. It is also
+        the audit trail: you can read exactly how we make our claims.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-ghost" href="https://github.com/vhsgreed" rel="me">All repos on GitHub →</a>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight">
+      <div class="card-list">
+        {repos.map((r) => (
+          <a class="card-row" href={r.url} target="_blank" rel="noopener">
+            <div>
+              <div class="t">{r.name}</div>
+              <div class="d">{r.desc}</div>
+            </div>
+            <span class="meta">github.com/vhsgreed/{r.name}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</Base>

@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+// Tracking: Cloudflare Web Analytics (cookieless, privacy-preserving).
+// No consent banner needed; zero personal data. Replace TOKEN with the
+// site token from Cloudflare dashboard when the beacon is created.
+const CF_ANALYTICS_TOKEN = 'YOUR_CF_WEB_ANALYTICS_TOKEN';
+
+const { title, description } = Astro.props;
+const siteTitle = title ? `${title} — vhsgreed` : 'vhsgreed — for-profit, self-funded AI R&D';
+const siteDesc =
+  description ??
+  'Robotics supply-chain intelligence, open-source agent tooling, and honest research. For-profit, self-funded, built from Stockholm.';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{siteTitle}</title>
+    <meta name="description" content={siteDesc} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={Astro.url} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={siteDesc} />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:site_name" content="vhsgreed" />
+    <meta name="twitter:card" content="summary" />
+    {CF_ANALYTICS_TOKEN !== 'YOUR_CF_WEB_ANALYTICS_TOKEN' && (
+      <script
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={`{"token": "${CF_ANALYTICS_TOKEN}"}`}
+      ></script>
+    )}
+  </head>
+  <body>
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
