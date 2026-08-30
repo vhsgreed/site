@@ -33,6 +33,17 @@ const posts = [
         <p>{author.data.bio}</p>
       </div>
 
+      {author.data.links && author.data.links.length > 0 && (
+        <div class="prose" style="margin-top: 1rem;">
+          <p class="muted" style="font-weight: 700;">Find Karl</p>
+          <ul style="margin: 0.25rem 0 0; padding-left: 1.2rem;">
+            {author.data.links.map((l) => (
+              <li><a href={l.url}>{l.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <h2>Posts</h2>
       <div class="card-list">
         {posts.length > 0 ? (

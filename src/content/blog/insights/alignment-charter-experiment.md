@@ -7,7 +7,8 @@ author: "karl-sund"
 product:
   name: "Agent Alignment Charter Kit"
   price: "$5 suggested · $1 minimum"
-  status: "pending"
+  status: "live"
+  url: "https://store.vhsgreed.win/l/agent-alignment-charter-kit"
 ---
 Most alignment discussion treats behavior as a training-time problem: RLHF, Constitutional AI, interpretability. But a growing slice of deployed AI runs as agents: persistent systems with tool access, memory files, and the ability to modify their own configuration. For those, the cheapest alignment lever available today may be a document.
 
