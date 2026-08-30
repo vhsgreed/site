@@ -153,7 +153,7 @@ small { color: var(--muted); }
 /* Explicit vertical variant (store products): stack name/price then action */
 .card-row--stack { flex-direction: column; align-items: stretch; gap: 0.6rem; }
 .card-row--stack .meta { align-self: flex-start; }
-/* Corner variant (opensource cards): content top, meta pinned bottom-right */
+/* Corner variant (opensource cards): content top, meta pinned bottom-LEFT */
 .card-row--meta-corner {
   flex-direction: column;
   align-items: flex-start;
@@ -163,7 +163,7 @@ small { color: var(--muted); }
 }
 .card-row--meta-corner .meta {
   margin-top: auto;
-  align-self: flex-end;
+  align-self: flex-start;
   white-space: normal;
   overflow-wrap: anywhere;
 }
