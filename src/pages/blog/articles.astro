@@ -1,0 +1,39 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { getAuthorName } from '../../lib/authors';
+
+const posts = (await getCollection('articles')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+<Base title="Articles" description="Build logs and research notes from vhsgreed.">
+  <div class="container">
+    <section class="hero">
+      <h1>Articles</h1>
+      <p class="lead">
+        The working record: build logs, research notes, and postmortems.
+        For product pages with buy links, see <a href="/blog/insights/">insights</a>.
+      </p>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight">
+      <div class="card-list">
+        {posts.map((p) => (
+          <a class="card-row" href={`/blog/articles/${p.id}/`}>
+            <div>
+              <div class="t">{p.data.title}</div>
+              <div class="d">{p.data.description}</div>
+            </div>
+            <span class="meta">
+              {getAuthorName(p.data.author) ? `${getAuthorName(p.data.author)} · ` : ''}
+              {p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</Base>

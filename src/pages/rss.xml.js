@@ -2,7 +2,9 @@ import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 
 export async function GET(context) {
-  const posts = (await getCollection('blog')).sort(
+  const articles = (await getCollection('articles')).map((p) => ({ ...p, kind: 'articles' }));
+  const insights = (await getCollection('insights')).map((p) => ({ ...p, kind: 'insights' }));
+  const posts = [...articles, ...insights].sort(
     (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
   );
   return rss({
@@ -13,7 +15,7 @@ export async function GET(context) {
       title: post.data.title,
       pubDate: post.data.date,
       description: post.data.description,
-      link: `/blog/${post.id}/`,
+      link: `/blog/${post.kind}/${post.id}/`,
     })),
   });
 }

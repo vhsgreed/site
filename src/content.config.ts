@@ -1,15 +1,31 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-const blog = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
-  schema: z.object({
-    title: z.string(),
-    date: z.coerce.date(),
-    description: z.string(),
-    mediumUrl: z.string().url().optional(),
-    tags: z.array(z.string()).optional(),
-    author: z.string().optional(),
+const postSchema = z.object({
+  title: z.string(),
+  date: z.coerce.date(),
+  description: z.string(),
+  mediumUrl: z.string().url().optional(),
+  tags: z.array(z.string()).optional(),
+  author: z.string().optional(),
+});
+
+const articles = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog/articles' }),
+  schema: postSchema,
+});
+
+const insights = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog/insights' }),
+  schema: postSchema.extend({
+    product: z
+      .object({
+        name: z.string(),
+        price: z.string().optional(),
+        url: z.string().url().optional(),
+        status: z.enum(['live', 'pending', 'none']).optional(),
+      })
+      .optional(),
   }),
 });
 
@@ -22,4 +38,4 @@ const authors = defineCollection({
   }),
 });
 
-export const collections = { blog, authors };
+export const collections = { articles, insights, authors };

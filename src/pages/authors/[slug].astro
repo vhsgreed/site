@@ -8,9 +8,16 @@ export async function getStaticPaths() {
 }
 
 const { author } = Astro.props;
-const posts = (await getCollection('blog'))
+const articles = (await getCollection('articles'))
   .filter((p) => p.data.author === author.id)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const insights = (await getCollection('insights'))
+  .filter((p) => p.data.author === author.id)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const posts = [
+  ...articles.map((p) => ({ ...p, kind: 'articles' })),
+  ...insights.map((p) => ({ ...p, kind: 'insights' })),
+].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 <Base title={author.data.name} description={`${author.data.role} at vhsgreed. ${author.data.bio.slice(0, 140)}`}>
   <div class="container">
@@ -30,12 +37,13 @@ const posts = (await getCollection('blog'))
       <div class="card-list">
         {posts.length > 0 ? (
           posts.map((p) => (
-            <a class="card-row" href={`/blog/${p.id}/`}>
+            <a class="card-row" href={`/blog/${p.kind}/${p.id}/`}>
               <div>
                 <div class="t">{p.data.title}</div>
                 <div class="d">{p.data.description}</div>
               </div>
               <span class="meta">
+                {p.kind === 'insights' ? 'Insight · ' : ''}
                 {p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
               </span>
             </a>

@@ -1,0 +1,44 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { getAuthorName } from '../../lib/authors';
+
+const posts = (await getCollection('insights')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+<Base title="Insights" description="Product pages and buy links from vhsgreed: data, tooling, and the reasoning.">
+  <div class="container">
+    <section class="hero">
+      <h1>Insights</h1>
+      <p class="lead">
+        Product pages: the research, the data, and the buy link in one place.
+        For build logs and postmortems, see <a href="/blog/articles/">articles</a>.
+      </p>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight">
+      <div class="card-list">
+        {posts.map((p) => (
+          <a class="card-row" href={`/blog/insights/${p.id}/`}>
+            <div>
+              <div class="t">
+                {p.data.product?.name ? (
+                  <span class="badge">{p.data.product.status === 'live' ? 'Buy' : 'Product'}</span>
+                ) : null}
+                {p.data.title}
+              </div>
+              <div class="d">{p.data.description}</div>
+            </div>
+            <span class="meta">
+              {getAuthorName(p.data.author) ? `${getAuthorName(p.data.author)} · ` : ''}
+              {p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</Base>

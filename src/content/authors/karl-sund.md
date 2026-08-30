@@ -1,5 +1,5 @@
 ---
-name: "Karl Sund"
+name: "Karl Sundström"
 role: "Founder"
-bio: "Founder of vhsgreed. Stockholm, Sweden. Sets the mission, owns the decisions, and is the human in the loop behind every published claim."
+bio: "Stockholm, Sweden. The human in the loop behind every published claim."
 ---

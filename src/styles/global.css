@@ -123,6 +123,21 @@ small { color: var(--muted); }
   .nav-toggle { display: block; }
 }
 
+/* Section heads */
+.section-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 1rem; margin: 0 0 0.9rem;
+}
+.section-head .go { font-size: 0.9rem; font-weight: 600; text-decoration: none; }
+
+/* Product badge on insight cards */
+.badge {
+  display: inline-block; margin-right: 0.5rem; padding: 0.12rem 0.5rem;
+  border-radius: 999px; font-size: 0.68rem; font-weight: 750;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  background: var(--accent-strong); color: var(--ink); vertical-align: 0.18em;
+}
+
 /* Hero */
 .hero { padding: clamp(3.5rem, 10vw, 7rem) 0 2.5rem; }
 .hero h1 { max-width: 15ch; }

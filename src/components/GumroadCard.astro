@@ -1,0 +1,65 @@
+---
+interface Props {
+  product?: {
+    name: string;
+    price?: string;
+    url?: string;
+    status?: 'live' | 'pending' | 'none';
+  };
+}
+const { product } = Astro.props;
+const status = product?.status ?? 'none';
+---
+<section class="gumroad-card" style="margin-top: 3rem;">
+  <h3 class="kicker" style="margin: 0 0 0.5rem;">Get the data</h3>
+  <div class="gumroad-inner">
+    <div>
+      <div class="t">{product?.name ?? 'vhsgreed products'}</div>
+      {product?.price && <div class="d muted">{product.price}</div>}
+    </div>
+
+    {status === 'live' && product?.url && (
+      <a class="gumroad-button btn btn-accent" href={product.url} target="_blank" rel="noopener">
+        Buy on Gumroad
+      </a>
+    )}
+    {status === 'pending' && (
+      <a class="btn btn-ghost" href="/store">
+        Publishing soon · see the store
+      </a>
+    )}
+    {status === 'none' && (
+      <a class="btn btn-ghost" href="/store">
+        See the store
+      </a>
+    )}
+  </div>
+  {status === 'live' && product?.url && (
+    <script
+      async
+      src="https://gumroad.com/js/gumroad.js"
+      data-gumroad-single-product="true"
+    ></script>
+  )}
+</section>
+
+<style>
+  .gumroad-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 1.25rem 1.4rem;
+  }
+  .gumroad-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .gumroad-card .t { font-weight: 700; font-size: 1.05rem; }
+  .gumroad-card .d { font-size: 0.9rem; }
+  @media (max-width: 480px) {
+    .gumroad-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
