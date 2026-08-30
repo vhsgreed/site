@@ -1,7 +1,7 @@
 ---
-title: "Can a Written Charter Actually Align Fresh Agents? A Pre/Post Experiment"
+title: "Can a Written Charter Align Fresh Agents?"
 date: 2026-08-29
-description: "The full experiment: 6 fresh LLM agents, a 7-question behavioral battery, a human-negotiated charter, blind re-run. Method, limitations, and the qualitative shift in agent reasoning."
+description: "6 fresh agents, 7-question battery, negotiated charter, blind re-run: method, limits, and the qualitative shift. A pre/post experiment."
 tags: ["alignment", "agents", "charter", "experiment", "method"]
 author: "karl-sund"
 ---

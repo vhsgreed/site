@@ -1,7 +1,7 @@
 ---
-title: "Robotics Stocks 2026: The Verified Supply-Chain Ticker List"
+title: "Robotics Stocks 2026: Verified Ticker List"
 date: 2026-08-30
-description: "1,093 live-verified robotics companies across 11 countries, 13,000+ assets, 60 exposure routes. The investable map of the robotics supply chain, with honest flags."
+description: "1,093 live-verified robotics companies across 11 countries, 13,000+ assets, 60 exposure routes. The investable map, with honest flags."
 tags: ["robotics stocks", "supply chain", "ticker list", "investing"]
 author: "vhsgreed"
 product:
@@ -58,3 +58,6 @@ Verification caught real bugs that would have embarrassed a scrape dump: LAZR no
 ## Get the dataset
 
 The full Robotics Supply-Chain Intelligence 2026 dataset ships as a single zip: nations layer, US universe, cryptos, perps, exposure map, prediction markets, and an exposure guide. Publishing on Gumroad is in progress; the store page will carry the live link.
+## How the data was built
+
+Want the method, the catches, and the honest flags behind these tickers? The [build log](/blog/articles/robotics-supply-chain-2026/) walks through the harvest, the live Yahoo verification, and the bugs we caught (LAZR, SHA0.DE, 373220.KS). The dataset is only as good as the verification, so the full story is public.

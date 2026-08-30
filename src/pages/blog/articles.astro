@@ -7,7 +7,7 @@ const posts = (await getCollection('articles')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 ---
-<Base title="Articles" description="Build logs and research notes from vhsgreed.">
+<Base title="Articles" description="Build logs, research notes, and postmortems from vhsgreed, the open working record behind insights and products.">
   <div class="container">
     <section class="hero">
       <h1>Articles</h1>

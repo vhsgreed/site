@@ -1,7 +1,7 @@
 ---
-title: "How We Built the Verified Robotics Supply-Chain Dataset"
+title: "Building the Verified Robotics Dataset"
 date: 2026-08-30
-description: "The story behind the 1,093-company verified layer: harvest method, live Yahoo verification, the ticker bugs we caught (LAZR, SHA0.DE, 373220.KS), and the honest flags."
+description: "How we built the 1,093-company verified layer: harvest, live verification, the ticker bugs caught (LAZR, SHA0.DE, 373220.KS), and the honest flags."
 tags: ["robotics", "data", "supply-chain", "verification"]
 author: "vhsgreed"
 ---
@@ -23,3 +23,4 @@ Every row that could not be verified stays in the file **flagged UNVERIFIED**. N
 Two real bugs surfaced during the pass: a Finnish ticker resolved to a Frankfurt quote by wrong exchange, and a Russian blue chip matched to an index ticker. Both were reverted to honest UNVERIFIED rather than shipped wrong. One find looked wrong but was right: Norway's Aker BP is AKRBP.OL on Yahoo, not the intuitive AKERBP.OL.
 
 That is the whole point of the layer. The file says how it was made, which rows are certain, and which are not.
+**Looking for the tickers themselves?** The [Robotics Stocks 2026 insight page](/blog/insights/robotics-supply-chain-2026/) lists the verified companies, exposure routes, and how to get the full dataset.

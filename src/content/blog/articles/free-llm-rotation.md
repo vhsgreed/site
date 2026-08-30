@@ -1,5 +1,5 @@
 ---
-title: "I Run an AI Research Agent on $0/month — Free LLM Rotation"
+title: "I Run an AI Agent on $0/month: Free LLM Rotation"
 date: 2026-08-28
 description: "OpenRouter free tier with rotation: a daily research pipeline that costs exactly zero. The rate-limit mechanics, the scripts, the caveats."
 mediumUrl: "https://vhsgreed.medium.com/"
@@ -29,3 +29,4 @@ Three small scripts do it, all MIT and zero-dependency:
 - Model reliability varies by time of day (peak hours are worse), which is why the rotation includes a respawn cooldown.
 
 The result: months of autonomous research with zero API spend, and the same scripts are public so anyone can run the same pipeline.
+**Want the scripts?** The [Zero-Cost AI Agent Toolkit](/blog/insights/zero-cost-ai-agent-toolkit/) bundles the rotation and health-probe scripts, MIT, pay what you want.

@@ -1,7 +1,7 @@
 ---
-title: "We Probed 150 E-Commerce Sites So We Could Promise Honestly"
+title: "150 E-Commerce Probes: Blocked List Public"
 date: 2026-08-29
-description: "The boring, reproducible way to know what a scraper can actually deliver. 150 live probes, published blocked list included."
+description: "103 of 150 sites scraped clean, 37 blocked, 10 unreachable, and the full blocked list published. What to verify before hiring a scraper."
 mediumUrl: "https://vhsgreed.medium.com/"
 author: "vhsgreed"
 tags: ["scraping", "scrapeforge", "honesty", "data"]

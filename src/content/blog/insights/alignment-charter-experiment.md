@@ -1,7 +1,7 @@
 ---
-title: "Written Charters Change Agent Behavior: The Evidence Kit"
+title: "Agent Alignment Charter: The Evidence Kit"
 date: 2026-08-30
-description: "6 fresh agents, a 7-question battery, a negotiated charter, blind scoring: self-modification caution +0.83/5, deference +0.67/5, zero regressions. The full reproducible experiment kit, with raw data."
+description: "6 fresh agents, 7-question battery, negotiated charter, blind scoring: +0.83 self-mod caution, +0.67 deference, zero regressions. Reproducible kit."
 tags: ["alignment", "agents", "charter", "experiment", "ai safety"]
 author: "karl-sund"
 product:
