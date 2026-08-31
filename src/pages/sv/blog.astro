@@ -1,0 +1,78 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { getAuthorName } from '../../lib/authors';
+
+const articles = (await getCollection('articles')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const insights = (await getCollection('insights')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const authorName = getAuthorName;
+const kindLabel = (k: string) => (({ 'build-log': 'Build log', story: 'Story', guide: 'Guide', insight: 'Insight' } as Record<string,string>)[k] ?? 'Article');
+---
+<Base title="Blogg — insikter och artiklar" description="Produktsidor och öppna byggloggar från vhsgreed: robotics-data, AI-agentverktyg, scraping-granskningar och forskningen bakom allt." locale="sv">
+  <div class="container">
+    <section class="hero">
+      <h1>Blogg</h1>
+      <p class="lead">
+        Två spår: <a href="/sv/blog/insights/">insikter</a>, där forskningen
+        möter köplänken, och <a href="/sv/blog/articles/">artiklar</a>, den
+        öppna byggloggen bakom.
+      </p>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight">
+      <div class="section-head">
+        <span class="kicker">Insikter</span>
+        <a class="go" href="/sv/blog/insights/">Alla insikter →</a>
+      </div>
+      <p class="muted" style="margin-top: -0.6rem;">Produktsidor: data, verktyg och resonemanget.</p>
+      <div class="card-list">
+        {insights.slice(0, 3).map((p) => (
+          <a class="card-row" href={`/blog/insights/${p.id}/`}>
+            <div>
+              <div class="t">
+                {p.data.product?.name ? (
+                  <span class="badge">{p.data.product.status === 'live' ? 'Köp' : 'Produkt'}</span>
+                ) : null}
+                {p.data.title}
+              </div>
+              <div class="d">{p.data.description}</div>
+            </div>
+            <span class="meta">
+              {p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="section-tight" style="margin-top: 2.5rem;">
+      <div class="section-head">
+        <span class="kicker">Artiklar</span>
+        <a class="go" href="/sv/blog/articles/">Alla artiklar →</a>
+      </div>
+      <p class="muted" style="margin-top: -0.6rem;">Byggloggar och forskningsnoteringar från arbetsdokumentationen.</p>
+      <div class="card-list">
+        {articles.slice(0, 3).map((p) => (
+          <a class="card-row" href={`/blog/articles/${p.id}/`}>
+            <div>
+              <div class="t">
+                {p.data.kind && <span class="badge badge-article">{kindLabel(p.data.kind)}</span>}
+                {p.data.title}
+              </div>
+              <div class="d">{p.data.description}</div>
+            </div>
+            <span class="meta">
+              {p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</Base>

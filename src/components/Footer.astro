@@ -1,39 +1,46 @@
 ---
+const { locale = 'en' } = Astro.props;
+const sv = locale === 'sv';
 const year = new Date().getFullYear();
+const svUrl = (path: string) => sv ? path : `/sv${path}`;
 ---
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
       <div>
         <p class="foot-h">vhsgreed</p>
-        <p class="brandline">For-profit, self-funded AI research and development. Robotics intelligence, open-source agent tooling, honest data.</p>
+        <p class="brandline">
+          {sv
+            ? 'Vinstdrivande, självfinansierad AI-forskning och utveckling. Robotics intelligence, agentverktyg med öppen källkod, ärlig data.'
+            : 'For-profit, self-funded AI research and development. Robotics intelligence, open-source agent tooling, honest data.'}
+        </p>
       </div>
       <div>
-        <p class="foot-h">Site</p>
-        <a href="/">Home</a>
-        <a href="/mission/">Mission</a>
-        <a href="/blog/">Blog</a>
-        <a href="/authors/">Authors</a>
-        <a href="/store/">Store</a>
+        <p class="foot-h">{sv ? 'Sidor' : 'Site'}</p>
+        <a href={sv ? '/sv/' : '/'}>{sv ? 'Hem' : 'Home'}</a>
+        <a href={sv ? '/sv/mission/' : '/mission/'}>{sv ? 'Mission' : 'Mission'}</a>
+        <a href={sv ? '/sv/blog/' : '/blog/'}>{sv ? 'Blogg' : 'Blog'}</a>
+        <a href={sv ? '/sv/authors/' : '/authors/'}>{sv ? 'Författare' : 'Authors'}</a>
+        <a href={sv ? '/sv/store/' : '/store/'}>{sv ? 'Butik' : 'Store'}</a>
       </div>
       <div>
-        <p class="foot-h">Projects</p>
-        <a href="/opensource/">Open Source</a>
+        <p class="foot-h">{sv ? 'Närvaro' : 'Presence'}</p>
+        <a href={sv ? '/sv/opensource/' : '/opensource/'}>{sv ? 'Open Source' : 'Open Source'}</a>
         <a href="https://github.com/vhsgreed" rel="me">GitHub</a>
         <a href="https://vhsgreed.medium.com/" rel="me">Medium</a>
         <a href="https://vhsgreed.bsky.social/" rel="me">Bluesky</a>
-	<a href="https://x.com/vhsgreed" rel="me">X</a>
+        <a href="https://x.com/vhsgreed" rel="me">X</a>
       </div>
       <div>
-        <p class="foot-h">Company</p>
-        <a href="/about/">About</a>
-        <a href="/contact/">Contact</a>
-        <a href="/privacy/">Privacy</a>
-        <a href="/contact/">Email</a>
+        <p class="foot-h">{sv ? 'Företag' : 'Company'}</p>
+        <a href={sv ? '/sv/about/' : '/about/'}>{sv ? 'Om oss' : 'About'}</a>
+        <a href={sv ? '/sv/contact/' : '/contact/'}>{sv ? 'Kontakt' : 'Contact'}</a>
+        <a href={sv ? '/sv/contact/' : '/privacy/'}>{sv ? 'Integritet' : 'Privacy'}</a>
+        <a href={sv ? '/sv/contact/' : '/contact/'}>{sv ? 'E-post' : 'Email'}</a>
       </div>
     </div>
     <div class="legal">
-      © {year} vhsgreed · Stockholm, Sweden · For-profit, self-funded research &amp; development.
+      &copy; {year} vhsgreed &middot; Stockholm, Sverige &middot; {sv ? 'Vinstdrivande, självfinansierad forskning och utveckling.' : 'For-profit, self-funded research &amp; development.'}
     </div>
   </div>
 </footer>

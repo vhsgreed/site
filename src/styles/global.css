@@ -118,6 +118,7 @@ small { color: var(--muted); }
   display: grid; gap: 0.2rem; padding: 0.6rem 0 0.9rem;
 }
 .nav-panel a { text-decoration: none; padding: 0.5rem 0.2rem; border-bottom: 1px solid var(--line); font-weight: 550; }
+.lang-switch { font-weight: 700 !important; color: var(--link,var(--accent)) !important; }
 @media (max-width: 760px) {
   .nav-links { display: none; }
   .nav-toggle { display: block; }

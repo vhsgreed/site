@@ -8,15 +8,31 @@ import Footer from '../components/Footer.astro';
 // site token from Cloudflare dashboard when the beacon is created.
 const CF_ANALYTICS_TOKEN = 'YOUR_CF_WEB_ANALYTICS_TOKEN';
 
-const { title, description } = Astro.props;
-const siteTitle = title ? `${title} — vhsgreed` : 'vhsgreed — for-profit, self-funded AI R&D';
-const siteDesc =
-  description ??
-  'Robotics supply-chain intelligence, open-source agent tooling, and honest research. For-profit, self-funded, built from Stockholm.';
+const { title, description, locale = 'en' } = Astro.props;
+
+const lang = locale === 'sv' ? 'sv' : 'en';
+const siteTitle = title
+  ? `${title} — vhsgreed`
+  : locale === 'sv'
+    ? 'vhsgreed — vinstdrivande, självfinansierad AI-FoU'
+    : 'vhsgreed — for-profit, self-funded AI R&D';
+
+const defaultDesc =
+  locale === 'sv'
+    ? 'Robotics supply-chain intelligence, agentverktyg med öppen källkod och ärlig forskning. Vinstdrivande, självfinansierat, byggt från Stockholm.'
+    : 'Robotics supply-chain intelligence, open-source agent tooling, and honest research. For-profit, self-funded, built from Stockholm.';
+
+const siteDesc = description || defaultDesc;
 const ogImage = Astro.url.origin + '/og-default.svg';
+
+// hreflang alternates: strip /sv/ prefix for en, add it for sv
+const isSv = locale === 'sv';
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '';
+const enPath = isSv ? pathname.replace(/^\/sv/, '') || '/' : pathname || '/';
+const svPath = isSv ? (pathname || '/') : (pathname === '/' ? '/sv/' : `/sv${pathname}`) + '/';
 ---
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,6 +40,8 @@ const ogImage = Astro.url.origin + '/og-default.svg';
     <meta name="description" content={siteDesc} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={Astro.url} />
+    <link rel="alternate" hreflang="en" href={new URL(enPath, Astro.url.origin).href} />
+    <link rel="alternate" hreflang="sv" href={new URL(svPath, Astro.url.origin).href} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={siteTitle} />
     <meta property="og:description" content={siteDesc} />
@@ -43,10 +61,10 @@ const ogImage = Astro.url.origin + '/og-default.svg';
     )}
   </head>
   <body>
-    <Nav />
+    <Nav locale={locale} langSwitchUrl={locale === 'sv' ? enPath : svPath} langSwitchLabel={locale === 'sv' ? 'English' : 'Svenska'} />
     <main>
       <slot />
     </main>
-    <Footer />
+    <Footer locale={locale} />
   </body>
 </html>

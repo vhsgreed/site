@@ -1,21 +1,24 @@
 ---
+const { locale = 'en', langSwitchUrl, langSwitchLabel } = Astro.props;
+const sv = locale === 'sv';
+
 const links = [
-  { href: '/', label: 'Home' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/store', label: 'Store' },
+  { href: sv ? '/sv/' : '/', label: sv ? 'Hem' : 'Home' },
+  { href: sv ? '/sv/blog/' : '/blog', label: sv ? 'Blogg' : 'Blog' },
+  { href: sv ? '/sv/store/' : '/store', label: sv ? 'Butik' : 'Store' },
 ];
 const moreLinks = [
-  { href: '/mission', label: 'Mission' },
-  { href: '/opensource', label: 'Open Source' },
-  { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
-  { href: '/authors', label: 'Authors' },
+  { href: sv ? '/sv/mission/' : '/mission', label: sv ? 'Mission' : 'Mission' },
+  { href: sv ? '/sv/opensource/' : '/opensource', label: sv ? 'Open Source' : 'Open Source' },
+  { href: sv ? '/sv/about/' : '/about', label: sv ? 'Om oss' : 'About' },
+  { href: sv ? '/sv/contact/' : '/contact', label: sv ? 'Kontakt' : 'Contact' },
+  { href: sv ? '/sv/authors/' : '/authors', label: sv ? 'Författare' : 'Authors' },
 ];
 const current = Astro.url.pathname;
 ---
 <header class="nav">
   <div class="nav-inner">
-    <a class="brand" href="/" aria-label="vhsgreed home">
+    <a class="brand" href={sv ? '/sv/' : '/'} aria-label="vhsgreed home">
       <svg viewBox="0 0 64 64" aria-hidden="true">
         <rect width="64" height="64" rx="12" fill="#0A0A0A" />
         <path d="M14 18 L32 50 L50 18" fill="none" stroke="#A3E635" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
@@ -25,14 +28,15 @@ const current = Astro.url.pathname;
 
     <nav class="nav-links" aria-label="Primary">
       {links.map((l) => (
-        <a href={l.href} aria-current={current === l.href ? 'page' : undefined}>{l.label}</a>
+        <a href={l.href} aria-current={current === l.href || current === (l.href.replace(/\/$/, '') + '/') ? 'page' : undefined}>{l.label}</a>
       ))}
       <details class="nav-more">
-        <summary>More</summary>
+        <summary>{sv ? 'Mer' : 'More'}</summary>
         <div class="nav-more-panel">
           {moreLinks.map((l) => (
             <a href={l.href} aria-current={current === l.href ? 'page' : undefined}>{l.label}</a>
           ))}
+          <a href={langSwitchUrl} class="lang-switch">{langSwitchLabel}</a>
         </div>
       </details>
     </nav>
@@ -47,6 +51,7 @@ const current = Astro.url.pathname;
         {moreLinks.map((l) => (
           <a href={l.href}>{l.label}</a>
         ))}
+        <a href={langSwitchUrl} class="lang-switch">{langSwitchLabel}</a>
       </nav>
     </details>
   </div>
