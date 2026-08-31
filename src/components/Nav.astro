@@ -1,19 +1,25 @@
 ---
-const links = [
-  { href: '/', label: 'Home' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/store', label: 'Store' },
-];
-const moreLinks = [
-  { href: '/robotics-stocks/', label: 'Robotics Stocks' },
+// Three-pillar nav: Store, Research, Learn. Blog stays reachable as the
+// fourth link. Utility pages (About, Mission, etc.) live in the footer.
+const primary = [
+  { href: '/store/', label: 'Store' },
+  { href: '/robotics-stocks/', label: 'Research' },
   { href: '/learn/', label: 'Learn' },
-  { href: '/mission', label: 'Mission' },
-  { href: '/opensource', label: 'Open Source' },
-  { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
-  { href: '/authors', label: 'Authors' },
+  { href: '/blog/', label: 'Blog' },
+];
+// Mobile menu adds the utility pages so they stay reachable without JS.
+const utility = [
+  { href: '/opensource/', label: 'Open Source' },
+  { href: '/mission/', label: 'Mission' },
+  { href: '/about/', label: 'About' },
+  { href: '/contact/', label: 'Contact' },
+  { href: '/authors/', label: 'Authors' },
 ];
 const current = Astro.url.pathname;
+const isCurrent = (href: string) => {
+  const base = href.replace(/\/$/, '');
+  return current === href || current === base || current.startsWith(base + '/');
+};
 ---
 <header class="nav">
   <div class="nav-inner">
@@ -26,28 +32,20 @@ const current = Astro.url.pathname;
     </a>
 
     <nav class="nav-links" aria-label="Primary">
-      {links.map((l) => (
-        <a href={l.href} aria-current={current === l.href || current === (l.href.replace(/\/$/, '') + '/') ? 'page' : undefined}>{l.label}</a>
+      {primary.map((l) => (
+        <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>
       ))}
-      <details class="nav-more">
-        <summary>More</summary>
-        <div class="nav-more-panel">
-          {moreLinks.map((l) => (
-            <a href={l.href} aria-current={current === l.href ? 'page' : undefined}>{l.label}</a>
-          ))}
-        </div>
-      </details>
     </nav>
 
     <!-- Mobile menu: plain HTML <details>, works without JavaScript -->
     <details class="nav-toggle">
-      <summary>Menu</summary>
+      <summary aria-label="Open menu">Menu</summary>
       <nav class="nav-panel" aria-label="Mobile">
-        {links.map((l) => (
-          <a href={l.href}>{l.label}</a>
+        {primary.map((l) => (
+          <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>
         ))}
-        {moreLinks.map((l) => (
-          <a href={l.href}>{l.label}</a>
+        {utility.map((l) => (
+          <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>
         ))}
       </nav>
     </details>

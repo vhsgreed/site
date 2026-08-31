@@ -12,7 +12,7 @@ const posts = [
   ...articles.map((p) => ({ ...p, kind: 'articles' })),
   ...insights.map((p) => ({ ...p, kind: 'insights' })),
 ].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const latest = posts[0];
+const latest = posts.slice(0, 3);
 
 const siteUrl = Astro.site?.toString() ?? 'https://vhsgreed.win';
 ---
@@ -51,61 +51,60 @@ const siteUrl = Astro.site?.toString() ?? 'https://vhsgreed.win';
       <p class="lead">
         vhsgreed is a for-profit, self-funded R&amp;D shop: robotics supply-chain
         intelligence, open-source agent tooling, and audits that tell you what
-        a dataset can and cannot do.
-      </p>
-      <p class="muted">
-        We build data products and tooling with one rule: no claims we cannot
-        back with a file. Every dataset lists its sources and its limits.
-        Revenue funds the research, so the storefront and the blog are the
-        same operation, not two brands.
+        a dataset can and cannot do. Three doors: buy the data, read the
+        research, learn the methods.
       </p>
       <div class="btn-row">
-        <a class="btn btn-accent" href="/store/">Browse the store</a>
-        <a class="btn btn-ghost" href="/mission/">Our mission</a>
-        <a class="btn btn-ghost" href="/opensource/">Open source</a>
+        <a class="btn btn-accent" href="/store/">Shop the store</a>
+        <a class="btn btn-ghost" href="/robotics-stocks/">Explore research</a>
+        <a class="btn btn-ghost" href="/learn/">Start learning</a>
       </div>
     </section>
 
     <hr class="rule" />
 
-    <section class="section-tight">
+    <section class="section-tight" aria-label="The three pillars">
       <div class="grid">
-        <a class="card" href="/store/">
-          <span class="kicker">Store</span>
-          <h2 class="card-h">Robotics supply-chain data</h2>
-          <p>13,000+ assets, 1,093 verified companies in 11 countries, exposure map across direct, adjacent, and indirect routes.</p>
-          <span class="go">Browse datasets →</span>
-        </a>
-        <a class="card" href="/opensource/">
-          <span class="kicker">Open Source</span>
-          <h2 class="card-h">Agent tooling, MIT</h2>
-          <p>Typosquat scanning, probe-first scraping, attested benchmarking, free-model rotation. Built in public.</p>
-          <span class="go">See the repos →</span>
-        </a>
-        <a class="card" href="/blog/">
-          <span class="kicker">Blog</span>
-          <h2 class="card-h">Research notes</h2>
-          <p>What we learn while building: site probes, free-tier AI pipelines, supply-chain postmortems, honest numbers.</p>
-          <span class="go">Read the latest →</span>
-        </a>
-        <a class="card" href="/about/">
-          <span class="kicker">About</span>
-          <h2 class="card-h">Self-funded, transparent</h2>
-          <p>No VC, no ads, no data resale. Revenue funds the research. Full transparency statement and privacy policy.</p>
-          <span class="go">Who we are →</span>
-        </a>
+        <div class="card">
+          <span class="kicker">1 &middot; Store</span>
+          <h2 class="card-h">Buy the data</h2>
+          <p>Robotics supply-chain datasets: 13,000+ assets, 1,093 verified companies in 11 countries, exposure mapped across direct, adjacent, and indirect routes. Every product lists its sources and limits.</p>
+          <p style="margin-top: 0.8rem;"><a class="btn btn-accent" href="/store/" data-track="home_store">Enter the store</a></p>
+        </div>
+        <div class="card">
+          <span class="kicker">2 &middot; Research</span>
+          <h2 class="card-h">Read the intelligence</h2>
+          <p>The verified data behind the products: robotics stocks by country, humanoid and actuator supplier maps, precision reducers, the Unitree IPO case study. Nation by nation, ticker by ticker.</p>
+          <p style="margin-top: 0.8rem;"><a class="btn btn-ghost" href="/robotics-stocks/">Explore research</a></p>
+        </div>
+        <div class="card">
+          <span class="kicker">3 &middot; Learn</span>
+          <h2 class="card-h">Learn the methods</h2>
+          <p>Free explainers from the build log: agent alignment, orchestrator patterns, API cost control, supply-chain security, self-custody. The same methods we use to produce the data.</p>
+          <p style="margin-top: 0.8rem;"><a class="btn btn-ghost" href="/learn/">Start learning</a></p>
+        </div>
       </div>
     </section>
 
-    {latest && (
-      <section class="blog-head">
+    <hr class="rule" />
+
+    {latest.length > 0 && (
+      <section class="blog-head" aria-label="Latest from the blog">
         <span class="kicker">Latest from the blog</span>
-        <h2><a href={`/blog/${latest.kind}/${latest.id}/`} style="color: inherit; text-decoration: none;">{latest.data.title}</a></h2>
-        <p class="muted">
-          {latest.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-          &nbsp;·&nbsp; {latest.data.description}
-        </p>
-        <p><a href={`/blog/${latest.kind}/${latest.id}/`}>Read the post →</a></p>
+        <div class="card-list" style="margin-top: 0.8rem;">
+          {latest.map((p) => (
+            <a class="card-row" href={`/blog/${p.kind}/${p.id}/`}>
+              <div>
+                <div class="t">{p.data.title}</div>
+                <div class="d">{p.data.description}</div>
+              </div>
+              <span class="meta">
+                {p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+              </span>
+            </a>
+          ))}
+        </div>
+        <p style="margin-top: 1rem;"><a href="/blog/">All blog posts →</a></p>
       </section>
     )}
   </div>
