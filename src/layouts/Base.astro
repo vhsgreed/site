@@ -43,6 +43,22 @@ const ogImage = Astro.url.origin + '/og-default.svg';
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-E2E4K53319');
+
+      // Declarative conversion tracking: any element with [data-track] fires a GA4 event on click.
+      // Add data-track="gumroad_click" (or any label) to an <a> to count it as a conversion.
+      document.addEventListener('click', function (e) {
+        var el = e.target.closest('[data-track]');
+        if (el && window.gtag) {
+          var label = el.getAttribute('data-track');
+          var href = el.getAttribute('href') || '';
+          gtag('event', label, {
+            event_category: 'outbound',
+            event_label: label,
+            link_url: href,
+            transport_type: 'beacon'
+          });
+        }
+      });
     </script>
     {CF_ANALYTICS_TOKEN !== 'YOUR_CF_WEB_ANALYTICS_TOKEN' && (
       <script

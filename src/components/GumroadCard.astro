@@ -21,17 +21,17 @@ const tag = product?.tag ?? 'Buy on Gumroad';
     </div>
 
     {status === 'live' && product?.url && (
-      <a class="gumroad-button btn btn-accent" href={product.url} target="_blank" rel="noopener">
+      <a class="gumroad-button btn btn-accent" href={product.url} target="_blank" rel="noopener" data-track="gumroad_click">
         {tag}
       </a>
     )}
     {status === 'pending' && (
-      <a class="btn btn-ghost" href="/store/">
+      <a class="btn btn-ghost" href="/store/" data-track="store_click">
         Publishing soon · see the store
       </a>
     )}
     {status === 'none' && (
-      <a class="btn btn-ghost" href="/store/">
+      <a class="btn btn-ghost" href="/store/" data-track="store_click">
         See the store
       </a>
     )}
