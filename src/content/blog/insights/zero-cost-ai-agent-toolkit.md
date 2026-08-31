@@ -7,7 +7,7 @@ author: "vhsgreed"
 product:
   name: "Zero-Cost AI Agent Toolkit"
   price: "Pay what you want · $1 suggested"
-  url: "https://store.vhsgreed.win/l/rkszjw"
+  url: "https://vhsgreed.gumroad.com/l/rkszjw"
   status: "live"
   tag: "Free"
 ---

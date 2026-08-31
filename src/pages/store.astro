@@ -17,7 +17,7 @@ const products = [
     name: 'Zero-Cost AI Agent Toolkit',
     price: 'Pay what you want · $1 suggested',
     desc: 'Free-model rotation, health probes, and posting helpers for budget-conscious autonomous agents. MIT.',
-    url: 'https://store.vhsgreed.win/l/rkszjw', 
+    url: 'https://vhsgreed.gumroad.com/l/rkszjw', 
     status: 'live',
     tag: 'Tooling',
   },
@@ -25,7 +25,7 @@ const products = [
     name: 'SEMICON Taiwan 2026 Exhibitor List',
     price: 'Pay what you want · $1 minimum',
     desc: 'The 2026 event exhibitor dataset. Time-bound research snapshot',
-    url: 'https://store.vhsgreed.win/l/yinutw',
+    url: 'https://vhsgreed.gumroad.com/l/yinutw',
     status: 'live',
     tag: 'Data',
   },
@@ -33,7 +33,7 @@ const products = [
     name: 'npm Supply-Chain Attack Timeline',
     price: 'Pay what you want · $1 minimum',
     desc: 'Complete timeline for 2026, 11 major incidents, packages, IOCs',
-    url: 'https://store.vhsgreed.win/l/mixqsd',
+    url: 'https://vhsgreed.gumroad.com/l/mixqsd',
     status: 'live',
     tag: 'Data',
   },
@@ -41,7 +41,7 @@ const products = [
     name: 'Agent Alignment Charter Kit',
     price: '$5 suggested · $1 minimum',
     desc: 'The reproducible experiment kit behind the +0.83/5 self-modification shift: protocol, battery, rubric, scorer, 12 raw agent runs. MIT.',
-    url: 'https://store.vhsgreed.win/l/agent-alignment-charter-kit',
+    url: 'https://vhsgreed.gumroad.com/l/agent-alignment-charter-kit',
     status: 'live',
     tag: 'Research',
   },
@@ -63,11 +63,9 @@ const products = [
       <div class="card-list">
         {products.map((p) => (
           <div class="card-row card-row--stack">
-            <div style="display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
-              <div>
-                <div class="t">{p.name}</div>
-                <div class="d">{p.desc}</div>
-              </div>
+            <div>
+              <div class="t">{p.name}</div>
+              <div class="d">{p.desc}</div>
               <span class="meta">{p.tag} · {p.price}</span>
             </div>
             {p.status === 'live' && p.url && (
