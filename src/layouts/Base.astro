@@ -38,14 +38,13 @@ const ogImage = Astro.url.origin + '/og-default.svg';
     <meta name="twitter:image" content={ogImage} />
     <!-- Google tag (gtag.js) — GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-E2E4K53319"></script>
-    <script>
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-E2E4K53319');
 
       // Declarative conversion tracking: any element with [data-track] fires a GA4 event on click.
-      // Add data-track="gumroad_click" (or any label) to an <a> to count it as a conversion.
       document.addEventListener('click', function (e) {
         var el = e.target.closest('[data-track]');
         if (el && window.gtag) {
