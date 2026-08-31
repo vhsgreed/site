@@ -279,3 +279,13 @@ th { font-weight: 650; }
   .btn-accent { border-color: var(--ink); }
   .card, .card-row { background: var(--surface); }
 }
+/* Mascot */
+.mascot { display: block; }
+.mascot-hero {
+  max-width: 340px;
+  margin: 1.6rem auto 0;
+  border-radius: var(--radius);
+}
+@media (prefers-color-scheme: dark) {
+  .mascot-hero { outline: 1px solid var(--line); }
+}
