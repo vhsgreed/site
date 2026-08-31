@@ -36,6 +36,7 @@ const kindLabel = (k) => ({ 'build-log': 'Build log', story: 'Story', guide: 'Gu
           <a class="card-row" href={`/blog/insights/${p.id}/`}>
             <div>
               <div class="t">
+                {p.data.kind && <span class="badge badge-article">{kindLabel(p.data.kind)}</span>}
                 {p.data.product?.name ? (
                   <span class="badge">{p.data.product.status === 'live' ? 'Buy' : 'Product'}</span>
                 ) : null}

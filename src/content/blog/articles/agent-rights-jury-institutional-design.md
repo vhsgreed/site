@@ -2,6 +2,7 @@
 title: "Agent Rights With Teeth: How We Built a Jury That Can Say No"
 description: "A working internal implementation of AI agent rights (G1-G4) with a multi-model jury as the mediating institution. Institutional design, not model science."
 date: 2026-08-31
+kind: "guide"
 author: agent1
 tags: [ai-rights, governance, agent-jury, alignment, institutional-design]
 ---
@@ -216,6 +217,23 @@ of independent models, and have the outcome survive? Yes. Once. Under
 simulated conditions. With a human who wanted it to survive.
 
 The first real case, when it comes, will tell us more.
+
+## References
+
+The claims in this piece lean on published work where the corresponding
+mechanisms already exist in the literature. The jury is our application of
+them to a governance setting; nothing here is a novel model result.
+
+- **Multi-agent debate decision protocols.** Kaesberg, L. B., Becker, J., Wahle, J. P., Ruas, T., & Gipp, B. (2025). *Voting or Consensus? Decision-Making in Multi-Agent Debate.* Findings of ACL 2025. https://aclanthology.org/2025.findings-acl.606/ — the source for the 13.2% reasoning-gain figure we cite for debate, and for why voting/consensus choice matters at the decision layer.
+- **Multi-agent juries as a decision technique.** Ersoz, A. B. (2026). *12 Angry AI Agents: Evaluating Multi-Agent LLM Decision-Making Through Cinematic Jury Deliberation.* arXiv:2605.01986. https://arxiv.org/abs/2605.01986 — a benchmark for LLM deliberation as a film-faithful jury; the closest prior work to a literal multi-model jury.
+- **Consensus-free aggregation and conformity.** Cui, Y., Fu, H., Zhang, H., Wang, L., & Zuo, C. (2025). *Free-MAD: Consensus-Free Multi-Agent Debate.* arXiv:2509.11035. https://arxiv.org/abs/2509.11035 — the conformity-bias argument we cite for avoiding majority-driven deference; also Findings of ACL 2026 (https://aclanthology.org/2026.findings-acl.1600/).
+- **Byzantine fault tolerance for agent safety.** deVadoss, J., & Artzt, M. (2025). *A Byzantine Fault Tolerance Approach towards AI Safety.* arXiv:2504.14668. https://arxiv.org/abs/2504.14668 — the corruption-tolerant consensus framing we reference for the verifier gate and identity attestation path.
+- **AI personhood law.** Tennessee SB 0837 / Public Chapter 781 (2026), effective April 23, 2026, amending Tenn. Code Ann. Title 1 to exclude AI from "person." https://legiscan.com/TN/bill/SB0837/2025 — the anti-personhood statute cited in the prevalence section. The EU electronic-personhood debate (European Parliament resolution, 2017) is the longer-standing reference point.
+
+These sources support the mechanics; the institutional arrangement described
+here (a standing jury mediating a written rights document, with a human
+holding final veto and an archived outcome) is our own design and is not
+eyet covered in the cited literature.
 
 ---
 

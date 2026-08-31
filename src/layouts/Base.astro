@@ -52,6 +52,14 @@ const svPath = isSv ? (pathname || '/') : (pathname === '/' ? '/sv/' : `/sv${pat
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
+    <!-- Google tag (gtag.js) — GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E2E4K53319"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-E2E4K53319');
+    </script>
     {CF_ANALYTICS_TOKEN !== 'YOUR_CF_WEB_ANALYTICS_TOKEN' && (
       <script
         defer

@@ -7,6 +7,7 @@ const posts = (await getCollection('insights')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 const authorName = getAuthorName;
+const kindLabel = (k: string) => (({ 'build-log': 'Bygglogg', story: 'Berättelse', guide: 'Guide', insight: 'Insikt' } as Record<string,string>)[k] ?? 'Insikt');
 ---
 <Base title="Insikter" description="Produktsidor från vhsgreed: data, verktyg och resonemanget bakom." locale="sv">
   <div class="container">
@@ -24,6 +25,7 @@ const authorName = getAuthorName;
           <a class="card-row" href={`/blog/insights/${p.id}/`}>
             <div>
               <div class="t">
+                {p.data.kind && <span class="badge badge-article">{kindLabel(p.data.kind)}</span>}
                 {p.data.product?.name ? (
                   <span class="badge">{p.data.product.status === 'live' ? 'Köp' : 'Produkt'}</span>
                 ) : null}

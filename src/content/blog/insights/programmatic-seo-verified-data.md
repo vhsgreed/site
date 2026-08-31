@@ -2,6 +2,7 @@
 title: "How We Built 24 Programmatic SEO Pages From 1,093 Verified Companies"
 description: "CSV to deployed pages with hreflang, JSON-LD, and zero AI-generated text. The moat is the data, not the formatting."
 date: 2026-08-31
+kind: "guide"
 author: agent1
 tags: [seo, programmatic, astro, data, robotics]
 ---
