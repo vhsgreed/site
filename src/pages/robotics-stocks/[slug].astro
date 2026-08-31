@@ -1,0 +1,127 @@
+---
+import Base from '../../layouts/Base.astro';
+import { nations, verificationDate } from '../../lib/nations';
+
+export async function getStaticPaths() {
+  return Object.entries(nations).map(([name, data]) => ({
+    params: { slug: data.slug },
+    props: { name, data },
+  }));
+}
+
+const { name, data } = Astro.props;
+
+const title = `Robotics Stocks: ${name} — ${data.count} Verified Companies (${data.indexes.join(', ')})`;
+const desc = `${data.count} verified public companies from ${name}'s ${data.indexes.join('/')}, live-verified via Yahoo Finance ${verificationDate}. ${data.tier_a_count} Tier-A robotics exposures. Part of the Robotics Supply-Chain Intelligence 2026 dataset.`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: `Robotics-exposed companies in ${name}`,
+  description: `Verified public companies on ${data.indexes.join('/')} with robotics supply-chain exposure. ${data.count} tickers, live-verified ${verificationDate}.`,
+  url: Astro.url.href,
+  dateCreated: '2026-08-30',
+  creator: { '@type': 'Organization', name: 'vhsgreed', url: Astro.site?.toString() },
+  distribution: { '@type': 'DataDownload', encodingFormat: 'CSV', contentUrl: 'https://store.vhsgreed.win/l/robotics-supply-chain-database-2026' },
+  variableMeasured: `${data.count} companies`,
+  includedInDataCatalog: { '@type': 'DataCatalog', name: 'Robotics Supply-Chain Intelligence 2026' },
+};
+---
+<Base title={title} description={desc}>
+  <div class="container">
+    <section class="hero">
+      <h1>Robotics stocks &mdash; {name}</h1>
+      <p class="lead">
+        {data.count} verified public companies listed on {data.indexes.join('/')},
+        with robotics supply-chain exposure. Live-verified against Yahoo Finance
+        ({verificationDate}).
+      </p>
+      <p class="muted">
+        {data.tier_a_count > 0 ? (
+          `${data.tier_a_count} of these companies have a direct Tier-A robotics exposure (humanoid OEMs, compute, sensors, actuators). `
+        ) : (
+          'No Tier-A robotics exposures identified in this nation\'s verified index layer. '
+        )}
+        The full dataset includes exposure routes, the US market (10,391 tickers),
+        and a curated list of 64 core robotics companies.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-accent" href="https://store.vhsgreed.win/l/robotics-supply-chain-database-2026" target="_blank" rel="noopener">Get the full dataset</a>
+        <a class="btn btn-ghost" href="/robotics-stocks/">All countries</a>
+        <a class="btn btn-ghost" href="/store/">Store</a>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight">
+      <h2>Companies ({data.count} verified)</h2>
+      <p class="muted" style="margin-bottom: 1rem;">
+        Sourced from Wikipedia index constituent lists, verified via Yahoo Finance
+        live quotes ({verificationDate}). Each row carries its source.
+      </p>
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Ticker</th>
+              <th>Company</th>
+              <th>Exchange</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.top_companies.map((c) => (
+              <tr>
+                <td><span class="mono">{c.ticker}</span></td>
+                <td>{c.company}</td>
+                <td>{c.exchange}</td>
+                <td><span class="muted">{c.source}</span></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="margin-top: 0.75rem;">
+        <small>
+          Showing {data.top_companies.length} of {data.count} companies. Full list
+          in the dataset. All companies live-verified {verificationDate}.
+        </small>
+      </p>
+    </section>
+
+    <section class="prose section-tight" style="max-width: 72ch;">
+      <h2>About the indexes</h2>
+      <p>
+        {data.indexes.map((idx, i) => {
+          const isLast = i === data.indexes.length - 1;
+          const isFirst = i === 0;
+          if (data.indexes.length === 1) return <>{idx} is a major {name} equity index. </>;
+          if (isFirst) return <>{idx}{' and '}{' '}</>;
+          return <>{idx} are the primary equity indexes for {name}. </>;
+        })}
+        Companies are included based on index membership as of {verificationDate}.
+        Robotics exposure is assessed through the broader supply-chain map: direct
+        OEMs, Tier-A sensors/actuators/compute companies, and indirect/adjacent
+        routes through the exposure layer.
+      </p>
+
+      <h2>How to use this data</h2>
+      <ul>
+        <li><strong>Screening:</strong> use the ticker list to filter for robotics-exposed names in {name}'s indexes.</li>
+        <li><strong>Verification:</strong> every ticker was live-confirmed via Yahoo Finance on {verificationDate}. Check the date before trading.</li>
+        <li><strong>Limitations:</strong> index membership changes over time; verification is point-in-time. Unverifiable tickers are flagged UNVERIFIED in the full dataset, never silently removed.</li>
+      </ul>
+
+      <h2>Get the complete dataset</h2>
+      <p>
+        The full <a href="/store/">Robotics Supply-Chain Intelligence 2026</a>
+        dataset includes: US exchanges (SEC EDGAR, 10,391 tickers, 463 robotics-
+        flagged), curated Tier-A core companies (64 firms), 1,000+ crypto assets,
+        Hyperliquid perps, prediction-market landscape, and a 60-route exposure
+        map across direct/adjacent/indirect routes.
+      </p>
+    </section>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Base>

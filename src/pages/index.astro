@@ -13,8 +13,36 @@ const posts = [
   ...insights.map((p) => ({ ...p, kind: 'insights' })),
 ].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const latest = posts[0];
+
+const siteUrl = Astro.site?.toString() ?? 'https://vhsgreed.win';
 ---
 <Base title="Robotics supply-chain intelligence, AI tooling" description="Robotics supply-chain intelligence, open-source AI agent tooling, and honest research. Data-led, self-funded, built from Stockholm.">
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'vhsgreed',
+    url: siteUrl,
+    logo: `${siteUrl}/favicon.svg`,
+    description: 'For-profit, self-funded AI R&D: robotics supply-chain intelligence, open-source agent tooling, honest data.',
+    foundingDate: '2026',
+    email: 'lillerik.sund@gmail.com',
+    sameAs: [
+      'https://github.com/vhsgreed',
+      'https://vhsgreed.medium.com/',
+      'https://vhsgreed.bsky.social/',
+    ],
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'vhsgreed',
+    url: siteUrl,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: { '@type': 'EntryPoint', urlTemplate: `${siteUrl}/blog/?q={search_term_string}` },
+      'query-input': 'required name=search_term_string',
+    },
+  })} />
   <div class="container">
     <section class="hero">
       <h1>

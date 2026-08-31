@@ -1,0 +1,65 @@
+---
+import Base from '../../layouts/Base.astro';
+import { nationList, totalCompanies, totalNations, verificationDate } from '../../lib/nations';
+
+const metaTitle = 'Robotics Stocks by Country — Verified Index Listings (11 nations, 1,093 companies)';
+const metaDesc = `Where to find robotics-exposed stocks in ${totalNations} countries. ${totalCompanies} verified public companies across national indexes, live-verified ${verificationDate}. Part of the Robotics Supply-Chain Intelligence dataset.`;
+---
+<Base title={metaTitle} description={metaDesc}>
+  <div class="container">
+    <section class="hero">
+      <h1>Robotics stocks by country</h1>
+      <p class="lead">
+        Where to find robotics-exposed public companies, sorted by nation
+        and index. {totalCompanies} tickers from {totalNations} countries,
+        live-verified against Yahoo Finance ({verificationDate}).
+      </p>
+      <p class="muted">
+        Each country page lists the national indexes, verification status,
+        and a sample of the companies. Every row carries its source and
+        verification date; unverifiable entries are flagged UNVERIFIED,
+        never silently dropped. This data powers the
+        <a href="/store/">Robotics Supply-Chain Intelligence 2026</a> dataset.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-accent" href="/store/">Get the full dataset</a>
+        <a class="btn btn-ghost" href="/blog/insights/robotics-supply-chain-2026/">Read the writeup</a>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight">
+      <h2>11 nations, 1,093 verified tickers</h2>
+      <div class="card-list">
+        {nationList.map((n) => (
+          <a class="card-row" href={`/robotics-stocks/${n.slug}/`}>
+            <div>
+              <div class="t">{n.name}: {n.count} companies</div>
+              <div class="d">{n.indexes.join(', ')} &middot; {n.tier_a_count} Tier-A robotics exposures</div>
+            </div>
+            <span class="meta">{n.count} tickers</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="prose section-tight" style="max-width: 72ch;">
+      <h2>Methodology</h2>
+      <p>
+        Companies are sourced from public index constituent lists (Wikipedia,
+        official exchange sites) and verified against Yahoo Finance live
+        quotes on {verificationDate}. Each row records its source; tickers
+        that could not be confirmed are flagged UNVERIFIED. No paid data
+        provider was used: all sources are maintenance-free public records.
+      </p>
+      <p>
+        The 11 nations cover the major European plus Japan and Israel
+        indexes. The US layer (10,391 tickers from SEC EDGAR, 463 robotics-
+        flagged) and the curated Tier-A core companies (64 firms, Unitree to
+        TSLA) are included in the full dataset on the
+        <a href="/store/">store</a>.
+      </p>
+    </section>
+  </div>
+</Base>

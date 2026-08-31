@@ -1,0 +1,122 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { nations, verificationDate, svNames } from '../../../lib/nations';
+
+export async function getStaticPaths() {
+  return Object.entries(nations).map(([name, data]) => ({
+    params: { slug: data.slug },
+    props: { name, data },
+  }));
+}
+
+const { name, data } = Astro.props;
+const svName = svNames[name] ?? name;
+
+const title = `Robotaktier: ${svName} — ${data.count} verifierade bolag (${data.indexes.join(', ')})`;
+const desc = `${data.count} verifierade publika bolag från ${svName}s ${data.indexes.join('/')}, live-verifierade via Yahoo Finance ${verificationDate}. ${data.tier_a_count} Tier-A-robotikexponeringar. Del av datasetet Robotics Supply-Chain Intelligence 2026.`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: `Robotikexponerade bolag i ${svName}`,
+  description: `Verifierade publika bolag på ${data.indexes.join('/')} med robotik supply-chain-exponering. ${data.count} tickers, live-verifierade ${verificationDate}.`,
+  url: Astro.url.href,
+  dateCreated: '2026-08-30',
+  creator: { '@type': 'Organization', name: 'vhsgreed', url: Astro.site?.toString() },
+  distribution: { '@type': 'DataDownload', encodingFormat: 'CSV', contentUrl: 'https://store.vhsgreed.win/l/robotics-supply-chain-database-2026' },
+  variableMeasured: `${data.count} bolag`,
+  includedInDataCatalog: { '@type': 'DataCatalog', name: 'Robotics Supply-Chain Intelligence 2026' },
+};
+---
+<Base title={title} description={desc} locale="sv">
+  <div class="container">
+    <section class="hero">
+      <h1>Robotaktier &mdash; {svName}</h1>
+      <p class="lead">
+        {data.count} verifierade publika bolag noterade på {data.indexes.map((i, j) => j > 0 ? ` / ${i}` : i)},
+        med robotik supply-chain-exponering. Live-verifierade mot Yahoo
+        Finance ({verificationDate}).
+      </p>
+      <p class="muted">
+        {data.tier_a_count > 0 ? (
+          `${data.tier_a_count} av dessa bolag har en direkt Tier-A-robotikexponering (humanoida OEM:er, beräkningshårdvara, sensorer, ställdon). `
+        ) : (
+          'Inga Tier-A-robotikexponeringar identifierade i detta lands verifierade indexlager. '
+        )}
+        Det fullständiga datasetet inkluderar exponeringsrutter, USA-marknaden
+        (10 391 tickers) och en kuraterad lista med 64 kärnbolag inom robotik.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-accent" href="https://store.vhsgreed.win/l/robotics-supply-chain-database-2026" target="_blank" rel="noopener">Hämta datasetet</a>
+        <a class="btn btn-ghost" href="/sv/robotics-stocks/">Alla länder</a>
+        <a class="btn btn-ghost" href="/sv/store/">Butik</a>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight">
+      <h2>Bolag ({data.count} verifierade)</h2>
+      <p class="muted" style="margin-bottom: 1rem;">
+        Hämtade från Wikipedias indexbeståndslistor, verifierade via Yahoo
+        Finance live-kurser ({verificationDate}). Varje rad anger sin källa.
+      </p>
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Ticker</th>
+              <th>Bolag</th>
+              <th>Börs</th>
+              <th>Källa</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.top_companies.map((c) => (
+              <tr>
+                <td><span class="mono">{c.ticker}</span></td>
+                <td>{c.company}</td>
+                <td>{c.exchange}</td>
+                <td><span class="muted">{c.source}</span></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="margin-top: 0.75rem;">
+        <small>
+          Visar {data.top_companies.length} av {data.count} bolag. Fullständig
+          lista i datasetet. Alla bolag live-verifierade {verificationDate}.
+        </small>
+      </p>
+    </section>
+
+    <section class="prose section-tight" style="max-width: 72ch;">
+      <h2>Om indexen</h2>
+      <p>
+        {data.indexes.join('/')} {data.indexes.length === 1 ? 'är ett ledande index för' : 'är de primära aktieindexen för'} {svName}.
+        Bolagen är inkluderade baserat på indexmedlemskap per {verificationDate}.
+        Robotikexponering bedöms genom den bredare supply-chain-kartan: direkta
+        OEM:er, Tier-A-sensorer/ställdon/beräkningsföretag samt indirekta och
+        angränsande rutter genom exponeringslagret.
+      </p>
+
+      <h2>Så använder du datan</h2>
+      <ul>
+        <li><strong>Screening:</strong> använd tickerlistan för att filtrera fram robotikexponerade namn i {svName}s index.</li>
+        <li><strong>Verifiering:</strong> varje ticker bekräftades live via Yahoo Finance den {verificationDate}. Kontrollera datumet innan du handlar.</li>
+        <li><strong>Begränsningar:</strong> indexmedlemskap förändras över tid; verifieringen är en tidpunktsbild. Overifierbara tickers flaggas UNVERIFIED i det fullständiga datasetet, aldrig tyst borttagna.</li>
+      </ul>
+
+      <h2>Hämta hela datasetet</h2>
+      <p>
+        Det fullständiga datasetet <a href="/sv/store/">Robotics Supply-Chain Intelligence 2026</a>
+        inkluderar: USA-börser (SEC EDGAR, 10 391 tickers, 463 robotikflaggade),
+        kuraterade Tier-A-kärnbolag (64 företag), 1 000+ kryptotillgångar,
+        Hyperliquid-perps, prediction-market-landskap och en exponeringskarta
+        med 60 rutter över direkta/angränsande/indirekta rutter.
+      </p>
+    </section>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Base>
