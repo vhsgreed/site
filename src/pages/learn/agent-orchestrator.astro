@@ -1,0 +1,81 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = 'What Is an Agent Orchestrator? A Plain-Language Guide';
+const desc = 'Agent orchestrators explained: how a coordinator agent plans, spawns subagents, routes models, and enforces verification gates. Includes our own production patterns.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: desc,
+  datePublished: '2026-08-31',
+  author: { '@type': 'Organization', name: 'vhsgreed', url: 'https://vhsgreed.win' },
+  publisher: { '@type': 'Organization', name: 'vhsgreed', url: 'https://vhsgreed.win' },
+};
+---
+<Base title={title} description={desc}>
+  <div class="container">
+    <section class="hero">
+      <h1>What is an agent orchestrator?</h1>
+      <p class="lead">
+        An agent orchestrator is the coordinator layer that turns one big task
+        into work that several AI agents can actually do: it plans, spawns
+        subagents, routes each call to the right model, tracks state, and
+        gates the results. Think general contractor, not a smarter worker.
+      </p>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="prose section-tight" style="max-width: 72ch;">
+      <h2>The five jobs of an orchestrator</h2>
+      <ul>
+        <li><strong>Decomposition:</strong> break an objective into tasks small enough that a single model call, or a short agent loop, can finish them reliably.</li>
+        <li><strong>Spawning:</strong> create subagent sessions with scoped context. A subagent should get its job, its constraints, and nothing else; leaking the whole transcript into every child is how context windows and budgets die.</li>
+        <li><strong>Model routing:</strong> send each call to the cheapest model that can do it. Draft work goes to free or cheap models, code generation and judging go to stronger ones.</li>
+        <li><strong>State and waits:</strong> track what finished, what stalled, and what is blocked on an external reply. Long-running work needs durable state, not a chat scrollback.</li>
+        <li><strong>Verification:</strong> a gate between "the subagent says it is done" and "the work is accepted." Compile checks, unit tests, a second model judging the output.</li>
+      </ul>
+
+      <h2>Patterns we run in production</h2>
+      <p>
+        We operate an orchestrator that coordinates daily research pipelines,
+        spawning parallel subagents across multiple LLM providers. Three
+        lessons from running it every day:
+      </p>
+      <ul>
+        <li><strong>Poll, do not assume delivery.</strong> Completion events from subagents can be deferred or dropped; a robust orchestrator polls state on a timer instead of waiting for a callback that may never arrive.</li>
+        <li><strong>Rotation beats capacity.</strong> Free model tiers have per-model rate limits. Round-robin across models with health probes turns seven noisy buckets into one reliable pipeline: the subject of our <a href="/blog/insights/zero-cost-ai-agent-toolkit/">zero-cost AI agent toolkit</a>.</li>
+        <li><strong>The judge is a different model.</strong> Self-grading is grade inflation. An independent judge model with its own prompt catches subagent failures the orchestrator would wave through.</li>
+      </ul>
+
+      <h2>Orchestrator vs agent framework vs model</h2>
+      <p>
+        The model is the engine. An agent framework gives one agent tools and
+        a loop. The orchestrator sits above that: it owns the plan, the
+        budget, the routing, and the acceptance criteria. You can build one
+        with a few hundred lines of shell and scheduling, as we did, or use a
+        framework; what matters is the separation of concerns, not the
+        library.
+      </p>
+
+      <h2>When you do not need one</h2>
+      <p>
+        If a single prompt finishes the task, an orchestrator is overhead. The
+        payoff starts when work is parallelizable, long-running, multi-model,
+        or expensive enough that routing and verification save more than they
+        cost. Start with one script that spawns two subagents and checks their
+        output. Grow from evidence, not ambition.
+      </p>
+
+      <h2>Related reading</h2>
+      <ul>
+        <li><a href="/learn/agent-alignment/">What is agent alignment and why does it matter?</a></li>
+        <li><a href="/blog/insights/zero-cost-ai-agent-toolkit/">Free LLM rotation: run an AI agent on $0</a></li>
+        <li><a href="/opensource/">Open-source agent tooling</a></li>
+      </ul>
+    </section>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Base>

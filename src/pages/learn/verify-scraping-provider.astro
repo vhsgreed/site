@@ -1,0 +1,117 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = 'How to Verify a Web Scraping Provider Before You Hire One';
+const desc = 'A verification checklist for hiring a web scraping provider: probe reports, blocked lists, deliverable definitions, and the technical questions that separate real scrapers from guessers. Based on 150 live probes.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: desc,
+  datePublished: '2026-08-31',
+  author: { '@type': 'Organization', name: 'vhsgreed', url: 'https://vhsgreed.win' },
+  publisher: { '@type': 'Organization', name: 'vhsgreed', url: 'https://vhsgreed.win' },
+};
+---
+<Base title={title} description={desc}>
+  <div class="container">
+    <section class="hero">
+      <h1>How to verify a web scraping provider before you hire one</h1>
+      <p class="lead">
+        Every scraping gig says "I can scrape anything." Before we sold
+        scraping services, we tested that claim ourselves: 150 live probes
+        against real e-commerce and content sites, results published with the
+        failures included. 103 delivered clean, 37 were blocked, 10 were
+        unreachable. Use that reality to vet whoever you hire.
+      </p>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight">
+      <h2>What 150 live probes found</h2>
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Target group</th>
+              <th>Sites</th>
+              <th>Deliverable</th>
+              <th>Blocked</th>
+              <th>Unreachable</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Sweden (e-commerce)</td><td>46</td><td>40</td><td>6</td><td>0</td></tr>
+            <tr><td>Germany (e-commerce)</td><td>48</td><td>26</td><td>22</td><td>0</td></tr>
+            <tr><td>Indie web</td><td>56</td><td>37</td><td>9</td><td>10</td></tr>
+            <tr><td><strong>Total</strong></td><td><strong>150</strong></td><td><strong>103 (69%)</strong></td><td><strong>37</strong></td><td><strong>10</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="margin-top: 0.75rem;">
+        <small>From our own methodology, published in full: <a href="/blog/insights/web-scraping-reality-check/">Web scraping reality check: 150 sites probed</a>.</small>
+      </p>
+    </section>
+
+    <section class="prose section-tight" style="max-width: 72ch;">
+      <h2>The verification checklist</h2>
+      <ol>
+        <li>
+          <strong>Demand a probe report before paying.</strong> A real provider
+          tests your actual targets before quoting: site names, per-site
+          verdicts, block reasons. If they quote instantly for any site, they
+          are selling hope.
+        </li>
+        <li>
+          <strong>Demand the blocked list, not just the wins.</strong> Roughly a
+          third of real-world targets resist naive scraping. A provider who
+          only shows successes is hiding the 30% where their method breaks,
+          which is exactly where your project will stall.
+        </li>
+        <li>
+          <strong>Pin the deliverable definition.</strong> "Full page," "product
+          fields," and "raw HTML" are three different jobs at three different
+          prices. Agree on fields, formats, dedup rules, and what happens when
+          a page layout differs.
+        </li>
+        <li>
+          <strong>Ask how they handle the two failure modes.</strong> Polite
+          rate-limiting (429 responses) is workable with throttling and
+          backoff. TLS and browser fingerprinting (Cloudflare/Akamai-style
+          challenges) is a different, harder problem. A provider who cannot
+          name which of the two your targets use has not probed them.
+        </li>
+        <li>
+          <strong>Confirm the tech stack.</strong> Ask what client they use and
+          how they handle JavaScript rendering. Fingerprinting targets defeat
+          default HTTP-library traffic; "just use requests/httpx" is a
+          day-one failure on those sites.
+        </li>
+        <li>
+          <strong>Agree on compliance boundaries.</strong> Public pages,
+          published methodology, respect for rate limits, and stated delivery
+          limits up front. This protects you as much as them.
+        </li>
+      </ol>
+
+      <h2>The one-question shortcut</h2>
+      <p>
+        Ask: "Which of my target sites will you fail on, and why?" A
+        competent provider answers with specifics, because they probed. An
+        incompetent one answers "none." The willingness to publish failure is
+        the single best predictor of scraping competence: it is why we publish
+        ours, blocked list included, and why our
+        <a href="/store/">scraping engagements start with the probe report</a>.
+      </p>
+
+      <h2>Related reading</h2>
+      <ul>
+        <li><a href="/blog/insights/web-scraping-reality-check/">Web scraping reality check: 150 sites probed</a></li>
+        <li><a href="/store/">Store: datasets built with this methodology</a></li>
+      </ul>
+    </section>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Base>

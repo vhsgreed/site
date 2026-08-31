@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import { nationList, totalCompanies, totalNations, verificationDate } from '../../lib/nations';
 
-const metaTitle = 'Robotics Stocks by Country — Verified Index Listings (11 nations, 1,093 companies)';
+const metaTitle = 'Robotics Stocks by Country: Verified Ticker Index (11 Nations, 1,093 Companies)';
 const metaDesc = `Where to find robotics-exposed stocks in ${totalNations} countries. ${totalCompanies} verified public companies across national indexes, live-verified ${verificationDate}. Part of the Robotics Supply-Chain Intelligence dataset.`;
 ---
 <Base title={metaTitle} description={metaDesc}>
@@ -41,6 +41,47 @@ const metaDesc = `Where to find robotics-exposed stocks in ${totalNations} count
             <span class="meta">{n.count} tickers</span>
           </a>
         ))}
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <h2>Deep dives from the same dataset</h2>
+      <div class="card-list">
+        <a class="card-row" href="/robotics-stocks/actuator-stocks/">
+          <div>
+            <div class="t">Actuator stocks: the pick-and-shovel play</div>
+            <div class="d">Actuators are 40-55% of robot bill of materials: the verified motion-layer names</div>
+          </div>
+          <span class="meta">Data page</span>
+        </a>
+        <a class="card-row" href="/robotics-stocks/humanoid-robot-stocks/">
+          <div>
+            <div class="t">Humanoid robot stocks: who makes the bots</div>
+            <div class="d">The verified OEMs (TSLA, UBTech, Unitree) and the compute layer (NVDA)</div>
+          </div>
+          <span class="meta">Data page</span>
+        </a>
+        <a class="card-row" href="/robotics-stocks/precision-reducers/">
+          <div>
+            <div class="t">Precision reducer stocks: Japan's moat</div>
+            <div class="d">Japan holds 13 Tier-A exposures, the highest of any nation: Harmonic Drive, Nabtesco, Fanuc</div>
+          </div>
+          <span class="meta">Data page</span>
+        </a>
+        <a class="card-row" href="/robotics-stocks/robotics-etf-vs-stocks/">
+          <div>
+            <div class="t">Robotics ETFs vs direct stocks</div>
+            <div class="d">KOID, BOTZ, IRBO, ROBO and the commodity layer (LIT, REMX, BATT) vs direct equity vs perps</div>
+          </div>
+          <span class="meta">Comparison</span>
+        </a>
+        <a class="card-row" href="/robotics-stocks/unitree-ipo/">
+          <div>
+            <div class="t">Unitree IPO explained: the +629% open</div>
+            <div class="d">The Aug 19, 2026 IPO at a $66B peak valuation, and the perps that priced it 75% lower</div>
+          </div>
+          <span class="meta">Case study</span>
+        </a>
       </div>
     </section>
 

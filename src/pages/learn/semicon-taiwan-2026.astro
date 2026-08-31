@@ -1,0 +1,113 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = 'SEMICON Taiwan 2026 Explained: Dates, Venue, and What to Watch';
+const desc = 'SEMICON Taiwan 2026: September 2-4 at TaiNEX Halls 1 and 2, Taipei. Dates, venue, scale, key themes, and how to work the exhibitor list before the doors open.';
+
+const facts = [
+  { k: 'Dates (exhibition floor)', v: 'September 2-4, 2026 (Wednesday to Friday)' },
+  { k: 'Venue', v: 'Taipei Nangang Exhibition Center (TaiNEX), Halls 1 and 2, Taipei, Taiwan' },
+  { k: 'Conference forums', v: 'August 31 to September 4, 2026' },
+  { k: 'Organizer', v: 'SEMI (SEMI Global)' },
+  { k: 'Scale (2026 edition)', v: 'Around 1,200-1,300+ exhibitors and 4,100-4,300 booths, reported as record scale in the event\\u2019s 30-year history' },
+  { k: 'Access', v: 'Taipei Metro, Taipei Nangang Exhibition Center station (Bannan Blue Line / Wenhu Brown Line)' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: desc,
+  datePublished: '2026-08-31',
+  author: { '@type': 'Organization', name: 'vhsgreed', url: 'https://vhsgreed.win' },
+  publisher: { '@type': 'Organization', name: 'vhsgreed', url: 'https://vhsgreed.win' },
+};
+---
+<Base title={title} description={desc}>
+  <div class="container">
+    <section class="hero">
+      <h1>SEMICON Taiwan 2026 explained</h1>
+      <p class="lead">
+        SEMICON Taiwan is the semiconductor industry's biggest annual
+        gathering in Asia, and the 2026 edition is a record-scale one: over
+        1,200 exhibitors across TaiNEX Halls 1 and 2 in Taipei, September 2-4.
+        Here is what it is, what happens there, and how to get value from it
+        even if you never board a plane.
+      </p>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight">
+      <h2>The facts</h2>
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Fact</th>
+              <th>Detail</th>
+            </tr>
+          </thead>
+          <tbody>
+            {facts.map((f) => (
+              <tr>
+                <td><strong>{f.k}</strong></td>
+                <td set:html={f.v} /></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="margin-top: 0.75rem;">
+        <small>Sources: the official SEMI event page (expo.semi.org) and trade-press
+        coverage, checked 2026-08-31. Attendance figures are organizer-reported
+        expectations and can shift; always confirm on the official site before booking.</small>
+      </p>
+    </section>
+
+    <section class="prose section-tight" style="max-width: 72ch;">
+      <h2>Why this show matters</h2>
+      <p>
+        SEMICON Taiwan sits at the center of gravity of advanced chip
+        manufacturing: Taiwan fabs the world's leading-edge silicon, and SEMI's
+        show is where equipment makers, materials suppliers, packaging houses,
+        and foundries all exhibit in one place. The 2026 edition spotlights
+        themes including advanced manufacturing, heterogeneous integration and
+        chiplets, compound semiconductors, automotive chips, smart manufacturing,
+        and semiconductor cybersecurity. The Smart Fab zone covers the
+        automation-to-autonomous-production transition, including collaborative
+        and humanoid robots and automated material handling: the point where
+        semiconductors and robotics supply chains physically meet.
+      </p>
+
+      <h2>How to use it without attending</h2>
+      <p>
+        The exhibitor list is public before the show, and it is a research
+        asset on its own: a map of who considers this market important enough
+        to buy floor space. We scraped the official exhibitor page and
+        packaged it: <a href="/store/">1,286 companies with booth numbers</a>,
+        captured on 2026-08-29. Ways to use a list like that:
+      </p>
+      <ul>
+        <li><strong>Lead research:</strong> filter exhibitors by segment before outreach; booth numbers give you the floor-level clustering.</li>
+        <li><strong>Supply-chain mapping:</strong> exhibitor lists reveal equipment and materials players that never appear in consumer-facing coverage.</li>
+        <li><strong>Event planning:</strong> if you do attend, sort by hall and zone, and book forum days separately: forums run from August 31, before the floor opens.</li>
+      </ul>
+
+      <h2>Practical notes</h2>
+      <ul>
+        <li>Registration runs through the official SEMICON Taiwan site; badge pickup is on-site.</li>
+        <li>Opening hours are typically 10:00-17:00 Wednesday and Thursday, shorter on Friday; check the official page.</li>
+        <li>The venue is served directly by the Taipei Metro Nangang Exhibition Center station.</li>
+      </ul>
+
+      <h2>Related pages</h2>
+      <ul>
+        <li><a href="/robotics-stocks/">Robotics stocks by country: the verified index</a></li>
+        <li><a href="/robotics-stocks/actuator-stocks/">Actuator stocks: where robots and fabs meet</a></li>
+        <li><a href="/store/">Store: datasets including the SEMICON Taiwan exhibitor list</a></li>
+      </ul>
+    </section>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Base>

@@ -1,0 +1,113 @@
+---
+import Base from '../../layouts/Base.astro';
+import { nations, verificationDate } from '../../lib/nations';
+
+const title = "Precision Reducer Stocks: Japan's Robotics Moat";
+const desc = 'Japan holds 13 Tier-A robotics exposures, the highest of any nation. The verified precision reducer and automation stocks: Harmonic Drive, Nabtesco, Fanuc, from the Robotics Supply-Chain Intelligence 2026 dataset.';
+
+const japan = nations['Japan'];
+
+const names = [
+  { name: 'Harmonic Drive Systems', ticker: '6324.T', role: 'Strain-wave precision reducers; the reference part for robot joints', tier: 'Tier-A, curated core (verified)' },
+  { name: 'Nabtesco', ticker: '6268.T', role: 'Cycloidal precision reducers for industrial robots', tier: 'Tier-A, curated core (verified)' },
+  { name: 'Fanuc', ticker: '6954.T', role: 'Robot OEM and factory automation leader', tier: 'Tier-A; Nikkei 225 index layer, Yahoo-verified 2026-08-30' },
+  { name: 'Hitachi', ticker: '6501.T', role: 'Industrial conglomerate with automation adjacency', tier: 'Adjacent; Nikkei 225 index layer, Yahoo-verified 2026-08-30' },
+  { name: 'Shin-Etsu Chemical', ticker: '4063.T', role: 'Specialty materials feeding semiconductor and robotics production', tier: 'Adjacent; Nikkei 225 index layer, Yahoo-verified 2026-08-30' },
+  { name: 'Toray Industries', ticker: '3402.T', role: 'Advanced materials, including carbon fiber for lightweight structures', tier: 'Adjacent; Nikkei 225 index layer, Yahoo-verified 2026-08-30' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: "Japan's precision reducer and robotics supply-chain stocks",
+  description: `Japan's robotics supply-chain exposure: ${japan.tier_a_count} Tier-A exposures in the curated core plus Yahoo-verified Nikkei 225 constituents with reducer and automation relevance.`,
+  url: Astro.url.href,
+  dateCreated: '2026-08-30',
+  creator: { '@type': 'Organization', name: 'vhsgreed', url: Astro.site?.toString() },
+  distribution: { '@type': 'DataDownload', encodingFormat: 'CSV', contentUrl: 'https://store.vhsgreed.win/l/robotics-supply-chain-database-2026' },
+  variableMeasured: `${names.length} companies`,
+  includedInDataCatalog: { '@type': 'DataCatalog', name: 'Robotics Supply-Chain Intelligence 2026' },
+};
+---
+<Base title={title} description={desc}>
+  <div class="container">
+    <section class="hero">
+      <h1>Precision reducer stocks: Japan's robotics moat</h1>
+      <p class="lead">
+        Japan holds {japan.tier_a_count} Tier-A robotics exposures in our verified dataset,
+        the highest of any nation in the 11-country index layer. The reason is
+        physical: precision reducers are hard to make, and Japan owns them.
+      </p>
+      <p class="muted">
+        {japan.count} Japanese companies from the Nikkei 225 were live-verified
+        against Yahoo Finance on {verificationDate}. The reducer and automation core
+        sits inside that verified layer.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-accent" href="https://store.vhsgreed.win/l/robotics-supply-chain-database-2026" target="_blank" rel="noopener">Get the full dataset</a>
+        <a class="btn btn-ghost" href="/robotics-stocks/japan/">All {japan.count} verified Japan tickers</a>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight">
+      <h2>The Japan robotics stack, verified</h2>
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Ticker</th>
+              <th>Reducer/robotics role</th>
+              <th>Verification</th>
+            </tr>
+          </thead>
+          <tbody>
+            {names.map((c) => (
+              <tr>
+                <td>{c.name}</td>
+                <td><span class="mono">{c.ticker}</span></td>
+                <td>{c.role}</td>
+                <td><span class="muted">{c.tier}</span></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="margin-top: 0.75rem;">
+        <small>Tier-A rows come from the curated core (direct humanoid OEM, reducer,
+        sensor, or compute exposure). Adjacent rows are index-layer constituents with
+        materials or automation relevance; we state the difference instead of inflating it.</small>
+      </p>
+    </section>
+
+    <section class="prose section-tight" style="max-width: 72ch;">
+      <h2>Why the moat is real</h2>
+      <p>
+        Reducers translate fast motor spin into precise, high-torque joint
+        motion. The tolerances are brutal, the know-how is decades deep, and
+        actuators plus reducers are 40-55% of a robot's bill of materials.
+        Harmonic Drive and Nabtesco between them define the category, which is
+        why "Japan owns precision reducers" is a structural fact of our map,
+        not a slogan: the Nikkei layer is not a diversifier, it is the core.
+      </p>
+
+      <h2>How to access it</h2>
+      <ul>
+        <li><strong>Tokyo listing (6324.T, 6268.T):</strong> buyable cross-border, with FX and settlement lag, and sometimes a premium.</li>
+        <li><strong>Verification:</strong> all index-layer tickers were live-confirmed on 2026-08-30. Check the date; index membership drifts.</li>
+        <li><strong>Full exposure map:</strong> the dataset grades every route direct, adjacent, or indirect across 60 routes.</li>
+      </ul>
+
+      <h2>Related pages</h2>
+      <ul>
+        <li><a href="/robotics-stocks/actuator-stocks/">Actuator stocks: the pick-and-shovel play</a></li>
+        <li><a href="/robotics-stocks/humanoid-robot-stocks/">Humanoid robot stocks: who makes the bots</a></li>
+        <li><a href="/robotics-stocks/japan/">Robotics stocks in Japan: the verified Nikkei layer</a></li>
+        <li><a href="/robotics-stocks/">Robotics stocks by country</a></li>
+      </ul>
+    </section>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Base>

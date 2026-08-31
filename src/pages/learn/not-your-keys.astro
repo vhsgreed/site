@@ -1,0 +1,86 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = "What Does 'Not Your Keys, Not Your Crypto' Mean?";
+const desc = "The meaning and limits of 'not your keys, not your crypto': what self-custody actually protects, what exchange custody risks, and how to think about the tradeoff.";
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: desc,
+  datePublished: '2026-08-31',
+  author: { '@type': 'Organization', name: 'vhsgreed', url: 'https://vhsgreed.win' },
+  publisher: { '@type': 'Organization', name: 'vhsgreed', url: 'https://vhsgreed.win' },
+};
+---
+<Base title={title} description={desc}>
+  <div class="container">
+    <section class="hero">
+      <h1>What does "not your keys, not your crypto" mean?</h1>
+      <p class="lead">
+        It is the core self-custody principle of crypto: whoever controls the
+        private keys controls the coins. If your crypto sits on an exchange,
+        you own a claim on a company; you do not own the asset in the way the
+        blockchain records ownership. The phrase is a warning and, read
+        carefully, a tradeoff.
+      </p>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="prose section-tight" style="max-width: 72ch;">
+      <h2>The mechanics in one minute</h2>
+      <p>
+        Crypto ownership is recorded on the blockchain, not in a bank's
+        database. To move coins, you need the private key that matches the
+        address holding them. Keep that key yourself (in a wallet you control:
+        hardware wallet, software wallet, or an offline seed phrase) and you
+        are self-custodied. Leave your coins on an exchange and the exchange
+        holds the keys; what you have is an IOU, an entry in their ledger that
+        says they owe you coins.
+      </p>
+
+      <h2>What the phrase protects you from</h2>
+      <ul>
+        <li><strong>Exchange failure:</strong> if the platform goes insolvent, gets hacked, or freezes withdrawals, holders of IOUs line up as unsecured creditors. History has repeats.</li>
+        <li><strong>Custodial freezing:</strong> an exchange can block withdrawals, freeze accounts, or comply with orders against your holdings. A self-custodied wallet cannot be frozen by a third party.</li>
+        <li><strong>Counterparty dependency:</strong> with self-custody, your access depends on your key and the network, not on a company's solvency, policies, or uptime.</li>
+      </ul>
+
+      <h2>The tradeoff the slogan leaves out</h2>
+      <p>
+        Self-custody moves the risk from the counterparty to you. Lose your
+        seed phrase and your coins are gone with no support desk. Get phished,
+        sign a malicious transaction, or store your key carelessly, and the
+        loss is instant and irreversible. Custodial platforms, whatever their
+        risks, handle key management, offer recovery paths, and are easier
+        for beginners. Honest framing: the phrase is about who bears the risk,
+        not about there being no risk.
+      </p>
+
+      <h2>Practical middle ground</h2>
+      <ul>
+        <li><strong>Long-term holdings:</strong> self-custody, ideally a hardware wallet, seed phrase backed up offline in more than one physical place.</li>
+        <li><strong>Active trading:</strong> keeping a working balance on an exchange is a conscious risk decision; size it so a platform failure is an annoyance, not a catastrophe.</li>
+        <li><strong>Never:</strong> share your seed phrase, type it into a website, or store it in a cloud note or screenshot. No legitimate service will ever ask for it.</li>
+        <li><strong>Test recovery:</strong> a backup you have never restored is a hope, not a backup.</li>
+      </ul>
+
+      <h2>The bottom line</h2>
+      <p>
+        "Not your keys, not your crypto" is true as stated: custody is control.
+        Use it as a question, not just a slogan: for each holding, do you know
+        who holds the keys, and can you afford their failure mode? Then size
+        your custody accordingly.
+      </p>
+
+      <h2>Related pages</h2>
+      <ul>
+        <li><a href="/store/">Store: crypto and market datasets</a></li>
+        <li><a href="/robotics-stocks/robotics-etf-vs-stocks/">Crypto perps vs equities: a related risk comparison</a></li>
+      </ul>
+    </section>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Base>

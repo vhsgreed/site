@@ -1,0 +1,109 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = 'Humanoid Robot Stocks: Who Makes the Bots';
+const desc = 'The verified humanoid robot makers and their supply chain: Tesla, UBTech, Unitree, and the compute layer. Built from the Robotics Supply-Chain Intelligence 2026 dataset, every ticker checked.';
+
+const makers = [
+  { name: 'Tesla', ticker: 'TSLA', exchange: 'NASDAQ', role: 'Optimus humanoid program inside a car company', layer: 'Curated core (verified)' },
+  { name: 'UBTech', ticker: '9888.HK', exchange: 'HKEX', role: 'Listed Chinese humanoid OEM, mass-production shipments', layer: 'Curated core (verified)' },
+  { name: 'Unitree', ticker: 'Post-IPO, Aug 19 2026', exchange: 'China A-share', role: 'Mass-produced humanoid that opened its IPO at +629%', layer: 'IPO documented in our timeline; see Unitree page' },
+  { name: 'NVIDIA', ticker: 'NVDA', exchange: 'NASDAQ', role: 'Compute layer: the brains most humanoids run on', layer: 'Curated core (verified)' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: 'Verified humanoid robot makers and compute suppliers',
+  description: 'Public companies building or supplying humanoid robots, from the curated Tier-A core of the Robotics Supply-Chain Intelligence 2026 dataset.',
+  url: Astro.url.href,
+  dateCreated: '2026-08-30',
+  creator: { '@type': 'Organization', name: 'vhsgreed', url: Astro.site?.toString() },
+  distribution: { '@type': 'DataDownload', encodingFormat: 'CSV', contentUrl: 'https://store.vhsgreed.win/l/robotics-supply-chain-database-2026' },
+  variableMeasured: `${makers.length} companies`,
+  includedInDataCatalog: { '@type': 'DataCatalog', name: 'Robotics Supply-Chain Intelligence 2026' },
+};
+---
+<Base title={title} description={desc}>
+  <div class="container">
+    <section class="hero">
+      <h1>Humanoid robot stocks: who makes the bots</h1>
+      <p class="lead">
+        The humanoids are real: they run, climb, and ship in the thousands. If
+        you want equity exposure to the robots themselves, these are the
+        verified makers and their compute supplier, with the verification layer
+        stated for every row.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-accent" href="https://store.vhsgreed.win/l/robotics-supply-chain-database-2026" target="_blank" rel="noopener">Get the full dataset</a>
+        <a class="btn btn-ghost" href="/robotics-stocks/robotics-etf-vs-stocks/">ETFs vs direct stocks</a>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight">
+      <h2>Verified humanoid OEMs and the compute layer</h2>
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Ticker</th>
+              <th>Exchange</th>
+              <th>Humanoid role</th>
+              <th>Verification layer</th>
+            </tr>
+          </thead>
+          <tbody>
+            {makers.map((c) => (
+              <tr>
+                <td>{c.name}</td>
+                <td><span class="mono">{c.ticker}</span></td>
+                <td>{c.exchange}</td>
+                <td>{c.role}</td>
+                <td><span class="muted">{c.layer}</span></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="prose section-tight" style="max-width: 72ch;">
+      <h2>The Unitree lesson: price discovery ran ahead of the listing</h2>
+      <p>
+        Unitree, the company behind the mass-produced humanoid, went public on
+        August 19, 2026 at a $66B peak valuation and opened at +629%. Its
+        pre-IPO crypto perps on Hyperliquid had priced it 75% below that open,
+        turning over $59M with $9.1M open interest before any share traded. We
+        documented the full case in <a href="/robotics-stocks/unitree-ipo/">Unitree IPO explained</a>.
+      </p>
+
+      <h2>Where the bots actually come from</h2>
+      <p>
+        China is 63-70% of the robotics supply chain by our build, which means
+        most humanoid production, and most of the component layer beneath it,
+        sits in one jurisdiction. That is a concentration fact, not an opinion,
+        and it shapes every access question: which listing you can buy, in
+        which currency, through which broker.
+      </p>
+
+      <h2>Honest limits</h2>
+      <ul>
+        <li>Identity and tickers are confirmed at harvest; business relevance is a heuristic filter in places.</li>
+        <li>Index and quote verification is point-in-time (2026-08-30), not forever.</li>
+        <li>Some humanoid programs sit inside private companies. We flag them private rather than guess a ticker; KUKA is the documented example.</li>
+      </ul>
+
+      <h2>Related pages</h2>
+      <ul>
+        <li><a href="/robotics-stocks/actuator-stocks/">Actuator stocks: the pick-and-shovel play</a></li>
+        <li><a href="/robotics-stocks/unitree-ipo/">Unitree IPO explained: the +629% open</a></li>
+        <li><a href="/robotics-stocks/">Robotics stocks by country</a></li>
+        <li><a href="/blog/insights/robotics-supply-chain-2026/">The full writeup: mapping the robotics supply chain</a></li>
+      </ul>
+    </section>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Base>

@@ -1,0 +1,110 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = "AI Benchmarking in 2026: Why Single-Run Scores Don't Prove Anything";
+const desc = 'Single-run AI benchmark scores are marketing, not measurement. Variance, judge instability, benchmark contamination, and how multi-run evaluation with an independent judge fixes it.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: desc,
+  datePublished: '2026-08-31',
+  author: { '@type': 'Organization', name: 'vhsgreed', url: 'https://vhsgreed.win' },
+  publisher: { '@type': 'Organization', name: 'vhsgreed', url: 'https://vhsgreed.win' },
+};
+---
+<Base title={title} description={desc}>
+  <div class="container">
+    <section class="hero">
+      <h1>AI benchmarking in 2026: why single-run scores don't prove anything</h1>
+      <p class="lead">
+        A model scores 8/10 on a benchmark once, and the number goes in a
+        chart. We run our own model evaluations continuously, and we can tell
+        you what that single number is worth: almost nothing. Variance,
+        judge instability, and prompt sensitivity mean a one-shot score
+        measures the sample, not the model.
+      </p>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="prose section-tight" style="max-width: 72ch;">
+      <h2>Four reasons a single run lies</h2>
+      <ul>
+        <li>
+          <strong>Sampling variance.</strong> LLMs are probabilistic. The same
+          model, same prompt, same task, run five times, produces a
+          distribution of outcomes, and for hard reasoning tasks the spread
+          is wide. One run is one draw from that distribution; the tail draws
+          get published.
+        </li>
+        <li>
+          <strong>Judge instability.</strong> Most modern benchmarks use an
+          LLM as the grader, and graders have their own failure modes. We have
+          watched a judge model burn its entire token budget on internal
+          reasoning, return an empty answer, and score zero on work that was
+          fine. The benchmark reported a model failure that was actually a
+          harness bug.
+        </li>
+        <li>
+          <strong>Reasoning-token traps.</strong> Reasoning models can consume
+          output budgets before producing any visible answer. If your harness
+          sets max_tokens too low, strong models fail silently and weak ones
+          look fine. Any leaderboard score without harness disclosure inherits
+          this risk.
+        </li>
+        <li>
+          <strong>Contamination and prompt sensitivity.</strong> Benchmark
+          questions leak into training data, and trivial rewordings move
+          scores. A model can know the benchmark without being able to do the
+          job the benchmark stands for.
+        </li>
+      </ul>
+
+      <h2>What we do instead: trustless multi-run evaluation</h2>
+      <p>
+        Our own evaluation harness is built on a simple rule: no score is
+        trusted from the same process that produced the work. Concretely:
+      </p>
+      <ul>
+        <li><strong>Multiple runs per model per task</strong>, reporting the distribution (mean and spread), not the best draw.</li>
+        <li><strong>An independent judge model</strong> with its own prompt and enough output budget to actually answer, because the judge that shares a failure mode with the worker grades nothing.</li>
+        <li><strong>Rotating task sets</strong> instead of a fixed question bank, so improving a score means improving at the work, not memorizing the test.</li>
+        <li><strong>Published harness details:</strong> model versions, prompts, token budgets, run counts. A number without its harness is a vibe.</li>
+      </ul>
+      <p>
+        This is the method behind our model-selection decisions, and it has
+        reversed conclusions that a single run would have gotten wrong: we
+        picked models for production roles only after multi-run, independently
+        judged evaluation, and the winners were not always the ones with the
+        best one-shot reputation.
+      </p>
+
+      <h2>How to read any benchmark score in 2026</h2>
+      <ol>
+        <li>Ask how many runs it averages. One run: treat as anecdote.</li>
+        <li>Ask who graded, and whether the judge differs from the worker.</li>
+        <li>Ask for the harness: token budgets, prompts, dates. Undisclosed harness means unauditable result.</li>
+        <li>Ask what it costs: quality-per-dollar beats quality, always, for real workloads.</li>
+      </ol>
+
+      <h2>The bottom line</h2>
+      <p>
+        Benchmarks are useful for ranking relative capability when they are
+        run with discipline and useless as proof when they are not. Demand
+        distributions, independent judges, and disclosure. If someone tries to
+        sell you a model, an agent, or a pipeline on a single-run score, you
+        have learned something about them, if not about the model.
+      </p>
+
+      <h2>Related reading</h2>
+      <ul>
+        <li><a href="/learn/agent-alignment/">What is agent alignment and why does it matter?</a></li>
+        <li><a href="/blog/insights/alignment-charter-experiment/">Our alignment charter experiment</a></li>
+        <li><a href="/blog/insights/zero-cost-ai-agent-toolkit/">Free LLM rotation: run an AI agent on $0</a></li>
+      </ul>
+    </section>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Base>

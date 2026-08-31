@@ -1,0 +1,120 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = 'Actuator Stocks: The Robotics Pick-and-Shovel Play';
+const desc = 'Actuators are 40-55% of a robot bill of materials. The verified actuator and precision-motion stocks from our Robotics Supply-Chain Intelligence 2026 dataset, each live-checked.';
+
+const holdings = [
+  { name: 'Harmonic Drive Systems', ticker: '6324.T', exchange: 'Tokyo', role: 'Precision strain-wave reducers: the classic robot joint actuation component', layer: 'Curated core (verified)' },
+  { name: 'Nabtesco', ticker: '6268.T', exchange: 'Tokyo', role: 'Precision cycloidal reducers for industrial robot joints', layer: 'Curated core (verified)' },
+  { name: 'Fanuc', ticker: '6954.T', exchange: 'Nikkei 225', role: 'Robot OEM and factory automation; a direct consumer of actuator components', layer: 'Index layer, Yahoo-verified 2026-08-30' },
+  { name: 'ABB', ticker: 'ABB.ST', exchange: 'Nasdaq Stockholm Large Cap', role: 'Robotics OEM and electrification/motion supplier', layer: 'Index layer, Yahoo-verified 2026-08-30' },
+  { name: 'ABB', ticker: 'ABBN.SW', exchange: 'SMI 20', role: 'Same company, Swiss listing: a cross-border access route', layer: 'Index layer, Yahoo-verified 2026-08-30' },
+  { name: 'Siemens', ticker: 'SIE.DE', exchange: 'DAX 40', role: 'Industrial automation, drives and motion control', layer: 'Index layer, Yahoo-verified 2026-08-30' },
+  { name: 'Schneider Electric', ticker: 'SU.PA', exchange: 'CAC 40', role: 'Electrification and industrial motion adjacency', layer: 'Index layer, Yahoo-verified 2026-08-30' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: 'Verified actuator and precision-motion stocks',
+  description: 'Actuator-exposed public companies drawn from the Robotics Supply-Chain Intelligence 2026 dataset: curated core entries plus Yahoo Finance-verified index constituents.',
+  url: Astro.url.href,
+  dateCreated: '2026-08-30',
+  creator: { '@type': 'Organization', name: 'vhsgreed', url: Astro.site?.toString() },
+  distribution: { '@type': 'DataDownload', encodingFormat: 'CSV', contentUrl: 'https://store.vhsgreed.win/l/robotics-supply-chain-database-2026' },
+  variableMeasured: `${holdings.length} companies`,
+  includedInDataCatalog: { '@type': 'DataCatalog', name: 'Robotics Supply-Chain Intelligence 2026' },
+};
+---
+<Base title={title} description={desc}>
+  <div class="container">
+    <section class="hero">
+      <h1>Actuator stocks: the robotics pick-and-shovel play</h1>
+      <p class="lead">
+        Whatever robot wins, its joints are somebody's order book. Actuators are
+        40-55% of a robot's bill of materials, which makes the motion layer the
+        closest thing robotics has to a pick-and-shovel trade.
+      </p>
+      <p class="muted">
+        Every name below is drawn from our verified dataset: either the curated
+        Tier-A core (64 companies) or a national index constituent live-verified
+        against Yahoo Finance on 2026-08-30. No unverified tickers.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-accent" href="https://store.vhsgreed.win/l/robotics-supply-chain-database-2026" target="_blank" rel="noopener">Get the full dataset</a>
+        <a class="btn btn-ghost" href="/robotics-stocks/">All countries</a>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight">
+      <h2>Verified actuator and motion-exposed names</h2>
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Ticker</th>
+              <th>Exchange</th>
+              <th>Actuator relevance</th>
+              <th>Verification layer</th>
+            </tr>
+          </thead>
+          <tbody>
+            {holdings.map((c) => (
+              <tr>
+                <td>{c.name}</td>
+                <td><span class="mono">{c.ticker}</span></td>
+                <td>{c.exchange}</td>
+                <td>{c.role}</td>
+                <td><span class="muted">{c.layer}</span></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="margin-top: 0.75rem;">
+        <small>Source: Robotics Supply-Chain Intelligence 2026. Index-layer rows were live-verified
+        via Yahoo Finance on 2026-08-30; curated-core rows carry the dataset's own verification flag.</small>
+      </p>
+    </section>
+
+    <section class="prose section-tight" style="max-width: 72ch;">
+      <h2>Why actuators capture the value</h2>
+      <p>
+        A humanoid or industrial robot is motors, reducers, encoders, and the
+        structure around them. Our build of the supply-chain map put the
+        actuator block at 40-55% of bill of materials: the single largest cost
+        bucket. Robot OEMs compete with each other; actuator and reducer
+        suppliers sell to all of them. That asymmetry is the entire
+        pick-and-shovel argument.
+      </p>
+
+      <h2>How to read the verification layers</h2>
+      <ul>
+        <li><strong>Curated core:</strong> the 64 companies we placed at the chain's critical positions, each with a confirmed ticker and trading route.</li>
+        <li><strong>Index layer:</strong> constituents of national indexes, live-confirmed against Yahoo Finance quotes on 2026-08-30. Index membership is point-in-time.</li>
+        <li><strong>Adjacency warning:</strong> conglomerates like Siemens or Schneider touch motion control without being pure plays. Relevance is stated per row, never inflated.</li>
+      </ul>
+
+      <h2>Related pages</h2>
+      <ul>
+        <li><a href="/robotics-stocks/precision-reducers/">Precision reducer stocks: Japan's robotics moat</a></li>
+        <li><a href="/robotics-stocks/humanoid-robot-stocks/">Humanoid robot stocks: who makes the bots</a></li>
+        <li><a href="/robotics-stocks/robotics-etf-vs-stocks/">Robotics ETFs vs direct stocks</a></li>
+        <li><a href="/robotics-stocks/">Robotics stocks by country: the full verified index</a></li>
+      </ul>
+
+      <h2>Get the complete map</h2>
+      <p>
+        The full <a href="/store/">Robotics Supply-Chain Intelligence 2026</a>
+        dataset adds the US layer (10,391 tickers from SEC EDGAR, 463
+        robotics-flagged), the 60-route exposure map, and 232 Hyperliquid perp
+        assets, each row with its source and verification status.
+      </p>
+    </section>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Base>

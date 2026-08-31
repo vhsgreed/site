@@ -11,7 +11,7 @@ export async function getStaticPaths() {
 
 const { name, data } = Astro.props;
 
-const title = `Robotics Stocks: ${name} — ${data.count} Verified Companies (${data.indexes.join(', ')})`;
+const title = `Robotics Stocks: ${name}: ${data.count} Verified Companies (${data.indexes.join(', ')})`;
 const desc = `${data.count} verified public companies from ${name}'s ${data.indexes.join('/')}, live-verified via Yahoo Finance ${verificationDate}. ${data.tier_a_count} Tier-A robotics exposures. Part of the Robotics Supply-Chain Intelligence 2026 dataset.`;
 
 const jsonLd = {
@@ -30,7 +30,7 @@ const jsonLd = {
 <Base title={title} description={desc}>
   <div class="container">
     <section class="hero">
-      <h1>Robotics stocks &mdash; {name}</h1>
+      <h1>Robotics stocks: {name}</h1>
       <p class="lead">
         {data.count} verified public companies listed on {data.indexes.join('/')},
         with robotics supply-chain exposure. Live-verified against Yahoo Finance

@@ -1,0 +1,120 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = "Unitree IPO Explained: The +629% Open and Its Perp Pricing";
+const desc = 'Unitree went public on August 19, 2026 and opened at +629% at a $66B peak valuation. Pre-IPO crypto perps had priced it 75% below. The documented case, with the numbers.';
+
+const facts = [
+  { k: 'IPO date', v: 'August 19, 2026' },
+  { k: 'Peak valuation at open', v: '$66B' },
+  { k: 'Opening move', v: '+629%' },
+  { k: 'Pre-IPO perp pricing gap', v: 'Perps priced 75% below the open' },
+  { k: 'Perp venue', v: 'Hyperliquid, ticker xyz:UNITREE' },
+  { k: 'Perp turnover', v: '$59M' },
+  { k: 'Perp open interest', v: '$9.1M' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: desc,
+  datePublished: '2026-08-30',
+  author: { '@type': 'Organization', name: 'vhsgreed', url: 'https://vhsgreed.win' },
+  publisher: { '@type': 'Organization', name: 'vhsgreed', url: 'https://vhsgreed.win' },
+  about: { '@type': 'Corporation', name: 'Unitree Robotics' },
+};
+---
+<Base title={title} description={desc}>
+  <div class="container">
+    <section class="hero">
+      <h1>Unitree IPO explained: the +629% open and its perp pricing</h1>
+      <p class="lead">
+        On August 19, 2026, Unitree, the company behind the mass-produced
+        humanoid that runs, climbs, and sells in the thousands, went public and
+        opened at +629%. The pre-IPO crypto perps had priced it 75% below that
+        open. Both numbers are documented, and the gap between them is the
+        story of this market.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-accent" href="https://store.vhsgreed.win/l/robotics-supply-chain-database-2026" target="_blank" rel="noopener">Get the full dataset</a>
+        <a class="btn btn-ghost" href="/blog/articles/robotics-supply-chain-narrative/">Read the full narrative</a>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight">
+      <h2>The documented numbers</h2>
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Fact</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {facts.map((f) => (
+              <tr>
+                <td><strong>{f.k}</strong></td>
+                <td>{f.v}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="margin-top: 0.75rem;">
+        <small>All figures as documented in our verified robotics supply-chain build
+        and the accompanying narrative; the perp figures are Hyperliquid market data
+        recorded at the time of the IPO.</small>
+      </p>
+    </section>
+
+    <section class="prose section-tight" style="max-width: 72ch;">
+      <h2>What actually happened</h2>
+      <p>
+        Before Unitree listed, a crypto perpetual future on the company traded
+        on Hyperliquid under the ticker <span class="mono">xyz:UNITREE</span>.
+        It was not a curiosity: it turned over $59M and carried $9.1M of open
+        interest, real money taking real positions in a company that had no
+        shares to buy yet. When the IPO opened at +629% and a $66B peak
+        valuation, those perps had been pricing it 75% lower.
+      </p>
+      <p>
+        That gap is the whole story of this market in one number: the machinery
+        of modern trading, derivatives, price discovery, liquidity, is running
+        ahead of the underlying supply chain. The perp was the price oracle
+        before the stock existed, and it got the level badly wrong, which is
+        exactly the kind of failure you want to know about before trusting
+        pre-listing pricing.
+      </p>
+
+      <h2>Why it matters if you were not in this trade</h2>
+      <ul>
+        <li><strong>Price discovery now precedes listings.</strong> Pre-IPO perps are a real instrument class; our dataset maps 232 Hyperliquid perp assets alongside equities for this reason.</li>
+        <li><strong>The oracle can be wrong by 75%.</strong> Pre-listing pricing is a signal, not a truth. Treat it as one input.</li>
+        <li><strong>Liquidation risk is real.</strong> Leveraged perps on volatile references produce exactly the blowups you would expect; the Unitree case study in our guide documents the mechanics.</li>
+      </ul>
+
+      <h2>Where this sits in our map</h2>
+      <p>
+        In the Robotics Supply-Chain Intelligence 2026 exposure map, Unitree is
+        a direct Tier-A exposure post-IPO, and its perp is the documented
+        example of an adjacent route: exposure to the same company through a
+        different instrument with a different risk shape. The full comparison
+        of routes is in <a href="/robotics-stocks/robotics-etf-vs-stocks/">Robotics
+        ETFs vs direct stocks</a>.
+      </p>
+
+      <h2>Related pages</h2>
+      <ul>
+        <li><a href="/robotics-stocks/humanoid-robot-stocks/">Humanoid robot stocks: who makes the bots</a></li>
+        <li><a href="/robotics-stocks/robotics-etf-vs-stocks/">Robotics ETFs vs direct stocks</a></li>
+        <li><a href="/blog/articles/robotics-supply-chain-narrative/">We built a verified map of the robotics supply chain</a></li>
+        <li><a href="/robotics-stocks/">Robotics stocks by country</a></li>
+      </ul>
+    </section>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Base>

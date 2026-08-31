@@ -1,0 +1,68 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = 'Explainers: AI Agents, Security, Semiconductors, and Crypto';
+const desc = 'Plain-language explainers from the vhsgreed team: agent alignment, orchestrators, API costs, supply-chain attacks, SEMICON Taiwan, self-custody, scraping verification, and AI benchmarking.';
+
+const guides = [
+  { slug: 'agent-alignment', t: 'What is agent alignment and why does it matter?', d: 'Intent vs instruction, why autonomy raises the stakes, and how alignment is actually tested.' },
+  { slug: 'agent-orchestrator', t: 'What is an agent orchestrator?', d: 'Planning, spawning, model routing, state, and verification gates: the coordinator layer explained.' },
+  { slug: 'semicon-taiwan-2026', t: 'SEMICON Taiwan 2026 explained', d: 'September 2-4, TaiNEX Taipei: dates, venue, scale, themes, and using the exhibitor list remotely.' },
+  { slug: 'npm-supply-chain-attack', t: 'The npm supply-chain attack explained', d: 'The August 2026 keyv/cacheable worm: how it spread, why defenses missed it, and how to check exposure.' },
+  { slug: 'reduce-api-costs', t: 'Top tips for reducing API costs', d: 'Free-model rotation, task-based routing, judging, caching, and batching: what actually worked for us.' },
+  { slug: 'deepseek-vs-openrouter', t: 'DeepSeek API vs OpenRouter API', d: 'Direct vs intermediary: pricing, free tiers, rate limits, and when each route wins.' },
+  { slug: 'not-your-keys', t: "What does 'not your keys, not your crypto' mean?", d: 'Custody, counterparty risk, and the tradeoff the slogan leaves out.' },
+  { slug: 'verify-scraping-provider', t: 'How to verify a web scraping provider before you hire one', d: 'Probe reports, blocked lists, deliverable definitions: a checklist from 150 live probes.' },
+  { slug: 'ai-benchmarking-2026', t: "AI benchmarking in 2026: why single-run scores don't prove anything", d: 'Variance, judge instability, contamination, and the multi-run alternative.' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: title,
+  description: desc,
+  url: Astro.url.href,
+  hasPart: guides.map((g) => ({ '@type': 'Article', name: g.t, url: new URL(`/learn/${g.slug}/`, Astro.site).toString() })),
+};
+---
+<Base title={title} description={desc}>
+  <div class="container">
+    <section class="hero">
+      <h1>Explainers</h1>
+      <p class="lead">
+        Plain-language guides to the things we actually work with: AI agents,
+        security, semiconductors, API economics, and crypto. Every explainer
+        is grounded in our own tooling, datasets, or verified research, and
+        anything time-sensitive is dated.
+      </p>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight">
+      <h2>All explainers</h2>
+      <div class="card-list">
+        {guides.map((g) => (
+          <a class="card-row" href={`/learn/${g.slug}/`}>
+            <div>
+              <div class="t">{g.t}</div>
+              <div class="d">{g.d}</div>
+            </div>
+            <span class="meta">Guide</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="prose section-tight" style="max-width: 72ch;">
+      <h2>Where to go next</h2>
+      <ul>
+        <li><a href="/blog/">The blog</a>: experiment writeups and verified-data projects.</li>
+        <li><a href="/robotics-stocks/">Robotics stocks by country</a>: the verified 1,093-ticker index layer.</li>
+        <li><a href="/store/">The store</a>: the datasets behind everything above.</li>
+        <li><a href="/opensource/">Open source</a>: the agent tooling we run in production.</li>
+      </ul>
+    </section>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Base>

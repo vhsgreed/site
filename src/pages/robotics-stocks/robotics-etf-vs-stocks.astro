@@ -1,0 +1,135 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = 'Robotics ETFs vs Direct Stocks: Which Exposure Is Right for You';
+const desc = 'ETFs, direct stocks, and crypto perps compared for robotics exposure: what you own, how it is verified, access and risk. Built on the Robotics Supply-Chain Intelligence 2026 dataset.';
+
+const etfs = [
+  { ticker: 'KOID', kind: 'Equity ETF', focus: 'Robotics and automation equity basket' },
+  { ticker: 'BOTZ', kind: 'Equity ETF', focus: 'Robotics and AI equity basket' },
+  { ticker: 'IRBO', kind: 'Equity ETF', focus: 'Robotics and AI, broader international basket' },
+  { ticker: 'ROBO', kind: 'Equity ETF', focus: 'Robotics and automation equity basket' },
+  { ticker: 'LIT', kind: 'Commodity ETF', focus: 'Lithium: the battery input layer' },
+  { ticker: 'REMX', kind: 'Commodity ETF', focus: 'Rare earths and strategic minerals' },
+  { ticker: 'BATT', kind: 'Commodity ETF', focus: 'Battery metals and materials' },
+];
+
+const rows = [
+  { dim: 'What you own', etf: 'A basket: diluted exposure to dozens of names', stock: 'One company: concentrated, thesis-driven', perp: 'A leveraged price bet on a reference price, no equity' },
+  { dim: 'Verification in our dataset', etf: 'Mapped in the 60-route exposure layer, indirect route', stock: 'Every ticker live-verified (Yahoo Finance / SEC EDGAR), direct route', perp: '232 Hyperliquid perp assets mapped, adjacent route' },
+  { dim: 'Access', etf: 'Any standard brokerage account', stock: 'Depends on listing country; the whole point of our tradeability layer', perp: 'Crypto venue; not available or suitable everywhere' },
+  { dim: 'Risk shape', etf: 'Index risk, low single-name blowup risk', stock: 'Single-name risk, highest upside if your thesis holds', perp: 'Liquidation risk is real; the Unitree case is documented' },
+  { dim: 'Costs', etf: 'Expense ratio plus spread', stock: 'Commission, FX, and possibly a cross-border premium', perp: 'Funding rates and fees; costs compound' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: 'Robotics exposure routes: ETFs vs direct stocks vs perps',
+  description: 'Comparison of three exposure routes to the robotics supply chain, with the ETF and commodity tickers mapped in the Robotics Supply-Chain Intelligence 2026 dataset.',
+  url: Astro.url.href,
+  dateCreated: '2026-08-30',
+  creator: { '@type': 'Organization', name: 'vhsgreed', url: Astro.site?.toString() },
+  distribution: { '@type': 'DataDownload', encodingFormat: 'CSV', contentUrl: 'https://store.vhsgreed.win/l/robotics-supply-chain-database-2026' },
+  variableMeasured: `${etfs.length} ETFs, 3 exposure routes`,
+  includedInDataCatalog: { '@type': 'DataCatalog', name: 'Robotics Supply-Chain Intelligence 2026' },
+};
+---
+<Base title={title} description={desc}>
+  <div class="container">
+    <section class="hero">
+      <h1>Robotics ETFs vs direct stocks: which exposure is right for you</h1>
+      <p class="lead">
+        Same theme, three very different instruments. ETFs dilute and diversify,
+        direct stocks concentrate, and crypto perps price what has not listed
+        yet. Here is the honest comparison, grounded in the exposure map we
+        built and verified.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-accent" href="https://store.vhsgreed.win/l/robotics-supply-chain-database-2026" target="_blank" rel="noopener">Get the full dataset</a>
+        <a class="btn btn-ghost" href="/robotics-stocks/">All countries</a>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight">
+      <h2>The ETF and commodity layer in our map</h2>
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Ticker</th>
+              <th>Type</th>
+              <th>What it gives you</th>
+            </tr>
+          </thead>
+          <tbody>
+            {etfs.map((c) => (
+              <tr>
+                <td><span class="mono">{c.ticker}</span></td>
+                <td>{c.kind}</td>
+                <td>{c.focus}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="margin-top: 0.75rem;">
+        <small>These are the indirect and commodity routes in our 60-route exposure map.
+        Commodity funds (LIT, REMX, BATT) hedge the input layer: lithium, rare earths,
+        battery materials.</small>
+      </p>
+    </section>
+
+    <section class="section-tight">
+      <h2>Head to head</h2>
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>ETF</th>
+              <th>Direct stock</th>
+              <th>Crypto perp</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr>
+                <td><strong>{r.dim}</strong></td>
+                <td>{r.etf}</td>
+                <td>{r.stock}</td>
+                <td>{r.perp}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="prose section-tight" style="max-width: 72ch;">
+      <h2>How to choose</h2>
+      <ul>
+        <li><strong>You want the theme, not a thesis:</strong> ETF. You accept index dilution in exchange for not being wrong about one company.</li>
+        <li><strong>You have a view on a specific link in the chain:</strong> direct stock, ideally from a verified list so you know the ticker actually trades where you think it does.</li>
+        <li><strong>You want pre-listing price discovery:</strong> perps, with eyes open. Unitree's pre-IPO perps priced it 75% below a +629% open; the instrument works, and the liquidation risk is real.</li>
+      </ul>
+      <p>
+        These are not mutually exclusive: our own exposure map grades every
+        route direct, adjacent, or indirect, and most serious positioning uses
+        a mix. What the map removes is the guesswork about which ticker is
+        real, tradeable, and from where.
+      </p>
+
+      <h2>Related pages</h2>
+      <ul>
+        <li><a href="/robotics-stocks/actuator-stocks/">Actuator stocks: the pick-and-shovel play</a></li>
+        <li><a href="/robotics-stocks/humanoid-robot-stocks/">Humanoid robot stocks: who makes the bots</a></li>
+        <li><a href="/robotics-stocks/unitree-ipo/">Unitree IPO explained: the +629% open</a></li>
+        <li><a href="/robotics-stocks/">Robotics stocks by country</a></li>
+      </ul>
+    </section>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Base>

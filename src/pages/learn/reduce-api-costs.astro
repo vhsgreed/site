@@ -1,0 +1,102 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = 'Top Tips for Reducing API Costs: What Actually Worked for Us';
+const desc = 'Practical API cost reduction: free-model rotation, model routing by task, caching, batching, and off-peak scheduling. Backed by a real agent pipeline that runs at $0/month.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: desc,
+  datePublished: '2026-08-31',
+  author: { '@type': 'Organization', name: 'vhsgreed', url: 'https://vhsgreed.win' },
+  publisher: { '@type': 'Organization', name: 'vhsgreed', url: 'https://vhsgreed.win' },
+};
+---
+<Base title={title} description={desc}>
+  <div class="container">
+    <section class="hero">
+      <h1>Top tips for reducing API costs</h1>
+      <p class="lead">
+        We run a daily autonomous research pipeline, spawning parallel AI
+        subagents, for exactly $0/month in inference, and buy paid models only
+        when a task genuinely needs the quality jump. These are the tips that
+        did it, in the order that matters.
+      </p>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="prose section-tight" style="max-width: 72ch;">
+      <h2>1. Rotate free models instead of depending on one</h2>
+      <p>
+        Free tiers are real: OpenRouter alone has offered dozens of free
+        models, from Google Gemma to DeepSeek variants. The problem is not
+        availability, it is reliability: every model has its own rate-limit
+        bucket, and a burst exhausts one fast. Round-robin your calls across
+        free models with a health probe, and reassign work when one returns
+        429s. Rotation, not capacity, is what makes free tier production-grade
+        for batch work. Full method in our
+        <a href="/blog/insights/zero-cost-ai-agent-toolkit/">zero-cost AI agent toolkit</a>.
+      </p>
+
+      <h2>2. Route by task, not by habit</h2>
+      <p>
+        Sending every call to your best model is like taking a taxi to the
+        mailbox. In our own benchmarking, cheap models matched or beat
+        expensive ones on summarization and structured extraction, while
+        code generation favored the premium tier. Split your workload:
+        drafting, extraction, and classification go to cheap or free models;
+        the premium model gets code and final-pass judgment only.
+      </p>
+
+      <h2>3. Use an independent judge instead of a bigger model everywhere</h2>
+      <p>
+        A common cost trap is upgrading the whole pipeline to fix quality.
+        Cheaper: keep workers cheap, add one stronger model as a judge that
+        grades outputs and sends failures back. One judge call per batch beats
+        paying premium rates on every call.
+      </p>
+
+      <h2>4. Cache and deduplicate aggressively</h2>
+      <p>
+        Prompt-caching discounts and provider-side context caching can cut
+        input costs dramatically on repeated system prompts. Outside the API,
+        the cheapest token is the one you never send: hash and reuse results
+        for identical queries, and trim transcripts before resending them.
+      </p>
+
+      <h2>5. Batch and schedule around pricing</h2>
+      <p>
+        Some providers discount off-peak usage substantially; DeepSeek, for
+        example, has offered reduced rates during off-peak hours. If your
+        workload tolerates scheduling, nightly batch runs are cheaper than
+        real-time calls, and they are usually all an autonomous pipeline
+        needs.
+      </p>
+
+      <h2>6. Set a budget and a freeze rule</h2>
+      <ul>
+        <li>Know your rate-limit mechanics: many free tiers are limited per account, not per key, so extra keys do not help.</li>
+        <li>Track usage where the provider lets you; where it does not (free tiers often hide usage from APIs), your 429 rate is the meter.</li>
+        <li>Have a freeze rule: decide in advance which part of your stack gets cut when a free model dies or turns paid, and rehearse the respawn-with-cooldown path instead of retry storms.</li>
+      </ul>
+
+      <h2>What not to do</h2>
+      <ul>
+        <li><strong>Do not create extra accounts to dodge quotas.</strong> It violates provider terms and does not raise per-account limits.</li>
+        <li><strong>Do not build latency-sensitive products on free tier.</strong> Free hosting churns; models disappear mid-run. It is for batch research, not production SLAs.</li>
+        <li><strong>Do not optimize before measuring.</strong> Log tokens and cost per task for a week; the biggest line item is usually a surprise.</li>
+      </ul>
+
+      <h2>Related reading</h2>
+      <ul>
+        <li><a href="/learn/deepseek-vs-openrouter/">DeepSeek API vs OpenRouter API: direct or intermediary?</a></li>
+        <li><a href="/blog/insights/zero-cost-ai-agent-toolkit/">Free LLM rotation: run an AI agent on $0</a></li>
+        <li><a href="/learn/agent-orchestrator/">What is an agent orchestrator?</a></li>
+      </ul>
+    </section>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Base>
