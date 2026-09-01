@@ -280,6 +280,7 @@ th { font-weight: 650; }
   .btn-accent { border-color: var(--accent-ink); background: var(--accent-ink); color: #fff; }
   .btn-accent:hover { border-color: var(--accent-strong); background: var(--accent-strong); color: var(--bg); }
   .badge { background: var(--accent-ink); color: #fff; }
+  .glow { background: linear-gradient(180deg, transparent 62%, var(--accent-ink) 62%); }
   ::selection { background: var(--accent-ink); color: #fff; }
   .card, .card-row { background: var(--surface); }
 }
