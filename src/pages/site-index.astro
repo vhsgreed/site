@@ -1,0 +1,168 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const articles = (await getCollection('articles')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const insights = (await getCollection('insights')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const authors = (await getCollection('authors')).sort((a, b) =>
+  a.data.name.localeCompare(b.data.name)
+);
+
+const guides = [
+  { slug: 'agent-alignment', t: 'Agent alignment', d: 'Intent vs instruction, why autonomy raises the stakes, and how alignment is tested.' },
+  { slug: 'agent-orchestrator', t: 'Agent orchestrators', d: 'Planning, spawning, model routing, state, and verification gates.' },
+  { slug: 'semicon-taiwan-2026', t: 'SEMICON Taiwan 2026', d: 'Dates, venue, scale, themes, and using the exhibitor list.' },
+  { slug: 'npm-supply-chain-attack', t: 'npm supply-chain attack', d: 'The keyv/cacheable worm: spread, blind spots, exposure check.' },
+  { slug: 'reduce-api-costs', t: 'Reducing API costs', d: 'Free-model rotation, task routing, judging, caching, batching.' },
+  { slug: 'deepseek-vs-openrouter', t: 'DeepSeek vs OpenRouter', d: 'Direct vs intermediary: pricing, free tiers, rate limits.' },
+  { slug: 'not-your-keys', t: 'Not your keys, not your crypto', d: 'Custody, counterparty risk, and the tradeoff the slogan leaves out.' },
+  { slug: 'verify-scraping-provider', t: 'Verify a scraping provider', d: 'A checklist from 150 live probes.' },
+  { slug: 'ai-benchmarking-2026', t: 'AI benchmarking in 2026', d: 'Why single-run scores do not prove anything.' },
+];
+
+const robotics = [
+  { slug: 'index', t: 'All countries', d: 'Verified robotics-exposed companies by country and index.' },
+  { slug: 'actuator-stocks', t: 'Actuator stocks', d: 'Precision reducers, torque motors, and motion components.' },
+  { slug: 'humanoid-robot-stocks', t: 'Humanoid robot stocks', d: 'OEMs and suppliers in the humanoid build-out.' },
+  { slug: 'precision-reducers', t: 'Precision reducers', d: 'The 40-55% of BOM bottleneck.' },
+  { slug: 'robotics-etf-vs-stocks', t: 'Robotics ETFs vs stocks', d: 'Bundled exposure versus single names.' },
+  { slug: 'unitree-ipo', t: 'Unitree IPO', d: 'The +629% open and what it priced.' },
+];
+
+const main = [
+  { href: '/', t: 'Home', d: 'Front page: what vhsgreed is and where to start.' },
+  { href: '/store/', t: 'Store', d: 'Datasets and tools sold via Gumroad.' },
+  { href: '/learn/', t: 'Learn', d: 'Plain-language explainers on what we work with.' },
+  { href: '/robotics-stocks/', t: 'Robotics stocks', d: 'Verified robotics-exposed companies by country.' },
+  { href: '/opensource/', t: 'Open source', d: 'MIT tooling we run in production.' },
+  { href: '/mission/', t: 'Mission', d: 'Who we are and the mission declaration.' },
+  { href: '/about/', t: 'About', d: 'Contact, financing, how we work.' },
+  { href: '/authors/', t: 'Authors', d: 'Who writes and publishes here.' },
+  { href: '/contact/', t: 'Contact', d: 'How to reach us.' },
+  { href: '/privacy/', t: 'Privacy', d: 'Privacy policy.' },
+];
+
+const kindLabel = (k: string) =>
+  (({ 'build-log': 'Build log', story: 'Story', guide: 'Guide', insight: 'Insight' } as Record<string, string>)[k] ?? 'Article');
+
+const total = 1 + main.length + guides.length + robotics.length + articles.length + insights.length + authors.length;
+const title = 'Site index';
+const desc = `Every indexable page on vhsgreed.win, generated at build time in a card tree: ${total} pages across the store, robotics research, learn explainers, blog articles and insights.`;
+---
+<Base title={title} description={desc}>
+  <div class="container">
+    <section class="hero">
+      <h1>Site index</h1>
+      <p class="lead">
+        Every indexable page on this site, generated at build time. Grouped
+        as a tree so you can see the whole structure at once. {total} pages
+        total.
+      </p>
+      <p class="muted">
+        This page is also an accessibility aid: a single map of everywhere
+        you can land, instead of hunting through menus.
+      </p>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- Research pillar -->
+    <section class="section-tight">
+      <div class="section-head"><span class="kicker">Research</span></div>
+      <div class="card-list">
+        {robotics.map((r) => (
+          <a class="card-row" href={r.slug === 'index' ? '/robotics-stocks/' : `/robotics-stocks/${r.slug}/`}>
+            <div>
+              <div class="t">{r.t}</div>
+              <div class="d">{r.d}</div>
+            </div>
+            <span class="meta">Robotics</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Learn pillar -->
+    <section class="section-tight">
+      <div class="section-head"><span class="kicker">Learn</span></div>
+      <div class="card-list">
+        {guides.map((g) => (
+          <a class="card-row" href={`/learn/${g.slug}/`}>
+            <div>
+              <div class="t">{g.t}</div>
+              <div class="d">{g.d}</div>
+            </div>
+            <span class="meta">Guide</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Blog: insights -->
+    <section class="section-tight">
+      <div class="section-head"><span class="kicker">Blog insights</span></div>
+      <div class="card-list">
+        {insights.map((p) => (
+          <a class="card-row" href={`/blog/insights/${p.id}/`}>
+            <div>
+              <div class="t">{p.data.title}</div>
+              <div class="d">{p.data.description}</div>
+            </div>
+            <span class="meta">{kindLabel(p.data.kind ?? 'insight')} · {p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Blog: articles -->
+    <section class="section-tight">
+      <div class="section-head"><span class="kicker">Blog articles</span></div>
+      <div class="card-list">
+        {articles.map((p) => (
+          <a class="card-row" href={`/blog/articles/${p.id}/`}>
+            <div>
+              <div class="t">{p.data.title}</div>
+              <div class="d">{p.data.description}</div>
+            </div>
+            <span class="meta">{kindLabel(p.data.kind ?? 'article')} · {p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Authors -->
+    <section class="section-tight">
+      <div class="section-head"><span class="kicker">Authors</span></div>
+      <div class="card-list">
+        {authors.map((a) => (
+          <a class="card-row" href={`/authors/${a.id}/`}>
+            <div>
+              <div class="t">{a.data.name}</div>
+              <div class="d">{a.data.role}</div>
+            </div>
+            <span class="meta">Author</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Main / utility pages -->
+    <section class="section-tight">
+      <div class="section-head"><span class="kicker">Sections</span></div>
+      <div class="card-list">
+        {main.map((m) => (
+          <a class="card-row" href={m.href}>
+            <div>
+              <div class="t">{m.t}</div>
+              <div class="d">{m.d}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</Base>
