@@ -1,0 +1,156 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { nationList, totalCompanies, totalNations, verificationDate } from '../lib/nations';
+
+const articles = (await getCollection('articles')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const insights = (await getCollection('insights')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const newest = [
+  ...articles.map((p) => ({ ...p, kind: 'articles' })),
+  ...insights.map((p) => ({ ...p, kind: 'insights' })),
+].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 4);
+
+const kindLabel = (k) => ({ 'build-log': 'Build log', story: 'Story', guide: 'Guide', insight: 'Insight' }[k] ?? 'Article');
+
+// Deep-dive data showcases (standalone pages under /robotics-stocks/)
+const deepDives = [
+  { href: '/robotics-stocks/actuator-stocks/', title: 'Actuator stocks', d: 'The pick-and-shovel layer: who builds the parts that move robots.' },
+  { href: '/robotics-stocks/humanoid-robot-stocks/', title: 'Humanoid robot stocks', d: 'Who actually makes the bots, and where the tickers trade.' },
+  { href: '/robotics-stocks/precision-reducers/', title: 'Precision reducers', d: "Japan's robotics moat, company by company." },
+  { href: '/robotics-stocks/robotics-etf-vs-stocks/', title: 'Robotics ETFs vs direct stocks', d: 'Two ways to get exposure, compared honestly.' },
+  { href: '/robotics-stocks/unitree-ipo/', title: 'The Unitree IPO', d: 'The +629% open, the perp pricing, and what it proved.' },
+];
+
+// Explainers (standalone pages under /learn/)
+const explainers = [
+  { href: '/learn/agent-alignment/', title: 'What is agent alignment?', d: 'Why keeping AI systems on target is a running engineering problem.' },
+  { href: '/learn/agent-orchestrator/', title: 'What is an agent orchestrator?', d: 'How multi-agent systems split, route, and verify work.' },
+  { href: '/learn/ai-benchmarking-2026/', title: 'AI benchmarking in 2026', d: 'Why single-run scores prove nothing, and what does.' },
+  { href: '/learn/deepseek-vs-openrouter/', title: 'DeepSeek vs OpenRouter', d: 'Direct provider or intermediary: the honest tradeoffs.' },
+  { href: '/learn/not-your-keys/', title: 'Not your keys, not your crypto', d: 'Custody is a spectrum. Where are your assets really?' },
+  { href: '/learn/npm-supply-chain-attack/', title: 'The npm supply-chain attack', d: 'How a trusted package becomes the attack vector.' },
+  { href: '/learn/reduce-api-costs/', title: 'Reducing API costs', d: 'Rotation, free tiers, and building for model churn.' },
+  { href: '/learn/semicon-taiwan-2026/', title: 'SEMICON Taiwan 2026', d: 'The semiconductor event, explained from the exhibitor floor.' },
+  { href: '/learn/verify-scraping-provider/', title: 'Verifying a scraping provider', d: 'The probe-first questions that separate providers from guessers.' },
+];
+---
+<Base title="Read: everything we've written, one index" description="Every article, explainer, dataset page, and build log from vhsgreed in one index: robotics supply-chain data, AI agent methods, and the honest build record.">
+  <div class="container">
+    <section class="hero">
+      <h1>Read</h1>
+      <p class="lead">
+        Everything we have written, one index. The data pages behind the
+        products, the methods explained, and the build log with what broke
+        along the way. No gatekeeping: every page is the full story.
+      </p>
+      <p class="muted">
+        Reading something you want to keep? The datasets behind the data
+        pages are in the <a href="/store/">store</a>.
+      </p>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight" aria-label="Featured data">
+      <div class="section-head">
+        <span class="kicker">Featured data</span>
+        <a class="go" href="/robotics-stocks/">Robotics hub →</a>
+      </div>
+      <p class="muted" style="margin-top: -0.6rem;">
+        {totalCompanies} verified companies across {totalNations} countries,
+        live-checked {verificationDate}. This is the layer behind the store.
+      </p>
+      <div class="card-list">
+        {deepDives.map((p) => (
+          <a class="card-row" href={p.href}>
+            <div>
+              <div class="t"><span class="badge badge-article">Dataset</span>{p.title}</div>
+              <div class="d">{p.d}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+      <h3 style="margin-top: 1.6rem;">By country ({totalNations} nations)</h3>
+      <div class="card-list" style="margin-top: 0.8rem;">
+        {nationList.map((n) => (
+          <a class="card-row" href={`/robotics-stocks/${n.slug}/`}>
+            <div>
+              <div class="t">{n.name}: {n.count} companies</div>
+              <div class="d">{n.indexes.join(', ')}</div>
+            </div>
+            <span class="meta">{n.count} tickers</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight" aria-label="Explainers">
+      <div class="section-head">
+        <span class="kicker">Explainers</span>
+        <a class="go" href="/learn/">Learn hub →</a>
+      </div>
+      <p class="muted" style="margin-top: -0.6rem;">Methods and concepts, explained without assuming you share our context.</p>
+      <div class="card-list">
+        {explainers.map((p) => (
+          <a class="card-row" href={p.href}>
+            <div>
+              <div class="t"><span class="badge badge-article">Guide</span>{p.title}</div>
+              <div class="d">{p.d}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight" aria-label="Build log">
+      <div class="section-head">
+        <span class="kicker">Build log</span>
+        <a class="go" href="/blog/">All posts →</a>
+      </div>
+      <p class="muted" style="margin-top: -0.6rem;">What we tried, what broke, what the numbers said. Products ship from here.</p>
+      <div class="card-list">
+        {[...articles, ...insights].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).map((p) => (
+          <a class="card-row" href={`/blog/${p.collection === 'articles' ? 'articles' : 'insights'}/${p.id}/`}>
+            <div>
+              <div class="t">
+                {p.data.kind && <span class="badge badge-article">{kindLabel(p.data.kind)}</span>}
+                {p.data.title}
+              </div>
+              <div class="d">{p.data.description}</div>
+            </div>
+            <span class="meta">
+              {p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight" aria-label="Newest">
+      <span class="kicker">Newest</span>
+      <div class="card-list" style="margin-top: 0.8rem;">
+        {newest.map((p) => (
+          <a class="card-row" href={`/blog/${p.kind}/${p.id}/`}>
+            <div>
+              <div class="t">{p.data.title}</div>
+              <div class="d">{p.data.description}</div>
+            </div>
+            <span class="meta">
+              {p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</Base>

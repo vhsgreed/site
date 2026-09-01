@@ -1,13 +1,11 @@
 ---
-// Three-pillar nav: Store, Research, Learn. Blog stays reachable as the
-// fourth link. Utility pages (About, Mission, etc.) live in the footer.
+// Two-path nav (agreed 09-01): Store + Read. All reading content is
+// reachable through /read/. Utility pages live in the footer (and the
+// mobile menu so they stay reachable without JS).
 const primary = [
   { href: '/store/', label: 'Store' },
-  { href: '/robotics-stocks/', label: 'Research' },
-  { href: '/learn/', label: 'Learn' },
-  { href: '/blog/', label: 'Blog' },
+  { href: '/read/', label: 'Read' },
 ];
-// Mobile menu adds the utility pages so they stay reachable without JS.
 const utility = [
   { href: '/opensource/', label: 'Open Source' },
   { href: '/mission/', label: 'Mission' },
