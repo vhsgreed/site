@@ -6,6 +6,7 @@
   --line: #e6e6e6;
   --accent: #65a30d;      /* accessible lime for text/links on white */
   --accent-strong: #a3e635; /* vivid lime for surfaces/underlines */
+  --accent-ink: #4d7c0f;  /* CANONICAL dark lime: surfaces carrying white text (AA 5:1). Dark-mode OG card + badges + selection */
   --surface: #fafafa;
   --radius: 14px;
   --maxw: 1120px;
@@ -276,6 +277,9 @@ th { font-weight: 650; }
   }
   .btn { border-color: var(--ink); }
   .btn:hover { color: var(--bg); background: var(--ink); }
-  .btn-accent { border-color: var(--ink); }
+  .btn-accent { border-color: var(--accent-ink); background: var(--accent-ink); color: #fff; }
+  .btn-accent:hover { border-color: var(--accent-strong); background: var(--accent-strong); color: var(--bg); }
+  .badge { background: var(--accent-ink); color: #fff; }
+  ::selection { background: var(--accent-ink); color: #fff; }
   .card, .card-row { background: var(--surface); }
 }
