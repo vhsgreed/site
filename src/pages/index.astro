@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import HeroGradient from '../components/HeroGradient.astro';
 import { getCollection } from 'astro:content';
 
 const articles = (await getCollection('articles')).sort(
@@ -44,7 +45,8 @@ const siteUrl = Astro.site?.toString() ?? 'https://vhsgreed.win';
     },
   })} />
   <div class="container">
-    <section class="hero">
+    <section class="hero hero-mist">
+      <HeroGradient />
       <h1>
         Data-led research, <span class="glow">openly built</span>.
       </h1>

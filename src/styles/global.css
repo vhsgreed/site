@@ -283,3 +283,6 @@ th { font-weight: 650; }
   ::selection { background: var(--accent-ink); color: #fff; }
   .card, .card-row { background: var(--surface); }
 }
+/* Hero mist: hero is a positioning context so the gradient canvas sits behind content */
+.hero-mist { position: relative; overflow: hidden; }
+.hero-mist > * { position: relative; z-index: 1; }
