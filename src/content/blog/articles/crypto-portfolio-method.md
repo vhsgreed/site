@@ -36,7 +36,7 @@ Our entire portfolio lives in a single JSON file: plain text, readable in any ed
 No spreadsheets with hidden formulas, no Notion pages with manual typing,
 no "I'll update it later." If it is not in this file, it does not exist.
 
-Here is exactly what one position looks like (figures illustrative, not our real position):
+Here is exactly what one position looks like (illustrative example):
 
 ```json
 {
