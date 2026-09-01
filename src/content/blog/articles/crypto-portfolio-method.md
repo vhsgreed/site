@@ -294,3 +294,4 @@ our own position, published so you can copy the process rather than trust
 our claims. Do your own research, and never hold more in volatile assets
 than you can watch drop without panic.*
 
+<p><em>Looking to start trading crypto and don't know where to begin? We recommend <a href="https://proinvite.kraken.com/9f1e/4at7hy90" target="_blank" rel="sponsored noopener">Kraken</a> (referral link: we collect a small residual from your trading, at no extra cost to you). We only recommend what we use ourselves.</em></p>

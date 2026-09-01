@@ -1,4 +1,5 @@
 ---
+import ReferralNote from '../../components/ReferralNote.astro';
 import Base from '../../layouts/Base.astro';
 
 const title = "What Does 'Not Your Keys, Not Your Crypto' Mean?";
@@ -85,4 +86,5 @@ const jsonLd = {
     </section>
   </div>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <ReferralNote />
 </Base>

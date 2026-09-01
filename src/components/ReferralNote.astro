@@ -1,0 +1,24 @@
+---
+// ReferralNote.astro — honest, disclosed referral line for crypto pages.
+// Karl 09-01: Kraken referral, disclosed as a referral with residual.
+const href = 'https://proinvite.kraken.com/9f1e/4at7hy90';
+---
+<p class="referral-note">
+  <em>
+    Looking to start trading crypto and don't know where to begin? We
+    recommend <a href={href} target="_blank" rel="sponsored noopener">Kraken</a>
+    (referral link: vhsgreed collects a small residual from your trading, at
+    no extra cost to you). We only recommend what we use ourselves.
+  </em>
+</p>
+
+<style>
+  .referral-note {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+    padding-top: 0.8rem;
+  }
+  .referral-note a { color: var(--accent); }
+</style>
