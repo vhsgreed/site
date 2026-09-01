@@ -1,0 +1,68 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const authors = await getCollection('authors');
+  return authors.map((author) => ({ params: { slug: author.id }, props: { author } }));
+}
+
+const { author } = Astro.props;
+const articles = (await getCollection('articles'))
+  .filter((p) => p.data.author === author.id)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const insights = (await getCollection('insights'))
+  .filter((p) => p.data.author === author.id)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const posts = [
+  ...articles.map((p) => ({ ...p, kind: 'articles' })),
+  ...insights.map((p) => ({ ...p, kind: 'insights' })),
+].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<Base title={author.data.name} description={`${author.data.role} på vhsgreed. ${author.data.bio.slice(0, 110)}`} locale="sv">
+  <div class="container">
+    <section class="hero">
+      <h1>{author.data.name}</h1>
+      <p class="lead">{author.data.role}</p>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight">
+      <div class="prose">
+        <p>{author.data.bio}</p>
+      </div>
+
+      {author.data.links && author.data.links.length > 0 && (
+        <div class="prose" style="margin-top: 1rem;">
+          <p class="muted" style="font-weight: 700;">Länkar</p>
+          <ul style="margin: 0.25rem 0 0; padding-left: 1.2rem;">
+            {author.data.links.map((l) => (
+              <li><a href={l.url}>{l.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <h2>Inlägg</h2>
+      <div class="card-list">
+        {posts.length > 0 ? (
+          posts.map((p) => (
+            <a class="card-row" href={`/blog/${p.kind}/${p.id}/`}>
+              <div>
+                <div class="t">{p.data.title}</div>
+                <div class="d">{p.data.description}</div>
+              </div>
+              <span class="meta">
+                {p.kind === 'insights' ? 'Insikt · ' : ''}
+                {p.data.date.toLocaleDateString('sv-SE', { year: 'numeric', month: 'short', day: 'numeric' })}
+              </span>
+            </a>
+          ))
+        ) : (
+          <p class="muted">Inga inlägg publicerade under detta namn än.</p>
+        )}
+      </div>
+    </section>
+  </div>
+</Base>

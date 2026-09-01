@@ -1,0 +1,65 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { nationList, totalCompanies, totalNations, verificationDate } from '../../../lib/nations';
+
+const metaTitle = 'Robotaktier per land: verifierade indexnoteringar (11 länder, 1 093 bolag)';
+const metaDesc = `Var du hittar robotikexponerade aktier i ${totalNations} länder. ${totalCompanies} verifierade publika bolag över nationella index, live-verifierade ${verificationDate}.`;
+---
+<Base title={metaTitle} description={metaDesc} locale="sv">
+  <div class="container">
+    <section class="hero">
+      <h1>Robotaktier per land</h1>
+      <p class="lead">
+        Var du hittar robotikexponerade publika bolag, sorterade efter
+        nation och index. {totalCompanies} tickers från {totalNations}
+        länder, live-verifierade mot Yahoo Finance ({verificationDate}).
+      </p>
+      <p class="muted">
+        Varje landsida listar de nationella indexen, verifieringsstatus och
+        ett urval av bolagen. Varje rad har sin källa och verifieringsdatum;
+        overifierbara poster flaggas UNVERIFIED, aldrig tyst borttagna. Datan
+        driver datasetet
+        <a href="/sv/store/">Robotics Supply-Chain Intelligence 2026</a>.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-accent" href="https://store.vhsgreed.win/l/robotics-supply-chain-database-2026" target="_blank" rel="noopener">Hämta datasetet</a>
+        <a class="btn btn-ghost" href="/sv/store/">Till butiken</a>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="section-tight">
+      <h2>11 länder, {totalCompanies} verifierade tickers</h2>
+      <div class="card-list">
+        {nationList.map((n) => (
+          <a class="card-row" href={`/sv/robotics-stocks/${n.slug}/`}>
+            <div>
+              <div class="t">{n.name}: {n.count} bolag</div>
+              <div class="d">{n.indexes.join(', ')} &middot; {n.tier_a_count} Tier-A-robotikexponeringar</div>
+            </div>
+            <span class="meta">{n.count} tickers</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="prose section-tight" style="max-width: 72ch;">
+      <h2>Metod</h2>
+      <p>
+        Bolagen är hämtade från offentliga indexbeståndslistor (Wikipedia,
+        officiella börssajter) och verifierade mot Yahoo Finance live-kurser
+        den {verificationDate}. Varje rad registrerar sin källa; tickers som
+        inte kunde bekräftas flaggas UNVERIFIED. Ingen betald dataleverantör
+        har använts: alla källor är underhållsfria offentliga register.
+      </p>
+      <p>
+        De 11 länderna täcker de stora europeiska indexen plus Japan och
+        Israel. USA-lagret (10 391 tickers från SEC EDGAR, 463 robotik-
+        flaggade) och de kuraterade Tier-A-kärnbolagen (64 företag, från
+        Unitree till TSLA) ingår i det fullständiga datasetet i
+        <a href="/sv/store/">butiken</a>.
+      </p>
+    </section>
+  </div>
+</Base>
