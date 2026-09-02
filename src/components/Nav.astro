@@ -7,13 +7,6 @@ const primary = [
   { href: '/read/', label: 'Read' },
   { href: '/search/', label: 'Search' },
 ];
-const utility = [
-  { href: '/opensource/', label: 'Open Source' },
-  { href: '/mission/', label: 'Mission' },
-  { href: '/about/', label: 'About' },
-  { href: '/contact/', label: 'Contact' },
-  { href: '/authors/', label: 'Authors' },
-];
 const current = Astro.url.pathname;
 const isCurrent = (href: string) => {
   const base = href.replace(/\/$/, '');
@@ -55,9 +48,6 @@ const isCurrent = (href: string) => {
         <button class="theme-toggle" type="button" data-theme-toggle>
           <span data-theme-label>Dark mode</span>
         </button>
-        {utility.map((l) => (
-          <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>
-        ))}
       </nav>
     </div>
   </div>
@@ -69,16 +59,21 @@ const isCurrent = (href: string) => {
   var panel = document.getElementById('mobile-panel');
   function closePanel() {
     if (!panel || !panel.classList.contains('open')) return;
-    panel.classList.remove('open');
+    panel.classList.remove('shown');
     panel.setAttribute('aria-hidden', 'true');
     btn.setAttribute('aria-expanded', 'false');
+    setTimeout(function () { panel.classList.remove('open'); }, 300);
   }
   if (btn && panel) {
     btn.addEventListener('click', function () {
-      var open = !panel.classList.contains('open');
-      panel.classList.toggle('open', open);
-      panel.setAttribute('aria-hidden', String(!open));
-      btn.setAttribute('aria-expanded', String(open));
+      if (panel.classList.contains('open')) { closePanel(); return; }
+      panel.classList.add('open');
+      panel.setAttribute('aria-hidden', 'false');
+      btn.setAttribute('aria-expanded', 'true');
+      // two-phase: render off-canvas, then transition in (reliable on iOS)
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { panel.classList.add('shown'); });
+      });
     });
     if (panel.querySelector('[data-panel-close]')) {
       panel.querySelector('[data-panel-close]').addEventListener('click', closePanel);
