@@ -18,6 +18,23 @@ const date = post.data.date.toLocaleDateString('en-US', { year: 'numeric', month
 const authors = await getCollection('authors');
 const author = post.data.author ? authors.find((a) => a.id === post.data.author) : undefined;
 ---
+<script type="application/ld+json" set:html={JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.date.toISOString(),
+  author: author ? { '@type': 'Person', name: author.data.name } : { '@type': 'Organization', name: 'vhsgreed' },
+  publisher: { '@type': 'Organization', name: 'vhsgreed', url: 'https://vhsgreed.win' },
+  ...(product && product.url ? {
+    mainEntityOfPage: product.url,
+    about: {
+      '@type': 'Product',
+      name: product.name,
+      ...(product.price ? { offers: { '@type': 'Offer', price: parseFloat(product.price.replace(/[^0-9.]/g, '')), priceCurrency: 'USD', url: product.url } } : {}),
+    },
+  } : {}),
+})} />
 <Base title={post.data.title} description={post.data.description}>
   <article class="container" style="max-width: 760px; padding-top: 3rem;">
     <p class="muted mono">

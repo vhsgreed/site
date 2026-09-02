@@ -369,6 +369,7 @@ html, body { overflow-x: clip; }
 }
 @media (prefers-color-scheme: dark) {
   .prose pre, article pre { background: #161616; }
+  .prose img, article img { filter: brightness(0.9) contrast(1.05); }
   .prose p code, article li code { background: #161616; }
 }
 
@@ -393,10 +394,21 @@ html, body { overflow-x: clip; }
 article .prose pre, article pre { position: relative; }
 
 /* Theme switch: smooth color fade (backgrounds, text, borders only) */
-html.theme-fading, html.theme-fading *, html.theme-fading *::before, html.theme-fading *::after {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, fill 0.3s ease !important;
+html.theme-fading body, html.theme-fading .card, html.theme-fading .card-row,
+html.theme-fading main, html.theme-fading header, html.theme-fading .footer,
+html.theme-fading section, html.theme-fading article {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
 }
 
 /* Copy button anchors to the wrapper, not the scrolling pre */
 .pre-wrap { position: relative; }
 .pre-wrap .copy-btn { position: absolute; top: 0.5rem; right: 0.5rem; }
+
+/* Skip link (a11y): hidden until focused */
+.skip-link {
+  position: absolute; left: 0.5rem; top: -3rem; z-index: 200;
+  background: var(--accent-strong); color: #0A0A0A;
+  padding: 0.5rem 0.9rem; border-radius: 0 0 8px 8px;
+  font-weight: 700; text-decoration: none;
+}
+.skip-link:focus { top: 0; }
