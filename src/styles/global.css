@@ -398,3 +398,7 @@ article .prose pre, article pre { position: relative; }
 html.theme-switching, html.theme-switching *, html.theme-switching *::before, html.theme-switching *::after {
   transition: none !important;
 }
+
+/* Copy button anchors to the wrapper, not the scrolling pre */
+.pre-wrap { position: relative; }
+.pre-wrap .copy-btn { position: absolute; top: 0.5rem; right: 0.5rem; }
