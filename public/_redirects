@@ -7,3 +7,20 @@
 /blog/robotics-supply-chain-2026/ /blog/insights/robotics-supply-chain-2026/ 301
 /blog/insights/agent-rights-jury-institutional-design/ /blog/articles/agent-rights-jury-institutional-design/ 301
 /blog/insights/programmatic-seo-verified-data/ /blog/articles/programmatic-seo-verified-data/ 301
+
+# 09-02 content merge: /blog/articles|insights/<slug> -> /blog/<slug> (301)
+/blog/articles/150-site-probe/ /blog/150-site-probe/ 301
+/blog/articles/agent-rights-jury-institutional-design/ /blog/agent-rights-jury-institutional-design/ 301
+/blog/articles/alignment-charter-experiment/ /blog/alignment-charter-experiment/ 301
+/blog/articles/crypto-portfolio-method/ /blog/crypto-portfolio-method/ 301
+/blog/articles/enskild-firma-accounting-sweden/ /blog/enskild-firma-accounting-sweden/ 301
+/blog/articles/free-llm-rotation/ /blog/free-llm-rotation/ 301
+/blog/articles/programmatic-seo-verified-data/ /blog/programmatic-seo-verified-data/ 301
+/blog/articles/robotics-supply-chain-2026/ /blog/robotics-supply-chain-2026/ 301
+/blog/articles/robotics-supply-chain-narrative/ /blog/robotics-supply-chain-narrative/ 301
+/blog/insights/alignment-charter-experiment/ /blog/alignment-charter-kit/ 301
+/blog/insights/robotics-supply-chain-2026/ /blog/robotics-stocks-2026/ 301
+/blog/insights/zero-cost-ai-agent-toolkit/ /blog/zero-cost-ai-agent-toolkit/ 301
+/blog/insights/web-scraping-reality-check/ /blog/web-scraping-reality-check/ 301
+/blog/articles/ /blog/ 301
+/blog/insights/ /blog/ 301

@@ -2,15 +2,13 @@
 import Base from '../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
-const articles = (await getCollection('articles')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
-const insights = (await getCollection('insights')).sort(
+const posts = (await getCollection('posts')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 const authors = (await getCollection('authors')).sort((a, b) =>
   a.data.name.localeCompare(b.data.name)
 );
+
 
 const guides = [
   { slug: 'agent-alignment', t: 'Agent-styrning', d: 'Avsikt mot instruktion, varför autonomi höjer insatsen, och hur styrning testas.' },
@@ -49,7 +47,7 @@ const main = [
 const kindLabel = (k: string) =>
   (({ 'build-log': 'Bygglogg', story: 'Berättelse', guide: 'Guide', insight: 'Insikt' } as Record<string, string>)[k] ?? 'Artikel');
 
-const total = 1 + main.length + guides.length + robotics.length + articles.length + insights.length + authors.length;
+const total = 1 + main.length + guides.length + robotics.length + posts.length + authors.length;
 const title = 'Sajtindex';
 const desc = `Varje indexerbar sida på vhsgreed.win, genererad vid bygget som ett kortträd: ${total} sidor över butiken, robotforskningen, learn-förklaringarna, bloggartiklarna och insikterna.`;
 ---
@@ -101,36 +99,21 @@ const desc = `Varje indexerbar sida på vhsgreed.win, genererad vid bygget som e
     </section>
 
     <section class="section-tight">
-      <div class="section-head"><span class="kicker">Insikter</span></div>
+      <div class="section-head"><span class="kicker">Inlägg</span></div>
       <div class="card-list">
-        {insights.map((p) => (
-          <a class="card-row" href={`/blog/insights/${p.id}/`}>
+        {posts.map((p) => (
+          <a class="card-row" href={`/blog/${p.id}/`}>
             <div>
               <div class="t">{p.data.title}</div>
               <div class="d">{p.data.description}</div>
             </div>
-            <span class="meta">{kindLabel(p.data.kind ?? 'insight')} · {p.data.date.toLocaleDateString('sv-SE', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+            <span class="meta">{p.data.date.toLocaleDateString('sv-SE', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
           </a>
         ))}
       </div>
     </section>
 
-    <section class="section-tight">
-      <div class="section-head"><span class="kicker">Artiklar</span></div>
-      <div class="card-list">
-        {articles.map((p) => (
-          <a class="card-row" href={`/blog/articles/${p.id}/`}>
-            <div>
-              <div class="t">{p.data.title}</div>
-              <div class="d">{p.data.description}</div>
-            </div>
-            <span class="meta">{kindLabel(p.data.kind ?? 'article')} · {p.data.date.toLocaleDateString('sv-SE', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
-          </a>
-        ))}
-      </div>
-    </section>
-
-    <section class="section-tight">
+        <section class="section-tight">
       <div class="section-head"><span class="kicker">Författare</span></div>
       <div class="card-list">
         {authors.map((a) => (

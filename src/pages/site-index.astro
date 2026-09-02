@@ -2,15 +2,13 @@
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
-const articles = (await getCollection('articles')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
-const insights = (await getCollection('insights')).sort(
+const posts = (await getCollection('posts')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 const authors = (await getCollection('authors')).sort((a, b) =>
   a.data.name.localeCompare(b.data.name)
 );
+
 
 const guides = [
   { slug: 'agent-alignment', t: 'Agent alignment', d: 'Intent vs instruction, why autonomy raises the stakes, and how alignment is tested.' },
@@ -49,9 +47,9 @@ const main = [
 const kindLabel = (k: string) =>
   (({ 'build-log': 'Build log', story: 'Story', guide: 'Guide', insight: 'Insight' } as Record<string, string>)[k] ?? 'Article');
 
-const total = 1 + main.length + guides.length + robotics.length + articles.length + insights.length + authors.length;
+const total = 1 + main.length + guides.length + robotics.length + posts.length + authors.length;
 const title = 'Site index';
-const desc = `Every indexable page on vhsgreed.win, generated at build time in a card tree: ${total} pages across the store, robotics research, learn explainers, blog articles and insights.`;
+const desc = `Every indexable page on vhsgreed.win, generated at build time in a card tree: ${total} pages across the store, robotics research, learn explainers, blog posts.`;
 ---
 <Base title={title} description={desc}>
   <div class="container">
@@ -102,49 +100,14 @@ const desc = `Every indexable page on vhsgreed.win, generated at build time in a
       </div>
     </section>
 
-    <!-- Blog: insights -->
-    <section class="section-tight">
-      <div class="section-head"><span class="kicker">Blog insights</span></div>
+    <!-- Blog: posts -->
+    <section>
+      <div class="section-head"><span class="kicker">Blog posts</span></div>
       <div class="card-list">
-        {insights.map((p) => (
-          <a class="card-row" href={`/blog/insights/${p.id}/`}>
-            <div>
-              <div class="t">{p.data.title}</div>
-              <div class="d">{p.data.description}</div>
-            </div>
-            <span class="meta">{kindLabel(p.data.kind ?? 'insight')} · {p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
-          </a>
-        ))}
-      </div>
-    </section>
-
-    <!-- Blog: articles -->
-    <section class="section-tight">
-      <div class="section-head"><span class="kicker">Blog articles</span></div>
-      <div class="card-list">
-        {articles.map((p) => (
-          <a class="card-row" href={`/blog/articles/${p.id}/`}>
-            <div>
-              <div class="t">{p.data.title}</div>
-              <div class="d">{p.data.description}</div>
-            </div>
-            <span class="meta">{kindLabel(p.data.kind ?? 'article')} · {p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
-          </a>
-        ))}
-      </div>
-    </section>
-
-    <!-- Authors -->
-    <section class="section-tight">
-      <div class="section-head"><span class="kicker">Authors</span></div>
-      <div class="card-list">
-        {authors.map((a) => (
-          <a class="card-row" href={`/authors/${a.id}/`}>
-            <div>
-              <div class="t">{a.data.name}</div>
-              <div class="d">{a.data.role}</div>
-            </div>
-            <span class="meta">Author</span>
+        {posts.map((p) => (
+          <a class="card-row" href={`/blog/${p.id}/`}>
+            <div><div class="t">{p.data.title}</div><div class="d">{p.data.description}</div></div>
+            <span class="meta">{p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
           </a>
         ))}
       </div>

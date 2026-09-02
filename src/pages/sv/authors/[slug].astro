@@ -8,16 +8,9 @@ export async function getStaticPaths() {
 }
 
 const { author } = Astro.props;
-const articles = (await getCollection('articles'))
+const posts = (await getCollection('posts'))
   .filter((p) => p.data.author === author.id)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const insights = (await getCollection('insights'))
-  .filter((p) => p.data.author === author.id)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const posts = [
-  ...articles.map((p) => ({ ...p, kind: 'articles' })),
-  ...insights.map((p) => ({ ...p, kind: 'insights' })),
-].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 <Base title={author.data.name} description={`${author.data.role} på vhsgreed. ${author.data.bio.slice(0, 110)}`} locale="sv">
   <div class="container">
@@ -48,13 +41,13 @@ const posts = [
       <div class="card-list">
         {posts.length > 0 ? (
           posts.map((p) => (
-            <a class="card-row" href={`/blog/${p.kind}/${p.id}/`}>
+            <a class="card-row" href={`/blog/${p.id}/`}>
               <div>
                 <div class="t">{p.data.title}</div>
                 <div class="d">{p.data.description}</div>
               </div>
               <span class="meta">
-                {p.kind === 'insights' ? 'Insikt · ' : ''}
+                
                 {p.data.date.toLocaleDateString('sv-SE', { year: 'numeric', month: 'short', day: 'numeric' })}
               </span>
             </a>

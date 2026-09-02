@@ -2,16 +2,9 @@
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
-const articles = (await getCollection('articles')).sort(
+const posts = (await getCollection('posts')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
-const insights = (await getCollection('insights')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
-const posts = [
-  ...articles.map((p) => ({ ...p, kind: 'articles' })),
-  ...insights.map((p) => ({ ...p, kind: 'insights' })),
-].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const latest = posts.slice(0, 3);
 
 const siteUrl = Astro.site?.toString() ?? 'https://vhsgreed.win';
@@ -87,7 +80,7 @@ const siteUrl = Astro.site?.toString() ?? 'https://vhsgreed.win';
         <span class="kicker">Latest from the blog</span>
         <div class="card-list" style="margin-top: 0.8rem;">
           {latest.map((p) => (
-            <a class="card-row" href={`/blog/${p.kind}/${p.id}/`}>
+            <a class="card-row" href={`/blog/${p.id}/`}>
               <div>
                 <div class="t">{p.data.title}</div>
                 <div class="d">{p.data.description}</div>

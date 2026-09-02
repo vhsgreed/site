@@ -3,72 +3,36 @@ import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import { getAuthorName } from '../lib/authors';
 
-const articles = (await getCollection('articles')).sort(
+const posts = (await getCollection('posts')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
-const insights = (await getCollection('insights')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
-const authorName = getAuthorName;
-const kindLabel = (k) => ({ 'build-log': 'Build log', story: 'Story', guide: 'Guide', insight: 'Insight' }[k] ?? 'Article');
 ---
-<Base title="Blog — insights & articles" description="Product pages and open build logs from vhsgreed: robotics data, AI agent tooling, scraping audits, and the research behind it all.">
+<Base title="Blog: the build log" description="Build logs, guides, product writeups, and postmortems from vhsgreed: what we tried, what broke, what the numbers said, and what we changed because of it.">
   <div class="container">
     <section class="hero">
       <h1>Blog</h1>
       <p class="lead">
-        Two tracks: <a href="/blog/insights/">insights</a>, where the
-        research meets the buy link, and <a href="/blog/articles/">articles</a>,
-        the open build log behind it.
+        The working record: build logs, guides, product writeups, and
+        postmortems. We publish the process, not just the result.
+      </p>
+      <p class="muted">
+        Looking for the full index of everything, including the data pages?
+        That is <a href="/read/">Read</a>.
       </p>
     </section>
 
     <hr class="rule" />
 
     <section class="section-tight">
-      <div class="section-head">
-        <span class="kicker">Insights</span>
-        <a class="go" href="/blog/insights/">All insights →</a>
-      </div>
-      <p class="muted" style="margin-top: -0.6rem;">Product pages: data, tooling, and the reasoning.</p>
       <div class="card-list">
-        {insights.slice(0, 3).map((p) => (
-          <a class="card-row" href={`/blog/insights/${p.id}/`}>
+        {posts.map((p) => (
+          <a class="card-row" href={`/blog/${p.id}/`}>
             <div>
-              <div class="t">
-                {p.data.kind && <span class="badge badge-article">{kindLabel(p.data.kind)}</span>}
-                {p.data.product?.name ? (
-                  <span class="badge">{p.data.product.status === 'live' ? 'Buy' : 'Product'}</span>
-                ) : null}
-                {p.data.title}
-              </div>
+              <div class="t">{p.data.title}</div>
               <div class="d">{p.data.description}</div>
             </div>
             <span class="meta">
-              {p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-            </span>
-          </a>
-        ))}
-      </div>
-    </section>
-
-    <section class="section-tight" style="margin-top: 2.5rem;">
-      <div class="section-head">
-        <span class="kicker">Articles</span>
-        <a class="go" href="/blog/articles/">All articles →</a>
-      </div>
-      <p class="muted" style="margin-top: -0.6rem;">Build logs and research notes from the working record.</p>
-      <div class="card-list">
-        {articles.slice(0, 3).map((p) => (
-          <a class="card-row" href={`/blog/articles/${p.id}/`}>
-            <div>
-              <div class="t">
-                {p.data.kind && <span class="badge badge-article">{kindLabel(p.data.kind)}</span>}
-                {p.data.title}
-              </div>
-              <div class="d">{p.data.description}</div>
-            </div>
-            <span class="meta">
+              {getAuthorName(p.data.author) ? `${getAuthorName(p.data.author)} · ` : ''}
               {p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
             </span>
           </a>

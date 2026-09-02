@@ -3,18 +3,10 @@ import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import { nationList, totalCompanies, totalNations, verificationDate } from '../lib/nations';
 
-const articles = (await getCollection('articles')).sort(
+const posts = (await getCollection('posts')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
-const insights = (await getCollection('insights')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
-const newest = [
-  ...articles.map((p) => ({ ...p, kind: 'articles' })),
-  ...insights.map((p) => ({ ...p, kind: 'insights' })),
-].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 4);
-
-const kindLabel = (k) => ({ 'build-log': 'Build log', story: 'Story', guide: 'Guide', insight: 'Insight' }[k] ?? 'Article');
+const newest = posts.slice(0, 4);
 
 // Deep-dive data showcases (standalone pages under /robotics-stocks/)
 const deepDives = [
@@ -51,11 +43,16 @@ const explainers = [
         Reading something you want to keep? The datasets behind the data
         pages are in the <a href="/store/">store</a>.
       </p>
+      <div class="btn-row" style="margin-top: 1rem;">
+        <a class="btn btn-accent" href="#data">Data pages</a>
+        <a class="btn btn-ghost" href="#explainers">Explainers</a>
+        <a class="btn btn-ghost" href="#buildlog">Build log</a>
+      </div>
     </section>
 
     <hr class="rule" />
 
-    <section class="section-tight" aria-label="Featured data">
+    <section id="data" class="section-tight" aria-label="Featured data">
       <div class="section-head">
         <span class="kicker">Featured data</span>
         <a class="go" href="/robotics-stocks/">Robotics hub →</a>
@@ -68,7 +65,7 @@ const explainers = [
         {deepDives.map((p) => (
           <a class="card-row" href={p.href}>
             <div>
-              <div class="t"><span class="badge badge-article">Dataset</span>{p.title}</div>
+              <div class="t">{p.title}</div>
               <div class="d">{p.d}</div>
             </div>
           </a>
@@ -90,7 +87,7 @@ const explainers = [
 
     <hr class="rule" />
 
-    <section class="section-tight" aria-label="Explainers">
+    <section id="explainers" class="section-tight" aria-label="Explainers">
       <div class="section-head">
         <span class="kicker">Explainers</span>
         <a class="go" href="/learn/">Learn hub →</a>
@@ -100,7 +97,7 @@ const explainers = [
         {explainers.map((p) => (
           <a class="card-row" href={p.href}>
             <div>
-              <div class="t"><span class="badge badge-article">Guide</span>{p.title}</div>
+              <div class="t">{p.title}</div>
               <div class="d">{p.d}</div>
             </div>
           </a>
@@ -110,20 +107,17 @@ const explainers = [
 
     <hr class="rule" />
 
-    <section class="section-tight" aria-label="Build log">
+    <section id="buildlog" class="section-tight" aria-label="Build log">
       <div class="section-head">
         <span class="kicker">Build log</span>
         <a class="go" href="/blog/">All posts →</a>
       </div>
       <p class="muted" style="margin-top: -0.6rem;">What we tried, what broke, what the numbers said. Products ship from here.</p>
       <div class="card-list">
-        {[...articles, ...insights].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).map((p) => (
-          <a class="card-row" href={`/blog/${p.collection === 'articles' ? 'articles' : 'insights'}/${p.id}/`}>
+        {posts.map((p) => (
+          <a class="card-row" href={`/blog/${p.id}/`}>
             <div>
-              <div class="t">
-                {p.data.kind && <span class="badge badge-article">{kindLabel(p.data.kind)}</span>}
-                {p.data.title}
-              </div>
+              <div class="t">{p.data.title}</div>
               <div class="d">{p.data.description}</div>
             </div>
             <span class="meta">
@@ -132,7 +126,7 @@ const explainers = [
           </a>
         ))}
       </div>
-    </section>
+    </section>>
 
     <hr class="rule" />
 
