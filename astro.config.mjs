@@ -7,5 +7,6 @@ export default defineConfig({
   site: 'https://vhsgreed.win',
   integrations: [sitemap()],
   output: 'static',
+  prefetch: { prefetchAll: true },
   build: { format: 'directory' },
 });

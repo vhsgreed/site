@@ -1,13 +1,14 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
-import { getAuthorName } from '../../lib/authors';
+import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('posts')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 
-const authorName = getAuthorName;
+const authors = await getCollection('authors');
+const authorName = (id) => authors.find((a) => a.id === id)?.data.name;
 const kindLabel = (k: string) => (({ 'build-log': 'Build log', story: 'Story', guide: 'Guide', insight: 'Insight' } as Record<string,string>)[k] ?? 'Article');
 ---
 <Base title="Blogg: insikter och artiklar" description="Produktsidor och öppna byggloggar från vhsgreed: robotics-data, AI-agentverktyg, scraping-granskningar och forskningen bakom allt." locale="sv">

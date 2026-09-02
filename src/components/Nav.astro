@@ -5,6 +5,7 @@
 const primary = [
   { href: '/store/', label: 'Store' },
   { href: '/read/', label: 'Read' },
+  { href: '/search/', label: 'Search' },
 ];
 const utility = [
   { href: '/opensource/', label: 'Open Source' },
@@ -34,6 +35,8 @@ const isCurrent = (href: string) => {
         <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>
       ))}
     </nav>
+
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode" onclick="((function(){var r=document.documentElement;var t=r.dataset.theme==='dark'?'light':'dark';r.dataset.theme=t;try{localStorage.setItem('theme',t);}catch(e){}})())">◐</button>
 
     <!-- Mobile menu: plain HTML <details>, works without JavaScript -->
     <details class="nav-toggle">

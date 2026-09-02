@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import GumroadCard from '../../components/GumroadCard.astro';
+import CopyCode from '../../components/CopyCode.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -36,6 +37,7 @@ const author = post.data.author ? authors.find((a) => a.id === post.data.author)
       </p>
     )}
     <hr class="rule" />
+    <CopyCode />
     <div class="prose">
       <Content />
     </div>

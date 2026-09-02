@@ -267,8 +267,17 @@ th { font-weight: 650; }
 .glow { background: linear-gradient(180deg, transparent 62%, var(--accent-strong) 62%); }
 
 /* Dark mode: pure CSS media query, no JS */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0c0c0c;
+  --ink: #f2f2f2;
+  --muted: #9a9a9a;
+  --line: #262626;
+  --surface: #111;
+  --accent: #a3e635;
+}
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     color-scheme: dark;
     --bg: #0c0c0c;
     --ink: #f2f2f2;
@@ -279,13 +288,23 @@ th { font-weight: 650; }
   }
   .btn { border-color: var(--ink); }
   .btn:hover { color: var(--bg); background: var(--ink); }
-  .btn-accent { border-color: var(--accent-ink); background: var(--accent-ink); color: #fff; }
+  .btn-accent, :root[data-theme='dark'] .btn-accent { border-color: var(--accent-ink); background: var(--accent-ink); color: #fff; }
   .btn-accent:hover { border-color: var(--accent-strong); background: var(--accent-strong); color: var(--bg); }
-  .badge { background: var(--accent-ink); color: #fff; }
-  .glow { background: linear-gradient(180deg, transparent 62%, var(--accent-ink) 62%); }
-  ::selection { background: var(--accent-ink); color: #fff; }
+  .badge, :root[data-theme='dark'] .badge { background: var(--accent-ink); color: #fff; }
+  .glow, :root[data-theme='dark'] .glow { background: linear-gradient(180deg, transparent 62%, var(--accent-ink) 62%); }
+  ::selection, :root[data-theme='dark'] ::selection { background: var(--accent-ink); color: #fff; }
   .card, .card-row { background: var(--surface); }
 }
+
+/* Toggle-driven dark (any theme): component overrides for [data-theme=dark] */
+:root[data-theme='dark'] .card, :root[data-theme='dark'] .card-row { background: var(--surface); }
+:root[data-theme='dark'] .btn { border-color: var(--ink); }
+:root[data-theme='dark'] .btn:hover { color: var(--bg); background: var(--ink); }
+:root[data-theme='dark'] .btn-accent:hover { border-color: var(--accent-strong); background: var(--accent-strong); color: var(--bg); }
+:root[data-theme='dark'] .referral-note a { color: var(--accent-strong); }
+:root[data-theme='dark'] .muted { color: #a8a8a8; }
+:root[data-theme='dark'] .prose pre, :root[data-theme='dark'] article pre { background: #161616; }
+:root[data-theme='dark'] .prose p code, :root[data-theme='dark'] article li code { background: #161616; }
 
 /* Code blocks (ledger method JSON etc.) */
 .prose pre, article pre {
@@ -317,3 +336,22 @@ th { font-weight: 650; }
   .muted { color: #a8a8a8; }
   img { opacity: 0.92; }
 }
+
+/* Theme toggle (smart feature: system default + manual override) */
+.theme-toggle {
+  background: none; border: 1px solid var(--line); border-radius: 999px;
+  color: var(--ink); cursor: pointer; font-size: 0.85rem; line-height: 1;
+  padding: 0.3rem 0.55rem; margin-left: 0.5rem;
+}
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Copy-code button */
+.copy-btn {
+  position: absolute; top: 0.5rem; right: 0.5rem;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 6px; color: var(--muted); cursor: pointer;
+  font-family: var(--mono); font-size: 0.7rem; padding: 0.25rem 0.5rem;
+}
+.copy-btn:hover { color: var(--ink); border-color: var(--accent); }
+.copy-btn.ok { color: var(--accent); border-color: var(--accent); }
+article .prose pre, article pre { position: relative; }

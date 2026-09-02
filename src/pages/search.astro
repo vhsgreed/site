@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Search vhsgreed" description="Search every article, explainer, dataset page, and build log on vhsgreed.win.">
+  <div class="container">
+    <section class="hero">
+      <h1>Search</h1>
+      <p class="lead">Every article, explainer, dataset page, and build log, indexed at build time.</p>
+    </section>
+    <hr class="rule" />
+    <div id="search" class="search-shell"></div>
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+    <script src="/pagefind/pagefind-ui.js" is:inline></script>
+    <script is:inline>
+      window.addEventListener('DOMContentLoaded', function () {
+        if (window.PagefindUI) {
+          new PagefindUI({ element: '#search', showImages: false, translations: { placeholder: 'Search articles, data, methods...' } });
+        }
+      });
+    </script>
+  </div>
+</Base>
+<style>
+  .search-shell { margin-top: 1.5rem; }
+  .search-shell :global(.pagefind-ui__result) { border-color: var(--line); }
+  .search-shell :global(.pagefind-ui__result-link) { color: var(--ink); }
+  .search-shell :global(.pagefind-ui__search-input) {
+    background: var(--surface); border: 1px solid var(--line);
+    color: var(--ink); border-radius: var(--radius);
+  }
+</style>
