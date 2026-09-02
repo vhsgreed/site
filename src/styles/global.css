@@ -141,24 +141,24 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .nav-more-panel a[aria-current='page'] { color: var(--accent); }
 /* Mobile menu: pure HTML <details>, no JS needed */
 .menu-btn { display: none; }
-.mobile-panel {
+.mobile-panel { display: none; }
+.mobile-panel.open {
+  display: flex; flex-direction: column; gap: 0.4rem;
   position: fixed; inset: 0; z-index: 100;
   background: var(--bg);
-  transform: translateX(100%);
-  transition: transform 0.28s ease;
-  visibility: hidden;
+  padding: 1.2rem 1.2rem 2rem;
+  animation: panel-in 0.28s ease;
 }
-.mobile-panel.open { transform: translateX(0); visibility: visible; }
+@keyframes panel-in {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
 .nav-panel a { text-decoration: none; padding: 0.5rem 0.2rem; border-bottom: 1px solid var(--line); font-weight: 550; }
 .lang-switch { font-weight: 700 !important; color: var(--link,var(--accent)) !important; }
 @media (max-width: 760px) {
   .nav-links { display: none; }
   .menu-btn { display: block; }
   .nav-links .theme-toggle { display: none; }
-  .mobile-panel {
-    display: flex; flex-direction: column; gap: 0.4rem;
-    padding: 1.2rem 1.2rem 2rem;
-  }
   .mobile-panel .panel-head {
     display: flex; justify-content: space-between; align-items: center;
     font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em;
@@ -272,7 +272,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 
 /* Blog preview */
 .blog-head {
-  border-top: 3px solid var(--ink); padding-top: 1.1rem; margin-top: 2.8rem;
+  border-top: 3px solid var(--accent-strong); padding-top: 1.1rem; margin-top: 2.8rem;
 }
 .blog-head .kicker { font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
 
@@ -393,3 +393,8 @@ html, body { overflow-x: clip; }
 .copy-btn:hover { color: var(--ink); border-color: var(--accent); }
 .copy-btn.ok { color: var(--accent); border-color: var(--accent); }
 article .prose pre, article pre { position: relative; }
+
+/* Theme switch: suppress transitions while flipping (no fading artifacts) */
+html.theme-switching, html.theme-switching *, html.theme-switching *::before, html.theme-switching *::after {
+  transition: none !important;
+}

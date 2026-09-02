@@ -45,9 +45,13 @@ const ogImage = Astro.url.origin + '/img/og-card.jpg';
         window.__theme = {
           toggle: function () {
             var t = effective() === 'dark' ? 'light' : 'dark';
+            document.documentElement.classList.add('theme-switching');
             document.documentElement.dataset.theme = t;
             try { localStorage.setItem('theme', t); } catch (e) {}
             sync();
+            setTimeout(function () {
+              document.documentElement.classList.remove('theme-switching');
+            }, 150);
           },
           sync: sync
         };
