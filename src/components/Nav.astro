@@ -43,7 +43,11 @@ const isCurrent = (href: string) => {
       Menu
     </button>
 
-    <div id="mobile-panel" class="mobile-panel" hidden>
+    <div id="mobile-panel" class="mobile-panel" aria-hidden="true">
+      <div class="panel-head">
+        <span>vhsgreed</span>
+        <button class="panel-close" type="button" data-panel-close>Close ✕</button>
+      </div>
       <nav aria-label="Mobile">
         {primary.map((l) => (
           <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>
@@ -64,16 +68,21 @@ const isCurrent = (href: string) => {
   var btn = document.querySelector('.menu-btn');
   var panel = document.getElementById('mobile-panel');
   function closePanel() {
-    if (!panel || panel.hidden) return;
-    panel.hidden = true;
+    if (!panel || !panel.classList.contains('open')) return;
+    panel.classList.remove('open');
+    panel.setAttribute('aria-hidden', 'true');
     btn.setAttribute('aria-expanded', 'false');
   }
   if (btn && panel) {
     btn.addEventListener('click', function () {
-      var open = panel.hidden;
-      panel.hidden = !open;
+      var open = !panel.classList.contains('open');
+      panel.classList.toggle('open', open);
+      panel.setAttribute('aria-hidden', String(!open));
       btn.setAttribute('aria-expanded', String(open));
     });
+    if (panel.querySelector('[data-panel-close]')) {
+      panel.querySelector('[data-panel-close]').addEventListener('click', closePanel);
+    }
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePanel(); });
     document.addEventListener('click', function (e) {
       if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) closePanel();

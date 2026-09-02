@@ -1,3 +1,5 @@
+/*
+  Cache-Control: public, max-age=0, must-revalidate
 /
   Content-Security-Policy: default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com https://gumroad.com; frame-ancestors 'none'; base-uri 'self'
   Strict-Transport-Security: max-age=31536000; includeSubDomains
@@ -9,3 +11,5 @@
 
 /_astro/*
   Cache-Control: public, max-age=86400, immutable
+/img/*
+  Cache-Control: public, max-age=604800
