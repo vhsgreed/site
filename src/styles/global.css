@@ -8,6 +8,12 @@
   --accent: #65a30d;      /* accessible lime for text/links on white */
   --accent-strong: #a3e635; /* vivid lime for surfaces/underlines */
   --accent-ink: #4d7c0f;  /* CANONICAL dark lime: surfaces carrying white text (AA 5:1). Dark-mode OG card + badges + selection */
+  --btn-accent-bg: var(--accent-strong); --btn-accent-fg: var(--ink);
+  --btn-accent-hover-bg: var(--ink); --btn-accent-hover-fg: var(--bg); --btn-accent-hover-border: var(--ink);
+  --badge-bg: var(--accent-strong); --badge-fg: var(--ink);
+  --sel-bg: var(--accent-strong); --sel-fg: var(--ink);
+  --glow-c: var(--accent-strong);
+  --code-bg: var(--surface);
   --surface: #fafafa;
   --radius: 14px;
   --maxw: 1120px;
@@ -64,8 +70,8 @@ small { color: var(--muted); }
   transition: background 0.15s, color 0.15s, transform 0.1s;
 }
 .btn:hover { color: var(--bg); background: var(--ink); }
-.btn-accent { border-color: var(--ink); background: var(--accent-strong); color: var(--ink); }
-.btn-accent:hover { background: var(--ink); color: var(--bg); }
+.btn-accent { border-color: var(--btn-accent-bg); background: var(--btn-accent-bg); color: var(--btn-accent-fg); }
+.btn-accent:hover { background: var(--btn-accent-hover-bg); color: var(--btn-accent-hover-fg); border-color: var(--btn-accent-hover-border); }
 .btn-ghost { border-color: var(--line); color: var(--ink); }
 .btn-ghost:hover { border-color: var(--ink); }
 .btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0 0; }
@@ -77,7 +83,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   border-radius: 4px;
 }
 .nav-links a[aria-current='page'] { color: var(--accent); }
-.nav-links a, .btn, .nav-toggle summary { touch-action: manipulation; }
+.nav-links a, .btn, .menu-btn, .theme-toggle, .mobile-panel a { touch-action: manipulation; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -125,21 +131,25 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .nav-more-panel a:hover { background: var(--surface); color: var(--accent); }
 .nav-more-panel a[aria-current='page'] { color: var(--accent); }
 /* Mobile menu: pure HTML <details>, no JS needed */
-.nav-toggle { display: none; }
-.nav-toggle summary {
-  list-style: none; cursor: pointer; padding: 0.4rem 0.7rem;
-  border: 1px solid var(--line); border-radius: 10px; font-weight: 650;
-}
-.nav-toggle summary::-webkit-details-marker { display: none; }
-.nav-toggle[open] summary { border-color: var(--ink); }
-.nav-panel {
-  display: grid; gap: 0.2rem; padding: 0.6rem 0 0.9rem;
-}
+.menu-btn { display: none; }
+.mobile-panel[hidden] { display: none; }
 .nav-panel a { text-decoration: none; padding: 0.5rem 0.2rem; border-bottom: 1px solid var(--line); font-weight: 550; }
 .lang-switch { font-weight: 700 !important; color: var(--link,var(--accent)) !important; }
 @media (max-width: 760px) {
   .nav-links { display: none; }
-  .nav-toggle { display: block; }
+  .menu-btn { display: block; }
+  .theme-toggle { display: none; }
+  .mobile-panel {
+    display: grid; gap: 0.2rem; padding: 0.6rem 0 0.9rem;
+    position: absolute; left: 0; right: 0; top: 100%;
+    background: var(--bg); border-bottom: 1px solid var(--line);
+    z-index: 50;
+  }
+  .mobile-panel a, .mobile-panel .theme-toggle {
+    text-align: left; padding: 0.7rem 0.4rem; border-bottom: 1px solid var(--line);
+    font-weight: 550; text-decoration: none; color: var(--ink); background: none;
+    border-left: none; border-right: none; border-top: none; font-size: 1rem; cursor: pointer;
+  }
 }
 
 /* Section heads */
@@ -154,7 +164,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   display: inline-block; margin-right: 0.5rem; padding: 0.12rem 0.5rem;
   border-radius: 999px; font-size: 0.68rem; font-weight: 750;
   letter-spacing: 0.04em; text-transform: uppercase;
-  background: var(--accent-strong); color: var(--ink); vertical-align: 0.18em;
+  background: var(--badge-bg); color: var(--badge-fg); vertical-align: 0.18em;
 }
 .badge-article {
   background: var(--surface); color: var(--muted);
@@ -264,7 +274,7 @@ th { font-weight: 650; }
 }
 
 /* Accent underline trick for hero key phrase */
-.glow { background: linear-gradient(180deg, transparent 62%, var(--accent-strong) 62%); }
+.glow { background: linear-gradient(180deg, transparent 62%, var(--glow-c) 62%); }
 
 /* Dark mode: pure CSS media query, no JS */
 :root[data-theme='dark'] {
@@ -281,30 +291,34 @@ th { font-weight: 650; }
     color-scheme: dark;
     --bg: #0c0c0c;
     --ink: #f2f2f2;
-    --muted: #9a9a9a;
+    --muted: #a8a8a8;
     --line: #262626;
     --surface: #111;
     --accent: #a3e635;
+    --btn-accent-bg: var(--accent-ink); --btn-accent-fg: #fff;
+    --btn-accent-hover-bg: var(--accent-strong); --btn-accent-hover-fg: var(--bg); --btn-accent-hover-border: var(--accent-strong);
+    --badge-bg: var(--accent-ink); --badge-fg: #fff;
+    --sel-bg: var(--accent-ink); --sel-fg: #fff;
+    --glow-c: var(--accent-ink);
+    --code-bg: #161616;
   }
-  .btn { border-color: var(--ink); }
-  .btn:hover { color: var(--bg); background: var(--ink); }
-  .btn-accent, :root[data-theme='dark'] .btn-accent { border-color: var(--accent-ink); background: var(--accent-ink); color: #fff; }
-  .btn-accent:hover { border-color: var(--accent-strong); background: var(--accent-strong); color: var(--bg); }
-  .badge, :root[data-theme='dark'] .badge { background: var(--accent-ink); color: #fff; }
-  .glow, :root[data-theme='dark'] .glow { background: linear-gradient(180deg, transparent 62%, var(--accent-ink) 62%); }
-  ::selection, :root[data-theme='dark'] ::selection { background: var(--accent-ink); color: #fff; }
-  .card, .card-row { background: var(--surface); }
 }
-
-/* Toggle-driven dark (any theme): component overrides for [data-theme=dark] */
-:root[data-theme='dark'] .card, :root[data-theme='dark'] .card-row { background: var(--surface); }
-:root[data-theme='dark'] .btn { border-color: var(--ink); }
-:root[data-theme='dark'] .btn:hover { color: var(--bg); background: var(--ink); }
-:root[data-theme='dark'] .btn-accent:hover { border-color: var(--accent-strong); background: var(--accent-strong); color: var(--bg); }
-:root[data-theme='dark'] .referral-note a { color: var(--accent-strong); }
-:root[data-theme='dark'] .muted { color: #a8a8a8; }
-:root[data-theme='dark'] .prose pre, :root[data-theme='dark'] article pre { background: #161616; }
-:root[data-theme='dark'] .prose p code, :root[data-theme='dark'] article li code { background: #161616; }
+/* Toggle-driven dark: identical vars via attribute */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0c0c0c;
+  --ink: #f2f2f2;
+  --muted: #a8a8a8;
+  --line: #262626;
+  --surface: #111;
+  --accent: #a3e635;
+  --btn-accent-bg: var(--accent-ink); --btn-accent-fg: #fff;
+  --btn-accent-hover-bg: var(--accent-strong); --btn-accent-hover-fg: var(--bg); --btn-accent-hover-border: var(--accent-strong);
+  --badge-bg: var(--accent-ink); --badge-fg: #fff;
+  --sel-bg: var(--accent-ink); --sel-fg: #fff;
+  --glow-c: var(--accent-ink);
+  --code-bg: #161616;
+}
 
 /* Code blocks (ledger method JSON etc.) */
 .prose pre, article pre {
@@ -331,19 +345,13 @@ th { font-weight: 650; }
 }
 
 /* Dark-mode second pass (09-02): remaining contrast gaps */
-@media (prefers-color-scheme: dark) {
-  .referral-note a { color: var(--accent-strong); }
-  .muted { color: #a8a8a8; }
-  img { opacity: 0.92; }
-}
 
 /* Theme toggle (smart feature: system default + manual override) */
 .theme-toggle {
-  background: none; border: 1px solid var(--line); border-radius: 999px;
-  color: var(--ink); cursor: pointer; font-size: 0.85rem; line-height: 1;
-  padding: 0.3rem 0.55rem; margin-left: 0.5rem;
+  background: none; border: none; color: var(--ink); cursor: pointer;
+  font-weight: 550; padding: 0.4rem 0.2rem; font-size: 1rem;
 }
-.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.theme-toggle:hover { color: var(--accent); }
 
 /* Copy-code button */
 .copy-btn {

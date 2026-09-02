@@ -1,7 +1,7 @@
 ---
-// Two-path nav (agreed 09-01): Store + Read. All reading content is
-// reachable through /read/. Utility pages live in the footer (and the
-// mobile menu so they stay reachable without JS).
+// Two-path nav (agreed 09-01): Store + Read, plus Search. Utility pages in
+// the footer and the mobile panel. Theme toggle is inline with the links;
+// mobile uses a JS menu (curtain <details> retired 09-02).
 const primary = [
   { href: '/store/', label: 'Store' },
   { href: '/read/', label: 'Read' },
@@ -34,21 +34,50 @@ const isCurrent = (href: string) => {
       {primary.map((l) => (
         <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>
       ))}
+      <button class="theme-toggle" type="button" data-theme-toggle>
+        <span data-theme-label>Dark mode</span>
+      </button>
     </nav>
 
-    <button class="theme-toggle" type="button" aria-label="Toggle dark mode" onclick="((function(){var r=document.documentElement;var t=r.dataset.theme==='dark'?'light':'dark';r.dataset.theme=t;try{localStorage.setItem('theme',t);}catch(e){}})())">◐</button>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-panel">
+      Menu
+    </button>
 
-    <!-- Mobile menu: plain HTML <details>, works without JavaScript -->
-    <details class="nav-toggle">
-      <summary aria-label="Open menu">Menu</summary>
-      <nav class="nav-panel" aria-label="Mobile">
+    <div id="mobile-panel" class="mobile-panel" hidden>
+      <nav aria-label="Mobile">
         {primary.map((l) => (
           <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>
         ))}
+        <button class="theme-toggle" type="button" data-theme-toggle>
+          <span data-theme-label>Dark mode</span>
+        </button>
         {utility.map((l) => (
           <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>
         ))}
       </nav>
-    </details>
+    </div>
   </div>
 </header>
+
+<script>
+  // Mobile panel: proper JS menu (open/close, Escape, outside click, close on navigate)
+  var btn = document.querySelector('.menu-btn');
+  var panel = document.getElementById('mobile-panel');
+  function closePanel() {
+    if (!panel || panel.hidden) return;
+    panel.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+  }
+  if (btn && panel) {
+    btn.addEventListener('click', function () {
+      var open = panel.hidden;
+      panel.hidden = !open;
+      btn.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePanel(); });
+    document.addEventListener('click', function (e) {
+      if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) closePanel();
+    });
+    panel.addEventListener('click', function (e) { if (e.target.closest('a')) closePanel(); });
+  }
+</script>

@@ -29,6 +29,33 @@ const ogImage = Astro.url.origin + '/img/og-card.jpg';
           if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
         } catch (e) {}
       })();
+      // Shared toggle + label sync (labels read opposite of current mode)
+      (function () {
+        function effective() {
+          var t = document.documentElement.dataset.theme;
+          if (t === 'dark' || t === 'light') return t;
+          return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        function sync() {
+          var t = effective();
+          document.querySelectorAll('[data-theme-label]').forEach(function (el) {
+            el.textContent = t === 'dark' ? 'Light mode' : 'Dark mode';
+          });
+        }
+        window.__theme = {
+          toggle: function () {
+            var t = effective() === 'dark' ? 'light' : 'dark';
+            document.documentElement.dataset.theme = t;
+            try { localStorage.setItem('theme', t); } catch (e) {}
+            sync();
+          },
+          sync: sync
+        };
+        document.addEventListener('click', function (e) {
+          if (e.target.closest('[data-theme-toggle]')) { e.preventDefault(); window.__theme.toggle(); }
+        });
+        document.addEventListener('DOMContentLoaded', sync);
+      })();
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name='impact-site-verification' value='ebdc22a7-9a80-43ae-a680-247959c1b70a' />
