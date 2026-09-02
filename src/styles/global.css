@@ -300,6 +300,9 @@ th { font-weight: 650; }
   .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; }
 }
 
+/* Horizontal overflow guard: off-screen panels/fixed elements never widen the page */
+html, body { overflow-x: clip; }
+
 /* Accent underline trick for hero key phrase */
 .glow { background: linear-gradient(180deg, transparent 62%, var(--glow-c) 62%); }
 
