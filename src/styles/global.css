@@ -284,3 +284,34 @@ th { font-weight: 650; }
   ::selection { background: var(--accent-ink); color: #fff; }
   .card, .card-row { background: var(--surface); }
 }
+
+/* Code blocks (ledger method JSON etc.) */
+.prose pre, article pre {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.prose code, article code { font-family: var(--mono); }
+.prose p code, article li code {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.05rem 0.35rem;
+  font-size: 0.85em;
+}
+@media (prefers-color-scheme: dark) {
+  .prose pre, article pre { background: #161616; }
+  .prose p code, article li code { background: #161616; }
+}
+
+/* Dark-mode second pass (09-02): remaining contrast gaps */
+@media (prefers-color-scheme: dark) {
+  .referral-note a { color: var(--accent-strong); }
+  .muted { color: #a8a8a8; }
+  img { opacity: 0.92; }
+}
