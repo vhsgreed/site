@@ -207,7 +207,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 
 /* Hero */
 .hero { padding: clamp(3.5rem, 10vw, 7rem) 0 2.5rem; }
-.hero h1 { max-width: 15ch; }
+.hero h1 {
+  font-weight: 900; max-width: 15ch; }
 .hero .lead { margin-top: 1rem; }
 
 /* Section spacing */
