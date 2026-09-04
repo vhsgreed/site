@@ -1,4 +1,5 @@
 ---
+import GumroadCard from '../../components/GumroadCard.astro';
 import Base from '../../layouts/Base.astro';
 import { nations, verificationDate } from '../../lib/nations';
 
@@ -122,6 +123,15 @@ const jsonLd = {
         map across direct/adjacent/indirect routes.
       </p>
     </section>
+      <GumroadCard
+      product={{
+        name: 'Robotics Supply-Chain Intelligence 2026',
+        price: 'Verified CSV dataset · 1,094 nations-verified rows',
+        url: 'https://store.vhsgreed.win/l/robotics-supply-chain-database-2026',
+        status: 'live',
+        tag: 'Get the full dataset',
+      }}
+    />
   </div>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 </Base>
