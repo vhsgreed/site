@@ -9,7 +9,7 @@
    "product": {
     "name": "Swedish Listed Companies 2026",
     "url": "https://store.vhsgreed.win/l/swedish-listed-companies-2026",
-    "price": "$5"
+    "price": "$2"
    },
    "sources": [
     {
@@ -42,7 +42,7 @@
     {
      "name": "Our dataset (vhsgreed)",
      "access": "One-time purchase",
-     "price": "$5",
+     "price": "$2",
      "isin": true,
      "coverage": "366 companies, Large/Mid/Small, verified + stale entries excluded",
      "cadence": "Snapshot 2026-09-04",
@@ -62,7 +62,7 @@
    "product": {
     "name": "Swedish Listed Companies 2026",
     "url": "https://store.vhsgreed.win/l/swedish-listed-companies-2026",
-    "price": "$5"
+    "price": "$2"
    },
    "sources": [
     {
@@ -95,7 +95,7 @@
     {
      "name": "Our dataset (vhsgreed)",
      "access": "One-time purchase",
-     "price": "$5",
+     "price": "$2",
      "isin": true,
      "coverage": "366 listed companies, segment + ticker + ISIN",
      "cadence": "Snapshot 2026-09-04",
@@ -115,7 +115,7 @@
    "product": {
     "name": "Robotics Supply-Chain Intelligence 2026",
     "url": "https://store.vhsgreed.win/l/robotics-supply-chain-database-2026",
-    "price": "$5"
+    "price": "$2"
    },
    "sources": [
     {
@@ -148,7 +148,7 @@
     {
      "name": "Our dataset (vhsgreed)",
      "access": "One-time purchase",
-     "price": "$5",
+     "price": "$2",
      "isin": true,
      "coverage": "1,094 nations-verified rows, 11 countries, Tier-A core",
      "cadence": "Snapshot 2026-08-30 (v3)",
@@ -274,7 +274,7 @@
    "product": {
     "name": "Swedish Listed Companies 2026",
     "url": "https://store.vhsgreed.win/l/swedish-listed-companies-2026",
-    "price": "$5"
+    "price": "$2"
    },
    "sources": [
     {
@@ -327,7 +327,7 @@
    "product": {
     "name": "Robotics Supply-Chain Intelligence 2026",
     "url": "https://store.vhsgreed.win/l/robotics-supply-chain-database-2026",
-    "price": "$5"
+    "price": "$2"
    },
    "sources": [
     {
@@ -380,7 +380,7 @@
    "product": {
     "name": "Swedish Listed Companies 2026",
     "url": "https://store.vhsgreed.win/l/swedish-listed-companies-2026",
-    "price": "$5"
+    "price": "$2"
    },
    "sources": [
     {
@@ -413,7 +413,7 @@
     {
      "name": "Our dataset (vhsgreed)",
      "access": "One-time purchase",
-     "price": "$5",
+     "price": "$2",
      "isin": true,
      "coverage": "The listed-company slice, verified",
      "cadence": "Snapshot",
