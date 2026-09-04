@@ -1,0 +1,37 @@
+---
+import Base from '../../layouts/Base.astro';
+import pages from '../../data/companies.json';
+
+const title = 'Swedish company directories: verified lists by industry (SNI)';
+const description = `Verified Swedish company lists by industry: ${pages.totalCompanies} companies across ${pages.pages.length} SNI verticals, harvested from official registry data on ${pages.generated}. Org numbers, counties, employee counts and revenue where available.`;
+---
+<Base title={title} description={description}>
+  <div class="container">
+    <section class="hero">
+      <h1>Swedish company directories</h1>
+      <p class="lead">
+        Verified company lists by industry, harvested from the official Swedish
+        registry data (Bolagsverket, SCB, Skatteverket via allabolag.se) with our
+        own scraper pipeline on {pages.generated}. {pages.totalCompanies} companies
+        across {pages.pages.length} verticals.
+      </p>
+    </section>
+    <section>
+      <h2>By industry</h2>
+      <ul>
+        {pages.pages.map((p) => (
+          <li><a href={`/companies/${p.slug}/`}>{p.label} (SNI {p.sni}) — {p.count} companies</a></li>
+        ))}
+      </ul>
+    </section>
+    <section>
+      <h2>Method</h2>
+      <p>
+        Each list is a snapshot from our Apify-based harvest pipeline, deduplicated
+        by organization number, with marketing-protected companies excluded.
+        SNI classifications follow the official Swedish standard. Data is
+        point-in-time: registries update continuously.
+      </p>
+    </section>
+  </div>
+</Base>

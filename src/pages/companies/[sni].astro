@@ -1,0 +1,74 @@
+---
+import Base from '../../layouts/Base.astro';
+import pages from '../../data/companies.json';
+
+export function getStaticPaths() {
+  return pages.pages.map((p) => ({
+    params: { sni: p.slug },
+    props: { page: p },
+  }));
+}
+
+const { page } = Astro.props;
+const title = `${page.label}: ${page.count} verified Swedish companies (SNI ${page.sni})`;
+const description = `Swedish companies in SNI ${page.sni} (${page.label}): ${page.count} firms with org numbers, county, employee counts${page.companies.some((c) => c.revenueDisplay) ? ', and revenue data' : ''}. Harvested from the official Bolagsverket/SCB-sourced registry data via allabolag.se, ${pages.generated}.`;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: `Swedish companies, SNI ${page.sni}`,
+  description,
+  url: Astro.url.href,
+  dateCreated: pages.generated,
+  creator: { '@type': 'Organization', name: 'vhsgreed', url: 'https://vhsgreed.win' },
+  variableMeasured: `${page.count} companies`,
+};
+---
+<Base title={title} description={description}>
+  <div class="container">
+    <section class="hero">
+      <h1>{page.label}: {page.count} companies</h1>
+      <p class="lead">
+        Swedish companies in SNI {page.sni}, harvested from the official company
+        registry data (allabolag.se, sourced from Bolagsverket, SCB and
+        Skatteverket) on {pages.generated} via our own verified scraper pipeline.
+      </p>
+    </section>
+
+    <section>
+      <table>
+        <thead>
+          <tr><th>Company</th><th>Org.nr</th><th>County</th><th>Employees</th><th>Revenue</th><th>SNI</th></tr>
+        </thead>
+        <tbody>
+          {page.companies.map((c) => (
+            <tr>
+              <td>{c.homepage ? <a href={c.homepage} rel="nofollow noopener">{c.name}</a> : c.name}</td>
+              <td>{c.orgnr}</td>
+              <td>{c.county ?? '-'}</td>
+              <td>{c.employees ?? '-'}</td>
+              <td>{c.revenueDisplay ?? '-'}</td>
+              <td>{c.nace ?? '-'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Other verticals</h2>
+      <ul>
+        {pages.pages.filter((p) => p.sni !== page.sni).map((p) => (
+          <li><a href={`/companies/${p.slug}/`}>{p.label} ({p.count})</a></li>
+        ))}
+      </ul>
+      <p><a href="/companies/">All Swedish company directories</a></p>
+    </section>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Base>
+
+<style>
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th, td { border: 1px solid var(--line); padding: 0.4rem 0.6rem; text-align: left; }
+  thead th { background: var(--surface); }
+</style>
