@@ -1,0 +1,88 @@
+---
+import Base from '../../layouts/Base.astro';
+import GumroadCard from '../../components/GumroadCard.astro';
+import pages from '../../data/pseo-pages.json';
+
+export function getStaticPaths() {
+  return pages.pages.map((p) => ({
+    params: { slug: p.slug },
+    props: { page: p },
+  }));
+}
+
+const { page } = Astro.props;
+const siblings = pages.pages.filter((p) => p.slug !== page.slug).slice(0, 5);
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: page.title,
+  description: page.description,
+  datePublished: pages.generated,
+  author: { '@type': 'Organization', name: 'vhsgreed', url: 'https://vhsgreed.win' },
+};
+---
+<Base title={page.title} description={page.description}>
+  <div class="container">
+    <section class="hero">
+      <h1>{page.title}</h1>
+      <p class="lead">{page.description}</p>
+    </section>
+
+    <section>
+      <h2>Sources compared</h2>
+      <table>
+        <thead>
+          <tr><th>Source</th><th>Access</th><th>Price</th><th>ISIN</th><th>Coverage</th><th>Update cadence</th></tr>
+        </thead>
+        <tbody>
+          {page.sources.map((s) => (
+            <tr>
+              <td><strong>{s.name}</strong></td>
+              <td>{s.access}</td>
+              <td>{s.price}</td>
+              <td>{s.isin ? 'yes' : 'no'}</td>
+              <td>{s.coverage}</td>
+              <td>{s.cadence}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {page.sources.map((s) => s.note && <p class="note"><strong>{s.name}:</strong> {s.note}</p>)}
+    </section>
+
+    <section>
+      <h2>What our data adds</h2>
+      <ul>
+        {page.datapoints.map((d) => <li>{d}</li>)}
+      </ul>
+    </section>
+
+    <GumroadCard
+      product={{
+        name: page.product.name,
+        price: page.product.price,
+        url: page.product.url,
+        status: 'live',
+        tag: 'Get the data',
+      }}
+    />
+
+    <section>
+      <h2>More comparisons</h2>
+      <ul>
+        {siblings.map((s) => (
+          <li><a href={`/data/${s.slug}/`}>{s.title}</a></li>
+        ))}
+      </ul>
+      <p><a href="/data/">All data comparisons</a></p>
+    </section>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Base>
+
+<style>
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  th, td { border: 1px solid var(--line); padding: 0.5rem 0.7rem; text-align: left; vertical-align: top; }
+  thead th { background: var(--surface); }
+  .note { font-size: 0.88rem; color: var(--muted, #555); }
+</style>

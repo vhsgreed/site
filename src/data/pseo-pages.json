@@ -1,0 +1,536 @@
+{
+ "generated": "2026-09-04",
+ "generator": "repos/scripts/pseo-gen.py",
+ "pages": [
+  {
+   "slug": "swedish-stock-market-data-sources-compared",
+   "title": "Swedish stock market data sources: free vs paid compared",
+   "description": "Every source of Swedish listed-company data compared: coverage, price, ISIN support, and update cadence. Includes our own verified 366-company dataset as a benchmark.",
+   "product": {
+    "name": "Swedish Listed Companies 2026",
+    "url": "https://store.vhsgreed.win/l/swedish-listed-companies-2026",
+    "price": "$5"
+   },
+   "sources": [
+    {
+     "name": "Nasdaq Nordic screener",
+     "access": "Free web + unofficial API",
+     "price": "Free",
+     "isin": true,
+     "coverage": "All Nasdaq Stockholm instruments",
+     "cadence": "Live",
+     "note": "Official source; our dataset was verified against it 2026-09-04."
+    },
+    {
+     "name": "Yahoo Finance",
+     "access": "Free API/web",
+     "price": "Free",
+     "isin": false,
+     "coverage": "Listed equities w/ .ST tickers",
+     "cadence": "15-min delayed",
+     "note": "No ISIN; ticker-only matching."
+    },
+    {
+     "name": "Börsdata",
+     "access": "Freemium",
+     "price": "Free tier + ~SEK 99-299/mo",
+     "isin": true,
+     "coverage": "Nordic equities + key ratios",
+     "cadence": "Daily",
+     "note": "Ratios behind paywall; strong for fundamentals."
+    },
+    {
+     "name": "Our dataset (vhsgreed)",
+     "access": "One-time purchase",
+     "price": "$5",
+     "isin": true,
+     "coverage": "366 companies, Large/Mid/Small, verified + stale entries excluded",
+     "cadence": "Snapshot 2026-09-04",
+     "note": "Bundle-friendly CSV: name, segment, ticker, ISIN."
+    }
+   ],
+   "datapoints": [
+    "366 companies verified against the official Nasdaq Nordic screener on 2026-09-04",
+    "100% ISIN coverage (Yahoo offers 0%)",
+    "4 stale Wikipedia-listed entries excluded and documented"
+   ]
+  },
+  {
+   "slug": "swedish-company-data-sources-compared",
+   "title": "Swedish company data: Bolagsverket vs allabolag vs SCB vs our CSV",
+   "description": "Where to get Swedish company data, compared: official registries, commercial aggregators, and ready-made datasets. Coverage, cost, and what each is good for.",
+   "product": {
+    "name": "Swedish Listed Companies 2026",
+    "url": "https://store.vhsgreed.win/l/swedish-listed-companies-2026",
+    "price": "$5"
+   },
+   "sources": [
+    {
+     "name": "Bolagsverket",
+     "access": "Official registry",
+     "price": "Free lookup / fees for bulk",
+     "isin": false,
+     "coverage": "All registered ABs",
+     "cadence": "Real-time filings",
+     "note": "Ground truth for registration data; no tickers."
+    },
+    {
+     "name": "allabolag.se",
+     "access": "Freemium web",
+     "price": "Free lookup / paid plans",
+     "isin": false,
+     "coverage": "All Swedish companies (D&B-sourced)",
+     "cadence": "Daily",
+     "note": "Fastest UI; bulk access needs their API/actor."
+    },
+    {
+     "name": "SCB (Statistics Sweden)",
+     "access": "Open API",
+     "price": "Free",
+     "isin": false,
+     "coverage": "Aggregated statistics, not firm-level",
+     "cadence": "Monthly/annual",
+     "note": "Great for market sizing, not for company lists."
+    },
+    {
+     "name": "Our dataset (vhsgreed)",
+     "access": "One-time purchase",
+     "price": "$5",
+     "isin": true,
+     "coverage": "366 listed companies, segment + ticker + ISIN",
+     "cadence": "Snapshot 2026-09-04",
+     "note": "The listed-company slice, pre-verified."
+    }
+   ],
+   "datapoints": [
+    "366 listed companies with 100% ISIN coverage",
+    "Segment split: Large 136 / Mid 129 / Small 101",
+    "Verified 2026-09-04 against the official exchange screener"
+   ]
+  },
+  {
+   "slug": "robotics-datasets-compared",
+   "title": "Robotics datasets: 12 sources compared (supply chain, stocks, standards)",
+   "description": "Robotics industry data sources compared for investors and analysts: supply-chain databases, stock exposures, standards bodies, and what each costs.",
+   "product": {
+    "name": "Robotics Supply-Chain Intelligence 2026",
+    "url": "https://store.vhsgreed.win/l/robotics-supply-chain-database-2026",
+    "price": "$5"
+   },
+   "sources": [
+    {
+     "name": "IFR World Robotics",
+     "access": "Paid reports",
+     "price": "~EUR 700+/report",
+     "isin": false,
+     "coverage": "Install counts, unit stats",
+     "cadence": "Annual",
+     "note": "The statistics standard; no company-level exposure."
+    },
+    {
+     "name": "Nasdaq/Nasdaq Nordic",
+     "access": "Free screener",
+     "price": "Free",
+     "isin": true,
+     "coverage": "Listed robotics-adjacent firms",
+     "cadence": "Live",
+     "note": "No robotics taxonomy; manual classification needed."
+    },
+    {
+     "name": "Broker research",
+     "access": "Account-gated",
+     "price": "Client-only",
+     "isin": false,
+     "coverage": "Coverage universes per bank",
+     "cadence": "Ad hoc",
+     "note": "Good notes, no machine-readable data."
+    },
+    {
+     "name": "Our dataset (vhsgreed)",
+     "access": "One-time purchase",
+     "price": "$5",
+     "isin": true,
+     "coverage": "1,094 nations-verified rows, 11 countries, Tier-A core",
+     "cadence": "Snapshot 2026-08-30 (v3)",
+     "note": "Company-level exposure with verification layer."
+    }
+   ],
+   "datapoints": [
+    "1,094 nations-verified rows across 11 countries",
+    "Tier-A curated core (precision reducers, actuators, OEMs)",
+    "Every row verified against exchange filings 2026-08-30"
+   ]
+  },
+  {
+   "slug": "npm-supply-chain-data-sources-compared",
+   "title": "npm package security data: npm API vs Snyk vs OSV vs GitHub Advisory",
+   "description": "Sources for npm supply-chain incident data compared: advisories, malware timelines, IOC feeds, and which is machine-readable for free.",
+   "product": {
+    "name": "npm Supply-Chain Attack Timeline 2026",
+    "url": "https://store.vhsgreed.win/l/mixqsd",
+    "price": "$3"
+   },
+   "sources": [
+    {
+     "name": "npm registry API",
+     "access": "Open API",
+     "price": "Free",
+     "isin": false,
+     "coverage": "Package metadata, deprecation",
+     "cadence": "Live",
+     "note": "No security timeline; you must correlate incidents yourself."
+    },
+    {
+     "name": "GitHub Advisory Database",
+     "access": "Open",
+     "price": "Free",
+     "isin": false,
+     "coverage": "CVE-linked advisories",
+     "cadence": "Live",
+     "note": "CVE-shaped; supply-chain attacks lag in it."
+    },
+    {
+     "name": "OSV.dev",
+     "access": "Open API",
+     "price": "Free",
+     "isin": false,
+     "coverage": "Aggregated vulns across ecosystems",
+     "cadence": "Live",
+     "note": "Best free structured source for known vulns."
+    },
+    {
+     "name": "Our timeline (vhsgreed)",
+     "access": "One-time purchase",
+     "price": "$3",
+     "isin": false,
+     "coverage": "2026 incidents: timeline, affected packages, IOCs",
+     "cadence": "Snapshot 2026-08",
+     "note": "Incident-shaped (attack narratives + IOCs), not CVE-shaped."
+    }
+   ],
+   "datapoints": [
+    "Incident timeline CSV with affected-package mapping",
+    "IOC list (domains, packages, commit hashes) as CSV",
+    "Report PDF correlating each incident to response actions"
+   ]
+  },
+  {
+   "slug": "hemnet-data-access-compared",
+   "title": "Hemnet data access options compared (listings, sold prices, ToS reality)",
+   "description": "How to get Swedish real-estate data from Hemnet: official options, scraper actors on Apify, and what each covers. Includes the actor landscape as of 2026-09.",
+   "product": {
+    "name": "Apify actor: Hemnet Slutpriser Pro",
+    "url": "https://apify.com/store",
+    "price": "PPE"
+   },
+   "sources": [
+    {
+     "name": "Hemnet official",
+     "access": "Web only",
+     "price": "Free to browse",
+     "isin": false,
+     "coverage": "Listings (90%+ of Swedish market)",
+     "cadence": "Live",
+     "note": "No public API; sold prices (slutpriser) in a separate section."
+    },
+    {
+     "name": "Apify: haketa/hemnet-scraper",
+     "access": "Apify actor",
+     "price": "PPE per results",
+     "isin": false,
+     "coverage": "Listings",
+     "cadence": "On demand",
+     "note": "Established actor; sold prices limited."
+    },
+    {
+     "name": "Apify: lexis-solutions/hemnet-se-scraper",
+     "access": "Apify actor",
+     "price": "PPE per results",
+     "isin": false,
+     "coverage": "Listings",
+     "cadence": "On demand",
+     "note": "Second entrant; market confirmation."
+    },
+    {
+     "name": "Our actor (in build)",
+     "access": "Apify actor",
+     "price": "~$4/1k results",
+     "isin": false,
+     "coverage": "Listings + sold prices + price-delta analytics",
+     "cadence": "On demand",
+     "note": "Differentiator: slutpriser archive with asking-vs-final deltas."
+    }
+   ],
+   "datapoints": [
+    "3 competing Hemnet scrapers confirm real search demand",
+    "Sold-price (slutpriser) coverage is the thinnest supply",
+    "Actor landscape verified 2026-09-04 via Apify Store"
+   ]
+  },
+  {
+   "slug": "free-stock-data-apis-nordic-compared",
+   "title": "Free stock data APIs for Nordic markets: what actually works",
+   "description": "Free APIs for Nordic equity data compared honestly: what each returns, Nordic coverage gaps, ticker conventions (.ST), and when a verified CSV beats an API.",
+   "product": {
+    "name": "Swedish Listed Companies 2026",
+    "url": "https://store.vhsgreed.win/l/swedish-listed-companies-2026",
+    "price": "$5"
+   },
+   "sources": [
+    {
+     "name": "Yahoo Finance API",
+     "access": "Unofficial",
+     "price": "Free (unstable)",
+     "isin": false,
+     "coverage": "Global incl. .ST tickers",
+     "cadence": "15-min",
+     "note": "Works until it does not: TLS fingerprinting breaks naive clients."
+    },
+    {
+     "name": "Finnhub",
+     "access": "Freemium API",
+     "price": "Free tier",
+     "isin": false,
+     "coverage": "Global; Nordic depth varies",
+     "cadence": "Real-time (tier)",
+     "note": "Check symbol coverage for Small Cap before building."
+    },
+    {
+     "name": "Alpha Vantage",
+     "access": "Freemium API",
+     "price": "Free tier (25 req/day)",
+     "isin": false,
+     "coverage": "Global; Nordic sparse",
+     "cadence": "Daily",
+     "note": "Rate limits make Nordic-wide pulls slow."
+    },
+    {
+     "name": "Nasdaq Nordic screener",
+     "access": "Web",
+     "price": "Free",
+     "isin": true,
+     "coverage": "All Nordic listings",
+     "cadence": "Live",
+     "note": "The source of truth; no clean API, hence our verified CSV."
+    }
+   ],
+   "datapoints": [
+    ".ST ticker convention explained with 366 examples",
+    "ISIN support: screener yes, Yahoo no, freemium APIs partial",
+    "When to use a snapshot CSV vs a live API (stability vs freshness)"
+   ]
+  },
+  {
+   "slug": "web-scraping-vs-buying-datasets-cost",
+   "title": "Web scraping vs buying datasets: the real cost comparison",
+   "description": "Build vs buy for web data: scraping hours, proxy costs, maintenance burden versus one-time dataset prices. With concrete numbers from our own pipelines.",
+   "product": {
+    "name": "Robotics Supply-Chain Intelligence 2026",
+    "url": "https://store.vhsgreed.win/l/robotics-supply-chain-database-2026",
+    "price": "$5"
+   },
+   "sources": [
+    {
+     "name": "DIY scraping (Apify/Crawlee)",
+     "access": "Build + run",
+     "price": "$0.3-2/1k pages compute + dev hours",
+     "isin": false,
+     "coverage": "Whatever you build",
+     "cadence": "You maintain it",
+     "note": "Cheap at 1 run, expensive at maintenance forever."
+    },
+    {
+     "name": "Apify Store actors",
+     "access": "Per-use",
+     "price": "$1-5/1k results typical",
+     "isin": false,
+     "coverage": "Whatever actors exist",
+     "cadence": "Maintained by dev",
+     "note": "Best for ongoing needs on popular targets."
+    },
+    {
+     "name": "Dataset marketplaces",
+     "access": "One-time",
+     "price": "$3-15 typical indie",
+     "isin": true,
+     "coverage": "Fixed snapshot",
+     "cadence": "Frozen at purchase",
+     "note": "Cheapest for point-in-time analysis."
+    },
+    {
+     "name": "Our datasets (vhsgreed)",
+     "access": "One-time",
+     "price": "$3-5",
+     "isin": true,
+     "coverage": "Verified snapshots w/ methodology docs",
+     "cadence": "Versioned (v3 = 3rd revision)",
+     "note": "Verification layer is the product, not just rows."
+    }
+   ],
+   "datapoints": [
+    "Compute cost of a 1,000-page scrape: ~$0.30-2 + 3-6 dev hours",
+    "Maintenance reality: targets change markup ~2-4x/year",
+    "Break-even: one-time analysis favors buying; recurring favors scraping"
+   ]
+  },
+  {
+   "slug": "company-registry-data-sweden-compared",
+   "title": "Swedish company registries: Bolagsverket, UC, RATOL and open data compared",
+   "description": "The Swedish registry landscape for firmographic data: what each official and commercial source provides, at what price, with what restrictions.",
+   "product": {
+    "name": "Swedish Listed Companies 2026",
+    "url": "https://store.vhsgreed.win/l/swedish-listed-companies-2026",
+    "price": "$5"
+   },
+   "sources": [
+    {
+     "name": "Bolagsverket",
+     "access": "Official",
+     "price": "Free lookup; bulk licensing",
+     "isin": false,
+     "coverage": "All ABs: registration, board, filings",
+     "cadence": "Real-time",
+     "note": "Ground truth; bulk needs agreement."
+    },
+    {
+     "name": "UC / Creditsafe",
+     "access": "Commercial",
+     "price": "Per-lookup subscriptions",
+     "isin": false,
+     "coverage": "Credit + firmographics",
+     "cadence": "Continuous",
+     "note": "Credit decisions, not research lists."
+    },
+    {
+     "name": "Dataportal.se open data",
+     "access": "Open",
+     "price": "Free",
+     "isin": false,
+     "coverage": "Assorted public datasets",
+     "cadence": "Varies",
+     "note": "Quality uneven; check licenses per dataset."
+    },
+    {
+     "name": "Our dataset (vhsgreed)",
+     "access": "One-time purchase",
+     "price": "$5",
+     "isin": true,
+     "coverage": "The listed-company slice, verified",
+     "cadence": "Snapshot",
+     "note": "Pairs with registry lookups: ISIN as join key."
+    }
+   ],
+   "datapoints": [
+    "366 listed ABs with ISIN as the universal join key",
+    "Which registries give VD/board data vs only registration",
+    "Open-data license traps to check before commercial use"
+   ]
+  },
+  {
+   "slug": "job-posting-data-nordic-compared",
+   "title": "Nordic job posting data: ATS boards, aggregators, and access options",
+   "description": "Sources for Nordic hiring-signal data compared: direct ATS boards (Workday, Greenhouse, Lever), aggregators, and scraper access with pricing.",
+   "product": {
+    "name": "Apify actor: Nordic ATS Job Aggregator",
+    "url": "https://apify.com/store",
+    "price": "PPE"
+   },
+   "sources": [
+    {
+     "name": "Direct ATS boards",
+     "access": "Public web",
+     "price": "Free to read",
+     "isin": false,
+     "coverage": "Company-by-company",
+     "cadence": "Live",
+     "note": "Structured HTML; needs one parser per ATS."
+    },
+    {
+     "name": "Aggregators (Jobbsafari et al)",
+     "access": "Web/APIs vary",
+     "price": "Free-lookup, B2B feeds paid",
+     "isin": false,
+     "coverage": "Broad but deduped unclear",
+     "cadence": "Daily",
+     "note": "Posting duplication across boards is the data-quality trap."
+    },
+    {
+     "name": "US ATS scrapers (Apify)",
+     "access": "Apify actors",
+     "price": "~$0.08-0.10/job",
+     "isin": false,
+     "coverage": "US-centric company lists",
+     "cadence": "On demand",
+     "note": "Proven paid niche; Nordic-only coverage is the gap."
+    },
+    {
+     "name": "Our actor (in build)",
+     "access": "Apify actor",
+     "price": "~$0.10/job",
+     "isin": false,
+     "coverage": "SE/NO/DK/FI companies via their ATS boards",
+     "cadence": "On demand",
+     "note": "Hiring-signal use: one record per job, no duplicates."
+    }
+   ],
+   "datapoints": [
+    "US ATS scraping is a proven paid niche at $0.08/job",
+    "No dedicated Nordic ATS aggregator found in store searches 2026-09-04",
+    "Job boards change markup 2-4x/year: maintained actors beat DIY"
+   ]
+  },
+  {
+   "slug": "prompt-packs-vs-ai-consulting-compared",
+   "title": "Buying AI help: prompt packs vs templates vs consulting, compared",
+   "description": "The three ways small businesses buy AI capability, compared on cost, fit, and outcomes: self-serve prompt packs, workflow templates, and human consulting.",
+   "product": {
+    "name": "50 AI Prompts for Small Business",
+    "url": "https://store.vhsgreed.win/l/50-ai-prompts-for-small-business",
+    "price": "$3"
+   },
+   "sources": [
+    {
+     "name": "Prompt packs",
+     "access": "One-time download",
+     "price": "$1-5",
+     "isin": false,
+     "coverage": "Generic + niche prompts",
+     "cadence": "Static",
+     "note": "Best when you know your task and just need the wording."
+    },
+    {
+     "name": "Workflow templates",
+     "access": "One-time download",
+     "price": "$5-30",
+     "isin": false,
+     "coverage": "Pre-built automations",
+     "cadence": "Static",
+     "note": "Best when the task matches a template exactly."
+    },
+    {
+     "name": "AI consulting",
+     "access": "Human service",
+     "price": "$500-2,000+ setups",
+     "isin": false,
+     "coverage": "Your specific workflows",
+     "cadence": "Engagement",
+     "note": "Best when data sensitivity or complexity is high."
+    },
+    {
+     "name": "Our ladder (vhsgreed)",
+     "access": "Both",
+     "price": "$1-15",
+     "isin": false,
+     "coverage": "Prompts up to blueprints, consulting via Fiverr",
+     "cadence": "Updated",
+     "note": "Start at $1 packs; upgrade only if the task needs it."
+    }
+   ],
+   "datapoints": [
+    "Price ladder: packs $1-5, templates $5-30, consulting $500+",
+    "Decision rule: data sensitivity or complexity -> consulting",
+    "Our $1 Fiverr packs + 30-min call cover the gap between self-serve and consulting"
+   ]
+  }
+ ]
+}

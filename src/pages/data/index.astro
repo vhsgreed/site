@@ -1,0 +1,36 @@
+---
+import Base from '../../layouts/Base.astro';
+import pages from '../../data/pseo-pages.json';
+
+const title = 'Data source comparisons: verified research on where data comes from';
+const description = 'Honest comparisons of data sources for Swedish stocks, robotics, npm security, and Nordic market data: coverage, price, and access. Built from our own verified datasets.';
+---
+<Base title={title} description={description}>
+  <div class="container">
+    <section class="hero">
+      <h1>Data source comparisons</h1>
+      <p class="lead">
+        We build and verify datasets for a living, so we compared every source we
+        touched: official registries, free APIs, commercial aggregators, and our
+        own snapshot CSVs. No affiliate ranking games; exits point at our products
+        only where the fit is real.
+      </p>
+    </section>
+    <section>
+      <h2>All comparisons</h2>
+      <ul>
+        {pages.pages.map((p) => (
+          <li><a href={`/data/${p.slug}/`}>{p.title}</a></li>
+        ))}
+      </ul>
+    </section>
+    <section>
+      <h2>About our verification layer</h2>
+      <p>
+        Every dataset we sell carries a verification date, the source it was
+        checked against, and a list of stale entries excluded. If a row cannot
+        be verified, it is documented, not silently included.
+      </p>
+    </section>
+  </div>
+</Base>
