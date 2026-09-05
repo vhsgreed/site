@@ -111,6 +111,11 @@ one worthwhile.
 ## Sources
 
 - Skatteverket. Deklarera enskild näringsverksamhet. NE (SKV 2161), SKV 282
+
+The forms themselves have a
+[dedicated plain-English map](/blog/swedish-small-business-forms/):
+what SKV 2161, the NE-bilaga, and the F-skatt application each do, with the
+[2026 filing calendar](/blog/swedish-tax-deadlines-2026/).
   and 283. skatteverket.se
 - Verksamt. Bokföring. verksamt.se/bokforing
 - Verksamt. Årsbokslut och redovisning för enskild näringsverksamhet.
