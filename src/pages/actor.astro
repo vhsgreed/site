@@ -1,0 +1,97 @@
+---
+import Base from '../layouts/Base.astro';
+import pages from '../data/companies.json';
+
+const title = 'Swedish Company Data API: harvest any SNI segment yourself';
+const description = 'Search 9 verified Swedish company directories by SNI code, or run our allabolag.se scraper actor on the Apify Store for live data: org numbers, revenue, contacts. Pay per result.';
+
+const actorUrl = 'https://apify.com/vhsgreed/allabolag-fresh-details';
+const live = pages.pages ?? pages;
+const sorted = [...live].sort((a, b) => b.count - a.count);
+const total = pages.totalCompanies ?? live.reduce((s, p) => s + p.count, 0);
+---
+
+<Base title={title} description={description}>
+  <main>
+    <h1>Swedish company data, harvested fresh</h1>
+    <p class="lede">
+      The directories on this site are snapshots of the official Bolagsverket /
+      SCB-sourced registry data via allabolag.se, harvested by our own scraper.
+      Browse them free below, or run the scraper yourself when you need live
+      data: pay per result, no subscription.
+    </p>
+
+    <section>
+      <h2>Browse free directories ({sorted.length} segments, {total} companies)</h2>
+      <ul class="segments">
+        {sorted.map((p) => (
+          <li>
+            <a href={`/companies/${p.slug}/`}>
+              SNI {p.sni} {p.label}
+            </a>
+            <span class="count">{p.count} companies</span>
+          </li>
+        ))}
+      </ul>
+      <p>
+        More segments are harvested weekly. The directories update as new
+        snapshots land.
+      </p>
+    </section>
+
+    <section class="actor">
+      <h2>Need live data or a segment we haven't harvested?</h2>
+      <p>
+        The same pipeline that builds these directories runs as a public actor
+        on the Apify Store. Point it at any SNI code (all ~1,400 of them), a
+        keyword, or a list of organization numbers, and get structured data:
+        org number, SNI codes, county, addresses, phone, email, homepage,
+        employees, revenue, profit, founding year, status, and board roles.
+      </p>
+      <ul>
+        <li>Search by SNI code or keyword, or batch up to 1,000 org numbers</li>
+        <li>30+ fields per company, deduplicated by org number</li>
+        <li>Structured dataset: CSV, Excel, JSON, or API</li>
+        <li>Pay per result, start at $1.25 per 1,000 results</li>
+      </ul>
+      <p class="cta">
+        <a href={actorUrl} rel="noopener">Run the Allabolag.se Scraper on the Apify Store</a>
+      </p>
+    </section>
+
+    <section>
+      <h2>How the data pipeline works</h2>
+      <ol>
+        <li>
+          <strong>Query:</strong> an SNI industry code (e.g. 43.210 for
+          electrical installation), a free-text keyword, or explicit org
+          numbers.
+        </li>
+        <li>
+          <strong>Harvest:</strong> the actor pages through allabolag.se
+          listing results, then enriches each company from its registry detail
+          page.
+        </li>
+        <li>
+          <strong>Deliver:</strong> one clean dataset item per company,
+          deduplicated, ready for export or API use.
+        </li>
+      </ol>
+      <p>
+        The site directories are point-in-time snapshots of that pipeline's
+        output. The actor is the live version.
+      </p>
+    </section>
+  </main>
+</Base>
+
+<style>
+  .lede { max-width: 46rem; }
+  .segments { list-style: none; padding: 0; }
+  .segments li { display: flex; gap: 0.75rem; align-items: baseline; padding: 0.25rem 0; }
+  .segments a { font-weight: 600; }
+  .count { color: #555; font-size: 0.9rem; }
+  .actor { margin-top: 2rem; }
+  .cta a { font-weight: 700; }
+  ol li { margin-bottom: 0.4rem; }
+</style>
