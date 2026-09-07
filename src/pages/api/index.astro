@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import pages from '../../data/actor-pages.json';
+
+const title = 'Company registry APIs: vhsgreed actors on the Apify Store';
+const description = 'One page per vhsgreed Apify actor: what each company registry API returns, the official source behind it, and pay-per-event pricing. Sweden, Norway, Finland, UK, France, Poland, Lithuania, Switzerland, Czechia, and global LEI data.';
+---
+<Base title={title} description={description}>
+  <div class="container">
+    <nav class="crumbs"><a href="/data/">&larr; All data source comparisons</a></nav>
+    <section class="hero">
+      <h1>Company registry APIs</h1>
+      <p class="lead">
+        Every published vhsgreed actor wraps an official company data source and
+        returns structured JSON at pay-per-event pricing. Each page below lists
+        the real output fields, the official source, pricing, and answers to the
+        most common questions.
+      </p>
+    </section>
+    <section>
+      <h2>All actor pages</h2>
+      <ul>
+        {pages.pages.map((p) => (
+          <li><a href={`/api/${p.slug}/`}>{p.keyword}</a></li>
+        ))}
+      </ul>
+    </section>
+    <section>
+      <h2>Why keyless matters</h2>
+      <p>
+        Most of these actors read official open-data registers directly:
+        Enhetsregisteret in Norway, YTJ in Finland, SIRENE in France, KRS in
+        Poland, Zefix in Switzerland, GLEIF globally. Where the source is open,
+        the actor needs no API key, no account, and no proxy chain, which keeps
+        runs cheap and results fresh from the register.
+      </p>
+      <p>
+        <a href="/data/">Data source comparisons</a> cover where each register
+        sits against commercial aggregators.
+      </p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .crumbs { font-size: 0.85rem; color: var(--muted, #555); margin-bottom: 1rem; }
+</style>

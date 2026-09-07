@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import pages from '../../data/pseo-pages.json';
+import actorPages from '../../data/actor-pages.json';
 
 const title = 'Data source comparisons: verified research on where data comes from';
 const description = 'Honest comparisons of data sources for Swedish stocks, robotics, npm security, and Nordic market data: coverage, price, and access. Built from our own verified datasets.';
@@ -24,6 +25,19 @@ const description = 'Honest comparisons of data sources for Swedish stocks, robo
         ))}
       </ul>
     </section>
+    <section>
+      <h2>Company registry API pages</h2>
+      <p>
+        One page per published vhsgreed actor on the Apify Store: what the API
+        returns, the official source behind it, and pricing.
+      </p>
+      <ul>
+        {actorPages.pages.map((p) => (
+          <li><a href={`/api/${p.slug}/`}>{p.keyword}</a></li>
+        ))}
+      </ul>
+    </section>
+
     <section>
       <h2>Related</h2>
       <p>

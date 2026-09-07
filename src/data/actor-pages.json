@@ -1,0 +1,688 @@
+{
+ "generated": "2026-09-07",
+ "generator": "repos/scripts/actor-pages-gen.py",
+ "pages": [
+  {
+   "slug": "swedish-company-registry-api",
+   "keyword": "Swedish company registry API",
+   "title": "Swedish company registry API: Allabolag.se data as structured JSON",
+   "description": "A pay-per-result Swedish company registry API: search Allabolag.se by keyword, SNI code, county, or org number and receive structured company records with revenue, profit, employees, and contacts.",
+   "actorName": "allabolag-fresh-details",
+   "actorTitle": "Allabolag.se Company Data Scraper",
+   "source": {
+    "name": "Allabolag.se (Dun & Bradstreet-sourced Swedish company data)",
+    "angle": "Allabolag.se aggregates its company records from Dun & Bradstreet. The actor reads the public web service directly and needs no Allabolag account, no API key, and no subscription: run it from any Apify task, SDK script, or scheduled job."
+   },
+   "returns": [
+    {
+     "field": "orgnr",
+     "desc": "Swedish 10-digit organisation number"
+    },
+    {
+     "field": "name / segment / county / municipality",
+     "desc": "Identity and geography filters for routing records"
+    },
+    {
+     "field": "revenue / profit / employees",
+     "desc": "Reported financials and headcount"
+    },
+    {
+     "field": "email / homePage / phone",
+     "desc": "Public contact points"
+    },
+    {
+     "field": "foundedYear / status",
+     "desc": "Registration age and current status"
+    },
+    {
+     "field": "details",
+     "desc": "Extended per-company detail block"
+    },
+    {
+     "field": "source",
+     "desc": "Per-record source URL for verification"
+    }
+   ],
+   "pricing": "$0.00125 per result found (volume tiers down to $0.0009), plus $0.05 per actor start.",
+   "faqs": [
+    {
+     "q": "Is there an official API for Swedish company data?",
+     "a": "Bolagsverket publishes registry data but has no free bulk API for firm-level attributes such as revenue and employees. The common routes are Allabolag.se (D&B-sourced), the SCB open API for aggregate statistics, or commercial vendors. This actor turns Allabolag.se into a structured, per-result-priced API."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.00125 per result in the default dataset, with volume tiers stepping down to $0.0009. Each run start costs $0.05. There is no monthly fee and no minimum."
+    },
+    {
+     "q": "Which identifiers are returned?",
+     "a": "Every record carries the Swedish organisation number (orgnr) plus name, segment, county, municipality, revenue, profit, employees, founded year, status, and public contact fields, and a source URL for each record."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/allabolag-fresh-details"
+  },
+  {
+   "slug": "norway-brreg-company-data",
+   "keyword": "Norway BRREG company data",
+   "title": "Norway BRREG company data: Enhetsregisteret records as structured JSON",
+   "description": "A pay-per-result API for Norwegian company data from BRREG and Enhetsregisteret: org number, NACE codes, employees, VAT status, addresses, and official status flags as clean JSON.",
+   "actorName": "norway-brreg-api-fresh",
+   "actorTitle": "Norway Company Registry (BRREG) Fresh Details",
+   "source": {
+    "name": "Brønnøysundregistrene (BRREG) / Enhetsregisteret",
+    "angle": "The data comes straight from the official Norwegian registers. No scraping of third-party aggregators, no proxy chain: Enhetsregisteret is keyless and open, which is why the actor can stay cheap and reliable at volume."
+   },
+   "returns": [
+    {
+     "field": "orgnr",
+     "desc": "Norwegian 9-digit organisation number"
+    },
+    {
+     "field": "name / historicalNames / companyForm",
+     "desc": "Identity, name history, and legal form"
+    },
+    {
+     "field": "nace1 / nace2 / nace3 / sectorCode",
+     "desc": "NACE industry codes and sector classification"
+    },
+    {
+     "field": "employees / incorporationDate / registrationDate",
+     "desc": "Headcount and registration dates"
+    },
+    {
+     "field": "businessAddress / postalAddress / municipality",
+     "desc": "Official addresses"
+    },
+    {
+     "field": "vatRegistered / foretaksregisteret / bankruptcy / underLiquidation",
+     "desc": "Registry status flags for compliance checks"
+    },
+    {
+     "field": "email / phone / homePage",
+     "desc": "Public contacts where registered"
+    },
+    {
+     "field": "subunits / subunitCount / parentOrgnr",
+     "desc": "Corporate structure links"
+    }
+   ],
+   "pricing": "$0.00125 per result found (volume tiers down to $0.0009), plus $0.05 per actor start.",
+   "faqs": [
+    {
+     "q": "Is BRREG data free in Norway?",
+     "a": "Yes, Enhetsregisteret and the other Brønnøysund registers publish their data openly, without an API key. The actor packages that open data into deduplicated, per-org-number records with status flags so it can be piped into databases, CRM systems, or compliance checks."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.00125 per result, with volume tiers down to $0.0009, plus $0.05 per run start. No subscription."
+    },
+    {
+     "q": "Does it cover branches and sub-units?",
+     "a": "Yes. Records carry subunitCount, a subunits array, and parentOrgnr, so underenheter (sub-units) and their parents can be traversed from one query."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/norway-brreg-api-fresh"
+  },
+  {
+   "slug": "norway-proff-no-company-data-api",
+   "keyword": "proff.no company data API",
+   "title": "proff.no company data API: Norwegian financials and board data as JSON",
+   "description": "A pay-per-result Norwegian company API built on proff.no: 30+ fields per company including revenue in NOK, profit, employees, NACE codes, board roles, auditor-grade details, phone, and email.",
+   "actorName": "proff-no-company-data-scraper",
+   "actorTitle": "Proff.no Company Data Scraper",
+   "source": {
+    "name": "proff.no (Norwegian registry-derived company profiles)",
+    "angle": "proff.no republishes official Norwegian registry data with enrichment: financial figures, board and role assignments, and contact details. The actor reads proff.no directly by keyword, industry code, or a list of 9-digit org numbers, with no proff.no account required."
+   },
+   "returns": [
+    {
+     "field": "orgnr / companyId",
+     "desc": "Norwegian organisation number and proff company id"
+    },
+    {
+     "field": "name / legalName / industries",
+     "desc": "Identity and industry classification"
+    },
+    {
+     "field": "revenue / profit",
+     "desc": "Financial figures in NOK"
+    },
+    {
+     "field": "employees",
+     "desc": "Reported headcount"
+    },
+    {
+     "field": "county / municipality / visitorAddress / postalAddress",
+     "desc": "Geography and addresses"
+    },
+    {
+     "field": "email / homePage / phone / contactPerson",
+     "desc": "Public contact points"
+    },
+    {
+     "field": "description / marketingProtection",
+     "desc": "Company description and marketing flag"
+    },
+    {
+     "field": "details",
+     "desc": "Extended detail block incl. board/roles data"
+    }
+   ],
+   "pricing": "$0.00125 per result found (volume tiers down to $0.0009), plus $0.05 per actor start.",
+   "faqs": [
+    {
+     "q": "How do I get financial data for Norwegian companies?",
+     "a": "Official Norwegian filings are public, and proff.no presents them per company with revenue, profit, and employee figures. This actor accepts keyword searches, industry codes, or a batch of org numbers and returns the profile data as structured JSON, one record per org number, deduplicated."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.00125 per result (tiering down to $0.0009 at volume) plus $0.05 per run start. No monthly plan."
+    },
+    {
+     "q": "Can I feed a list of org numbers?",
+     "a": "Yes. The input accepts a list of 9-digit Norwegian organisation numbers, so enrichment of an existing company list runs as a single job."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/proff-no-company-data-scraper"
+  },
+  {
+   "slug": "finland-company-registry-api",
+   "keyword": "Finland company registry API (YTJ)",
+   "title": "Finland company registry API: YTJ records as structured JSON",
+   "description": "A pay-per-result API for Finnish company data from the YTJ business information system: business ID, company form, industry codes, addresses, registration entries, and status as clean JSON.",
+   "actorName": "finland-ytj-api-fresh",
+   "actorTitle": "Finland Company Registry (YTJ) Fresh Details",
+   "source": {
+    "name": "YTJ, the Finnish Business Information System (PRH)",
+    "angle": "YTJ is maintained by the Finnish Patent and Registration Office (PRH) and the Tax Administration. The actor queries the official open YTJ service, which needs no credentials, so results are fresh from the register on every run."
+   },
+   "returns": [
+    {
+     "field": "businessId",
+     "desc": "Finnish business ID (Y-tunnus)"
+    },
+    {
+     "field": "name / previousNames / companyForm",
+     "desc": "Identity, name history, and legal form"
+    },
+    {
+     "field": "industryCode / industry",
+     "desc": "Official industry classification"
+    },
+    {
+     "field": "registrationDate / businessIdRegistrationDate / endDate",
+     "desc": "Key registry dates"
+    },
+    {
+     "field": "status / tradeRegisterStatus",
+     "desc": "Register statuses"
+    },
+    {
+     "field": "streetAddress / postalAddress / municipality",
+     "desc": "Official addresses"
+    },
+    {
+     "field": "website / euId",
+     "desc": "Web presence and EU identifier"
+    },
+    {
+     "field": "registeredEntries / situations",
+     "desc": "Registry entries and special situations"
+    }
+   ],
+   "pricing": "$0.00125 per result found (volume tiers down to $0.0009), plus $0.05 per actor start.",
+   "faqs": [
+    {
+     "q": "Does Finland have an open company registry API?",
+     "a": "Yes. The YTJ service from PRH exposes Finnish business information openly. This actor wraps it into Apify runs: keyword or batch queries, one deduplicated record per business ID, with addresses, industry codes, and register statuses normalised into JSON."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.00125 per result, with volume tiers down to $0.0009, plus $0.05 per run start."
+    },
+    {
+     "q": "What identifiers come back per company?",
+     "a": "businessId (Y-tunnus), optional euId, company form, industry code, both street and postal addresses, and full status fields including tradeRegisterStatus and special situations."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/finland-ytj-api-fresh"
+  },
+  {
+   "slug": "uk-companies-house-api",
+   "keyword": "UK Companies House API data",
+   "title": "UK Companies House data as structured JSON: officers, accounts, status flags",
+   "description": "A pay-per-result UK Companies House API actor: company profile, SIC codes, officers, accounts and confirmation statement dates, charges and insolvency flags as clean JSON.",
+   "actorName": "uk-companies-house-api-fresh",
+   "actorTitle": "UK Companies House Fresh Details",
+   "source": {
+    "name": "Companies House (UK official register)",
+    "angle": "Companies House is the authoritative register of UK companies. The actor reads the official register per company number, no Companies House API key of your own required for runs on Apify, and returns the merged profile as one JSON record."
+   },
+   "returns": [
+    {
+     "field": "companyNumber / companyName",
+     "desc": "Registered number and name"
+    },
+    {
+     "field": "companyStatus / statusDetail / type / jurisdiction",
+     "desc": "Status and registration context"
+    },
+    {
+     "field": "sicCodes",
+     "desc": "Standard Industrial Classification codes"
+    },
+    {
+     "field": "registeredOffice / ROInDispute / undeliverableRO",
+     "desc": "Registered office and its flags"
+    },
+    {
+     "field": "accounts / confirmationStatement",
+     "desc": "Filing dates: next due, last made up to"
+    },
+    {
+     "field": "hasCharges / hasInsolvencyHistory / hasBeenLiquidated",
+     "desc": "Risk flags"
+    },
+    {
+     "field": "officers / officerCount / previousNames",
+     "desc": "Officer list and name history"
+    },
+    {
+     "field": "dateOfCreation / cessationDate",
+     "desc": "Lifecycle dates"
+    }
+   ],
+   "pricing": "$0.00125 per result found (volume tiers down to $0.0009), plus $0.05 per actor start.",
+   "faqs": [
+    {
+     "q": "Is the UK Companies House API free?",
+     "a": "Companies House offers a free official API, but it requires registration, key management, and rate-limit handling across several endpoints. This actor consolidates the profile, officers, filings, and risk flags into one JSON record per company number, runnable from Apify without your own key."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.00125 per result (tiering down to $0.0009) plus $0.05 per run start."
+    },
+    {
+     "q": "Does it include officers and filing status?",
+     "a": "Yes. Each record carries an officers array with officerCount, accounts and confirmationStatement date blocks, and the hasCharges, hasInsolvencyHistory, and hasBeenLiquidated flags."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/uk-companies-house-api-fresh"
+  },
+  {
+   "slug": "france-company-registry-api",
+   "keyword": "France SIRENE company data API",
+   "title": "France SIRENE company data as structured JSON: SIREN/SIRET, establishments, directors",
+   "description": "A pay-per-result API for French company data from the SIRENE register: SIREN and SIRET identifiers, legal nature, activity codes, addresses, establishment counts, and directors as clean JSON.",
+   "actorName": "france-sirene-api-fresh",
+   "actorTitle": "France Company Registry (SIRENE) Fresh Details",
+   "source": {
+    "name": "SIRENE (INSEE, the French official business register)",
+    "angle": "SIRENE is maintained by INSEE and is open data. The actor queries the official register directly, keyless, and normalises each company into one record with its establishment list, so SIREN-to-SIRET joins come out of the box."
+   },
+   "returns": [
+    {
+     "field": "siren / siret",
+     "desc": "French company and establishment identifiers"
+    },
+    {
+     "field": "name / sigle / legalNature / category",
+     "desc": "Identity and legal classification"
+    },
+    {
+     "field": "activityCode / activitySection",
+     "desc": "APE activity code and section"
+    },
+    {
+     "field": "createdAt / active",
+     "desc": "Creation date and activity status"
+    },
+    {
+     "field": "address / postalCode / city / department / region",
+     "desc": "Official address geography"
+    },
+    {
+     "field": "employeeRange",
+     "desc": "Employee size band"
+    },
+    {
+     "field": "establishmentCount / openEstablishmentCount / establishments",
+     "desc": "Establishment structure"
+    },
+    {
+     "field": "directors",
+     "desc": "Director information"
+    },
+    {
+     "field": "latitude / longitude",
+     "desc": "Geocoded position"
+    }
+   ],
+   "pricing": "$0.00125 per result found (volume tiers down to $0.0009).",
+   "faqs": [
+    {
+     "q": "Where does French SIREN data come from?",
+     "a": "The SIRENE register, maintained by INSEE, is France's official directory of enterprises and establishments. It is open data, which the actor uses directly: no INSEE account, no key, fresh register state per run."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.00125 per result, stepping down to $0.0009 at volume tiers."
+    },
+    {
+     "q": "Are establishments (établissements) included?",
+     "a": "Yes. Each record carries establishmentCount, openEstablishmentCount, and an establishments array with per-establishment SIRET, address, and geocoded coordinates."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/france-sirene-api-fresh"
+  },
+  {
+   "slug": "poland-krs-company-data-api",
+   "keyword": "Poland KRS company data API",
+   "title": "Poland KRS company data as structured JSON: board, PKD, share capital, filings",
+   "description": "A pay-per-result API for Polish company data from the KRS register: KRS/REGON/NIP identifiers, legal form, board and proxies, PKD codes, share capital, and annual reports as clean JSON.",
+   "actorName": "poland-krs-api-fresh",
+   "actorTitle": "Poland Company Registry (KRS) Fresh Details",
+   "source": {
+    "name": "KRS, the Polish National Court Register (Ministry of Justice)",
+    "angle": "KRS is the official register of Polish commercial entities, published by the Ministry of Justice. The actor reads the register's open data per KRS number: no credentials, no scraper farm, one deduplicated record per company."
+   },
+   "returns": [
+    {
+     "field": "krs / regon / nip",
+     "desc": "KRS, REGON, and tax identifiers"
+    },
+    {
+     "field": "name / legalForm / status / inLiquidation",
+     "desc": "Identity and status"
+    },
+    {
+     "field": "krsRegistrationDate / lastEntryDate / recordStateAsOf",
+     "desc": "Registry dates and data freshness"
+    },
+    {
+     "field": "court",
+     "desc": "Registering court"
+    },
+    {
+     "field": "seat / address / postalCode / city / voivodeship",
+     "desc": "Registered seat and address"
+    },
+    {
+     "field": "board / proxies / supervisoryBoard / partners",
+     "desc": "Governance and ownership"
+    },
+    {
+     "field": "pkdPrimary / pkdPrimaryDescription / pkdOther",
+     "desc": "PKD activity codes"
+    },
+    {
+     "field": "capitalAmount fields via statuteInfo",
+     "desc": "Statute and capital information"
+    },
+    {
+     "field": "annualReports",
+     "desc": "Annual report filings"
+    }
+   ],
+   "pricing": "$0.00125 per result found (volume tiers down to $0.0009), plus $0.005 per actor start.",
+   "faqs": [
+    {
+     "q": "Is Polish KRS data public?",
+     "a": "Yes. The National Court Register publishes company records, boards, PKD codes, and filings openly. The actor turns that open data into structured JSON: identifiers (KRS, REGON, NIP), governance arrays, PKD classifications, and annual report references in one record per company."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.00125 per result with volume tiers to $0.0009, plus a $0.005 run start."
+    },
+    {
+     "q": "Does it return board members and PKD codes?",
+     "a": "Yes. board, proxies, supervisoryBoard, and partners arrays plus pkdPrimary, pkdPrimaryDescription, and pkdOther come with every record, along with the registering court and last entry date."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/poland-krs-api-fresh"
+  },
+  {
+   "slug": "lithuania-company-registry-api",
+   "keyword": "Lithuania company registry API (JAR)",
+   "title": "Lithuania company registry API: JAR records as structured JSON",
+   "description": "A pay-per-result API for Lithuanian company data from the Registru Centras JAR register: legal code, status, registration dates, address, and share capital as clean JSON.",
+   "actorName": "lithuania-jar-registru-centras-api-fresh",
+   "actorTitle": "Lithuania Company Registry (JAR) Fresh Details",
+   "source": {
+    "name": "JAR, the Lithuanian Register of Legal Entities (Registru Centras)",
+    "angle": "JAR is maintained by Registru Centras, Lithuania's official register keeper. The actor queries the register directly, keyless, and returns one normalised record per company code with bilingual legal form labels."
+   },
+   "returns": [
+    {
+     "field": "jaKodas",
+     "desc": "Lithuanian legal entity code (JR kodas)"
+    },
+    {
+     "field": "name / legalForm / legalFormEn / legalFormCode",
+     "desc": "Identity and legal form (LT/EN)"
+    },
+    {
+     "field": "status / statusEn / statusCode",
+     "desc": "Register status"
+    },
+    {
+     "field": "registrationDate / deregistrationDate / statuteDate",
+     "desc": "Key registry dates"
+    },
+    {
+     "field": "address / postalCode / municipality",
+     "desc": "Registered address"
+    },
+    {
+     "field": "capitalAmount / capitalCurrency / capitalSince",
+     "desc": "Authorised capital"
+    },
+    {
+     "field": "financials",
+     "desc": "Financial data block where published"
+    }
+   ],
+   "pricing": "$0.00125 per result found (volume tiers down to $0.0009).",
+   "faqs": [
+    {
+     "q": "What is the Lithuanian company register called?",
+     "a": "The Register of Legal Entities (Juridinių asmenų registras, JAR), kept by Registru Centras. It is the authoritative source for Lithuanian company codes, legal forms, status, and capital. This actor exposes it as structured JSON per company code."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.00125 per result, tiering down to $0.0009 at volume."
+    },
+    {
+     "q": "Is share capital included?",
+     "a": "Yes. Records carry capitalAmount, capitalCurrency, and capitalSince, plus the full legal-form classification in both Lithuanian and English (legalForm / legalFormEn)."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/lithuania-jar-registru-centras-api-fresh"
+  },
+  {
+   "slug": "switzerland-zefix-company-registry-api",
+   "keyword": "Switzerland Zefix company registry API",
+   "title": "Switzerland Zefix company registry API: UID records as structured JSON",
+   "description": "A pay-per-result API for Swiss company data from the Zefix central business register: UID, canton, legal form, registry status, purpose, capital, and SHAB publications as clean JSON.",
+   "actorName": "switzerland-zefix-api-fresh",
+   "actorTitle": "Switzerland Company Registry (Zefix) Fresh Details",
+   "source": {
+    "name": "Zefix, the Swiss Central Business Name Index (commercial register)",
+    "angle": "Zefix is the official central index of the Swiss commercial register. The actor queries it keyless and returns the register's own record per company: status, canton, SHAB publication references, and the cantonal excerpt URL for verification."
+   },
+   "returns": [
+    {
+     "field": "ehraid / uid / chid",
+     "desc": "Register ID, UID, and CH identifier"
+    },
+    {
+     "field": "name / legalSeat / canton / registerOffice",
+     "desc": "Identity and register location"
+    },
+    {
+     "field": "legalForm / legalFormShort",
+     "desc": "Legal form classification"
+    },
+    {
+     "field": "status / registryStatus / deleteDate",
+     "desc": "Register status"
+    },
+    {
+     "field": "purpose / capital",
+     "desc": "Corporate purpose and capital"
+    },
+    {
+     "field": "lastShabDate / shabPublications",
+     "desc": "Official gazette (SHAB) publication trail"
+    },
+    {
+     "field": "cantonalExcerptUrl",
+     "desc": "Link to the official cantonal excerpt"
+    }
+   ],
+   "pricing": "$0.00125 per result found (volume tiers down to $0.0009), plus $0.05 per actor start.",
+   "faqs": [
+    {
+     "q": "What is Zefix in Switzerland?",
+     "a": "Zefix is the central business name index of the Swiss commercial register, covering every registered Swiss legal entity with its UID, canton, legal form, and status. This actor returns those records as structured JSON, one per company."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.00125 per result with volume tiers down to $0.0009, plus $0.05 per run start."
+    },
+    {
+     "q": "Are SHAB publications included?",
+     "a": "Yes. Each record carries lastShabDate and a shabPublications array, plus the cantonalExcerptUrl pointing to the official register excerpt."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/switzerland-zefix-api-fresh"
+  },
+  {
+   "slug": "czech-company-registry-api",
+   "keyword": "Czech company data API (Firmy.cz)",
+   "title": "Czech company data API: Firmy.cz business records as structured JSON",
+   "description": "A pay-per-result Czech business data API built on Firmy.cz: IČO, addresses, categories, contacts, opening hours, ratings, and geocoded positions as clean JSON.",
+   "actorName": "firmy-cz-fresh-details",
+   "actorTitle": "Firmy.cz Company Data Scraper",
+   "source": {
+    "name": "Firmy.cz (Seznam's Czech business directory)",
+    "angle": "Firmy.cz is the dominant Czech business directory, operated by Seznam, with curated categories, ratings, and enriched listings. The actor reads the directory directly and pairs directory records with Czech identifiers such as IČO and data box IDs where listed."
+   },
+   "returns": [
+    {
+     "field": "name / premiseId / ico",
+     "desc": "Name, premises ID, and Czech company number (IČO)"
+    },
+    {
+     "field": "address / city / zip",
+     "desc": "Listing address"
+    },
+    {
+     "field": "category / categories",
+     "desc": "Directory classification"
+    },
+    {
+     "field": "phone / email / web",
+     "desc": "Public contact points"
+    },
+    {
+     "field": "openingHours",
+     "desc": "Published opening hours"
+    },
+    {
+     "field": "rating / ratingCount",
+     "desc": "Directory rating"
+    },
+    {
+     "field": "latitude / longitude",
+     "desc": "Geocoded position"
+    },
+    {
+     "field": "dataBoxId",
+     "desc": "Czech data box identifier where listed"
+    },
+    {
+     "field": "description / imageUrl",
+     "desc": "Listing description and image"
+    }
+   ],
+   "pricing": "$0.0008 per result found (volume tiers lower), plus $0.00005 per actor start.",
+   "faqs": [
+    {
+     "q": "What is the best source of Czech business listings?",
+     "a": "For local business attributes (categories, ratings, opening hours, contacts) Firmy.cz is the largest Czech directory; for legal registry attributes the official sources are the Czech commercial register and data box registers. This actor covers the Firmy.cz side and returns IČO and dataBoxId where a listing publishes them."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.0008 per result, one of the lowest event prices in the family, with a $0.00005 run start."
+    },
+    {
+     "q": "Are listings geocoded?",
+     "a": "Yes. Every record carries latitude and longitude, plus city, zip, and the directory's category taxonomy."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/firmy-cz-fresh-details"
+  },
+  {
+   "slug": "lei-number-lookup-api",
+   "keyword": "LEI number lookup API",
+   "title": "LEI number lookup API: GLEIF records as structured JSON",
+   "description": "A pay-per-result API for Legal Entity Identifier (LEI) data from GLEIF: LEI, status, jurisdiction, ISIN mappings, renewal dates, and addresses as clean JSON.",
+   "actorName": "gleif-lei-lookup",
+   "actorTitle": "GLEIF LEI Lookup - Global Entity IDs",
+   "source": {
+    "name": "GLEIF (Global Legal Entity Identifier Foundation)",
+    "angle": "GLEIF operates the global LEI index and publishes it as open data. The actor queries the official GLEIF service keyless and returns the full LEI record: registration status, renewal dates, the managing Local Operating Unit, and ISIN cross-references."
+   },
+   "returns": [
+    {
+     "field": "lei",
+     "desc": "20-character Legal Entity Identifier"
+    },
+    {
+     "field": "name / legalForm / status",
+     "desc": "Entity identity and LEI status"
+    },
+    {
+     "field": "category / jurisdiction / country",
+     "desc": "Entity classification and geography"
+    },
+    {
+     "field": "legalAddress / headquartersAddress",
+     "desc": "Official and HQ addresses"
+    },
+    {
+     "field": "registrationStatus / initialRegistrationDate / lastUpdateDate / nextRenewalDate",
+     "desc": "Registration lifecycle"
+    },
+    {
+     "field": "managingLou",
+     "desc": "Managing Local Operating Unit"
+    },
+    {
+     "field": "isins",
+     "desc": "ISIN cross-references for the entity"
+    },
+    {
+     "field": "creationDate",
+     "desc": "Entity creation date"
+    }
+   ],
+   "pricing": "$0.00125 per result found (volume tiers down to $0.0009).",
+   "faqs": [
+    {
+     "q": "Where can I look up an LEI number?",
+     "a": "The official search is GLEIF's own LEI index, open and keyless. This actor wraps it for automation: batch lookups by LEI or name, structured JSON out, including nextRenewalDate so expiry monitoring can be scheduled."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.00125 per result, tiering down to $0.0009 at volume."
+    },
+    {
+     "q": "Can LEI records be matched to ISINs?",
+     "a": "Yes. Each record carries an isins array, so entity identifiers can be joined against security identifiers in one record."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/gleif-lei-lookup"
+  }
+ ]
+}

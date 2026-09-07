@@ -56,6 +56,12 @@ export async function buildSiteTree(): Promise<SiteSection[]> {
     }
   ).pages;
 
+  const actorPages: { slug: string; keyword: string }[] = (
+    (await import('../data/actor-pages.json')).default as {
+      pages: { slug: string; keyword: string }[];
+    }
+  ).pages;
+
   const companies: { slug: string; label: string }[] = (
     (await import('../data/companies.json')).default as {
       pages: { slug: string; label: string }[];
@@ -84,6 +90,7 @@ export async function buildSiteTree(): Promise<SiteSection[]> {
     { dir: 'blog', entries: posts.map((p) => ({ href: `/blog/${p.id}/`, label: p.data.title })) },
     { dir: 'authors', entries: authors.map((a) => ({ href: `/authors/${a.id}/`, label: a.data.name })) },
     { dir: 'companies', entries: companies.map((c) => ({ href: `/companies/${c.slug}/`, label: c.label })) },
+    { dir: 'api', entries: actorPages.map((p) => ({ href: `/api/${p.slug}/`, label: p.keyword })) },
     { dir: 'data', entries: pseo.map((p) => ({ href: `/data/${p.slug}/`, label: p.title })) },
     { dir: 'robotics-stocks', entries: nationEntries },
   ].filter((d) => d.entries.length > 0);
