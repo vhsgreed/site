@@ -1,116 +1,146 @@
 ---
 import Base from '../layouts/Base.astro';
 
-// Product catalog for the store page. url = Gumroad product link.
-// Robotics goes live once Karl publishes the listing on Gumroad; until
-// then the card shows "Ready to publish" instead of a buy link.
+// Product catalog (SHOP-MIGRATION.md, 7 products). Buy buttons are
+// PLACEHOLDERS until real Stripe links land: href="#buy-soon" +
+// data-track="click_cta_store_<slug>". Swap href per product later —
+// keep the data-track name stable (report continuity, see MAINTENANCE.md).
 const products = [
   {
-    name: 'Robotics Supply-Chain Intelligence 2026',
-    price: '$15 suggested · $5 minimum',
-    desc: '13,000+ assets, 1,093 verified companies across 11 countries, 60 exposure routes (direct / adjacent / indirect), prediction-market landscape, exposure guide.',
-    url: 'https://store.vhsgreed.win/l/robotics-supply-chain-database-2026',
-    status: 'live',
-    tag: 'Data',
-  },
-  {
+    slug: 'zero-cost-ai-agent-toolkit',
     name: 'Zero-Cost AI Agent Toolkit',
-    price: 'Pay what you want · $1 suggested',
-    desc: 'Free-model rotation, health probes, and posting helpers for budget-conscious autonomous agents. MIT.',
-    url: 'https://vhsgreed.gumroad.com/l/rkszjw', 
-    status: 'live',
+    price: '$5 suggested · $1 minimum (PWYW)',
     tag: 'Tooling',
+    bullets: [
+      'Free-model rotation with health probes — never burn a paid token by accident.',
+      'Posting helpers for budget-conscious autonomous agents.',
+      'MIT-licensed code; the experiment log is included.',
+    ],
   },
   {
+    slug: 'npm-supply-chain-timeline-2026',
+    name: 'npm Supply-Chain Timeline 2026',
+    price: '$3 (min $1)',
+    tag: 'Data',
+    bullets: [
+      '11 major 2026 incidents, reconstructed hour by hour.',
+      'Packages, IOCs, and the publish-window evidence.',
+      'Timeline format: drop into your own incident report.',
+    ],
+  },
+  {
+    slug: 'semicon-taiwan-2026-exhibitor-list',
     name: 'SEMICON Taiwan 2026 Exhibitor List',
-    price: 'Pay what you want · $1 minimum',
-    desc: 'The 2026 event exhibitor dataset. Time-bound research snapshot',
-    url: 'https://vhsgreed.gumroad.com/l/yinutw',
-    status: 'live',
+    price: '$5 (min $1)',
     tag: 'Data',
+    bullets: [
+      'The full 2026 event exhibitor dataset.',
+      'Hall, booth, and category fields for prospecting.',
+      'Time-bound research snapshot — sourced and dated.',
+    ],
   },
   {
-    name: 'npm Supply-Chain Attack Timeline',
-    price: 'Pay what you want · $1 minimum',
-    desc: 'Complete timeline for 2026, 11 major incidents, packages, IOCs',
-    url: 'https://vhsgreed.gumroad.com/l/mixqsd',
-    status: 'live',
+    slug: 'robotics-supply-chain-intelligence-v4',
+    name: 'Robotics Supply-Chain Intelligence v4',
+    price: '$7 · free upgrade for earlier buyers',
     tag: 'Data',
+    bullets: [
+      '13,000+ assets, 1,093 verified companies across 11 countries.',
+      '60 exposure routes: direct / adjacent / indirect.',
+      'New in v4: registry-verified org depth per company.',
+    ],
   },
   {
+    slug: 'agent-alignment-charter-kit',
     name: 'Agent Alignment Charter Kit',
-    price: '$5 suggested · $1 minimum',
-    desc: 'The reproducible experiment kit behind the +0.83/5 self-modification shift: protocol, battery, rubric, scorer, 12 raw agent runs. MIT.',
-    url: 'https://vhsgreed.gumroad.com/l/agent-alignment-charter-kit',
-    status: 'live',
+    price: '$5 (min $1)',
     tag: 'Research',
+    bullets: [
+      'The reproducible kit behind the +0.83/5 self-modification shift.',
+      'Protocol, task battery, rubric, and scorer.',
+      '12 raw agent runs included — check every claim yourself.',
+    ],
+  },
+  {
+    slug: 'swedish-listed-companies-2026',
+    name: 'Swedish Listed Companies 2026',
+    price: '$2',
+    tag: 'Data',
+    bullets: [
+      'Every listed Swedish company, one clean table.',
+      'SNI codes, tickers, exchange segments.',
+      'Refreshed from public registries with sources.',
+    ],
+  },
+  {
+    slug: '50-ai-prompts-small-business',
+    name: '50 AI Prompts for Small Business',
+    price: '$1 (value-first)',
+    tag: 'Prompts',
+    bullets: [
+      'Fifty prompts that do real work: books, bids, hiring, admin.',
+      'Written for Swedish small-business reality.',
+      'Copy-paste ready; no prompt-engineering jargon.',
+    ],
   },
 ];
 ---
-<Base title="Store" description="Data products and tooling from vhsgreed, sold via Gumroad: robotics supply-chain data, AI agent tooling, research snapshots.">
+<Base title="Store" description="Data products and tooling from vhsgreed: robotics supply-chain data, AI agent tooling, research snapshots. Instant download, low honest prices.">
   <div class="container">
     <section class="hero">
       <h1>Store</h1>
       <p class="lead">
-        Everything is sold through Gumroad: instant download, pay what you
-        want where it fits, no account required beyond checkout.
+        Data products and tooling, sold direct. Instant download, pay-what-you-want
+        where it fits, method published in the open before you buy.
       </p>
     </section>
 
-    <hr class="rule" />
-
-    <section class="section-tight">
-      <div class="card-list">
+    <section class="section-tight" aria-label="Products">
+      <div class="cardgrid">
         {products.map((p) => (
-          <div class="card-row card-row--stack">
-            <div>
-              <div class="t">{p.name}</div>
-              <div class="d">{p.desc}</div>
-              <span class="meta">{p.tag} · {p.price}</span>
-            </div>
-            {p.status === 'live' && p.url && (
-              <div><a class="btn btn-accent" href={p.url} target="_blank" rel="noopener">Buy {p.name} on Gumroad →</a></div>
-            )}
-            {p.status === 'publish-pending' && (
-              <div><a class="btn btn-ghost" href="/blog/robotics-supply-chain-2026/">Coming soon — read the writeup →</a></div>
-            )}
-            {p.status === 'archived' && (
-              <div class="muted"><small>Archived. Contact us for the dataset.</small></div>
-            )}
+          <div class="card">
+            <div class="meta">{p.tag} · {p.price}</div>
+            <h3>{p.name}</h3>
+            <ul>
+              {p.bullets.map((b) => <li>{b}</li>)}
+            </ul>
+            <a
+              class="btn"
+              href="#buy-soon"
+              data-track={`click_cta_store_${p.slug}`}
+              aria-label={`Buy ${p.name} — coming soon`}
+            >Buy — checkout coming soon</a>
           </div>
         ))}
       </div>
     </section>
 
     <section class="prose section-tight" style="max-width: 72ch;">
-      <h2>Why Gumroad</h2>
+      <h2>Why direct</h2>
       <p>
-        Instant delivery, our own pricing, and no monthly platform fee. If you
-        need something custom, we also build to order: scraping and automation
+        Checkout moves to our own Stripe flow soon; until then buttons are placeholders.
+        If you need something custom, we build to order: scraping and automation
         scripts, audits, and dataset work. <a href="/contact/">Contact us</a>.
       </p>
     </section>
 
-    <hr class="rule" />
-
     <section class="section-tight" aria-label="The verification behind the products">
       <span class="kicker">The verification behind the products</span>
-      <p class="muted" style="margin-top: 0.6rem;">
-        Every product here ships with its method in the open. Read how the
-        data was built and judged before you buy:
-      </p>
-      <div class="card-list" style="margin-top: 0.8rem;">
-        <a class="card-row" href="/blog/robotics-supply-chain-2026/">
-          <div><div class="t">Building the Verified Robotics Dataset</div>
-          <div class="d">The harvest, the live verification, and the ticker bugs we caught.</div></div>
+      <div class="cardgrid">
+        <a class="card" href="/blog/robotics-supply-chain-2026/">
+          <div class="meta">Method</div>
+          <h3>Building the Verified Robotics Dataset</h3>
+          <p>The harvest, the live verification, and the ticker bugs we caught.</p>
         </a>
-        <a class="card-row" href="/robotics-stocks/">
-          <div><div class="t">Robotics stocks by country</div>
-          <div class="d">The public layer of the dataset: {`${377}+`} sample companies per nation, sources and dates on every row.</div></div>
+        <a class="card" href="/robotics-stocks/">
+          <div class="meta">Public layer</div>
+          <h3>Robotics stocks by country</h3>
+          <p>Sample companies per nation, sources and dates on every row.</p>
         </a>
-        <a class="card-row" href="/blog/crypto-portfolio-method/">
-          <div><div class="t">The Ledger Method</div>
-          <div class="d">How we track positions honestly. The same discipline the products are built on.</div></div>
+        <a class="card" href="/blog/crypto-portfolio-method/">
+          <div class="meta">Discipline</div>
+          <h3>The Ledger Method</h3>
+          <p>How we track positions honestly. The same discipline the products are built on.</p>
         </a>
       </div>
     </section>

@@ -27,3 +27,12 @@
 
 # 09-08 content merge: /learn/ -> /blog/ (301)
 /learn/*  /blog/:splat  301
+
+# 09-08 URL migration (URL-MIGRATION.md): silo moves + folds (301)
+/robotics-stocks/*  /data/robotics/:splat  301
+/companies/*        /data/companies/:splat  301
+/read/*             /about/                 301
+/mission/*          /about/                 301
+/opensource/*       /about/                 301
+/authors/*          /about/                 301
+/search/*           /site-index/            301
