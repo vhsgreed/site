@@ -1,0 +1,66 @@
+---
+// Admin telemetry reference page. NOT linked from nav/footer.
+// PROTECTED? Not yet — before linking publicly this page must sit behind Cloudflare Access
+// (Zero Trust → Access → Application: path /admin/*). Until then it contains no data, only runbooks.
+const workerUrl = 'https://telemetry.lillerik-sund.workers.dev';
+const dq = (s: string) => s.replace(/"/g, '&quot;');
+const queries = [
+  {
+    title: 'Top paths, 7 days',
+    sql: `SELECT path, COUNT(*) AS views FROM events WHERE ts > (unixepoch('now','-7 days')*1000) AND type='view' GROUP BY path ORDER BY views DESC LIMIT 20;`,
+  },
+  {
+    title: 'Top click names, 7 days',
+    sql: `SELECT name, COUNT(*) AS clicks FROM events WHERE ts > (unixepoch('now','-7 days')*1000) AND type='click' AND name IS NOT NULL GROUP BY name ORDER BY clicks DESC LIMIT 20;`,
+  },
+  {
+    title: 'Daily views, 14 days',
+    sql: `SELECT date(ts/1000,'unixepoch') AS day, COUNT(*) AS views FROM events WHERE ts > (unixepoch('now','-14 days')*1000) AND type='view' GROUP BY day ORDER BY day;`,
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Telemetry admin · vhsgreed</title>
+  </head>
+  <body>
+    <h1>Telemetry runbook</h1>
+    <p>
+      Ingest worker: <code>{workerUrl}</code> (<a href={`${workerUrl}/health`}>/health</a>).
+      Storage: D1 database <code>telemetry</code>, table <code>events</code>. No cookies —
+      <code>sid</code> is a daily-rotating server-side hash of IP+UA.
+    </p>
+    <p>
+      JSON aggregates (needs the admin key header):
+      <code>curl -H "X-Admin-Key: $(cat ~/.secrets/telemetry-admin-key)" {`${workerUrl}/stats?days=7`}</code>
+    </p>
+    <h2>Query recipes — run from any machine with wrangler auth</h2>
+    {queries.map((q) => (
+      <section>
+        <h3>{q.title}</h3>
+        <pre><code>npx wrangler d1 execute telemetry --remote --command "{dq(q.sql)}"</code></pre>
+      </section>
+    ))}
+    <h2>Table schema</h2>
+    <pre><code>{`CREATE TABLE IF NOT EXISTS events (
+  ts INTEGER NOT NULL,       -- epoch millis
+  type TEXT NOT NULL,        -- view | click | scroll | outbound
+  path TEXT NOT NULL,
+  name TEXT,                 -- click/outbound label, scroll % as string
+  referrer TEXT,
+  sid TEXT NOT NULL,         -- daily-rotating hash(IP+UA+day+salt)
+  country TEXT,              -- CF-IPCountry header
+  browser TEXT               -- reduced UA family
+);`}</code></pre>
+    <p>Rotation: <code>sid</code> changes automatically at UTC midnight; rotate the Worker secret <code>SALT</code> to invalidate older correlation. Delete history: <code>npx wrangler d1 execute telemetry --remote --command "DELETE FROM events;"</code></p>
+  </body>
+</html>
+
+<style is:global>
+  body { font-family: monospace; max-width: 56rem; margin: 2rem auto; padding: 0 1.5rem; }
+  pre { background: #f4f4f4; padding: 0.75rem; overflow-x: auto; }
+  code { font-size: 0.85rem; }
+</style>

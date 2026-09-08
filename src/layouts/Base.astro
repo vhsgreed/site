@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 
 // Tracking: Cloudflare Web Analytics (cookieless, privacy-preserving).
 // No consent banner needed; zero personal data. Replace TOKEN with the
@@ -79,29 +80,9 @@ const ogImage = Astro.url.origin + '/img/og-card.jpg';
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
-    <!-- Google tag (gtag.js), GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E2E4K53319"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-E2E4K53319');
-
-      // Declarative conversion tracking: any element with [data-track] fires a GA4 event on click.
-      document.addEventListener('click', function (e) {
-        var el = e.target.closest('[data-track]');
-        if (el && window.gtag) {
-          var label = el.getAttribute('data-track');
-          var href = el.getAttribute('href') || '';
-          gtag('event', label, {
-            event_category: 'outbound',
-            event_label: label,
-            link_url: href,
-            transport_type: 'beacon'
-          });
-        }
-      });
-    </script>
+    <!-- GA4 loads ONLY after cookie consent (see CookieConsent.astro, Consent Mode v2, default denied). -->
+    <!-- First-party telemetry (cookieless beacons) -->
+    <script src="../scripts/telemetry.js"></script>
     {CF_ANALYTICS_TOKEN !== 'YOUR_CF_WEB_ANALYTICS_TOKEN' && (
       <script
         defer
@@ -117,5 +98,6 @@ const ogImage = Astro.url.origin + '/img/og-card.jpg';
       <slot />
     </main>
     <Footer />
+    <CookieConsent />
   </body>
 </html>
