@@ -111,7 +111,10 @@ export async function buildSiteTree(): Promise<SiteSection[]> {
     section('Pages', '/', topPages.sort((a, b) => a.href.localeCompare(b.href))),
   ];
 
+  // Sections excluded entirely: authors (folded into /about/), admin (noindex runbook).
+  const EXCLUDED_DIRS = new Set(['authors', 'admin']);
   for (const dir of [...dirs].sort()) {
+    if (EXCLUDED_DIRS.has(dir)) continue;
     const dyn = allDynamic.find((d) => d.dir === dir)?.entries ?? [];
     const own = staticPages
       .filter((e) => e.href === `/${dir}/` || e.href.startsWith(`/${dir}/`))
