@@ -99,7 +99,7 @@ export async function buildSiteTree(): Promise<SiteSection[]> {
 
   // Exclusions: legacy pages slated for fold/301 (URL-MIGRATION.md), the
   // actor page template, and the noindex admin runbook.
-  const EXCLUDED_TOP = new Set(['/actor/', '/mission/', '/read/', '/search/']);
+  const EXCLUDED_TOP = new Set(['/actor/', '/mission/', '/read/', '/search/', '/authors/']);
   const topPages = staticPages.filter((e) => {
     const parts = e.href.replace(/^\//, '').replace(/\/$/, '');
     if (EXCLUDED_TOP.has(e.href)) return false;
