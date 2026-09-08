@@ -61,8 +61,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 /* ---------- layout ---------- */
 .container, .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1rem; }
 @media (min-width: 1024px) { .container, .wrap { padding: 0 2rem; } }
-main { padding: 1.5rem 0 3rem; min-height: 62vh; }
-@media (min-width: 1024px) { main { padding: 2.5rem 0 4rem; } }
+main { padding: 0.75rem 0 3rem; min-height: 62vh; }
+main > :first-child { margin-top: 0; }
+body.has-cookie-banner { padding-bottom: 6.5rem; }
+@media (min-width: 1024px) { main { padding: 1.25rem 0 4rem; } }
 
 /* ---------- top band + menu ---------- */
 .topband { background: var(--brand); color: #fff; position: relative; z-index: 41; }

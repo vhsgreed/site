@@ -37,7 +37,7 @@
       gtag('consent', 'update', { analytics_storage: choice });
       if (choice === 'granted') loadGa();
       var b = document.getElementById('cookie-banner');
-      if (b) b.hidden = true;
+      if (b) { b.hidden = true; document.body.classList.remove('has-cookie-banner'); }
     }
 
     var saved = null;
