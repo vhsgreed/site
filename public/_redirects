@@ -24,3 +24,6 @@
 /blog/insights/web-scraping-reality-check/ /blog/web-scraping-reality-check/ 301
 /blog/articles/ /blog/ 301
 /blog/insights/ /blog/ 301
+
+# 09-08 content merge: /learn/ -> /blog/ (301)
+/learn/*  /blog/:splat  301
