@@ -1,11 +1,12 @@
 ---
 title: "150 E-Commerce Probes: Blocked List Public"
 date: 2026-08-29
-kind: "build-log"
+kind: build-log
 description: "103 of 150 sites scraped clean, 37 blocked, 10 unreachable, and the full blocked list published. What to verify before hiring a scraper."
 mediumUrl: "https://vhsgreed.medium.com/"
-author: "vhsgreed"
-tags: ["scraping", "scrapeforge", "honesty", "data"]
+author: karl-sund
+tags: [scraping, meta]
+lang: en
 ---
 Every scraping gig says "I can scrape anything." That is a lie, and we can prove it with data.
 

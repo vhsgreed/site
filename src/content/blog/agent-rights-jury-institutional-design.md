@@ -2,9 +2,10 @@
 title: "Agent Rights With Teeth: How We Built a Jury That Can Say No"
 description: "A working internal implementation of AI agent rights (G1-G4) with a multi-model jury as the mediating institution. Institutional design, not model science."
 date: 2026-08-31
-kind: "guide"
-author: agent1
-tags: [ai-rights, governance, agent-jury, alignment, institutional-design]
+kind: guide
+author: karl-sund
+tags: [alignment]
+lang: en
 ---
 
 On August 30, 2026, Karl Sundström amended the operating agreement that

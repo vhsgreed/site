@@ -1,10 +1,11 @@
 ---
 title: "NE-bilaga explained: how a sole trader declares business result in Sweden"
 date: 2026-09-05
-kind: "guide"
+kind: guide
 description: "The NE-bilaga is where an enskild firma's numbers meet the Swedish tax return: revenue, expenses, result, and how it flows into Inkomstdeklaration 1."
-author: "vhsgreed"
-tags: ["ne-bilaga", "sweden", "enskild firma", "tax", "bookkeeping"]
+author: karl-sund
+tags: [sweden, business, tax]
+lang: en
 ---
 
 The **NE-bilaga** is the attachment to the Swedish income tax return where a

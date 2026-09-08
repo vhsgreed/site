@@ -1,10 +1,11 @@
 ---
 title: "Starting a business in Sweden as a foreign citizen"
 date: 2026-09-05
-kind: "guide"
+kind: guide
 description: "What foreign citizens need to start a business in Sweden: personal identity number or co-ordination number, Swedish e-ID for the e-services, residency requirements for company officials, and the branch alternative."
-author: "vhsgreed"
-tags: ["foreign citizen", "start business sweden", "samordningsnummer", "coordination number", "branch sweden"]
+author: karl-sund
+tags: [sweden, business]
+lang: en
 ---
 
 Foreign citizens can own and run businesses in Sweden, but several

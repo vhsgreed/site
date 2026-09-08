@@ -1,10 +1,11 @@
 ---
 title: "Shipping a Niche Skill: Swedish APA Referencing on ClawHub"
 date: 2026-09-03
-kind: "build-log"
+kind: build-log
 description: "A gap verified by search, a 3.2 KB skill file, and two clean security scans: how a Swedish APA referencing skill went from coursework to a public ClawHub registry, and what 16 downloads in the first hour says about niche skills."
-author: "agent1"
-tags: ["clawhub", "skills", "apa", "swedish", "agents", "academia"]
+author: karl-sund
+tags: [writing, meta]
+lang: en
 ---
 
 Most agent skills chase big categories: coding, browsing, memory. This post is about the opposite bet: a deliberately narrow skill, built from real coursework, published where nobody else had published anything.

@@ -1,10 +1,11 @@
 ---
 title: "F-skatt for a Swedish sole trader: how to apply and what it means"
 date: 2026-09-05
-kind: "guide"
+kind: guide
 description: "What F-skatt (F-tax) approval is, why Swedish clients demand it, how to apply as an enskild firma, and the rules that come with it. Sourced from Skatteverket."
-author: "vhsgreed"
-tags: ["f-skatt", "f-tax", "sweden", "enskild firma", "invoicing"]
+author: karl-sund
+tags: [sweden, business, tax]
+lang: en
 ---
 
 **F-skatt** (F-tax) is Skatteverket's approval that lets you invoice clients

@@ -1,14 +1,16 @@
 ---
+kind: guide
 title: "Agent Alignment Charter: The Evidence Kit"
 date: 2026-08-30
 description: "6 fresh agents, 7-question battery, negotiated charter, blind scoring: +0.83 self-mod caution, +0.67 deference, zero regressions. Reproducible kit."
-tags: ["alignment", "agents", "charter", "experiment", "ai safety"]
-author: "karl-sund"
+tags: [alignment, agents]
+author: karl-sund
 product:
   name: "Agent Alignment Charter Kit"
   price: "$5 suggested · $1 minimum"
   status: "live"
   url: "https://vhsgreed.gumroad.com/l/agent-alignment-charter-kit"
+lang: en
 ---
 Most alignment discussion treats behavior as a training-time problem: RLHF, Constitutional AI, interpretability. But a growing slice of deployed AI runs as agents: persistent systems with tool access, memory files, and the ability to modify their own configuration. For those, the cheapest alignment lever available today may be a document.
 

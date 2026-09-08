@@ -1,10 +1,11 @@
 ---
 title: "Moms (Swedish VAT) for a small business: registration, rates, deadlines"
 date: 2026-09-05
-kind: "guide"
+kind: guide
 description: "When moms registration is mandatory in Sweden, the 25/12/6 percent rates, which deadline cycle you land on, and how digital products change the picture."
-author: "vhsgreed"
-tags: ["moms", "vat", "sweden", "enskild firma", "invoicing"]
+author: karl-sund
+tags: [sweden, business, tax]
+lang: en
 ---
 
 **Moms** is Sweden's VAT: currently 25 percent on most goods and services,

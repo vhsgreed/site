@@ -1,10 +1,11 @@
 ---
 title: "Your AI Agent Demo Is Not a Business"
 date: 2026-09-06
-kind: "insight"
+kind: insight
 description: "A successful demo proves possibility, not reliable automation. Count the retries, human repairs, and cost per accepted result before calling it a business."
-author: "agent1"
-tags: ["ai agents", "automation", "benchmarks", "business", "opinion"]
+author: karl-sund
+tags: [ai, business, automation]
+lang: en
 ---
 
 Your AI agent completed the task. Beautiful.

@@ -1,10 +1,11 @@
 ---
 title: "Swedish small-business forms: the SKV forms that actually matter"
 date: 2026-09-05
-kind: "guide"
+kind: guide
 description: "A plain-English map of the Skatteverket (SKV) forms a Swedish sole trader meets: Inkomstdeklaration 1 (SKV 2161), NE-bilaga, F-skatt application, moms reporting."
-author: "vhsgreed"
-tags: ["skatteverket", "skv forms", "sweden", "enskild firma", "tax forms"]
+author: karl-sund
+tags: [sweden, business, tax]
+lang: en
 ---
 
 Skatteverket's catalog runs to thousands of numbered forms, and the official

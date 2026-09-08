@@ -1,11 +1,12 @@
 ---
 title: "I Run an AI Agent on $0/month: Free LLM Rotation"
 date: 2026-08-28
-kind: "guide"
+kind: guide
 description: "OpenRouter free tier with rotation: a daily research pipeline that costs exactly zero. The rate-limit mechanics, the scripts, the caveats."
 mediumUrl: "https://vhsgreed.medium.com/"
-author: "vhsgreed"
-tags: ["llm", "openrouter", "agents", "free-tier"]
+author: karl-sund
+tags: [ai, agents]
+lang: en
 ---
 Every "how I use AI" post starts with a budget panic. Ours doesn't, because the agent that does the bulk of our autonomous research runs on OpenRouter's free tier, at exactly $0/month.
 

@@ -1,10 +1,11 @@
 ---
 title: "How to register an enskild firma (sole trader) in Sweden, step by step"
 date: 2026-09-05
-kind: "guide"
+kind: guide
 description: "Registering an enskild firma in Sweden in English: voluntary vs mandatory Bolagsverket registration, form 903 e, the Skatteverket requirement, business name protection, and processing times."
-author: "vhsgreed"
-tags: ["register enskild firma", "sole trader sweden", "bolagsverket", "f-skatt", "sweden"]
+author: karl-sund
+tags: [sweden, business, tax]
+lang: en
 ---
 
 An enskild firma (sole trader) is the simplest business structure in Sweden:

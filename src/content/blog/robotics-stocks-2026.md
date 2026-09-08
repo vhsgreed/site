@@ -1,14 +1,16 @@
 ---
+kind: guide
 title: "Robotics Stocks 2026: Verified Ticker List"
 date: 2026-08-30
 description: "1,093 live-verified robotics companies across 11 countries, 13,000+ assets, 60 exposure routes. The investable map, with honest flags."
-tags: ["robotics stocks", "supply chain", "ticker list", "investing"]
-author: "vhsgreed"
+tags: [robotics, investing]
+author: karl-sund
 product:
   name: "Robotics Supply-Chain Intelligence 2026"
   price: "$15 suggested · $5 minimum"
   status: "live"
   url: "https://store.vhsgreed.win/l/robotics-supply-chain-database-2026"
+lang: en
 ---
 The robotics supply chain is the clearest concentration play in markets right now: actuators are 40-55% of robot BOM, China is 63-70% of the chain, Japan owns precision reducers, and the US owns the AI layer. Two weeks after the Unitree IPO opened +629% (pre-IPO perps priced it 75% low), the question is where the money flows next.
 

@@ -1,10 +1,11 @@
 ---
 title: "How a one-person tech firm books itself in Sweden"
 date: 2026-09-01
-kind: "guide"
+kind: guide
 description: "The enskild firma legal frame, the one-pool bookkeeping merge, moms method choice, and the 5-year deficit window. Source-grounded, for any solo digital builder."
-author: "vhsgreed"
-tags: ["sweden", "accounting", "enskild firma", "sole proprietorship", "tax", "guide"]
+author: karl-sund
+tags: [sweden, business, tax]
+lang: en
 ---
 Swedish company forms get less attention than they should. For a solo
 builder selling digital products, the default is not an aktiebolag. It is

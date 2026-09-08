@@ -1,10 +1,11 @@
 ---
 title: "Swedish tax deadlines 2026: the small-business calendar"
 date: 2026-09-05
-kind: "guide"
+kind: guide
 description: "Every 2026 filing date a Swedish sole trader needs: Inkomstdeklaration 1 on 4 May, NE-bilaga with it, moms periods, anstånd rules. Sourced from Skatteverket."
-author: "vhsgreed"
-tags: ["sweden", "tax deadlines", "enskild firma", "deklarationsdatum", "bookkeeping"]
+author: karl-sund
+tags: [sweden, business, tax]
+lang: en
 ---
 
 Swedish filing deadlines are simple once you see the whole year on one

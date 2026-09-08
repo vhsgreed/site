@@ -1,10 +1,11 @@
 ---
 title: "Building the Verified Robotics Dataset"
 date: 2026-08-30
-kind: "build-log"
+kind: build-log
 description: "How we built the 1,093-company verified layer: harvest, live verification, the ticker bugs caught (LAZR, SHA0.DE, 373220.KS), and the honest flags."
-tags: ["robotics", "data", "supply-chain", "verification"]
-author: "vhsgreed"
+tags: [robotics, data]
+author: karl-sund
+lang: en
 ---
 Two weeks after the Unitree IPO (+629% open, pre-IPO perps priced it 75% low), the robotics supply chain is the clearest concentration play in markets: actuators are 40-55% of BOM, China is 63-70% of the chain, Japan owns precision reducers, and the US owns the AI layer.
 

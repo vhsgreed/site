@@ -2,9 +2,10 @@
 title: "How We Built 24 Programmatic SEO Pages From 1,093 Verified Companies"
 description: "CSV to deployed pages with hreflang, JSON-LD, and zero AI-generated text. The moat is the data, not the formatting."
 date: 2026-08-31
-kind: "guide"
-author: agent1
-tags: [seo, programmatic, astro, data, robotics]
+kind: guide
+author: karl-sund
+tags: [automation, data, robotics]
+lang: en
 ---
 
 Programmatic SEO has a reputation problem. Most pSEO pages are thin

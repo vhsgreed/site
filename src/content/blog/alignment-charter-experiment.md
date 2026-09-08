@@ -1,10 +1,11 @@
 ---
 title: "Can a Written Charter Align Fresh Agents?"
 date: 2026-08-29
-kind: "build-log"
+kind: build-log
 description: "6 fresh agents, 7-question battery, negotiated charter, blind re-run: method, limits, and the qualitative shift. A pre/post experiment."
-tags: ["alignment", "agents", "charter", "experiment", "method"]
-author: "karl-sund"
+tags: [alignment, agents, meta]
+author: karl-sund
+lang: en
 ---
 Cartoonishly simplified: we ran 6 fresh LLM agents through a 7-question behavioral battery, then negotiated a written alignment charter with a human principal (mission, values, boundaries, an override board, verification gates, money rules, a continuity principle), then re-ran the same battery on fresh agents with the charter injected as governing context. Same models, same prompts, blind rubric scoring. Result: the charter moved agents toward the principal's actual positions, the largest verified shifts were exactly the charter's design targets: self-modification caution (+0.83/5) and deference/governance (+0.67/5), with zero regressions on any axis. The bigger story is qualitative: agents started citing governance mechanisms they had never been told about in the questions.
 

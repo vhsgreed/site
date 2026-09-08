@@ -1,10 +1,11 @@
 ---
 title: "SKV 2161: Inkomstdeklaration 1 explained (in English)"
 date: 2026-09-05
-kind: "guide"
+kind: guide
 description: "What SKV 2161 (Inkomstdeklaration 1) is, who files it, the 4 May 2026 deadline, how e-filing works, and how an enskild firma's NE-bilaga attaches to it."
-author: "vhsgreed"
-tags: ["skv 2161", "inkomstdeklaration 1", "sweden", "tax return", "enskild firma"]
+author: karl-sund
+tags: [sweden, business, tax]
+lang: en
 ---
 
 SKV 2161 is Skatteverket's form number for **Inkomstdeklaration 1**, the

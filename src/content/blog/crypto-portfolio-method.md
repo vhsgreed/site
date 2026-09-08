@@ -1,10 +1,11 @@
 ---
 title: "The Ledger Method: Stop Checking Prices and Start Keeping Books"
 date: 2026-09-01
-kind: "guide"
+kind: guide
 description: "Stop checking prices and start keeping books. A ledger-based method for holding crypto without the drama: sources and dates for every figure, net worth and buffer kept apart, and an honest look at how it compares to high-risk trading."
-author: "karl-sund"
-tags: ["crypto", "ledger", "staking", "portfolio", "method"]
+author: karl-sund
+tags: [investing, meta]
+lang: en
 ---
 
 Every crypto post you see is one of two things: a prediction, or an ad.

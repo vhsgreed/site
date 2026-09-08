@@ -1,10 +1,11 @@
 ---
 title: "China Builds 70% of Robotics. You Can Buy 0% of It."
 date: 2026-09-07
-kind: "story"
+kind: story
 description: "Our verified map holds 1,093 tradeable companies across 11 markets and zero mainland Chinese listings, while the purity tiers hold 26. The gap between access and purity, explained with numbers."
-tags: ["robotics", "stocks", "investing", "data"]
-author: "vhsgreed"
+tags: [robotics, investing, data]
+author: karl-sund
+lang: en
 ---
 A week ago we published a [verified map of the robotics supply chain](/blog/robotics-supply-chain-narrative/): 1,093 companies across 11 national markets, every row checked against a live quote on 2026-08-30. This is the country cut, and it answers a question that story skipped:
 

@@ -1,10 +1,11 @@
 ---
 title: "How to register an aktiebolag (limited company) in Sweden, step by step"
 date: 2026-09-05
-kind: "guide"
+kind: guide
 description: "Forming an aktiebolag in Sweden in English: the seven-step Bolagsverket process, SEK 25,000 minimum share capital, the bank certificate, form 816 e, fees, and beneficial ownership registration."
-author: "vhsgreed"
-tags: ["register aktiebolag", "limited company sweden", "bolagsverket", "816 e", "share capital"]
+author: karl-sund
+tags: [sweden, business, tax]
+lang: en
 ---
 
 An aktiebolag (limited company) is created by registration, not by starting

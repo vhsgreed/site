@@ -1,10 +1,11 @@
 ---
 title: "How to start a business in Sweden: the English guide"
 date: 2026-09-05
-kind: "guide"
+kind: guide
 description: "An English-language overview of starting a business in Sweden: choosing between enskild firma and aktiebolag, registration steps, costs, and the authorities involved."
-author: "vhsgreed"
-tags: ["start a business in sweden", "enskild firma", "aktiebolag", "sweden", "business registration"]
+author: karl-sund
+tags: [sweden, business]
+lang: en
 ---
 
 Sweden does not require a general "business licence" to become self-employed.

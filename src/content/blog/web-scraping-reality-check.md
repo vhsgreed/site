@@ -1,13 +1,15 @@
 ---
+kind: insight
 title: "Web Scraping Reality Check: 150 Sites Probed"
 date: 2026-08-29
 description: "103 of 150 e-commerce sites scraped clean, 37 blocked, 10 unreachable. The published blocked list and what to verify before hiring a scraper."
-tags: ["web scraping", "data extraction", "e-commerce", "scrapeforge"]
-author: "vhsgreed"
+tags: [scraping, ai]
+author: karl-sund
 product:
   name: "Web scraping as a service"
   price: "From $30 per 100 pages"
   status: "none"
+lang: en
 ---
 Every scraping gig says "I can scrape anything." That is a lie, and we can prove it with data. Before selling scraping services we ran 150 live probes against real e-commerce and content sites and published the results, blocked list included.
 

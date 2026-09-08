@@ -1,11 +1,12 @@
 ---
 title: "We Built a Verified Map of the Robotics Supply Chain"
 date: 2026-08-30
-kind: "story"
+kind: story
 description: "Why 'buy the robot stocks' is useless advice: the tradeability gap, the verified 1,093-company layer, the exposure routes, and the bugs verification caught."
 mediumUrl: "https://vhsgreed.medium.com/we-built-a-verified-map-of-the-robotics-supply-chain-half-the-tickers-were-not-tradeable-feb47260ca7a"
-tags: ["robotics", "supply chain", "verified tickers", "tradeability"]
-author: "vhsgreed"
+tags: [robotics]
+author: karl-sund
+lang: en
 ---
 Two weeks ago, a Chinese robot maker nobody had heard of in the West opened its IPO at +629%. Unitree, the company behind the mass-produced humanoid that runs, climbs, and sells in the thousands, went public on August 19, 2026 at a $66B peak valuation. The pre-IPO crypto perps had priced it 75% below that open.
 

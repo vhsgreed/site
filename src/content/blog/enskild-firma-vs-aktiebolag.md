@@ -1,10 +1,11 @@
 ---
 title: "Enskild firma vs aktiebolag: choosing a Swedish business structure"
 date: 2026-09-05
-kind: "guide"
+kind: guide
 description: "A factual English comparison of enskild firma (sole trader) and aktiebolag (limited company) in Sweden: liability, capital, costs, administration, and when each structure fits."
-author: "vhsgreed"
-tags: ["enskild firma", "aktiebolag", "sole trader", "limited company", "sweden", "business structure"]
+author: karl-sund
+tags: [sweden, business]
+lang: en
 ---
 
 The first decision when starting a business in Sweden is the structure. Two
