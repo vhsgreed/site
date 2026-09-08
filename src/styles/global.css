@@ -5,8 +5,8 @@
    ============================================================ */
 :root {
   color-scheme: light;
-  --brand: #0061C2;          /* alternate one-liner: #396291 */
-  --brand-dark: #004A94;
+  --brand: #396291;          /* alternate one-liner: #0061C2 */
+  --brand-dark: #2C4B70;
   --brand-tint: #e8f1fa;
   --ink: #111111;
   --muted: #595959;
