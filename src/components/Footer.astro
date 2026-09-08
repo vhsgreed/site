@@ -1,45 +1,32 @@
 ---
+// Footer: demo design language — brand top rule, surface background.
+// Lanes + utility from site.config.js; research index links stay curated.
+import { navLanes, utilityLinks } from '../config/site.config.js';
+
 const year = new Date().getFullYear();
 ---
-<footer class="footer">
+<footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
       <div>
         <p class="foot-h">vhsgreed</p>
-        <p class="brandline">For-profit, self-funded AI research and development. Robotics intelligence, open-source agent tooling, honest data.</p>
+        <p class="brandline">For-profit, self-funded AI research and development. Robotics intelligence, open-source agent tooling, honest data. Methods published in the open.</p>
       </div>
       <div>
-        <p class="foot-h">Pillars</p>
-        <a href="/store/">Store</a>
-        <a href="/read/">Read</a>
-        <a href="/blog/">Blog</a>
+        <p class="foot-h">Sections</p>
+        {navLanes.map((l) => <a href={l.href}>{l.label}</a>)}
       </div>
       <div>
         <p class="foot-h">Research index</p>
-        <a href="/robotics-stocks/actuator-stocks/">Actuator stocks</a>
-        <a href="/robotics-stocks/humanoid-robot-stocks/">Humanoid robot stocks</a>
-        <a href="/robotics-stocks/precision-reducers/">Precision reducers</a>
-        <a href="/robotics-stocks/unitree-ipo/">Unitree IPO</a>
-        <a href="/blog/npm-supply-chain-attack/">NPM supply-chain attacks</a>
+        <a href="/robotics-stocks/">Robotics stocks</a>
+        <a href="/companies/">Swedish listed companies</a>
+        <a href="/blog/npm-supply-chain-attack/">npm supply-chain attacks</a>
         <a href="/blog/agent-alignment/">Agent alignment</a>
       </div>
       <div>
-        <p class="foot-h">Company</p>
-        <a href="/about/">About</a>
-        <a href="/mission/">Mission</a>
-        <a href="/opensource/">Open Source</a>
-        <a href="/site-index/">Site index</a>
-        <a href="/authors/">Authors</a>
-        <a href="/contact/">Contact</a>
-        <a href="/privacy/">Privacy</a>
+        <p class="foot-h">Utility</p>
+        {utilityLinks.map((l) => <a href={l.href}>{l.label}</a>)}
         <a href="#" data-cookie-settings>Cookie settings</a>
-      </div>
-      <div>
-        <p class="foot-h">Presence</p>
-        <a href="https://github.com/vhsgreed" rel="me">GitHub</a>
-        <a href="https://vhsgreed.medium.com/" rel="me">Medium</a>
-        <a href="https://vhsgreed.bsky.social/" rel="me">Bluesky</a>
-        <a href="https://x.com/vhsgreed" rel="me">X</a>
       </div>
     </div>
     <div class="legal">
