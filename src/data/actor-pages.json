@@ -1,6 +1,6 @@
 {
- "generated": "2026-09-07",
- "generator": "repos/scripts/actor-pages-gen.py",
+ "generated": "2026-09-08",
+ "generator": "repos/scripts/revenue/actor-pages-gen.py",
  "pages": [
   {
    "slug": "swedish-company-registry-api",
@@ -621,6 +621,370 @@
     }
    ],
    "storeUrl": "https://apify.com/vhsgreed/firmy-cz-fresh-details"
+  },
+  {
+   "slug": "beneficial-owner-lookup-api",
+   "keyword": "beneficial owner lookup API",
+   "title": "Beneficial owner lookup API: UK PSC ownership chains as structured JSON",
+   "description": "A pay-per-result beneficial ownership API for the UK: walk Companies House PSC records up the corporate chain and get owner names, nature of control, direct vs indirect holdings, and chain level as clean JSON.",
+   "actorName": "ubo-ownership-tree",
+   "actorTitle": "UBO Ownership Tree — UK PSC Beneficial Ownership Chains",
+   "source": {
+    "name": "UK Companies House persons-with-significant-control (PSC) register",
+    "angle": "The actor reads the official PSC register per company number and follows corporate owners up the ownership chain, level by level. No Companies House API key of your own is required for runs on Apify, and every record carries the source URL for verification."
+   },
+   "returns": [
+    {
+     "field": "companyNumber / companyName",
+     "desc": "Subject company number and name"
+    },
+    {
+     "field": "ownerName / ownerKind",
+     "desc": "Owner name and kind (individual or corporate)"
+    },
+    {
+     "field": "ownerRegistrationNumber",
+     "desc": "Owner's company number when corporate"
+    },
+    {
+     "field": "ownershipType",
+     "desc": "Direct vs indirect holding"
+    },
+    {
+     "field": "level",
+     "desc": "Chain level (1 = direct owner)"
+    },
+    {
+     "field": "natureOfControl",
+     "desc": "Nature of control statements"
+    },
+    {
+     "field": "pscStatus / notifiedOn / ceasedOn",
+     "desc": "PSC status (active/ceased) and notification dates"
+    },
+    {
+     "field": "nationality / countryOfResidence / legalForm / governingLaw",
+     "desc": "Owner attributes where the register publishes them"
+    },
+    {
+     "field": "sourceUrl",
+     "desc": "Per-record source URL for verification"
+    }
+   ],
+   "pricing": "$0.00125 per result found (volume tiers down to $0.0009), plus $0.05 per actor start.",
+   "faqs": [
+    {
+     "q": "How do I find the beneficial owners of a UK company?",
+     "a": "The official source is the persons-with-significant-control (PSC) register at Companies House. This actor reads it per company number and, when an owner is itself a company, walks that owner's PSC record up the chain — returning flat records with ownershipType and level so direct vs indirect control is explicit."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.00125 per result (tiering down to $0.0009 at volume) plus $0.05 per run start. No subscription."
+    },
+    {
+     "q": "Is this suitable for KYB and compliance workflows?",
+     "a": "That is the main use: flat one-record-per-owner output with owner kind, nature of control, chain level, and a source URL per record, so ownership trees can be reconstructed and audited from the dataset alone."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/ubo-ownership-tree"
+  },
+  {
+   "slug": "vin-decoder-api",
+   "keyword": "VIN decoder API",
+   "title": "VIN decoder API: NHTSA vehicle data plus open recall check as JSON",
+   "description": "A pay-per-result VIN decoder built on the official NHTSA vPIC database: make, model, year, fuel type, assembly plant, WMI, and active open recalls as one clean JSON record per VIN.",
+   "actorName": "vin-decoder",
+   "actorTitle": "VIN Decoder & Recall Check — Official NHTSA Vehicle Data",
+   "source": {
+    "name": "NHTSA vPIC (Vehicle Product Information Catalog) and recall data",
+    "angle": "The actor decodes each VIN against NHTSA's official vPIC database and joins the open-recall data for the same vehicle. Both sources are keyless US government services, so results are fresh per run with no account required."
+   },
+   "returns": [
+    {
+     "field": "vin",
+     "desc": "The decoded vehicle identification number"
+    },
+    {
+     "field": "make / model / year",
+     "desc": "Vehicle identity from vPIC"
+    },
+    {
+     "field": "fuelType",
+     "desc": "Fuel type"
+    },
+    {
+     "field": "plant",
+     "desc": "Assembly plant (city)"
+    },
+    {
+     "field": "wmi",
+     "desc": "World Manufacturer Identifier (VIN characters 1-3)"
+    },
+    {
+     "field": "recalls",
+     "desc": "Open recall count and top recall items"
+    }
+   ],
+   "pricing": "$0.00125 per result found (volume tiers down to $0.0009), plus $0.05 per actor start.",
+   "faqs": [
+    {
+     "q": "Is there a free official VIN decoder?",
+     "a": "Yes, NHTSA's vPIC service decodes VINs against the official US vehicle catalog and publishes open recall data. This actor wraps both for automation: batch a list of VINs and get one JSON record per vehicle with make, model, year, fuel type, plant, WMI, and active recalls."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.00125 per decoded vehicle (tiering down to $0.0009 at volume) plus $0.05 per run start. No monthly fee."
+    },
+    {
+     "q": "Does it include recall data?",
+     "a": "Yes. Every record carries a recalls block with the open recall count and top recall items from NHTSA's recall data for the decoded vehicle."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/vin-decoder"
+  },
+  {
+   "slug": "subdomain-certificate-monitor",
+   "keyword": "subdomain certificate monitor",
+   "title": "Subdomain certificate monitor: crt.sh certificate-transparency logs as JSON",
+   "description": "A pay-per-result monitor for certificate-transparency logs: discover subdomains, certificate issuers, and certificate validity dates for any domain via crt.sh, one flat record per certificate for CSV, Excel, or JSON export.",
+   "actorName": "crtsh-cert-monitor",
+   "actorTitle": "crt.sh Cert Monitor — Subdomain & SSL Cert Discovery",
+   "source": {
+    "name": "crt.sh (certificate-transparency log search, operated by Sectigo)",
+    "angle": "crt.sh aggregates public certificate-transparency logs and publishes them openly. The actor queries it keyless, so every run sees the current CT state — newly issued certificates surface as new subdomains and issuer entries."
+   },
+   "returns": [
+    {
+     "field": "domain",
+     "desc": "Queried parent domain"
+    },
+    {
+     "field": "subdomain",
+     "desc": "Subdomain(s) found in the certificate logs"
+    },
+    {
+     "field": "issuer",
+     "desc": "Certificate issuer"
+    },
+    {
+     "field": "notBefore / notAfter",
+     "desc": "Certificate validity window"
+    },
+    {
+     "field": "entryTimestamp",
+     "desc": "When the certificate was logged"
+    },
+    {
+     "field": "crtId",
+     "desc": "crt.sh certificate ID for the original log entry"
+    }
+   ],
+   "pricing": "$0.00125 per result found (volume tiers down to $0.0009), plus $0.05 per actor start.",
+   "faqs": [
+    {
+     "q": "How do I monitor a domain for new subdomains?",
+     "a": "Every TLS certificate issued for a subdomain is logged in public certificate-transparency logs, searchable via crt.sh. This actor queries those logs for your domain and returns one flat record per certificate: subdomain, issuer, validity dates, log timestamp, and the crt.sh cert ID. Schedule it to catch newly issued subdomains."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.00125 per certificate-transparency record (tiering down to $0.0009 at volume) plus $0.05 per run start. No subscription."
+    },
+    {
+     "q": "What is it used for?",
+     "a": "Attack-surface discovery and brand monitoring: the CT logs expose subdomains, issuing CAs, and certificate lifetimes before they appear anywhere else. The flat one-record-per-cert output exports straight to CSV, Excel, or JSON."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/crtsh-cert-monitor"
+  },
+  {
+   "slug": "app-store-metadata-api",
+   "keyword": "App Store metadata API",
+   "title": "App Store metadata API: app records, ratings, and reviews as structured JSON",
+   "description": "A pay-per-result App Store metadata API: search apps by keyword or Apple ID in any storefront and get name, seller, price, ratings, version, release notes, genres, and store URL, plus recent customer reviews via the official RSS feed.",
+   "actorName": "appstore-metadata",
+   "actorTitle": "App Store Metadata — Apps, Pricing, Ratings & Reviews",
+   "source": {
+    "name": "Apple iTunes Search API and App Store customer-review RSS feeds",
+    "angle": "The actor reads Apple's official, keyless iTunes Search API for app records and the official RSS feeds for recent customer reviews. No scraping of third-party mirrors, no login: the data comes straight from Apple's public services per run."
+   },
+   "returns": [
+    {
+     "field": "appId / bundleId",
+     "desc": "Apple app ID and bundle identifier"
+    },
+    {
+     "field": "name / seller",
+     "desc": "App name and selling developer"
+    },
+    {
+     "field": "price",
+     "desc": "Formatted price"
+    },
+    {
+     "field": "rating / ratingCount",
+     "desc": "Average user rating and rating count"
+    },
+    {
+     "field": "version / releaseNotes",
+     "desc": "Current version and its release notes"
+    },
+    {
+     "field": "genres",
+     "desc": "App Store genre classification"
+    },
+    {
+     "field": "url",
+     "desc": "App Store URL"
+    },
+    {
+     "field": "country",
+     "desc": "Storefront country"
+    }
+   ],
+   "pricing": "$0.00125 per result found (volume tiers down to $0.0009), plus $0.05 per actor start.",
+   "faqs": [
+    {
+     "q": "Does the App Store have an official API?",
+     "a": "Yes — Apple's iTunes Search API exposes app records (name, seller, price, ratings, version, genres) keylessly in any storefront, and official RSS feeds publish recent customer reviews. This actor packages both into structured JSON per app."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.00125 per app result (tiering down to $0.0009 at volume) plus $0.05 per run start. No monthly plan."
+    },
+    {
+     "q": "Can I search or look up specific apps?",
+     "a": "Both. Input accepts a keyword search or a list of Apple app IDs, and each record carries appId, bundleId, and the storefront country so multi-country tracking stays joinable."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/appstore-metadata"
+  },
+  {
+   "slug": "swedish-weather-forecast-api",
+   "keyword": "Swedish weather forecast API",
+   "title": "Swedish weather forecast API: hourly SMHI forecasts for Nordic coordinates",
+   "description": "A pay-per-result hourly weather forecast API for Nordic coordinates: temperature, wind, gusts, precipitation, weather symbol, pressure, visibility, and thunderstorm probability from official SMHI data, with automatic MET Norway/Yr fallback.",
+   "actorName": "smhi-weather",
+   "actorTitle": "Nordic Hourly Weather Forecasts (SMHI)",
+   "source": {
+    "name": "SMHI (Swedish Meteorological and Hydrological Institute), with MET Norway/Yr fallback",
+    "angle": "The primary source is SMHI's official snow1g v1 forecast service — keyless Swedish government open data. If a coordinate is outside SMHI's domain, the actor automatically falls back to MET Norway/Yr, and every row names its source."
+   },
+   "returns": [
+    {
+     "field": "name / lat / lon",
+     "desc": "Forecast point identity and coordinates"
+    },
+    {
+     "field": "time",
+     "desc": "Valid time (UTC) per hourly row"
+    },
+    {
+     "field": "tempC",
+     "desc": "Temperature in °C"
+    },
+    {
+     "field": "windMs / windGust",
+     "desc": "Wind speed and gusts in m/s"
+    },
+    {
+     "field": "precipMm",
+     "desc": "Precipitation in mm"
+    },
+    {
+     "field": "symbol",
+     "desc": "Weather symbol code"
+    },
+    {
+     "field": "pressure / visibilityKm",
+     "desc": "Pressure in hPa and visibility in km"
+    },
+    {
+     "field": "thunderstormPct",
+     "desc": "Thunderstorm probability in %"
+    },
+    {
+     "field": "source",
+     "desc": "Per-row data source (SMHI or MET Norway/Yr)"
+    }
+   ],
+   "pricing": "$0.00125 per result found (volume tiers down to $0.0009), plus $0.05 per actor start.",
+   "faqs": [
+    {
+     "q": "Is there a free official Swedish weather API?",
+     "a": "Yes — SMHI publishes its forecasts as open data without an API key. This actor turns it into per-hour JSON rows for any Nordic coordinate, and falls back automatically to MET Norway/Yr where SMHI does not cover."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.00125 per hourly forecast row (tiering down to $0.0009 at volume) plus $0.05 per run start."
+    },
+    {
+     "q": "Which parameters come back per hour?",
+     "a": "Each row carries time (UTC), tempC, windMs, windGust, precipMm, weather symbol, pressure, visibilityKm, thunderstormPct, and the source that produced the row."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/smhi-weather"
+  },
+  {
+   "slug": "email-verifier-api",
+   "keyword": "email verifier API",
+   "title": "Email verifier API: syntax, MX, disposable and role checks as JSON",
+   "description": "A pay-per-result email validation API: syntax check, DNS MX lookup, disposable-domain and role-account heuristics, and an optional SMTP RCPT probe — one verdict record (valid, risky, invalid) with confidence per email.",
+   "actorName": "email-verifier-fresh",
+   "actorTitle": "Email Verifier — syntax + MX + disposable/role heuristics",
+   "source": {
+    "name": "Local checks (syntax, DNS, heuristics) — no third-party validation APIs",
+    "angle": "All logic runs locally inside the actor: RFC-style syntax parsing, DNS MX lookups, static disposable-domain and role-account lists, and an optional outbound SMTP RCPT TO probe. No validation vendor, no API key, no data sent to third parties."
+   },
+   "returns": [
+    {
+     "field": "email",
+     "desc": "The checked address"
+    },
+    {
+     "field": "status",
+     "desc": "Overall verdict: valid, risky, or invalid"
+    },
+    {
+     "field": "confidence",
+     "desc": "Confidence in the verdict"
+    },
+    {
+     "field": "syntaxValid",
+     "desc": "RFC-style syntax check result"
+    },
+    {
+     "field": "domainHasMx",
+     "desc": "DNS MX record present for the domain"
+    },
+    {
+     "field": "isDisposable",
+     "desc": "Disposable-domain heuristic hit"
+    },
+    {
+     "field": "isRoleBased",
+     "desc": "Role-account heuristic hit (info@, admin@, ...)"
+    },
+    {
+     "field": "smtpVerified / smtpProbed / smtpBlocked / smtpReason",
+     "desc": "Optional port-25 SMTP RCPT probe result and detail"
+    }
+   ],
+   "pricing": "$0.005 per email checked, plus $0.002 per actor start (~$0.007 per email all-inclusive).",
+   "faqs": [
+    {
+     "q": "How can I verify emails without a third-party API?",
+     "a": "This actor runs the whole pipeline locally: syntax check, DNS MX lookup, disposable and role-account heuristics, and an optional SMTP RCPT TO probe. Nothing is sent to a validation vendor — useful when address lists must not leave your environment."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.005 per email checked plus $0.002 per run start, roughly $0.007 per email all-inclusive. No subscription, bill capped at $2 per run."
+    },
+    {
+     "q": "What does the verdict mean?",
+     "a": "Each record gets a status of valid, risky, or invalid with a confidence score. syntaxValid, domainHasMx, isDisposable, and isRoleBased explain the verdict, and with smtpProbe enabled the smtpVerified field carries the mailbox probe result."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/email-verifier-fresh"
   },
   {
    "slug": "lei-number-lookup-api",
