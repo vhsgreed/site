@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
+import { siteTitle as siteName, siteDescription as siteDescDefault, gaId } from '../config/site.config.js';
 
 // Tracking: Cloudflare Web Analytics (cookieless, privacy-preserving).
 // No consent banner needed; zero personal data. Replace TOKEN with the
@@ -11,57 +12,15 @@ const CF_ANALYTICS_TOKEN = '18487266547a420dbf8ba750d15c869c';
 
 const { title, description } = Astro.props;
 
-const siteTitle = title ? `${title}: vhsgreed` : 'vhsgreed: for-profit, self-funded AI R&D';
+const siteTitle = title ? `${title}: ${siteName}` : `${siteName}: for-profit, self-funded AI R&D`;
 
-const siteDesc =
-  description ??
-  'Robotics supply-chain intelligence, open-source agent tooling, and honest research. For-profit, self-funded, built from Stockholm.';
+const siteDesc = description ?? siteDescDefault;
 const ogImage = Astro.url.origin + '/img/og-card.jpg';
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <script is:inline>
-      // Theme: stored choice wins; else system. Applied before first paint (no flash).
-      (function () {
-        try {
-          var t = localStorage.getItem('theme');
-          if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
-        } catch (e) {}
-      })();
-      // Shared toggle + label sync (labels read opposite of current mode)
-      (function () {
-        function effective() {
-          var t = document.documentElement.dataset.theme;
-          if (t === 'dark' || t === 'light') return t;
-          return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
-        function sync() {
-          var t = effective();
-          document.querySelectorAll('[data-theme-label]').forEach(function (el) {
-            el.textContent = t === 'dark' ? 'Light mode' : 'Dark mode';
-          });
-        }
-        window.__theme = {
-          toggle: function () {
-            var t = effective() === 'dark' ? 'light' : 'dark';
-            document.documentElement.classList.add('theme-fading');
-            document.documentElement.dataset.theme = t;
-            try { localStorage.setItem('theme', t); } catch (e) {}
-            sync();
-            setTimeout(function () {
-              document.documentElement.classList.remove('theme-fading');
-            }, 350);
-          },
-          sync: sync
-        };
-        document.addEventListener('click', function (e) {
-          if (e.target.closest('[data-theme-toggle]')) { e.preventDefault(); window.__theme.toggle(); }
-        });
-        document.addEventListener('DOMContentLoaded', sync);
-      })();
-    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name='impact-site-verification' value='ebdc22a7-9a80-43ae-a680-247959c1b70a' />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
@@ -69,6 +28,10 @@ const ogImage = Astro.url.origin + '/img/og-card.jpg';
     <title>{siteTitle}</title>
     <meta name="description" content={siteDesc} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Font: Open Sans (locked). Google Fonts like the approved design prototype. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" />
     <link rel="canonical" href={Astro.url} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={siteTitle} />
@@ -81,8 +44,9 @@ const ogImage = Astro.url.origin + '/img/og-card.jpg';
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
     <!-- GA4 loads ONLY after cookie consent (see CookieConsent.astro, Consent Mode v2, default denied). -->
-    <!-- First-party telemetry (cookieless beacons) -->
+    <!-- First-party telemetry (cookieless beacons) + UI utilities (menu, scroll, spy) -->
     <script src="../scripts/telemetry.js"></script>
+    <script src="../scripts/ui.js"></script>
     {CF_ANALYTICS_TOKEN !== 'YOUR_CF_WEB_ANALYTICS_TOKEN' && (
       <script
         defer
@@ -93,7 +57,9 @@ const ogImage = Astro.url.origin + '/img/og-card.jpg';
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <Nav />
+      <div id="progress" aria-hidden="true"></div>
+      <button id="toTop" type="button" aria-label="Back to top">&uarr; Top</button>
+      <Nav />
     <main id="main">
       <slot />
     </main>
