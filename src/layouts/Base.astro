@@ -3,7 +3,7 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
-import { siteTitle as siteName, siteDescription as siteDescDefault, gaId } from '../config/site.config.js';
+import { siteTitle as siteName, siteDescription as siteDescDefault, gaId, navLanes, utilityLinks } from '../config/site.config.js';
 
 // Tracking: Cloudflare Web Analytics (cookieless, privacy-preserving).
 // No consent banner needed; zero personal data. Replace TOKEN with the
@@ -11,6 +11,23 @@ import { siteTitle as siteName, siteDescription as siteDescDefault, gaId } from 
 const CF_ANALYTICS_TOKEN = '18487266547a420dbf8ba750d15c869c';
 
 const { title, description } = Astro.props;
+
+// Breadcrumbs: Home / Lane / page path segments. Lane labels come from
+// site.config.js — adding a page never touches this.
+const crumbs = (() => {
+  const path = Astro.url.pathname.replace(/\/$/, '');
+  if (path === '') return [];
+  const parts = path.split('/').filter(Boolean);
+  const all = [...navLanes, ...utilityLinks];
+  const out = parts.map((seg, i) => {
+    const prefix = '/' + parts.slice(0, i + 1).join('/') + '/';
+    const lane = all.find((l) => l.href === prefix);
+    if (lane) return { label: lane.label, href: i < parts.length - 1 ? prefix : null };
+    const label = seg === 'index' ? '' : seg.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+    return { label, href: i < parts.length - 1 ? prefix : null };
+  });
+  return out;
+})();
 
 const siteTitle = title ? `${title}: ${siteName}` : `${siteName}: for-profit, self-funded AI R&D`;
 
@@ -60,6 +77,17 @@ const ogImage = Astro.url.origin + '/img/og-card.jpg';
       <div id="progress" aria-hidden="true"></div>
       <button id="toTop" type="button" aria-label="Back to top">&uarr; Top</button>
       <Nav />
+      {Astro.url.pathname !== '/' && (
+        <nav class="breadcrumbs wrap" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          {crumbs.map((c) => (
+            <>
+              <span aria-hidden="true"> / </span>
+              {c.href ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+            </>
+          ))}
+        </nav>
+      )}
     <main id="main">
       <slot />
     </main>

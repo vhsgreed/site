@@ -44,10 +44,7 @@ export async function buildSiteTree(): Promise<SiteSection[]> {
     a.id.localeCompare(b.id)
   );
 
-  // Dynamic: authors.
-  const authors = (await getCollection('authors')).sort((a, b) =>
-    a.id.localeCompare(b.id)
-  );
+  // Authors folded into /about/ per migration (sole author site) — excluded from the tree.
 
   // Dynamic: data + company pSEO pages from their JSON sources.
   const pseo: { slug: string; title: string }[] = (
@@ -88,7 +85,6 @@ export async function buildSiteTree(): Promise<SiteSection[]> {
   // entries). Everything else is a plain top-level page.
   const allDynamic: { dir: string; entries: SiteEntry[] }[] = [
     { dir: 'blog', entries: posts.map((p) => ({ href: `/blog/${p.id}/`, label: p.data.title })) },
-    { dir: 'authors', entries: authors.map((a) => ({ href: `/authors/${a.id}/`, label: a.data.name })) },
     { dir: 'companies', entries: companies.map((c) => ({ href: `/companies/${c.slug}/`, label: c.label })) },
     { dir: 'api', entries: actorPages.map((p) => ({ href: `/api/${p.slug}/`, label: p.keyword })) },
     { dir: 'data', entries: pseo.map((p) => ({ href: `/data/${p.slug}/`, label: p.title })) },
@@ -101,8 +97,13 @@ export async function buildSiteTree(): Promise<SiteSection[]> {
     if (parts.length > 1) dirs.add(parts[0]);
   }
 
+  // Exclusions: legacy pages slated for fold/301 (URL-MIGRATION.md), the
+  // actor page template, and the noindex admin runbook.
+  const EXCLUDED_TOP = new Set(['/actor/', '/mission/', '/read/', '/search/']);
   const topPages = staticPages.filter((e) => {
     const parts = e.href.replace(/^\//, '').replace(/\/$/, '');
+    if (EXCLUDED_TOP.has(e.href)) return false;
+    if (parts.startsWith('admin')) return false;
     return e.href === '/' || (!parts.includes('/') && !dirs.has(parts));
   });
 
