@@ -36,7 +36,7 @@ export const author = 'karl-sund';
 
 // Design tokens (single source; global.css mirrors these as CSS custom props).
 export const brand = {
-  color: '#396291', // active brand blue (steel, styling census). Alternate: '#396291' — swap here to switch site-wide.
+  color: '#396291', // active brand blue (steel, styling census). Alternate: '#0061C2' — swap here to switch site-wide.
   ink: '#111111',
   bg: '#ffffff',
   line: '#c8c8c8',
