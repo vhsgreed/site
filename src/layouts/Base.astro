@@ -78,14 +78,16 @@ const ogImage = Astro.url.origin + '/img/og-card.jpg';
       <button id="toTop" type="button" aria-label="Back to top">&uarr; Top</button>
       <Nav />
       {Astro.url.pathname !== '/' && (
-        <nav class="breadcrumbs wrap" aria-label="Breadcrumb">
-          <a href="/">Home</a>
-          {crumbs.map((c) => (
-            <>
-              <span aria-hidden="true"> / </span>
-              {c.href ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
-            </>
-          ))}
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <div class="wrap">
+            <a href="/">Home</a>
+            {crumbs.map((c) => (
+              <>
+                <span aria-hidden="true"> / </span>
+                {c.href ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+              </>
+            ))}
+          </div>
         </nav>
       )}
     <main id="main">
