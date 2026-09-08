@@ -136,7 +136,7 @@ p { margin: 0.5rem 0 1rem; max-width: 38rem; }
 .muted { color: var(--muted); }
 .mono { font-family: var(--mono); font-size: 0.85em; }
 small { color: var(--muted); }
-hr.rule { border: 0; border-top: 1px solid var(--line-soft); margin: 2.5rem 0; }
+hr.rule { border: 0; border-top: 1px solid var(--line-soft); margin: 1.5rem 0; }
 
 /* ---------- buttons ---------- */
 .btn {
@@ -152,7 +152,7 @@ hr.rule { border: 0; border-top: 1px solid var(--line-soft); margin: 2.5rem 0; }
 .btngroup { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0; }
 
 /* ---------- hero / sections ---------- */
-.hero { padding: clamp(2rem, 6vw, 4rem) 0 1.5rem; }
+.hero { padding: 0.9rem 0 1.5rem; }
 .hero h1 { max-width: 22ch; }
 .hero .lead { margin-top: 0.75rem; }
 .section { padding: 2.5rem 0; }
