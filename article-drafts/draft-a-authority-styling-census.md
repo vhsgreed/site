@@ -8,7 +8,7 @@ The Swedish state has a recognizable visual identity — and it's measurable. We
 
 ## Verified numbers (use only these)
 - 223/230 homepages fetched; 7 hard 403 bot-gates. Asset capture: 209/232 sites with CSS after the second pass (browser-like UA retry); 23 remain CSS-less (hard 403 bot-gates or JS-injected CSS) — say so honestly.
-- Platforms (full fleet): SiteVision 81, Envision 77, Bootstrap 64, EPiServer 49, WordPress 15, Tailwind 7; Matomo self-hosted on 125/223; jQuery 127, React 92.
+- Platforms (reconciled per-site counts, 209 CSS-bearing sites): SiteVision 81, Envision 81, Bootstrap 65 (+8 un-branded stock-blue installs), EPiServer 42, WordPress 28, Tailwind 7; Matomo self-hosted on 125/223; jQuery 127, React 92.
 - Average page: 839 elements, 32 scripts, ~615 kB external CSS (8.2 files/page), 238 media queries, 984 CSS custom properties.
 - Colors: white background, near-black ink. Teal (#076a81) as accent only, not a primary. Bootstrap stock blues on dozens of un-customized CMS installs.
 - Blue family (second pass, 209 CSS-bearing sites), aggregate hits: #013351 dark petrol-navy leads (2,583 hits, 21 sites), then #243987 (918), #076a81 teal (499), #00588f (468), #10335f (286). Per-site dominant blue: #013351 on 21 sites, then #3a71aa (6), #5cb3fd (5), #0d6efd (4, stock Bootstrap), #007bff (3).
