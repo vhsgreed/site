@@ -23,18 +23,12 @@ const desc = `Generated automatically from the source on each build: ${total} pa
     <nav aria-label="Site index tree">
       {sections.map((s) => (
         <section class="section-tight">
-          <div class="section-head">
-            <h2>{s.href ? <a href={s.href}>{s.name}</a> : s.name}</h2>
-            <span class="count">{s.entries.length} pages</span>
-          </div>
-          <div class="card-list">
+          <h2>{s.href ? <a href={s.href}>{s.name}</a> : s.name}</h2>
+          <ul>
             {s.entries.map((e) => (
-              <a class="card-row" href={e.href}>
-                <div class="t">{e.label}</div>
-                <span class="meta">{e.href}</span>
-              </a>
+              <li><a href={e.href}>{e.label}</a></li>
             ))}
-          </div>
+          </ul>
         </section>
       ))}
     </nav>
