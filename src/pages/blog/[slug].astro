@@ -36,7 +36,7 @@ const author = post.data.author ? authors.find((a) => a.id === post.data.author)
   } : {}),
 })} />
 <Base title={post.data.title} description={post.data.description}>
-  <article class="container" style="max-width: 760px; padding-top: 3rem;">
+  <article class="container" style="margin: 0 auto;">
     <p class="muted mono">
       {date}
       {author && (
