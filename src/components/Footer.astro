@@ -9,10 +9,6 @@ const year = new Date().getFullYear();
   <div class="container">
     <div class="footer-grid">
       <div>
-        <p class="foot-h">vhsgreed</p>
-        <p class="brandline">For-profit, self-funded AI research and development. Robotics intelligence, open-source agent tooling, honest data. Methods published in the open.</p>
-      </div>
-      <div>
         <p class="foot-h">Sections</p>
         {navLanes.map((l) => <a href={l.href}>{l.label}</a>)}
       </div>
@@ -30,7 +26,7 @@ const year = new Date().getFullYear();
       </div>
     </div>
     <div class="legal">
-      &copy; {year} vhsgreed &middot; Stockholm, Sweden &middot; For-profit, self-funded research &amp; development.
+      &copy; {year} vhsgreed &middot; Stockholm, Sweden.
     </div>
   </div>
 </footer>
