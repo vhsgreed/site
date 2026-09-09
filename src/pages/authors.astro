@@ -1,3 +1,4 @@
+## obsolete: this page is no longer linked from anywhere,
 ---
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
@@ -6,7 +7,7 @@ const authors = (await getCollection('authors')).sort((a, b) =>
   a.data.name.localeCompare(b.data.name)
 );
 ---
-<Base title="Authors" description="Who writes and publishes on vhsgreed: named people and the team, so every claim has an address.">
+<Base title="Authors" description="Who writes and publishes on vhsgreed.">
   <div class="container">
     <section class="hero">
       <h1>Authors</h1>

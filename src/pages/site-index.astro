@@ -4,16 +4,16 @@ import { buildSiteTree, countEntries, type SiteSection } from '../lib/siteTree';
 
 const sections: SiteSection[] = await buildSiteTree();
 const total = countEntries(sections);
-const title = 'Site index';
-const desc = `Exhaustive index of every page on vhsgreed.win, generated from the source tree at build time: ${total} pages.`;
+const title = 'Site-tree';
+const desc = `Generated automatically from the source on each build: ${total} pages.`;
 ---
 <Base title={title} description={desc}>
   <div class="container">
     <section class="hero">
-      <h1>Site index</h1>
+      <h1>Site-tree</h1>
       <p class="lead">
-        Every page on this site as a plain tree, generated automatically
-        from the source tree on each build: {total} pages. If a page
+        Generated automatically
+        from the source on each build: {total} pages. If a page
         exists, it is listed here.
       </p>
     </section>
@@ -34,36 +34,3 @@ const desc = `Exhaustive index of every page on vhsgreed.win, generated from the
     </nav>
   </div>
 </Base>
-
-<style>
-  h2 {
-    font-size: 1.05rem;
-    margin: 0 0 0.35rem;
-  }
-  h2 a {
-    color: inherit;
-    text-decoration: none;
-  }
-  h2 a:hover {
-    text-decoration: underline;
-  }
-  ul {
-    list-style: none;
-    margin: 0 0 0.5rem;
-    padding: 0;
-  }
-  li {
-    margin: 0.15rem 0;
-  }
-  li::before {
-    content: '├ ';
-    color: var(--muted, #666);
-    font-family: monospace;
-  }
-  li:last-child::before {
-    content: '└ ';
-  }
-  li a {
-    font-family: monospace;
-  }
-</style>

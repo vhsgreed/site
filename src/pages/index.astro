@@ -9,14 +9,14 @@ const latest = posts.slice(0, 3);
 
 const siteUrl = Astro.site?.toString() ?? 'https://vhsgreed.win';
 ---
-<Base title="Robotics supply-chain intelligence, AI tooling" description="Robotics supply-chain intelligence, open-source AI agent tooling, and honest research. Data-led, self-funded, built from Stockholm.">
+<Base title="Robotics supply-chain intelligence, AI tooling" description="Data, research and applications. Built in Stockholm.">
   <script type="application/ld+json" set:html={JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'vhsgreed',
     url: siteUrl,
     logo: `${siteUrl}/favicon.svg`,
-    description: 'For-profit, self-funded AI R&D: robotics supply-chain intelligence, open-source agent tooling, honest data.',
+    description: 'Data, research and applications. Built in Stockholm.',
     foundingDate: '2026',
     email: 'lillerik.sund@gmail.com',
     sameAs: [

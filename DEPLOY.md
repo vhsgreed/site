@@ -41,7 +41,7 @@ curl -sL https://vhsgreed.win/rss.xml | head
 
 ## Local preview (this machine)
 
-`python3 -m http.server 4322 -d dist/` → http://hub.local:4322 (LAN,
+`python3 -m http.server 4322 -d dist/` → http://a7.local:4322 (LAN,
 mDNS; direct IP if DHCP moved the address).
 
 ## Notes

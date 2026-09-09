@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import pages from '../data/companies.json';
 
-const title = 'Swedish Company Data API: harvest any SNI segment yourself';
+const title = 'Swedish Company Data API: scrape any SNI segment yourself';
 const description = 'Search 9 verified Swedish company directories by SNI code, or run our allabolag.se scraper actor on the Apify Store for live data: org numbers, revenue, contacts. Pay per result.';
 
 const actorUrl = 'https://apify.com/vhsgreed/allabolag-fresh-details';
@@ -13,10 +13,10 @@ const total = pages.totalCompanies ?? live.reduce((s, p) => s + p.count, 0);
 
 <Base title={title} description={description}>
   <main>
-    <h1>Swedish company data, harvested fresh</h1>
+    <h1>Swedish company data, scraped fresh</h1>
     <p class="lede">
-      The directories on this site are snapshots of the official Bolagsverket /
-      SCB-sourced registry data via allabolag.se, harvested by our own scraper.
+      The directories on this site are a snapshot of the official Bolagsverket /
+      SCB-sourced registry data via allabolag.se, scraped by our own scraper.
       Browse them free below, or run the scraper yourself when you need live
       data: pay per result, no subscription.
     </p>
@@ -34,13 +34,13 @@ const total = pages.totalCompanies ?? live.reduce((s, p) => s + p.count, 0);
         ))}
       </ul>
       <p>
-        More segments are harvested weekly. The directories update as new
+        More segments are scraped weekly. The directories update as new
         snapshots land.
       </p>
     </section>
 
     <section class="actor">
-      <h2>Need live data or a segment we haven't harvested?</h2>
+      <h2>Need live data or a segment we haven't scraped?</h2>
       <p>
         The same pipeline that builds these directories runs as a public actor
         on the Apify Store. Point it at any SNI code (all ~1,400 of them), a
@@ -69,7 +69,7 @@ const total = pages.totalCompanies ?? live.reduce((s, p) => s + p.count, 0);
           numbers.
         </li>
         <li>
-          <strong>Harvest:</strong> the actor pages through allabolag.se
+          <strong>Scrape:</strong> the actor pages through allabolag.se
           listing results, then enriches each company from its registry detail
           page.
         </li>
