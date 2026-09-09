@@ -36,10 +36,19 @@
   --code-bg: #111111;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+}
+@supports (overflow-y: overlay) {
+  html { overflow-y: overlay; }
+}
 html, body { overflow-x: clip; }
 body {
   margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font);
@@ -61,7 +70,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 /* ---------- layout ---------- */
 .container, .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1rem; }
 @media (min-width: 1024px) { .container, .wrap { padding: 0 2rem; } }
-main { padding: 0.75rem 0 3rem; min-height: 62vh; }
+main { flex: 1; padding: 0.75rem 0 3rem; min-height: 62vh; }
 main > :first-child { margin-top: 0; }
 body.has-cookie-banner { padding-bottom: 6.5rem; }
 @media (min-width: 1024px) { main { padding: 1.25rem 0 4rem; } }
