@@ -13,35 +13,33 @@ import Base from '../layouts/Base.astro';
     <section class="prose">
       <h2>Data we collect</h2>
       <p>
-        This site does not require accounts, does not set functional cookies, and does not ask for personal information. 
-        We use two analytics services: one cookieless (Cloudflare) and one that uses cookies (GA4), both described below.
+        We use Google Analytics 4 and cookieless analytics services described below.
       </p>
 
       <h2>Analytics</h2>
       <p>
-        <strong>Google Analytics 4 (GA4):</strong> we use Google Analytics to
-        understand how the site is used. It loads a tracking script and uses
-        first-party cookies and local storage to measure page views and to
-        group sessions. It reports aggregate statistics (pages, referrers,
-        rough geography, device type) and identifies users only as anonymous
-        numeric IDs, not by name or email. Google processes this data under
-        its own privacy policy; see
-        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">
-        Google's privacy policy</a> and
-        <a href="https://support.google.com/analytics/answer/7318509" target="_blank" rel="noopener">
-        how Google uses data from Google Analytics</a>.
+        <strong>Google Analytics 4:</strong> we use Google Analytics to
+        understand how the site is used. It loads on page visit and may use
+        first-party cookies and local storage to measure page views and group
+        sessions. Google processes this data under its own privacy policy. See
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a>.
+      </p>
+      <p>
+        <strong>First-party telemetry:</strong> we also record aggregate page views,
+        scroll-depth milestones, named button clicks, and outbound domains.
+        The endpoint receives the page path, referrer when it is external, and
+        a server-derived daily-rotating session hash. We do not use cookies,
+        local storage, advertising identifiers, or user accounts.
       </p>
       <p>
         <strong>Cloudflare Web Analytics:</strong> a cookieless analytics
         service that reports aggregate statistics (page views, referrers,
-        device types, approximate geographic region). It does not use
-        cookies, does not profile visitors, and cannot identify an
-        individual.
+        device types, approximate geographic region).
       </p>
       <p>
-        Both answer the same question, "is anyone reading this?" not "who
-        is reading this?" We do not read individual session data or any
-        personal identifier from either service.
+        These services answer the same question, "is anyone reading this?"
+        not "who is reading this?" We use the data for aggregate reporting,
+        not individual profiling.
       </p>
 
       <h2>Purchases</h2>
@@ -57,9 +55,10 @@ import Base from '../layouts/Base.astro';
 
       <h2>Third parties</h2>
       <p>
-        The site is served by Cloudflare (hosting, HTTPS, analytics).
-        Google processes analytics data through Google Analytics 4. All
-        other links are subject to their own policies.
+        The site is served by Cloudflare (hosting, HTTPS, and Web Analytics).
+        Google processes analytics data through Google Analytics 4.
+        Our first-party telemetry is processed by our Cloudflare Worker and
+        D1 database. All other links are subject to their own policies.
       </p>
 
       <h2>Your rights</h2>

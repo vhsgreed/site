@@ -7,7 +7,6 @@ export const siteUrl = 'https://vhsgreed.win';
 export const siteDescription =
   'Data, research and applications. Built in Stockholm.';
 
-// GA4 property (consent-gated; see CookieConsent.astro). Do not change without MAINTENANCE.md update.
 export const gaId = 'G-E2E4K53319';
 
 // Primary nav: exactly four lanes (locked IA 2026-09-08).

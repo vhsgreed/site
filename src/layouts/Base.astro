@@ -2,7 +2,6 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import CookieConsent from '../components/CookieConsent.astro';
 import { siteTitle as siteName, siteDescription as siteDescDefault, gaId, navLanes, utilityLinks } from '../config/site.config.js';
 
 // Tracking: Cloudflare Web Analytics (cookieless, privacy-preserving).
@@ -49,6 +48,13 @@ const ogImage = Astro.url.origin + '/img/og-card.jpg';
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" />
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+    <script is:inline define:vars={{ gaId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', gaId);
+    </script>
     <link rel="canonical" href={Astro.url} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={siteTitle} />
@@ -60,7 +66,6 @@ const ogImage = Astro.url.origin + '/img/og-card.jpg';
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
-    <!-- GA4 loads ONLY after cookie consent (see CookieConsent.astro, Consent Mode v2, default denied). -->
     <!-- First-party telemetry (cookieless beacons) + UI utilities (menu, scroll, spy) -->
     <script src="../scripts/telemetry.js"></script>
     <script src="../scripts/ui.js"></script>
@@ -94,6 +99,5 @@ const ogImage = Astro.url.origin + '/img/og-card.jpg';
       <slot />
     </main>
     <Footer />
-    <CookieConsent />
   </body>
 </html>
