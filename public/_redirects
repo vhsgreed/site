@@ -36,3 +36,5 @@
 /opensource/*       /about/                 301
 /authors/*          /about/                 301
 /search/*           /site-index/            301
+
+/contact/*  /about/  301
