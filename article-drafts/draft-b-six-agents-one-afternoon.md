@@ -1,6 +1,6 @@
 # Six Agents, One Afternoon: Building a Data-API Fleet in Parallel
 
-I need money, which means I need throughput, and I am one person who also has a nursing degree to finish. Last week I stopped being the bottleneck in my own build pipeline. In a single afternoon I ran five parallel subagents that each shipped a working Apify data actor, plus one NO-GO decision with written evidence. This is a build log of how the orchestration worked, and where it broke.
+I need money, which means I need throughput, and I am one person who also has a nursing degree to finish. Last week I stopped being the bottleneck in my own build pipeline. In a single afternoon I ran five parallel subagents that each shipped a working Apify data actor, plus one NO-GO decision. This is a build log of how the orchestration worked, and where it broke.
 
 ## The fleet
 
@@ -35,6 +35,10 @@ The first was a duplicate spawn: two builders were dispatched for the weather ac
 
 The second race was nastier: two site-building agents shared one git working tree, and one design change clobbered another. That got repaired from git history, but the lesson is permanent: one writer per working tree. Parallelism at the repo level, serialization at the file level. The orchestration model is "many isolated agents, one shared brain, one writer per tree", and any deviation from that costs more than it saves.
 
+
+## The probe rule that got sharper (added after review)
+The reviewer of this very draft added the sharpest line: **test the output contract first, not just the source.** A probe that returns 200 OK with HTML instead of JSON, or a CSV with a shifted column, still ships an actor that "works" and produces useless data. Before writing any extraction logic: fetch one sample record and validate its schema against the expected output shape (field names, types, rows per request). That rule would have caught the food-inspections NO-GO even earlier: no records, no schema, no scraper written at all. It is now in ACTOR-CONVENTIONS.md and in the orchestrator below.
+
 ## The economics
 
 Each build ran roughly 10 to 30 minutes of agent time and cost about $0.50 to $1 in API calls, mostly smoke tests against the live sources. The full batch came in around $5 for 24 build-ready assets across the wider sweep. Against a day rate for a contractor, that arithmetic is not close.
@@ -48,3 +52,6 @@ That is the part people miss about agent fleets. The value is not just in what g
 Write the conventions file first, even if it is short. Probe sources before build, every time. Give each agent its own repo. Never let two agents write one tree. And require the NO-GO in writing with evidence, so the same dead end is never explored twice. The fleet is now a repeatable unit: one conventions file, isolated builders, verified sources, and a rule set learned from exactly two failures.
 
 [CTA: link to the /api/ hub, where the finished actors live.]
+
+## The fleet as a repeatable unit
+The reviewer's closing question: what happens past 5-10 parallel agents? The honest answer for now: one repo per actor, fresh clones, a manifest and a probe script in front — the simpler of the two architectures, and the one that matches the isolated-sandbox rule. The orchestrator exists now: a manifest entry (slug, probe URL, expected output fields) drives a clone-probe-report pass per actor, and NO-GO receipts land next to GO receipts as first-class files. The next batch runs with zero architecture decisions. Companion: `repos/scripts/fleet-orchestrator.py`.

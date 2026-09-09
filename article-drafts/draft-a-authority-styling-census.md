@@ -10,7 +10,8 @@ The Swedish state has a recognizable visual identity — and it's measurable. We
 - 223/230 homepages fetched; 7 hard 403 bot-gates. Asset capture: ~40 sites (challenge-gated) — say so honestly.
 - Platforms: SiteVision/Episerver families dominate; Matomo self-hosted on 125/223; jQuery 127, React 92.
 - Average page: 839 elements, 32 scripts, ~700 kB CSS on CMS sites.
-- Colors: white background, near-black ink (#000–#212529). Blue family: #0061C2 (regeringen-family), #141E69 (deep navy bands), #396291/#007DBA steel. Teals on newer agencies. Bootstrap-default #337AB7 left un-customized on several.
+- Colors: white background, near-black ink. Blue family (second-pass): #013351 petrol-navy dominant, mid-navies #243987/#10335f, steel #396291/#007DBA. Teal as accent only. Bootstrap stock blues on dozens of un-customized CMS installs.
+- Blue family (second pass, 209 CSS-bearing sites): #013351 dark petrol-navy leads (2,583 hits, 21 sites), then #243987, #076a81 teal, #00588f. Fleet center of gravity is darker and less saturated than the "establishment blue" #0061C2.
 - Our old test brand #192BC2: zero occurrences in 223 sites.
 - Fonts: Roboto #1 webfont; Open Sans mid-pack; system Arial/Helvetica the majority choice; licensed identity fonts (Neo Sans, FM Condensed) for the big brands.
 - Our differentiation: 3 kB CSS and 2 kB JS vs their ~700 kB/32 scripts.
