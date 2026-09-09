@@ -5,7 +5,7 @@
 export const siteTitle = 'vhsgreed';
 export const siteUrl = 'https://vhsgreed.win';
 export const siteDescription =
-  'Robotics supply-chain intelligence, open-source agent tooling, and honest research. For-profit, self-funded, built from Stockholm.';
+  'Robotics supply-chain intelligence, open-source agent tooling, and honest research. Built in Stockholm.';
 
 // GA4 property (consent-gated; see CookieConsent.astro). Do not change without MAINTENANCE.md update.
 export const gaId = 'G-E2E4K53319';
