@@ -93,4 +93,6 @@ GROUP BY d ORDER BY d;
 
 No sampling, no data loss, no waiting for a vendor to process yesterday. The whole stack deploys with one `wrangler deploy`, the free tier handles it without breaking a sweat, and the export path is trivial because the data was never anyone else's to begin with. GDPR deletion is one DELETE statement, by `sid` or for everything.
 
+For days when I do not want to open a SQL shell, the Worker also exposes a `/stats` endpoint that returns the same three aggregates as JSON, guarded by an admin key header. And the deployment story is deliberately boring: `wrangler deploy` in the Worker directory, one time, and the free tier has absorbed everything the site has thrown at it since. The operational checklist is short enough to fit in my site's maintenance doc, which is exactly where it lives.
+
 [CTA: link to the site index or the toolkit product.]
