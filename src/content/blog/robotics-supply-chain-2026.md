@@ -9,7 +9,7 @@ lang: en
 ---
 Two weeks after the Unitree IPO (+629% open, pre-IPO perps priced it 75% low), the robotics supply chain is the clearest concentration play in markets: actuators are 40-55% of BOM, China is 63-70% of the chain, Japan owns precision reducers, and the US owns the AI layer.
 
-The dataset maps it. v3 adds the layer that matters most to a buyer: **verification**.
+The dataset maps it. v4 adds the layer that matters most to a buyer: **verification**, now with registry-verified org data from official sources. 55 organizations carry registry profiles (Sweden via allabolag, Norway via Brønnøysund, Finland via PRH, US via SEC EDGAR), 20 of them at full depth: revenue, profit, employees, officers, industry codes. Nothing is estimated; where a registry does not expose a field, the cell stays empty.
 
 ## 1,093 companies, live-verified, plus a US layer
 

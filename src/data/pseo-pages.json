@@ -148,10 +148,10 @@
     {
      "name": "Our dataset (vhsgreed)",
      "access": "One-time purchase",
-     "price": "$2",
+     "price": "$7",
      "isin": true,
-     "coverage": "1,094 nations-verified rows, 11 countries, Tier-A core",
-     "cadence": "Snapshot 2026-08-30 (v3)",
+     "coverage": "1,094 nations-verified rows, 11 countries, Tier-A core, registry-depth org profiles",
+     "cadence": "Snapshot 2026-09-08 (v4)",
      "note": "Company-level exposure with verification layer."
     }
    ],
@@ -363,7 +363,7 @@
      "price": "$3-5",
      "isin": true,
      "coverage": "Verified snapshots w/ methodology docs",
-     "cadence": "Versioned (v3 = 3rd revision)",
+     "cadence": "Versioned (v4 = 4th revision)",
      "note": "Verification layer is the product, not just rows."
     }
    ],

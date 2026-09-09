@@ -7,7 +7,7 @@ tags: [robotics, investing]
 author: karl-sund
 product:
   name: "Robotics Supply-Chain Intelligence 2026"
-  price: "$15 suggested · $5 minimum"
+  price: "$7"
   status: "live"
   url: "https://store.vhsgreed.win/l/robotics-supply-chain-database-2026"
 lang: en
@@ -60,7 +60,7 @@ Verification caught real bugs that would have embarrassed a scrape dump: LAZR no
 
 ## Get the dataset
 
-The full Robotics Supply-Chain Intelligence 2026 dataset ships as a single zip: nations layer, US universe, cryptos, perps, exposure map, prediction markets, and an exposure guide. Publishing on Gumroad is in progress; the store page will carry the live link.
+The full Robotics Supply-Chain Intelligence 2026 dataset ships as a single zip: nations layer, US universe, cryptos, perps, exposure map, prediction markets, and an exposure guide. The v4 cut adds registry-verified org data from official sources for 55 organizations, 20 of them at full registry depth (revenue, profit, employees, officers, industry codes), not scraped guesswork. The store page carries the live link.
 ## How the data was built
 
 Want the method, the catches, and the honest flags behind these tickers? The [build log](/blog/articles/robotics-supply-chain-2026/) walks through the harvest, the live Yahoo verification, and the bugs we caught (LAZR, SHA0.DE, 373220.KS). The dataset is only as good as the verification, so the full story is public.

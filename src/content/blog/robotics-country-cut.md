@@ -86,7 +86,7 @@ Russia (46 rows) stays in the dataset with explicit UNVERIFIED flags because Yah
 
 Where robots get built and where robots get bought are different maps. If you invest through a Western retail account: your direct exposure to the Chinese core is zero, your realistic China route is an ETF holding names you cannot buy, your real supply-chain exposure runs through Japan, and your most underrated diversifier is Israel, not the US mega-cap list.
 
-The complete verified dataset behind this analysis: 13 files, both purity tiers, the full tradeable layer, the exposure map, pay what you want (suggested $15, floor $5): [Robotics Supply-Chain Intelligence 2026](https://store.vhsgreed.win/l/robotics-supply-chain-database-2026)
+The complete verified dataset behind this analysis: 19 files, both purity tiers, the full tradeable layer, the exposure map with org depth, $7: [Robotics Supply-Chain Intelligence 2026](https://store.vhsgreed.win/l/robotics-supply-chain-database-2026)
 
 ---
 
