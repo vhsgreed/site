@@ -63,7 +63,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 @media (min-width: 1024px) { .container, .wrap { padding: 0 2rem; } }
 main { padding: 0.75rem 0 3rem; min-height: 62vh; }
 main > :first-child { margin-top: 0; }
-body.has-cookie-banner { padding-bottom: 6.5rem; }
+body.has-cookie-banner { padding-bottom: calc(6.5rem + env(safe-area-inset-bottom)); }
 @media (min-width: 1024px) { main { padding: 1.25rem 0 4rem; } }
 
 /* ---------- top band + menu ---------- */
@@ -97,19 +97,20 @@ body.has-cookie-banner { padding-bottom: 6.5rem; }
 .mobilemenu a { display: block; color: #fff; text-decoration: none; padding: 0.8rem 1rem; border-top: 1px solid rgba(255, 255, 255, 0.15); }
 .mobilemenu a[aria-current='page'] { font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
 .mobilemenu .mm-label { padding: 0.6rem 1rem 0.2rem; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(255, 255, 255, 0.7); border-top: 1px solid rgba(255, 255, 255, 0.15); }
-.mobilemenu a { opacity: 0; transform: translateX(-0.4rem); }
-.mobilemenu.open a { animation: menu-item-in 0.22s ease-out forwards; }
-.mobilemenu.open a:nth-child(1) { animation-delay: 0.02s; }
-.mobilemenu.open a:nth-child(2) { animation-delay: 0.06s; }
-.mobilemenu.open a:nth-child(3) { animation-delay: 0.10s; }
-.mobilemenu.open a:nth-child(4) { animation-delay: 0.14s; }
-.mobilemenu.open a:nth-child(5) { animation-delay: 0.18s; }
-.mobilemenu.open a:nth-child(6) { animation-delay: 0.22s; }
-.mobilemenu.open a:nth-child(7) { animation-delay: 0.26s; }
-.mobilemenu.open a:nth-child(8) { animation-delay: 0.30s; }
-.mobilemenu.open a:nth-child(9) { animation-delay: 0.34s; }
+.mobilemenu .anim { opacity: 0; transform: translateX(-0.4rem); }
+.mobilemenu.open .anim { animation: menu-item-in 0.22s ease-out backwards; }
+
+.mobilemenu.open .anim:nth-child(1) { animation-delay: 0.02s; }
+.mobilemenu.open .anim:nth-child(2) { animation-delay: 0.06s; }
+.mobilemenu.open .anim:nth-child(3) { animation-delay: 0.10s; }
+.mobilemenu.open .anim:nth-child(4) { animation-delay: 0.14s; }
+.mobilemenu.open .anim:nth-child(5) { animation-delay: 0.18s; }
+.mobilemenu.open .anim:nth-child(6) { animation-delay: 0.22s; }
+.mobilemenu.open .anim:nth-child(7) { animation-delay: 0.26s; }
+.mobilemenu.open .anim:nth-child(8) { animation-delay: 0.30s; }
+.mobilemenu.open .anim:nth-child(9) { animation-delay: 0.34s; }
 .mobilemenu.open a:nth-child(10) { animation-delay: 0.38s; }
-@keyframes menu-item-in { to { opacity: 1; transform: none; } }
+@keyframes menu-item-in { from { opacity: 0; transform: translateX(-0.4rem); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
   .mobilemenu, .mobilemenu a { transition: none; animation: none; opacity: 1; transform: none; }
 }

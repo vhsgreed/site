@@ -16,7 +16,7 @@ const isCurrent = (href: string) => {
       <a class="wordmark" href="/" aria-label="vhsgreed home">vhsgreed</a>
       <nav aria-label="Primary">
         {navLanes.map((l) => (
-          <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>
+          <a class="anim" href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>
         ))}
       </nav>
       <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mm">Menu</button>
@@ -24,11 +24,11 @@ const isCurrent = (href: string) => {
   </div>
   <div class="mobilemenu" id="mm">
     {navLanes.map((l) => (
-      <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>
+      <a class="anim" href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>
     ))}
     <span class="mm-label" aria-hidden="true">More</span>
     {utilityLinks.map((l) => (
-      <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>
+      <a class="anim" href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>
     ))}
   </div>
 </header>
