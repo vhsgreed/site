@@ -4,7 +4,7 @@ import { buildSiteTree, countEntries, type SiteSection } from '../lib/siteTree';
 
 const sections: SiteSection[] = await buildSiteTree();
 const total = countEntries(sections);
-const title = 'Site-tree';
+const title = 'Site Index';
 const desc = `Generated automatically from the source on each build: ${total} pages.`;
 ---
 <Base title={title} description={desc}>

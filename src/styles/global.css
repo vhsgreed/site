@@ -1,11 +1,11 @@
 /* ============================================================
    vhsgreed design system — authority redesign (2026-09-08)
-   Tokens locked: Open Sans · square corners · brand #0061C2.
+   Tokens locked: Open Sans · square corners · brand #396291.
    Source of truth: src/config/site.config.js (brand block).
    ============================================================ */
 :root {
   color-scheme: light;
-  --brand: #396291;          /* alternate one-liner: #0061C2 */
+  --brand: #396291;          
   --brand-dark: #2C4B70;
   --brand-tint: #e8f1fa;
   --ink: #111111;
