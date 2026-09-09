@@ -1,0 +1,142 @@
+---
+import Base from '../../layouts/Base.astro';
+import GumroadCard from '../../components/GumroadCard.astro';
+
+const title = 'US robotics company data: the top 5, registry-verified from SEC EDGAR';
+const description = 'The five largest US names in our robotics supply-chain dataset, with registry-verified org data pulled directly from SEC EDGAR filings: latest 10-K revenue, net income, industry, and source links. Not scraped guesswork.';
+const generated = '2026-09-08';
+
+// Top 5 US org profiles by latest 10-K revenue, from
+// gumroad/products/robotics-supply-chain-2026-v4/org-profiles-us.csv (SEC EDGAR).
+const companies = [
+  {
+    name: 'NVIDIA Corp',
+    ticker: 'NVDA',
+    revenue: 'USD 215,938,000,000 (FY2026, end 2026-01-25)',
+    netIncome: 'USD 120,067,000,000 (FY2026, end 2026-01-25)',
+    founded: '1998',
+    industry: 'Semiconductors & Related Devices',
+    url: 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001045810',
+  },
+  {
+    name: 'Tesla, Inc.',
+    ticker: 'TSLA',
+    revenue: 'USD 94,827,000,000 (FY2025, end 2025-12-31)',
+    netIncome: 'USD 3,794,000,000 (FY2025, end 2025-12-31)',
+    founded: '2005',
+    industry: 'Motor Vehicles & Passenger Car Bodies',
+    url: 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001318605',
+  },
+  {
+    name: 'Broadcom Inc.',
+    ticker: 'AVGO',
+    revenue: 'USD 63,887,000,000 (FY2025, end 2025-11-02)',
+    netIncome: 'USD 5,895,000,000 (FY2024, end 2024-11-03)',
+    founded: '2018',
+    industry: 'Semiconductors & Related Devices',
+    url: 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001730168',
+  },
+  {
+    name: 'Intel Corp',
+    ticker: 'INTC',
+    revenue: 'USD 52,853,000,000 (FY2025, end 2025-12-27)',
+    netIncome: 'USD -267,000,000 (FY2025, end 2025-12-27)',
+    founded: null,
+    industry: 'Semiconductors & Related Devices',
+    url: 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000050863',
+  },
+  {
+    name: 'Qualcomm Inc',
+    ticker: 'QCOM',
+    revenue: 'USD 44,284,000,000 (FY2025, end 2025-09-28)',
+    netIncome: 'USD 5,541,000,000 (FY2025, end 2025-09-28)',
+    founded: null,
+    industry: 'Radio & TV Broadcasting & Communications Equipment',
+    url: 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000804328',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  datePublished: generated,
+  author: { '@type': 'Organization', name: 'vhsgreed', url: 'https://vhsgreed.win' },
+};
+---
+<Base title={title} description={description}>
+  <div class="container">
+    <section class="hero">
+      <h1>US robotics company data: the top 5</h1>
+      <p class="lead">
+        The five largest US names in our Robotics Supply-Chain Intelligence
+        dataset, ranked by their latest 10-K revenue. Every field below comes
+        straight from SEC EDGAR (company facts XBRL + submissions), fetched on
+        {generated}. Empty cells mean the filing did not expose the field;
+        nothing is estimated.
+      </p>
+    </section>
+
+    <section>
+      <h2>The top 5 by latest 10-K revenue</h2>
+      <table>
+        <thead>
+          <tr><th>Company</th><th>Ticker</th><th>Latest 10-K revenue</th><th>Net income</th><th>Founded/inc.</th><th>SIC industry</th></tr>
+        </thead>
+        <tbody>
+          {companies.map((c) => (
+            <tr>
+              <td><a href={c.url} rel="noopener">{c.name}</a></td>
+              <td>{c.ticker}</td>
+              <td>{c.revenue}</td>
+              <td>{c.netIncome}</td>
+              <td>{c.founded ?? ''}</td>
+              <td>{c.industry}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p class="note">
+        These five carry full registry depth: revenue and net income from the
+        latest 10-K, incorporation state, SIC industry, and a direct EDGAR
+        source link per company. Employee counts are not exposed by the
+        companyfacts export, so that column stays empty rather than filled with
+        guesses. In the full dataset these are the compute and automation
+        layer of the chain; the suppliers that make the actuators and reducers
+        sit mostly in Japan and China.
+      </p>
+    </section>
+
+    <section>
+      <h2>Where this data comes from</h2>
+      <p>
+        We query SEC EDGAR directly: company_tickers for the CIK mapping,
+        companyfacts XBRL for the financials, submissions for filing metadata.
+        No paid data provider sits in the middle, and each row keeps its
+        source URL and fetch date so you can check every number yourself.
+      </p>
+    </section>
+
+    <GumroadCard
+      product={{
+        name: 'Robotics Supply-Chain Intelligence v4',
+        price: '$7',
+        url: 'https://store.vhsgreed.win/l/robotics-supply-chain-database-2026',
+        status: 'live',
+        tag: 'Get the data',
+      }}
+    />
+
+    <section>
+      <h2>Related</h2>
+      <ul>
+        <li><a href="/data/robotics-datasets-compared/">Robotics datasets: 12 sources compared</a></li>
+        <li><a href="/robotics-stocks/">Robotics stocks by country</a></li>
+        <li><a href="/blog/articles/robotics-stocks-2026/">Robotics stocks 2026: the verified ticker list</a></li>
+      </ul>
+      <p><a href="/data/">All data comparisons</a></p>
+    </section>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Base>

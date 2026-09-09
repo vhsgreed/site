@@ -20,6 +20,7 @@ const description = 'Honest comparisons of data sources for Swedish stocks, robo
     <section>
       <h2>All comparisons</h2>
       <ul>
+        <li><a href="/data/us-robotics-companies/">US robotics company data: the top 5, registry-verified</a></li>
         {pages.pages.map((p) => (
           <li><a href={`/data/${p.slug}/`}>{p.title}</a></li>
         ))}
