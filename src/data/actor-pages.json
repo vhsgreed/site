@@ -1047,6 +1047,314 @@
     }
    ],
    "storeUrl": "https://apify.com/vhsgreed/gleif-lei-lookup"
+  },
+  {
+   "slug": "denmark-company-registry-api",
+   "keyword": "Denmark company registry API (CVR)",
+   "title": "Denmark company registry API: CVR data as structured JSON",
+   "description": "A pay-per-result Danish company registry API: look up CVR numbers or search by name and receive structured company records with status, industry, employees, and contact fields from the official CVR register.",
+   "actorName": "denmark-cvr-api-fresh",
+   "actorTitle": "Denmark Company Registry (CVR) Fresh Details",
+   "source": {
+    "name": "Det Centrale Virksomhedsregister (CVR), Erhvervsstyrelsen",
+    "angle": "The CVR register is the official Danish business register. The actor reads public CVR services directly and needs no API key, no account, and no subscription: run it from any Apify task, SDK script, or scheduled job."
+   },
+   "returns": [
+    {
+     "field": "cvr",
+     "desc": "The 8-digit Danish CVR number"
+    },
+    {
+     "field": "name / binavn",
+     "desc": "Primary company name and secondary (trade) name"
+    },
+    {
+     "field": "status / companyForm / unitType",
+     "desc": "Lifecycle status, legal form, and unit type"
+    },
+    {
+     "field": "industry / employeeCount",
+     "desc": "Industry code and reported headcount"
+    },
+    {
+     "field": "address / city / startDato",
+     "desc": "Registered address and founding date"
+    },
+    {
+     "field": "phone / email",
+     "desc": "Public contact points"
+    },
+    {
+     "field": "source",
+     "desc": "Per-record source URL for verification"
+    }
+   ],
+   "pricing": "$0.00125 per result found (volume tiers down), plus $0.05 per actor start.",
+   "faqs": [
+    {
+     "q": "Is there an official API for Danish company data?",
+     "a": "Yes. Erhvervsstyrelsen publishes CVR data through open services and file exports. This actor wraps those services into a structured, per-result-priced API with no key requirement on the caller side."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.00125 per result in the default dataset, with volume tiers stepping down, plus $0.05 per run start. There is no monthly fee and no minimum."
+    },
+    {
+     "q": "Which identifiers are returned?",
+     "a": "Every record carries the CVR number plus name, secondary name, status, legal form, industry, employee count, address, registration date, public phone and email, unit type, and a source URL."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/denmark-cvr-api-fresh"
+  },
+  {
+   "slug": "nordic-elspot-prices-api",
+   "keyword": "Nordic electricity spot price API",
+   "title": "Nordic electricity spot price API: day-ahead Elspot prices as JSON",
+   "description": "A pay-per-row Nordic electricity spot price API: day-ahead Elspot prices for Nordic price zones from the official Nordics exchange source, with local-currency conversion and hourly resolution.",
+   "actorName": "nordic-elspot-api-fresh",
+   "actorTitle": "Nordic Electricity Spot Prices (Day-Ahead Elspot)",
+   "source": {
+    "name": "Day-ahead Elspot auction data (Nordic power exchange)",
+    "angle": "The actor reads the public day-ahead auction feed directly and needs no API key, no account, and no subscription: run it from any Apify task, SDK script, or scheduled job."
+   },
+   "returns": [
+    {
+     "field": "zone / country",
+     "desc": "Price zone and country"
+    },
+    {
+     "field": "time_start / time_end",
+     "desc": "Hourly delivery period in UTC"
+    },
+    {
+     "field": "EUR_per_MWh / EUR_per_kWh",
+     "desc": "Spot price in euro units"
+    },
+    {
+     "field": "localCurrency_per_kWh / currency",
+     "desc": "Price in the zone's local currency (SEK, NOK, DKK, FIM-era EUR)"
+    },
+    {
+     "field": "EXR / vat_included",
+     "desc": "Exchange rate and VAT basis used for conversion"
+    },
+    {
+     "field": "sourceUrl",
+     "desc": "Per-row source URL for verification"
+    }
+   ],
+   "pricing": "$0.00003 per price row (volume tiers down). No run-start fee.",
+   "faqs": [
+    {
+     "q": "Which zones are covered?",
+     "a": "Nordic day-ahead price zones, selected by country and zone inputs. Each row carries the zone, country, hour interval, EUR price, and local-currency conversion with the exchange rate used."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.00003 per price row in the default dataset, with volume tiers stepping down. No monthly fee, no minimum, and no per-run start charge."
+    },
+    {
+     "q": "Can I pull a date range?",
+     "a": "Yes. Inputs accept a single date or a from/to range, filtered by country and zone, so a run can cover one hour or a full multi-zone day."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/nordic-elspot-api-fresh"
+  },
+  {
+   "slug": "nordic-counterparty-check-api",
+   "keyword": "Nordic counterparty check API",
+   "title": "Nordic counterparty check API: registry status and risk snapshot",
+   "description": "A pay-per-check Nordic counterparty compliance API: given a registry number, name, or VAT number, the actor returns a structured risk snapshot drawn from the official Nordic company registers.",
+   "actorName": "nordic-counterparty-check",
+   "actorTitle": "Nordic Counterparty Compliance Check",
+   "source": {
+    "name": "Official Nordic company registers (SE, NO, DK, FI)",
+    "angle": "The actor cross-reads the public national registers directly and needs no API key, no account, and no subscription: run it from any Apify task, SDK script, or scheduled job."
+   },
+   "returns": [
+    {
+     "field": "riskSnapshot",
+     "desc": "Structured risk snapshot for the counterparty: registry identity, status, and compliance signals from the official register"
+    }
+   ],
+   "pricing": "$0.00125 per check (volume tiers down). No run-start fee.",
+   "faqs": [
+    {
+     "q": "What inputs does a check take?",
+     "a": "Country plus any of: registry number, company name, or VAT number. The actor resolves the counterparty in the relevant national register and returns a risk snapshot."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.00125 per completed check, with volume tiers stepping down. There is no monthly fee and no minimum."
+    },
+    {
+     "q": "Which countries are covered?",
+     "a": "Sweden, Norway, Denmark, and Finland, each through its official register source rather than an aggregator."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/nordic-counterparty-check"
+  },
+  {
+   "slug": "eu-ted-tenders-api",
+   "keyword": "EU TED tenders API",
+   "title": "EU TED tenders API: public procurement notices as structured JSON",
+   "description": "A pay-per-result EU procurement API: search the official TED Publications Office for tenders by buyer, CPV code, place of performance, or publication date and receive structured notice records with deadlines and values.",
+   "actorName": "eu-ted-tenders-api-fresh",
+   "actorTitle": "EU TED Public Tenders (Official Publications Office API)",
+   "source": {
+    "name": "Tenders Electronic Daily (TED), Publications Office of the European Union",
+    "angle": "TED is the official portal for EU public procurement notices. The actor reads the public TED search API directly and needs no API key, no account, and no subscription: run it from any Apify task, SDK script, or scheduled job."
+   },
+   "returns": [
+    {
+     "field": "noticeId / publicationNumber",
+     "desc": "TED identifiers for the notice"
+    },
+    {
+     "field": "title / noticeType",
+     "desc": "Notice title and type (contract, prior information, and related forms)"
+    },
+    {
+     "field": "buyerName",
+     "desc": "Contracting authority or entity"
+    },
+    {
+     "field": "publicationDate / deadlineDate",
+     "desc": "Publication and submission deadline"
+    },
+    {
+     "field": "cpv / place",
+     "desc": "CPV classification and place of performance"
+    },
+    {
+     "field": "valueEstimate / valueCurrency",
+     "desc": "Estimated contract value"
+    },
+    {
+     "field": "noticeUrl / source",
+     "desc": "Direct notice URL and per-record source"
+    }
+   ],
+   "pricing": "$0.000045 per tender notice (volume tiers down). No run-start fee.",
+   "faqs": [
+    {
+     "q": "Is this the official TED data?",
+     "a": "Yes. The actor reads the Publications Office public API, the same source behind ted.europa.eu, and returns one record per notice with a source URL."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.000045 per tender notice in the default dataset, with volume tiers stepping down. There is no monthly fee and no minimum."
+    },
+    {
+     "q": "What filters are supported?",
+     "a": "Free-text query, buyer name, CPV code, place of performance, publication-date cutoff, and a result limit, so a run can monitor a niche procurement market."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/eu-ted-tenders-api-fresh"
+  },
+  {
+   "slug": "us-property-records-api",
+   "keyword": "US property records API",
+   "title": "US property records API: county GIS parcel data as JSON",
+   "description": "A pay-per-result US property API: pull parcel-level property details straight from county GIS records, with owner, building attributes, and lot data, without scraping aggregator sites.",
+   "actorName": "us-property-details-fresh",
+   "actorTitle": "US Property Details (County GIS Records)",
+   "source": {
+    "name": "County GIS / assessor parcel records",
+    "angle": "The actor reads official county GIS parcel services directly and needs no API key, no account, and no subscription: run it from any Apify task, SDK script, or scheduled job."
+   },
+   "returns": [
+    {
+     "field": "county / parcelId",
+     "desc": "Source county and parcel identifier"
+    },
+    {
+     "field": "owner",
+     "desc": "Owner of record from the county roll"
+    },
+    {
+     "field": "address",
+     "desc": "Situs address"
+    },
+    {
+     "field": "beds / baths / sqft",
+     "desc": "Building attributes"
+    },
+    {
+     "field": "lotAcres / yearBuilt / propertyType",
+     "desc": "Lot size, construction year, and property type"
+    }
+   ],
+   "pricing": "$0.0002 per property detail record, plus $0.005 per actor start.",
+   "faqs": [
+    {
+     "q": "Where does the data come from?",
+     "a": "County GIS and assessor parcel services, the primary sources that aggregator sites repackage. Records carry the county and parcel ID so each row can be verified against the county source."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.0002 per property detail record, plus $0.005 per run start. There is no monthly fee and no minimum."
+    },
+    {
+     "q": "How is a county selected?",
+     "a": "Runs specify the county and a parcel or address query. County GIS portals differ, so coverage is per-county; unsupported counties are reported rather than guessed."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/us-property-details-fresh"
+  },
+  {
+   "slug": "bolagsverket-company-data-api",
+   "keyword": "Bolagsverket company data API",
+   "title": "Bolagsverket company data API: Swedish registry data as JSON",
+   "description": "A pay-per-result Bolagsverket company lookup API: resolve Swedish organisations by organisation number or name and receive structured records with status, legal form, SNI codes, officers, and filing documents.",
+   "actorName": "bolagsverket-api-fresh",
+   "actorTitle": "Bolagsverket Company Lookup (Sweden)",
+   "source": {
+    "name": "Bolagsverket, the Swedish Companies Registration Office",
+    "angle": "Bolagsverket is the primary source for Swedish company registration data. The actor reads the official services directly and needs no subscription: run it from any Apify task, SDK script, or scheduled job."
+   },
+   "returns": [
+    {
+     "field": "orgnummer / name",
+     "desc": "Organisation number and registered name"
+    },
+    {
+     "field": "status / legalForm / registrationDate",
+     "desc": "Lifecycle status, legal form, and registration date"
+    },
+    {
+     "field": "sni",
+     "desc": "SNI industry classification codes"
+    },
+    {
+     "field": "address",
+     "desc": "Registered address"
+    },
+    {
+     "field": "officers / documents",
+     "desc": "Board and officer records, plus filed document references"
+    },
+    {
+     "field": "sourceUrl",
+     "desc": "Per-record source URL for verification"
+    }
+   ],
+   "pricing": "$0.0002 per result found (volume tiers down).",
+   "faqs": [
+    {
+     "q": "How does this differ from the Allabolag actor?",
+     "a": "Allabolag.se is a D&B-sourced commercial view with revenue and profit estimates. Bolagsverket is the official register: legal form, SNI codes, officers, and filed documents straight from the authority."
+    },
+    {
+     "q": "How is the actor priced?",
+     "a": "Pay per event: $0.0002 per result in the default dataset, with volume tiers stepping down. There is no monthly fee and no minimum."
+    },
+    {
+     "q": "Which identifiers are returned?",
+     "a": "Organisation number, name, status, legal form, registration date, SNI codes, registered address, officer records, document references, and a source URL per record."
+    }
+   ],
+   "storeUrl": "https://apify.com/vhsgreed/bolagsverket-api-fresh"
   }
  ]
 }

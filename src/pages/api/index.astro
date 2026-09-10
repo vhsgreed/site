@@ -2,18 +2,22 @@
 import Base from '../../layouts/Base.astro';
 import pages from '../../data/actor-pages.json';
 
-const title = 'Company registry APIs: vhsgreed actors on the Apify Store';
-const description = 'One page per vhsgreed Apify actor: what each company registry API returns, the official source behind it, and pay-per-event pricing. Sweden, Norway, Finland, UK, France, Poland, Lithuania, Switzerland, Czechia, and global LEI data.';
+const title = 'vhsgreed data APIs: registry, energy, property, and verification actors';
+const description = 'One page per published vhsgreed Apify actor: official data sources, real output fields, and pay-per-event pricing. Nordic company registries, LEI, EU tenders, electricity spot prices, US property records, email verification, VIN decoding, app store metadata, certificates, and weather.';
 ---
 <Base title={title} description={description}>
   <div class="container">
     <section class="hero">
-      <h1>Company registry APIs</h1>
+      <h1>vhsgreed data APIs</h1>
       <p class="lead">
-        Every published vhsgreed actor wraps an official company data source and
-        returns structured JSON at pay-per-event pricing. Each page below lists
-        the real output fields, the official source, pricing, and answers to the
-        most common questions.
+        Every published vhsgreed actor wraps an official data source and returns
+        structured JSON at pay-per-event pricing. Coverage spans Nordic company
+        registries, UK, French, Polish, and Czech registers, global LEI data, EU
+        public tenders, Nordic electricity spot prices, US county property
+        records, email verification, VIN decoding, App Store metadata, certificate
+        discovery, and Nordic weather. Each page below lists the real output
+        fields, the official source, pricing, and answers to the most common
+        questions.
       </p>
     </section>
     <section>
@@ -25,13 +29,23 @@ const description = 'One page per vhsgreed Apify actor: what each company regist
       </ul>
     </section>
     <section>
-      <h2>Why keyless matters</h2>
+      <h2>Registry pages</h2>
       <p>
-        Most of these actors read official open-data registers directly:
+        The company registry family (Sweden via Allabolag and the official
+        Bolagsverket register, Norway via both BRREG and proff.no,
+        Denmark, Finland, UK, France, Poland, Lithuania, Switzerland, Czechia,
+        and GLEIF LEI globally) reads
+        official open-data registers directly:
         Enhetsregisteret in Norway, YTJ in Finland, SIRENE in France, KRS in
-        Poland, Zefix in Switzerland, GLEIF globally. Where the source is open,
-        the actor needs no API key, no account, and no proxy chain, which keeps
-        runs cheap and results fresh from the register.
+        Poland, Zefix in Switzerland. Where the source is open, the actor needs
+        no API key, no account, and no proxy chain, which keeps runs cheap and
+        results fresh from the register.
+      </p>
+      <p>
+        Beyond registries, the fleet covers day-ahead electricity spot prices,
+        EU TED procurement notices, county-level US property records, email
+        verification, VIN and recall lookups, App Store metadata, crt.sh
+        certificate discovery, and hourly Nordic weather forecasts.
       </p>
       <p>
         <a href="/data/">Data source comparisons</a> cover where each register
