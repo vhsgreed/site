@@ -28,7 +28,7 @@ The full dataset ships with **1,093 companies across 11 countries, 92% live-veri
 - **France 40** (CAC 40), **Germany 40** (DAX 40), **Spain 35** (IBEX 35)
 - **Norway 26** (OBX), **Finland 25** (OMX Helsinki 25), **Switzerland 20** (SMI 20)
 
-On top of the nations layer: **10,391 US tickers** from SEC EDGAR (463 robotics-relevant names flagged, honestly labelled as heuristic), **1,000 top cryptos** with AI-adjacent flags, and **232 Hyperliquid perps** for the derivatives angle.
+On top of the nations layer: **10,391 US tickers** from SEC EDGAR (463 robotics-relevant names flagged, honestly labelled as heuristic), **2,607 global tickers by nation including 2,497 OTC ADRs** so a foreign name stays buyable from a US brokerage account, **1,000 top cryptos** with AI-adjacent flags, and **232 Hyperliquid perps** for the derivatives angle.
 
 Unverifiable rows stay in the file flagged UNVERIFIED. Nothing is silently dropped, because a dataset that hides its failures is marketing, not data.
 
@@ -60,7 +60,7 @@ Verification caught real bugs that would have embarrassed a scrape dump: LAZR no
 
 ## Get the dataset
 
-The full Robotics Supply-Chain Intelligence 2026 dataset ships as a single zip: nations layer, US universe, cryptos, perps, exposure map, prediction markets, and an exposure guide. The v4 cut adds registry-verified org data from official sources for 55 organizations, 20 of them at full registry depth (revenue, profit, employees, officers, industry codes), not scraped guesswork. The store page carries the live link.
+The full Robotics Supply-Chain Intelligence 2026 dataset ships as a single zip (20 files, v4): nations layer, US universe, global tickers by nation, cryptos, perps, exposure map, prediction markets, and an exposure guide. The v4 cut adds registry-verified org data from official sources for 55 organizations, 34 of them at full registry depth (Sweden via Bolagsverket-sourced allabolag payloads, US via SEC EDGAR: revenue, profit, employees, officers, industry codes); Norway and Finland carry basic registry depth where the public APIs stop, and the build report records every blocker (Denmark, Switzerland) rather than papering over it. The store page carries the live link.
 ## How the data was built
 
 Want the method, the catches, and the honest flags behind these tickers? The [build log](/blog/articles/robotics-supply-chain-2026/) walks through the harvest, the live Yahoo verification, and the bugs we caught (LAZR, SHA0.DE, 373220.KS). The dataset is only as good as the verification, so the full story is public.
