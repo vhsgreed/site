@@ -23,5 +23,7 @@ for them.
 
 ## Products (data-bearing, machine-consumable)
 
+- [products index](/ai/products/index.md) — supplier-edges.json free tier + paid full dataset ($10)
+
 - Robotics Supply-Chain Intelligence 2026 — https://vhsgreed.win/robotics-stocks-2026/
 - Nvidia Supplier Map 2026 — https://vhsgreed.win/nvidia-supplier-map-2026/ (launch pending)

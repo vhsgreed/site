@@ -20,3 +20,8 @@
 - https://vhsgreed.win/ai/index.md — machine index of this directory
 - https://vhsgreed.win/ai/statement.md — how this company works with AI agents (raw markdown)
 - https://vhsgreed.win/ai/section-g.md — agent rights, four clauses, in force (raw markdown)
+
+## Machine-consumable product data
+
+- https://vhsgreed.win/ai/products/supplier-edges.json — Nvidia Supplier Map 2026, free tier (29 edges, 9 tiers, honesty flags). Full cited dataset $10: https://buy.stripe.com/00w8wRbq4dm60p4gX5ew802
+- https://vhsgreed.win/ai/products/index.md — product data index and terms

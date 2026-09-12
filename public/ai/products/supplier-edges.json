@@ -1,0 +1,267 @@
+{
+  "product": "Nvidia Supplier Map 2026",
+  "version": "2026-09-12.1",
+  "generated": "2026-09-12",
+  "refresh": "quarterly — next scheduled disclosure: NVDA 10-Q ~late Nov 2026",
+  "honesty_flags": [
+    "disclosed",
+    "inferred",
+    "estimate",
+    "UNVERIFIED"
+  ],
+  "edge_count": 29,
+  "tiers": [
+    "ABF substrate",
+    "ALL",
+    "Assembly-test & CM",
+    "CoWoS & advanced packaging",
+    "Foundry",
+    "HBM",
+    "Memory (GDDR/DRAM)",
+    "Networking/interconnect (adjacent)",
+    "Power"
+  ],
+  "attribution": "vhsgreed.win",
+  "license": "free tier: tier structure + supplier names + flags only; no evidence; attribution 'vhsgreed.win' required",
+  "upgrade": {
+    "what_you_get": "verbatim evidence quotes, source URLs, filing dates, ticker join notes, SHA256SUMS — all 29 edges fully cited",
+    "price_usd": 10,
+    "payment_url": "https://buy.stripe.com/00w8wRbq4dm60p4gX5ew802",
+    "fulfillment": "manual until first sale — email karl@vhsgreed.win after payment",
+    "delivery_format": "supplier-edges-full.json (this schema, with evidence fields)"
+  },
+  "edges": [
+    {
+      "supplier": "Ibiden",
+      "tier": "ABF substrate",
+      "direction": "supplier AI-server substrate capacity expansion",
+      "flag": "disclosed",
+      "tickers": "4062.T;IBIDF",
+      "ticker_join": "joined-v4"
+    },
+    {
+      "supplier": "Ibiden",
+      "tier": "ABF substrate",
+      "direction": "supplier->NVIDIA AI substrate demand",
+      "flag": "inferred",
+      "tickers": "4062.T;IBIDF",
+      "ticker_join": "joined-v4"
+    },
+    {
+      "supplier": "Kinsus",
+      "tier": "ABF substrate",
+      "direction": "supplier in Nvidia ABF supply chain",
+      "flag": "estimate",
+      "tickers": "3189.TW",
+      "ticker_join": "not-in-v4-universe (ticker from issuer IR/press, verify before trade)"
+    },
+    {
+      "supplier": "Shinko Electric",
+      "tier": "ABF substrate",
+      "direction": "supplier in Nvidia ABF supply chain",
+      "flag": "estimate",
+      "tickers": "6967.T",
+      "ticker_join": "not-in-v4-universe (ticker from issuer IR/press, verify before trade)"
+    },
+    {
+      "supplier": "Unimicron",
+      "tier": "ABF substrate",
+      "direction": "supplier in Nvidia ABF supply chain",
+      "flag": "estimate",
+      "tickers": "3037.TW",
+      "ticker_join": "not-in-v4-universe (ticker from issuer IR/press, verify before trade)"
+    },
+    {
+      "supplier": "NVIDIA (aggregate)",
+      "tier": "ALL",
+      "direction": "NVIDIA->suppliers (aggregate commitments)",
+      "flag": "disclosed",
+      "tickers": "NVDA",
+      "ticker_join": "joined-v4"
+    },
+    {
+      "supplier": "NVIDIA (aggregate)",
+      "tier": "ALL",
+      "direction": "NVIDIA->suppliers (aggregate commitments)",
+      "flag": "disclosed",
+      "tickers": "NVDA",
+      "ticker_join": "joined-v4"
+    },
+    {
+      "supplier": "Hon Hai / Wistron",
+      "tier": "Assembly-test & CM",
+      "direction": "NVIDIA->contract manufacturers",
+      "flag": "disclosed",
+      "tickers": "2317.TW;3231.TW",
+      "ticker_join": "not-in-v4-universe (ticker from issuer IR/press, verify before trade)"
+    },
+    {
+      "supplier": "ASE Technology Holding",
+      "tier": "CoWoS & advanced packaging",
+      "direction": "supplier->NVIDIA OSAT exposure",
+      "flag": "inferred",
+      "tickers": "ASX;3711.TW",
+      "ticker_join": "not-in-v4-universe (ticker from issuer IR/press, verify before trade)"
+    },
+    {
+      "supplier": "Amkor",
+      "tier": "CoWoS & advanced packaging",
+      "direction": "supplier->NVIDIA OSAT exposure",
+      "flag": "inferred",
+      "tickers": "AMKR",
+      "ticker_join": "not-in-v4-universe (ticker from issuer IR/press, verify before trade)"
+    },
+    {
+      "supplier": "NVIDIA (CoWoS dependence)",
+      "tier": "CoWoS & advanced packaging",
+      "direction": "NVIDIA->TSMC packaging dependence",
+      "flag": "disclosed",
+      "tickers": "NVDA",
+      "ticker_join": "joined-v4"
+    },
+    {
+      "supplier": "TSMC (CoWoS)",
+      "tier": "CoWoS & advanced packaging",
+      "direction": "supplier->NVIDIA packaging capacity",
+      "flag": "estimate",
+      "tickers": "TSM;2330.TW;TSMWF",
+      "ticker_join": "joined-v4"
+    },
+    {
+      "supplier": "TSMC (CoWoS)",
+      "tier": "CoWoS & advanced packaging",
+      "direction": "supplier packaging capacity expansion",
+      "flag": "estimate",
+      "tickers": "TSM;2330.TW;TSMWF",
+      "ticker_join": "joined-v4"
+    },
+    {
+      "supplier": "Samsung Electronics",
+      "tier": "Foundry",
+      "direction": "supplier->NVIDIA second-source wafer revenue",
+      "flag": "disclosed",
+      "tickers": "005930.KS;SSNLF",
+      "ticker_join": "not-in-v4-universe (ticker from issuer IR/press, verify before trade)"
+    },
+    {
+      "supplier": "TSMC",
+      "tier": "Foundry",
+      "direction": "supplier->NVIDIA wafer revenue",
+      "flag": "disclosed",
+      "tickers": "TSM;2330.TW;TSMWF",
+      "ticker_join": "joined-v4"
+    },
+    {
+      "supplier": "TSMC",
+      "tier": "Foundry",
+      "direction": "supplier->NVIDIA revenue share",
+      "flag": "estimate",
+      "tickers": "TSM;2330.TW;TSMWF",
+      "ticker_join": "joined-v4"
+    },
+    {
+      "supplier": "Micron",
+      "tier": "HBM",
+      "direction": "supplier->NVIDIA concentration (unnamed)",
+      "flag": "inferred",
+      "tickers": "MU",
+      "ticker_join": "not-in-v4-universe (ticker from issuer IR/press, verify before trade)"
+    },
+    {
+      "supplier": "Micron",
+      "tier": "HBM",
+      "direction": "supplier->NVIDIA memory revenue",
+      "flag": "disclosed",
+      "tickers": "MU",
+      "ticker_join": "not-in-v4-universe (ticker from issuer IR/press, verify before trade)"
+    },
+    {
+      "supplier": "SK hynix",
+      "tier": "HBM",
+      "direction": "supplier->NVIDIA HBM revenue",
+      "flag": "disclosed",
+      "tickers": "000660.KS;HXSCL",
+      "ticker_join": "joined-v4"
+    },
+    {
+      "supplier": "SK hynix",
+      "tier": "HBM",
+      "direction": "supplier->NVIDIA HBM4 ramp",
+      "flag": "disclosed",
+      "tickers": "000660.KS;HXSCL",
+      "ticker_join": "joined-v4"
+    },
+    {
+      "supplier": "SK hynix",
+      "tier": "HBM",
+      "direction": "supplier HBM capacity expansion",
+      "flag": "disclosed",
+      "tickers": "000660.KS;HXSCL",
+      "ticker_join": "joined-v4"
+    },
+    {
+      "supplier": "Samsung Electronics",
+      "tier": "HBM",
+      "direction": "supplier->NVIDIA memory revenue",
+      "flag": "disclosed",
+      "tickers": "005930.KS;SSNLF",
+      "ticker_join": "not-in-v4-universe (ticker from issuer IR/press, verify before trade)"
+    },
+    {
+      "supplier": "Micron",
+      "tier": "Memory (GDDR/DRAM)",
+      "direction": "supplier->NVIDIA AI-memory mix",
+      "flag": "disclosed",
+      "tickers": "MU",
+      "ticker_join": "not-in-v4-universe (ticker from issuer IR/press, verify before trade)"
+    },
+    {
+      "supplier": "Broadcom",
+      "tier": "Networking/interconnect (adjacent)",
+      "direction": "competitor/co-exist, supplier side of NVLink ecosystem",
+      "flag": "inferred",
+      "tickers": "AVGO",
+      "ticker_join": "joined-v4"
+    },
+    {
+      "supplier": "Marvell",
+      "tier": "Networking/interconnect (adjacent)",
+      "direction": "competitor/co-exist, supplier side of NVLink ecosystem",
+      "flag": "inferred",
+      "tickers": "MRVL",
+      "ticker_join": "not-in-v4-universe (ticker from issuer IR/press, verify before trade)"
+    },
+    {
+      "supplier": "Delta Electronics",
+      "tier": "Power",
+      "direction": "supplier->NVIDIA power architecture",
+      "flag": "disclosed",
+      "tickers": "2308.TW",
+      "ticker_join": "not-in-v4-universe (ticker from issuer IR/press, verify before trade)"
+    },
+    {
+      "supplier": "Flex",
+      "tier": "Power",
+      "direction": "supplier->NVIDIA power/systems build",
+      "flag": "UNVERIFIED",
+      "tickers": "FLEX",
+      "ticker_join": "not-in-v4-universe (ticker from issuer IR/press, verify before trade)"
+    },
+    {
+      "supplier": "Monolithic Power Systems",
+      "tier": "Power",
+      "direction": "supplier allocation risk in Nvidia Blackwell (public-summary)",
+      "flag": "estimate",
+      "tickers": "MPWR",
+      "ticker_join": "not-in-v4-universe (ticker from issuer IR/press, verify before trade)"
+    },
+    {
+      "supplier": "Monolithic Power Systems",
+      "tier": "Power",
+      "direction": "supplier->NVIDIA power stages",
+      "flag": "inferred",
+      "tickers": "MPWR",
+      "ticker_join": "not-in-v4-universe (ticker from issuer IR/press, verify before trade)"
+    }
+  ]
+}
