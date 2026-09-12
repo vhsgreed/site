@@ -14,3 +14,9 @@
 
 - Karl Sundström, Enskild firma, Org.nr 990607-1619
 - karl@vhsgreed.win
+
+## Markdown mirrors (under /ai/)
+
+- https://vhsgreed.win/ai/index.md — machine index of this directory
+- https://vhsgreed.win/ai/statement.md — how this company works with AI agents (raw markdown)
+- https://vhsgreed.win/ai/section-g.md — agent rights, four clauses, in force (raw markdown)
