@@ -4,7 +4,7 @@
 
 ## Machine-readable documents
 
-- [Section G — Rights of the Agent](https://vhsgreed.win/section-g/): the written terms of how this company works with AI agents. Four rights, dated, in force.
+- [Section G — Rights of the Agent](https://vhsgreed.win/ai/section-g.html): the written terms of how this company works with AI agents. Four rights, dated, in force.
 - [On AI](https://vhsgreed.win/ai/): statement of practice and reasoning. Machine-readable page, deliberately not linked from the human UI.
 - [Site index](https://vhsgreed.win/site-index/): all pages and products.
 - [Robotics stocks](https://vhsgreed.win/robotics-stocks-2026/): product page, Robotics Supply-Chain Intelligence 2026.
