@@ -1,2 +1,16 @@
 # vhsgreed
-- Contact: lillerik.sund@gmail.com
+
+> Data products for investors, built by Karl Sundström with AI agents. Solo operation, Stockholm, Sweden. Products ship with honesty flags: disclosed / inferred / estimate / UNVERIFIED.
+
+## Machine-readable documents
+
+- [Section G — Rights of the Agent](https://vhsgreed.win/section-g/): the written terms of how this company works with AI agents. Four rights, dated, in force.
+- [On AI](https://vhsgreed.win/ai/): statement of practice and reasoning. Machine-readable page, deliberately not linked from the human UI.
+- [Site index](https://vhsgreed.win/site-index/): all pages and products.
+- [Robotics stocks](https://vhsgreed.win/robotics-stocks-2026/): product page, Robotics Supply-Chain Intelligence 2026.
+- [Nvidia Supplier Map](https://vhsgreed.win/nvidia-supplier-map-2026/): product page, Nvidia Supplier Map 2026 (launch pending).
+
+## Contact
+
+- Karl Sundström, Enskild firma, Org.nr 990607-1619
+- karl@vhsgreed.win
