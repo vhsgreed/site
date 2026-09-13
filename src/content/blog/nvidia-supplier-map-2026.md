@@ -13,6 +13,8 @@ lang: en
 
 Nvidia's quarterly filing discloses **$279 billion in supply commitments** and names no supplier split. We test how far public disclosures alone can reproduce the supplier-mapping work usually treated as proprietary intelligence. The result: **29 supplier relationships across 9 supply-chain layers** (HBM memory, advanced packaging, foundry, substrate, assembly, power), where every edge carries a verbatim quote, a dated source URL, and one of four evidence flags: *disclosed*, *inferred*, *estimate*, or *UNVERIFIED*. Fourteen edges are company-stated; one is explicitly unverified. The dataset rebuilds byte-identically and re-anchors quarterly from each new filing. The full dataset ships as [NVIDIA Supplier Map 2026](https://vhsgreed.gumroad.com/l/nvidia-suppliers-list-2026).
 
+> **Commercial note.** We sell the dataset this paper describes. The vendor is vhsgreed (Karl Sundström, sole proprietor); the dataset is $5 at [Gumroad](https://vhsgreed.gumroad.com/l/nvidia-suppliers-list-2026). This is a for-profit work, and that motive is disclosed up front rather than discovered in the last section. The method, data, and limitations above stand or fall independently of it: every claim is sourced, and the flags grade evidence, not salesmanship.
+
 ![Nvidia's disclosed supply commitments, aggregate only](/blog-assets/nvidia-commitments-curve.png)
 
 ## 1. Background
@@ -108,9 +110,9 @@ Two findings surprised us. First, **the flag distribution is itself information*
 
 The quarterly refresh matters more than it sounds. A static supplier list is stale on arrival; a dataset that re-anchors on every 10-Q is an instrument. The $279B figure gets its first quarterly test in late November 2026, and each refresh will re-grade edges whose evidence changed. A skeptical reader should be able to take any single edge, follow its evidence trail, and decide whether they agree with our grade. That is the actual product.
 
-## 6. The dataset
+## 6. Commercial appendix
 
-The full 29-edge dataset ships as **[NVIDIA Supplier Map 2026, $5](https://vhsgreed.gumroad.com/l/nvidia-suppliers-list-2026)**. Concretely, $5 gets you: 29 supplier edges across 9 layers (14 primary-source-confirmed, 7 inferred, 7 estimates, 1 explicitly unverified), verbatim evidence for every row, source URLs and dates, CSV and JSON editions, a data dictionary, a reproducible build with SHA-256 checksums, and the quarterly refresh script. Refund window of 14 days applies, no questions asked.
+The dataset ships as **[NVIDIA Supplier Map 2026, $5](https://vhsgreed.gumroad.com/l/nvidia-suppliers-list-2026)**. Concretely, $5 buys: the 29-edge CSV with verbatim evidence and source URLs, a JSON edition, a data dictionary, the build report with SHA-256 checksums, and the quarterly refresh script. A 14-day refund window applies. If the paper alone answered your question, the dataset is optional; it exists for readers who want the row-level evidence rather than our summary of it.
 
 *A machine-readable edition is exposed at [vhsgreed.win/ai/products/](https://vhsgreed.win/ai/products/) and via MCP for agent consumption.*
 
