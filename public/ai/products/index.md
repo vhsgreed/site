@@ -22,6 +22,13 @@ flags.
 - Refresh cadence: quarterly. Next scheduled: NVDA 10-Q (~late Nov 2026).
 - Version: 2026-09-12.1. Deterministic build; SHA256SUMS in the full dataset.
 
+## Extended layers (markdown, same pipeline)
+
+- [TIER2-SUPPLIERS.md](/ai/products/TIER2-SUPPLIERS.md) — suppliers of the suppliers (one hop out). Most edges inferred/UNVERIFIED; flag discipline identical to tier-1.
+- [ROADMAP-2026.md](/ai/products/ROADMAP-2026.md) — Rubin / Rubin Ultra / Feynman watch, per-claim confidence flags.
+- [SOCIAL-CLAIMS.md](/ai/products/SOCIAL-CLAIMS.md) — dated rumor log, all UNVERIFIED by construction; never feeds the main dataset.
+- [BREADCRUMBS.md](/ai/products/BREADCRUMBS.md) — append-only evidence trail with open resolution criteria.
+
 ## Terms
 
 - Free tier: attribution required, no warranty.
