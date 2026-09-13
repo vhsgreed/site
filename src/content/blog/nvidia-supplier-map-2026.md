@@ -78,6 +78,25 @@ Five of the 29 edges, verbatim from the dataset:
 | Monolithic Power | Power | Public data + stated assumptions | `estimate` | Allocation model, contested by a named research shop |
 | (unnamed ABF edge) | ABF substrate | Secondary reporting only | `UNVERIFIED` | Primary source not captured before ship |
 
+### 3.2 One row, verbatim
+
+This is a complete row from the dataset, exactly as it appears in the CSV and JSON (one of the three `disclosed` HBM edges):
+
+```json
+{
+  "supplier": "SK hynix",
+  "tier": "HBM",
+  "direction": "supplier->NVIDIA HBM revenue",
+  "evidence_quote": "NVIDIA and SK hynix establish long-term partnership to secure and co-develop next-generation AI memory, including HBM.",
+  "source_url": "https://news.skhynix.com/en/skhynix-nvidia-partnership-2026/",
+  "source_date": "2026-07-25",
+  "flag": "disclosed",
+  "tickers": "000660.KS;HXSCL"
+}
+```
+
+Every row looks like this: the claim, the verbatim sentence that supports it, a link you can click and check yourself, the date it was published, and the grade we assigned. The 28 other rows vary in evidence strength, which is what the flags track.
+
 ### 3.2 The Customer-A inference, shown in full
 
 The most sensitive single inference deserves its arithmetic:
