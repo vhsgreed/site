@@ -28,7 +28,8 @@
     "price_usd": 10,
     "payment_url": "https://buy.stripe.com/00w8wRbq4dm60p4gX5ew802",
     "fulfillment": "manual until first sale — email karl@vhsgreed.win after payment",
-    "delivery_format": "supplier-edges-full.json (this schema, with evidence fields)"
+    "delivery_format": "supplier-edges-full.json (this schema, with evidence fields)",
+    "note": "full cited dataset is not publicly served; delivered manually after payment"
   },
   "edges": [
     {
