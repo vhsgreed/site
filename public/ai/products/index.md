@@ -15,9 +15,9 @@ flags.
   edges / 9 tiers, supplier names, direction, honesty flag
   (disclosed/inferred/estimate/UNVERIFIED), tickers. No evidence fields.
   Attribution "vhsgreed.win" required.
-- `supplier-edges-full.json`: **paid tier ($10)**: adds verbatim evidence
+- `supplier-edges-full.json`: **paid tier ($5)**: adds verbatim evidence
   quotes, source URLs, filing dates. Payment:
-  <https://buy.stripe.com/14A7sN0Lq81M4Fk36few804>: after payment email
+  <https://buy.stripe.com/4gM4gBcu8ci22xcdKTew805>: after payment email
   karl@vhsgreed.win; manual fulfillment until first sale automates it.
 - Refresh cadence: quarterly. Next scheduled: NVDA 10-Q (~late Nov 2026).
 - Version: 2026-09-12.1. Deterministic build; SHA256SUMS in the full dataset.
