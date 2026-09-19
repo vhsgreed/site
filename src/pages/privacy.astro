@@ -1,74 +1,38 @@
 ---
-import Base from '../layouts/Base.astro';
+import Page from '../layouts/Page.astro';
+import { site } from '../site';
 ---
-<Base title="Privacy Policy" description="Our privacy policy: cookieless analytics, no data resale, GDPR rights, and the sub-processors that operate this site.">
-  <div class="container">
-    <section class="hero">
-      <h1>Privacy policy</h1>
-      <p class="lead">Short version: we collect nothing that identifies you.</p>
-    </section>
-
-    <hr class="rule" />
-
-    <section class="prose">
-      <h2>Data we collect</h2>
-      <p>
-        We use Google Analytics 4 and cookieless analytics services described below.
-      </p>
-
-      <h2>Analytics</h2>
-      <p>
-        <strong>Google Analytics 4:</strong> we use Google Analytics to
-        understand how the site is used. It loads on page visit and may use
-        first-party cookies and local storage to measure page views and group
-        sessions. Google processes this data under its own privacy policy. See
-        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a>.
-      </p>
-      <p>
-        <strong>First-party telemetry:</strong> we also record aggregate page views,
-        scroll-depth milestones, named button clicks, and outbound domains.
-        The endpoint receives the page path, referrer when it is external, and
-        a server-derived daily-rotating session hash. We do not use cookies,
-        local storage, advertising identifiers, or user accounts.
-      </p>
-      <p>
-        <strong>Cloudflare Web Analytics:</strong> a cookieless analytics
-        service that reports aggregate statistics (page views, referrers,
-        device types, approximate geographic region).
-      </p>
-      <p>
-        These services answer the same question, "is anyone reading this?"
-        not "who is reading this?" We use the data for aggregate reporting,
-        not individual profiling.
-      </p>
-
-      <h2>Purchases</h2>
-      <p>
-        `<under development>`
-      </p>
-
-      <h2>Email</h2>
-      <p>
-        If you email us, we keep the correspondence to answer it. We do not
-        add you to any list.
-      </p>
-
-      <h2>Third parties</h2>
-      <p>
-        The site is served by Cloudflare (hosting, HTTPS, and Web Analytics).
-        Google processes analytics data through Google Analytics 4.
-        Our first-party telemetry is processed by our Cloudflare Worker and
-        D1 database. All other links are subject to their own policies.
-      </p>
-
-      <h2>Your rights</h2>
-      <p>
-        Under applicable law (including GDPR) you can request what data we
-        hold about you; in practice, for this site, the answer is: none.
-        Contact us via the <a href="/contact/">contact page</a>
-        for any privacy question.
-      </p>
-      <p class="muted"><small>Last updated: 2026-08-31.</small></p>
-    </section>
+<Page title="Privacy" description="What this site records about visitors: cookieless page-view counts only. No cookies, no ads, no tracking across sites, nothing sold.">
+  <section class="intro"><h1>Privacy</h1></section>
+  <div class="prose">
+    <p>Short version: this site sets no cookies and doesn't know who you are.</p>
+    <h2>What is recorded</h2>
+    <p>
+      To see whether anyone reads this, two cookieless tools count visits:
+    </p>
+    <ul>
+      <li><strong>My own counter</strong>, running on Cloudflare. It stores the page
+        path, the referring site (if it's another site), how far down the page you
+        scrolled, which links or buttons you clicked, and your country and browser
+        family. Visits are grouped with a code derived from your IP address and
+        browser, which is scrambled and changes every day. Your IP address itself is not stored.</li>
+      <li><strong>Cloudflare Web Analytics</strong>, which reports totals such as page
+        views, referrers and device types.</li>
+    </ul>
+    <p>Nothing is sold, used for ads, or used to track you across other sites.</p>
+    <h2>Purchases and email</h2>
+    <p>
+      Purchases are handled by Gumroad, under
+      <a href="https://gumroad.com/privacy">Gumroad's privacy policy</a>. I receive
+      your email address and what you bought, and use it only to deliver and
+      support the purchase. If you email me, I keep the conversation so I can reply.
+    </p>
+    <h2>Your rights</h2>
+    <p>
+      Under the GDPR you can ask what I hold about you and have it deleted. Email
+      <a href={`mailto:${site.email}`}>{site.email}</a>. Data controller:
+      {site.business}, {site.location}.
+    </p>
+    <p class="muted">Last updated 19 September 2026.</p>
   </div>
-</Base>
+</Page>

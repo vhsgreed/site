@@ -1,96 +1,31 @@
 ---
-import Base from '../layouts/Base.astro';
-import { getCollection } from 'astro:content';
-
-const posts = (await getCollection('posts')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
-const latest = posts.slice(0, 3);
-
-const siteUrl = Astro.site?.toString() ?? 'https://vhsgreed.win';
+// Home = Writing: a short intro, then every post, newest first.
+import Page from '../layouts/Page.astro';
+import PostList from '../components/PostList.astro';
+import TopicNav from '../components/TopicNav.astro';
+import { site } from '../site';
+import { getPosts } from '../posts';
+const posts = await getPosts();
 ---
-<Base title="Robotics supply-chain intelligence, AI tooling" description="Data, research and applications. Built in Stockholm.">
-  <script type="application/ld+json" set:html={JSON.stringify({
+<Page>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
     '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'vhsgreed',
-    url: siteUrl,
-    logo: `${siteUrl}/favicon.svg`,
-    description: 'Data, research and applications. Built in Stockholm.',
-    foundingDate: '2026',
-    email: 'lillerik.sund@gmail.com',
-    sameAs: [
-      'https://github.com/vhsgreed',
-      'https://vhsgreed.medium.com/',
-      'https://vhsgreed.bsky.social/',
-    ],
+    '@type': 'Person',
+    name: site.name,
+    url: site.url,
+    email: site.email,
+    address: { '@type': 'PostalAddress', addressLocality: 'Stockholm', addressCountry: 'SE' },
   })} />
-  <script type="application/ld+json" set:html={JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'vhsgreed',
-    url: siteUrl,
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: { '@type': 'EntryPoint', urlTemplate: `${siteUrl}/blog/?q={search_term_string}` },
-      'query-input': 'required name=search_term_string',
-    },
-  })} />
-  <div class="container">
-    <section class="hero">
-      <h1>
-        Data-led research, <span class="glow">openly built</span>.
-      </h1>
-      <p class="lead">
-        vhsgreed is a for-profit, self-funded R&amp;D shop: supply-chain
-        intelligence, open-source tooling, and audits that tell you what
-        a dataset can and cannot do. Two doors, everything findable through
-        them.
-      </p>
-      <div class="btn-row">
-        <a class="btn btn-ghost" href="/blog/">Blog</a>
-        <a class="btn btn-accent" href="/store/">Store</a>
-      </div>
-    </section>
-
-    <hr class="rule" />
-
-    <section class="section-tight" aria-label="The three pillars">
-      <div class="grid">
-        <div class="card">
-          <span class="kicker">1 &middot; Store</span>
-          <h2 class="card-h">Buy the data</h2>
-          <p>Robotics supply-chain datasets: 13,000+ assets, 1,093 verified companies in 11 countries, exposure mapped across direct, adjacent, and indirect routes. Every product lists its sources and limits.</p>
-          <p style="margin-top: 0.8rem;"><a class="btn btn-accent" href="/store/" data-track="home_store">Enter the store</a></p>
-        </div>
-        <div class="card">
-          <span class="kicker">2 &middot; Read</span>
-          <h2 class="card-h">Read the intelligence</h2>
-          <p>Everything we have written: the verified robotics data pages, the deep dives, the explainers, and the build log. One index, no hunting.</p>
-          <p style="margin-top: 0.8rem;"><a class="btn btn-ghost" href="/read/">Read the index</a></p>
-        </div>
-
-      </div>
-    </section>
-
-    {latest.length > 0 && (
-      <section class="blog-head" aria-label="Latest from the blog">
-        <span class="kicker">Latest from the blog</span>
-        <div class="card-list" style="margin-top: 0.8rem;">
-          {latest.map((p) => (
-            <a class="card-row" href={`/blog/${p.id}/`}>
-              <div>
-                <div class="t">{p.data.title}</div>
-                <div class="d">{p.data.description}</div>
-              </div>
-              <span class="meta">
-                {p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-              </span>
-            </a>
-          ))}
-        </div>
-        <p style="margin-top: 1rem;"><a href="/blog/">All blog posts →</a></p>
-      </section>
-    )}
-  </div>
-</Base>
+  <section class="intro">
+    <h1>{site.tagline}</h1>
+    <p>
+      I'm Karl, a one-person business in Stockholm. I build web scrapers,
+      automations and verified datasets, mostly with AI agents doing the
+      heavy lifting. Below is everything I have written: build logs,
+      research, and plain-English guides to running a small business in
+      Sweden. <a href="/about/">More about me, or hire me</a>.
+    </p>
+  </section>
+  <TopicNav />
+  <PostList posts={posts} />
+</Page>

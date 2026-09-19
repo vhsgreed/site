@@ -1,0 +1,11 @@
+---
+// TopicNav.astro: the row of topic filters above post lists.
+import { topics } from '../site';
+const { current } = Astro.props; // topic key, or undefined for "All"
+---
+<nav class="topics" aria-label="Topics">
+  <a href="/" aria-current={!current ? 'page' : undefined}>All</a>
+  {Object.entries(topics).map(([key, label]) => (
+    <a href={`/topics/${key}/`} aria-current={current === key ? 'page' : undefined}>{label}</a>
+  ))}
+</nav>

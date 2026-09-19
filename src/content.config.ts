@@ -1,42 +1,28 @@
+// content.config.ts: what a post's frontmatter may contain.
+// If a post breaks these rules, `npm run build` stops and tells you which.
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-// Single written-content collection (merged 09-02 from the old articles +
-// insights split; Karl: "one directory for my sanity"). A post is either a
-// blog post (no product block) or a product page (product block renders the
-// Gumroad card). Affiliate links can appear in either type.
-const postSchema = z.object({
-  title: z.string(),
-  date: z.coerce.date(),
-  description: z.string(),
-  kind: z.enum(['build-log', 'story', 'guide', 'insight']).optional(),
-  mediumUrl: z.string().url().optional(),
-  tags: z.array(z.string()).optional(),
-  author: z.string().optional(),
-  product: z
-    .object({
-      name: z.string(),
-      price: z.string().optional(),
-      url: z.string().url().optional(),
-      status: z.enum(['live', 'pending', 'none']).optional(),
-      tag: z.string().optional(),
-    })
-    .optional(),
-});
-
 const posts = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
-  schema: postSchema,
-});
-
-const authors = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/authors' }),
+  loader: glob({ pattern: '*.md', base: './src/content/posts' }),
   schema: z.object({
-    name: z.string(),
-    role: z.string(),
-    bio: z.string(),
-    links: z.array(z.object({ label: z.string(), url: z.string() })).optional(),
+    title: z.string(),
+    date: z.coerce.date(),
+    topic: z.enum(['ai', 'data', 'web', 'sweden']),
+    description: z.string(),
+    lang: z.enum(['en', 'sv']).default('en'),
+    draft: z.boolean().default(false),
+    mediumUrl: z.string().url().optional(),
+    // Add a product block to turn a post into something people can buy.
+    // No url = "get in touch" instead of a buy button.
+    product: z
+      .object({
+        name: z.string(),
+        price: z.string(),
+        url: z.string().url().optional(),
+      })
+      .optional(),
   }),
 });
 
-export const collections = { posts, authors };
+export const collections = { posts };

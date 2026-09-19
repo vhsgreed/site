@@ -1,32 +1,33 @@
-# vhsgreed — AGENTS.md
+# Rules for AI agents working on this repo
 
-Guidance for AI coding agents working in this repository.
+Karl is the editor of this site. You are a helper. Keep it small.
 
-## What this is
+## Never do without Karl's explicit OK in this conversation
 
-Static Astro site for vhsgreed (`vhsgreed.win`): for-profit, self-funded AI
-research and development. Robotics supply-chain data products, open-source
-agent tooling, honest research notes. Build with `npm run build`, output in
-`dist/`.
+- Add a new page, page type, section, nav item, component or dependency.
+- Change or remove any URL, or edit `public/_redirects`.
+- Add tracking, analytics, cookies, or third-party scripts.
+- Reorganise folders or rename files.
+- Publish a post that says it is a draft or not ready.
 
-## Conventions
+## Fine to do
 
-- Content lives in `src/content/blog/articles/` (build logs) and
-  `src/content/blog/insights/` (product pages with `product:` frontmatter).
-- Blog posts carry `author:` (one of the ids in `src/content/authors/`).
-- Insights may carry a `product:` block (name, price, url, status: live |
-  pending | none); the Gumroad card renders from it.
-- No em-dashes in user-facing copy. Use colons, commas, periods.
-- Plain HTML `<details>` for menus/dropdowns; no JS required for core UX.
+- Write or edit posts in `src/content/posts/` when asked.
+- Fix typos, broken links and build errors.
+- Small style tweaks in `src/styles.css` when asked.
 
-## Deploy
+## How the site works
 
-GitHub → Cloudflare Pages auto-deploy on push to `main`. Build command
-`npm run build`, output `dist`. `public/_redirects` and `public/_headers`
-ship with the build; unknown paths 404.
+- Static Astro site. Every post is one markdown file in `src/content/posts/`.
+  Its file name is its URL: `/blog/<file-name>/`.
+- Frontmatter: `title`, `date`, `topic` (ai | data | web | sweden),
+  `description`, optional `lang` (en | sv), `draft`, `mediumUrl`, `product`.
+- Posts with a `product` block show a buy box and appear on `/products/`.
+- Site-wide settings live in `src/site.ts`. Look lives in `src/styles.css`.
+- Voice: first person singular ("I"). It's Karl's personal site.
+- No em-dashes in new copy. Use colons, commas, periods.
 
-## Checks
+## Before you finish
 
-- `npm run build` must pass before commit.
-- Keep titles ≤ 60 chars and descriptions ≥ 120 chars where possible.
-- Every page should have a single h1 and no skipped heading levels.
+- `npm run build` must pass.
+- Tell Karl, in plain words, every file you changed and why.

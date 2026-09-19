@@ -1,0 +1,36 @@
+---
+// Products: every post that has a product block, in one place.
+import Page from '../layouts/Page.astro';
+import { site } from '../site';
+import { getPosts } from '../posts';
+const products = (await getPosts()).filter((p) => p.data.product);
+---
+<Page title="Products" description="Datasets and toolkits by Karl Sundström, each with the article that explains how it was built and what it can and cannot tell you. Paid through Gumroad.">
+  <section class="intro">
+    <h1>Products</h1>
+    <p>
+      Each product comes with the article that explains how it was built, where
+      the data comes from and where it falls short. Read that first; buy only
+      if you want the underlying data. Payments go through Gumroad.
+    </p>
+  </section>
+  <ul class="products">
+    {products.map((p) => {
+      const pr = p.data.product!;
+      return (
+        <li class="product">
+          <p class="product-name">{pr.name}</p>
+          <p class="muted">{pr.price}</p>
+          <p>{p.data.description}</p>
+          <p class="actions">
+            <a href={`/blog/${p.id}/`}>Read how it was made</a>
+            {pr.url
+              ? <a class="button" href={pr.url} rel="noopener" data-track={`buy_${p.id}`}>Buy</a>
+              : <a class="button" href={`mailto:${site.email}?subject=${encodeURIComponent(pr.name)}`} data-track={`contact_${p.id}`}>Email me</a>}
+          </p>
+        </li>
+      );
+    })}
+  </ul>
+  <p>Need something custom, like a scraper, an automation or a dataset? <a href="/about/">Here's how to hire me</a>.</p>
+</Page>

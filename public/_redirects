@@ -1,40 +1,29 @@
-# Unknown paths: Pages auto-serves /404.html (note: `_redirects` does NOT
-# support 404 as a status code; the static 404.html handles it natively).
+# _redirects: old addresses -> new ones (301 = moved permanently).
+# Rules are checked top to bottom; the first match wins.
+# Every target below is a real page. Never point a rule at another rule.
 
-# Old flat blog URLs → new sectioned homes (301)
-/blog/150-site-probe/          /blog/articles/150-site-probe/          301
-/blog/free-llm-rotation/       /blog/articles/free-llm-rotation/       301
-/blog/robotics-supply-chain-2026/ /blog/insights/robotics-supply-chain-2026/ 301
-/blog/insights/agent-rights-jury-institutional-design/ /blog/articles/agent-rights-jury-institutional-design/ 301
-/blog/insights/programmatic-seo-verified-data/ /blog/articles/programmatic-seo-verified-data/ 301
+/blog/                                        /                                  301
 
-# 09-02 content merge: /blog/articles|insights/<slug> -> /blog/<slug> (301)
-/blog/articles/150-site-probe/ /blog/150-site-probe/ 301
-/blog/articles/agent-rights-jury-institutional-design/ /blog/agent-rights-jury-institutional-design/ 301
-/blog/articles/alignment-charter-experiment/ /blog/alignment-charter-experiment/ 301
-/blog/articles/crypto-portfolio-method/ /blog/crypto-portfolio-method/ 301
-/blog/articles/enskild-firma-accounting-sweden/ /blog/enskild-firma-accounting-sweden/ 301
-/blog/articles/free-llm-rotation/ /blog/free-llm-rotation/ 301
-/blog/articles/programmatic-seo-verified-data/ /blog/programmatic-seo-verified-data/ 301
-/blog/articles/robotics-supply-chain-2026/ /blog/robotics-supply-chain-2026/ 301
-/blog/articles/robotics-supply-chain-narrative/ /blog/robotics-supply-chain-narrative/ 301
-/blog/insights/alignment-charter-experiment/ /blog/alignment-charter-kit/ 301
-/blog/insights/robotics-supply-chain-2026/ /blog/robotics-stocks-2026/ 301
-/blog/insights/zero-cost-ai-agent-toolkit/ /blog/zero-cost-ai-agent-toolkit/ 301
-/blog/insights/web-scraping-reality-check/ /blog/web-scraping-reality-check/ 301
-/blog/articles/ /blog/ 301
-/blog/insights/ /blog/ 301
+# Old blog sub-folders (renamed posts first, then everything else)
+/blog/insights/alignment-charter-experiment/  /blog/alignment-charter-kit/       301
+/blog/insights/robotics-supply-chain-2026/    /blog/robotics-stocks-2026/        301
+/blog/articles/*                              /blog/:splat                       301
+/blog/insights/*                              /blog/:splat                       301
+/learn/*                                      /blog/:splat                       301
 
-# 09-08 content merge: /learn/ -> /blog/ (301)
-/learn/*  /blog/:splat  301
-
-# 09-08 URL migration (URL-MIGRATION.md): silo moves + folds (301)
-/robotics-stocks/*  /data/robotics/:splat  301
-/companies/*        /data/companies/:splat  301
-/read/*             /about/                 301
-/mission/*          /about/                 301
-/opensource/*       /about/                 301
-/authors/*          /about/                 301
-/search/*           /site-index/            301
-
-/contact/*  /about/  301
+# Pages removed in the 2026-09 rebuild
+/ai/*                                         /blog/on-ai/                       301
+/robotics-stocks/*                            /blog/robotics-stocks-2026/        301
+/store/*                                      /products/                         301
+/companies/*                                  /                                  301
+/data/*                                       /                                  301
+/api/*                                        /about/                            301
+/actor/*                                      /about/                            301
+/authors/*                                    /about/                            301
+/mission/*                                    /about/                            301
+/opensource/*                                 /about/                            301
+/contact/*                                    /about/                            301
+/read/*                                       /                                  301
+/search/*                                     /                                  301
+/site-index/*                                 /                                  301
+/admin/*                                      /                                  301

@@ -1,70 +1,54 @@
 ---
-import Base from '../../layouts/Base.astro';
-import GumroadCard from '../../components/GumroadCard.astro';
-import CopyCode from '../../components/CopyCode.astro';
-import { getCollection, render } from 'astro:content';
+// One page per post. The file name of the post is its address:
+// src/content/posts/my-post.md  ->  /blog/my-post/
+import Page from '../../layouts/Page.astro';
+import ProductBox from '../../components/ProductBox.astro';
+import PostList from '../../components/PostList.astro';
+import { render } from 'astro:content';
+import { site, topics } from '../../site';
+import { getPosts, formatDate } from '../../posts';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('posts');
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: { post, product: post.data.product },
-  }));
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post, all: posts } }));
 }
-
-const { post, product } = Astro.props;
+const { post, all } = Astro.props;
 const { Content } = await render(post);
-const date = post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-const authors = await getCollection('authors');
-const author = post.data.author ? authors.find((a) => a.id === post.data.author) : undefined;
+const d = post.data;
+const words = post.body?.split(/\s+/).length ?? 0;
+const minutes = Math.max(1, Math.round(words / 230));
+const related = all.filter((p) => p.data.topic === d.topic && p.id !== post.id).slice(0, 3);
 ---
-<script type="application/ld+json" set:html={JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'Article',
-  headline: post.data.title,
-  description: post.data.description,
-  datePublished: post.data.date.toISOString(),
-  author: author ? { '@type': 'Person', name: author.data.name } : { '@type': 'Organization', name: 'vhsgreed' },
-  publisher: { '@type': 'Organization', name: 'vhsgreed', url: 'https://vhsgreed.win' },
-  ...(product && product.url ? {
-    mainEntityOfPage: product.url,
-    about: {
-      '@type': 'Product',
-      name: product.name,
-      ...(product.price ? { offers: { '@type': 'Offer', price: parseFloat(product.price.replace(/[^0-9.]/g, '')), priceCurrency: 'USD', url: product.url } } : {}),
-    },
-  } : {}),
-})} />
-<Base title={post.data.title} description={post.data.description}>
-  <article class="container" style="max-width: 760px; padding-top: 3rem;">
-    <p class="muted mono">
-      {date}
-      {author && (
-        <>
-          {' · '}
-          <a href={`/authors/${author.id}/`}>By {author.data.name}</a>
-        </>
-      )}
-    </p>
-    <h1>{post.data.title}</h1>
-    <p class="lead">{post.data.description}</p>
-    {post.data.tags && (
-      <p class="muted">
-        {post.data.tags.map((t) => `#${t}`).join('  ')}
+<Page title={d.title} description={d.description} lang={d.lang} type="article">
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: d.title,
+    description: d.description,
+    datePublished: d.date.toISOString(),
+    inLanguage: d.lang,
+    author: { '@type': 'Person', name: site.name, url: site.url + '/about/' },
+  })} />
+  <article class="post">
+    <header>
+      <p class="post-meta">
+        <time datetime={d.date.toISOString()}>{formatDate(d.date)}</time>
+        · <a href={`/topics/${d.topic}/`}>{topics[d.topic]}</a>
+        · {minutes} min read
       </p>
-    )}
-    <hr class="rule" />
-    <CopyCode />
+      <h1>{d.title}</h1>
+      <p class="lead">{d.description}</p>
+    </header>
     <div class="prose">
       <Content />
     </div>
-    {product && <GumroadCard product={product} />}
-    {post.data.mediumUrl && (
-      <p>
-        <a class="btn btn-ghost" href={post.data.mediumUrl} target="_blank" rel="noopener">
-          Read on Medium →
-        </a>
-      </p>
-    )}
+    {d.product && <ProductBox product={d.product} slug={post.id} />}
+    {d.mediumUrl && <p class="muted">Also published on <a href={d.mediumUrl}>Medium</a>.</p>}
   </article>
-</Base>
+  {related.length > 0 && (
+    <section class="related" lang="en">
+      <h2>More on {topics[d.topic].toLowerCase()}</h2>
+      <PostList posts={related} showTopic={false} />
+    </section>
+  )}
+</Page>

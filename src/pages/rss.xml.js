@@ -1,19 +1,18 @@
 import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
+import { site } from '../site';
+import { getPosts } from '../posts';
 
 export async function GET(context) {
-  const posts = (await getCollection('posts')).sort(
-    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-  );
+  const posts = await getPosts();
   return rss({
-    title: 'vhsgreed',
-    description: 'For-profit, self-funded AI R&D: robotics intelligence, open-source agent tooling, honest research.',
+    title: site.name,
+    description: site.description,
     site: context.site,
-    items: posts.map((post) => ({
-      title: post.data.title,
-      pubDate: post.data.date,
-      description: post.data.description,
-      link: `/blog/${post.id}/`,
+    items: posts.map((p) => ({
+      title: p.data.title,
+      pubDate: p.data.date,
+      description: p.data.description,
+      link: `/blog/${p.id}/`,
     })),
   });
 }

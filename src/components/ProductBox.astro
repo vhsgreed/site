@@ -1,0 +1,13 @@
+---
+// ProductBox.astro: the buy box at the end of a post with a product block.
+import { site } from '../site';
+const { product, slug } = Astro.props;
+---
+<aside class="product" aria-label="Product">
+  <p class="label">{product.url ? 'Get the data' : 'Hire me'}</p>
+  <p class="product-name">{product.name}</p>
+  <p class="muted">{product.price}</p>
+  {product.url
+    ? <a class="button" href={product.url} rel="noopener" data-track={`buy_${slug}`}>Buy on Gumroad</a>
+    : <a class="button" href={`mailto:${site.email}?subject=${encodeURIComponent(product.name)}`} data-track={`contact_${slug}`}>Email me</a>}
+</aside>

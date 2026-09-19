@@ -1,0 +1,22 @@
+---
+// One page per topic: /topics/ai/, /topics/data/ and so on.
+import Page from '../../layouts/Page.astro';
+import PostList from '../../components/PostList.astro';
+import TopicNav from '../../components/TopicNav.astro';
+import { topics, type Topic } from '../../site';
+import { getPosts } from '../../posts';
+
+export function getStaticPaths() {
+  return Object.keys(topics).map((topic) => ({ params: { topic } }));
+}
+const topic = Astro.params.topic as Topic;
+const posts = (await getPosts()).filter((p) => p.data.topic === topic);
+---
+<Page title={topics[topic]} description={`Everything Karl Sundström has written about ${topics[topic].toLowerCase()}: ${posts.length} posts.`}>
+  <section class="intro">
+    <h1>{topics[topic]}</h1>
+    <p class="muted">{posts.length} posts</p>
+  </section>
+  <TopicNav current={topic} />
+  <PostList posts={posts} showTopic={false} />
+</Page>

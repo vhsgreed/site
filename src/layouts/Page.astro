@@ -1,0 +1,69 @@
+---
+// Page.astro: the frame around every page (head, header, footer).
+import '../styles.css';
+import { site, links } from '../site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: string;
+  type?: 'website' | 'article';
+}
+const { title, description = site.description, lang = 'en', type = 'website' } = Astro.props;
+const fullTitle = title ? `${title} · ${site.name}` : `${site.name}: scrapers, automations, datasets`;
+const path = Astro.url.pathname;
+const nav = [
+  { href: '/', label: 'Writing' },
+  { href: '/products/', label: 'Products' },
+  { href: '/about/', label: 'About' },
+];
+const isCurrent = (href: string) =>
+  href === '/' ? path === '/' || path.startsWith('/blog/') || path.startsWith('/topics/') : path.startsWith(href);
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(path, site.url)} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" type="application/rss+xml" title={site.name} href="/rss.xml" />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={new URL(path, site.url)} />
+    <meta name="twitter:card" content="summary" />
+    <slot name="head" />
+    <!-- Cookieless analytics: own telemetry + Cloudflare Web Analytics. No consent banner needed. -->
+    <script src="../telemetry.js"></script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "18487266547a420dbf8ba750d15c869c"}'></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="name" href="/">{site.name}</a>
+        <nav aria-label="Main">
+          {nav.map((n) => (
+            <a href={n.href} aria-current={isCurrent(n.href) ? 'page' : undefined}>{n.label}</a>
+          ))}
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="wrap">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+          {links.map((l) => <> · <a href={l.url}>{l.label}</a></>)}
+          · <a href="/rss.xml">RSS</a>
+        </p>
+        <p class="muted">{site.business} · {site.location} · <a href="/privacy/">Privacy</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,45 +1,47 @@
 ---
-import Base from '../layouts/Base.astro';
+import Page from '../layouts/Page.astro';
+import { site, links } from '../site';
 ---
-<Base title="About vhsgreed" description="Transparency statement, headquarters, funding model, contact, and privacy policy for vhsgreed.">
-  <div class="container">
-    <section class="hero">
-      <h1>About</h1>
-      <p class="lead">
-        One man operation.
-      </p>
-    </section>
+<Page title="About" description="Karl Sundström runs a one-person business in Stockholm building web scrapers, automations and verified datasets. What I do, how I work, and how to hire me.">
+  <section class="intro">
+    <h1>About</h1>
+  </section>
+  <div class="prose">
+    <p>
+      I'm Karl Sundström. I run a one-person business (enskild firma) in
+      Stockholm, Sweden. I build web scrapers, automations and datasets, and
+      I write up how each one was made, including what broke.
+    </p>
 
-    <hr class="rule" />
+    <h2>What I can do for you</h2>
+    <ul>
+      <li><strong>Scrapers and data extraction.</strong> Before selling this I
+        <a href="/blog/web-scraping-reality-check/">probed 150 sites</a> and
+        published which ones can't be scraped reliably, so you'll get a straight answer up front.</li>
+      <li><strong>Automations.</strong> Scripts and small agent pipelines that
+        take a repetitive task off your plate.</li>
+      <li><strong>Research datasets.</strong> Sourced, checked data where every
+        row says how sure it is. See the <a href="/products/">products</a> for examples.</li>
+    </ul>
+    <p>
+      Some of my scrapers are also available ready-made on
+      <a href="https://apify.com/vhsgreed">Apify</a>.
+    </p>
 
-    <section class="prose">
+    <h2>How I work</h2>
+    <p>
+      I work with AI agents, and I say so. I wrote down how and why in
+      <a href="/blog/on-ai/">On AI</a>. Revenue comes only from what I sell:
+      no investors, no ads.
+    </p>
 
-      <h2>Headquarters</h2>
-      <p>
-        Stockholm, Sweden. We work across a small fleet: this site, the
-        data pipelines, and the research runs all live on machines we own.
-      </p>
-
-      <h2>Funding model</h2>
-      <p>
-        Revenue comes from what we sell: data product, custom
-        scraping and automation scripts, and research. That revenue funds the
-        research and development. We do not take outside investment, and we do not run ads.
-      </p>
-
-      <h2>How we work</h2>
-      <ul>
-        <li>Everything we claim is tested and verified.</li>
-        <li>Honesty over hype.</li>
-        <li>Links to our open source repositories and articles are on this <a href="/site-index/">site</a>, <a href="https://medium.com/@vhsgreed">Medium</a> and <a href="https://github.com/vhsgreed">GitHub.</a></li>
-      </ul>
-
-      <h2>Contact</h2>
-      <p>
-        <a href="mailto:lillerik.sund@gmail.com">lillerik.sund@gmail.com</a>
-        <br />
-        <span class="muted">Do you want to get in touch? Do not hesitate to reach out.</span>
-      </p>
-    </section>
+    <h2>Get in touch</h2>
+    <p>
+      Email is best: <a href={`mailto:${site.email}`}>{site.email}</a>.
+      Tell me what you need and I'll tell you honestly whether I can do it.
+    </p>
+    <p>
+      {links.map((l, i) => <>{i > 0 && ' · '}<a href={l.url}>{l.label}</a></>)}
+    </p>
   </div>
-</Base>
+</Page>

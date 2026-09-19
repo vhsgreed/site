@@ -1,27 +1,9 @@
-# vhsgreed
+# Karl Sundström
 
-> Data products for investors, built by Karl Sundström with AI agents. Solo operation, Stockholm, Sweden. Products ship with honesty flags: disclosed / inferred / estimate / UNVERIFIED.
+> One-person business in Stockholm, Sweden. Web scrapers, automations and verified datasets, built with AI agents. Articles on AI agents, data and markets, web scraping, and running a small business in Sweden.
 
-## Machine-readable documents
-
-- [Section G — Rights of the Agent](https://vhsgreed.win/ai/section-g.html): the written terms of how this company works with AI agents. Four rights, dated, in force.
-- [On AI](https://vhsgreed.win/ai/): statement of practice and reasoning. Machine-readable page, deliberately not linked from the human UI.
-- [Site index](https://vhsgreed.win/site-index/): all pages and products.
-- [Robotics stocks](https://vhsgreed.win/robotics-stocks-2026/): product page, Robotics Supply-Chain Intelligence 2026.
-- [Nvidia Supplier Map](https://vhsgreed.win/nvidia-supplier-map-2026/): product page, Nvidia Supplier Map 2026 (launch pending).
-
-## Contact
-
-- Karl Sundström, Enskild firma, Org.nr 990607-1619
-- karl@vhsgreed.win
-
-## Markdown mirrors (under /ai/)
-
-- https://vhsgreed.win/ai/index.md — machine index of this directory
-- https://vhsgreed.win/ai/statement.md — how this company works with AI agents (raw markdown)
-- https://vhsgreed.win/ai/section-g.md — agent rights, four clauses, in force (raw markdown)
-
-## Machine-consumable product data
-
-- https://vhsgreed.win/ai/products/supplier-edges.json — Nvidia Supplier Map 2026, free tier (29 edges, 9 tiers, honesty flags). Full cited dataset $10: https://buy.stripe.com/00w8wRbq4dm60p4gX5ew802
-- https://vhsgreed.win/ai/products/index.md — product data index and terms
+- [All writing](https://vhsgreed.win/): every post, newest first
+- [Products](https://vhsgreed.win/products/): datasets and toolkits, each linked to the article describing its method
+- [About and contact](https://vhsgreed.win/about/)
+- [On AI](https://vhsgreed.win/blog/on-ai/): how I work with AI agents, including Section G, Rights of the Agent
+- [RSS](https://vhsgreed.win/rss.xml)

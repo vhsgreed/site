@@ -1,16 +1,9 @@
 ---
-import Base from '../layouts/Base.astro';
+import Page from '../layouts/Page.astro';
 ---
-<Base title="Page not found" description="This page does not exist on vhsgreed.">
-  <div class="container" style="padding-top: 4rem; padding-bottom: 4rem;">
-    <section class="hero">
-      <h1>404</h1>
-      <p class="lead">This page does not exist, or was moved.</p>
-      <div class="btn-row">
-        <a class="btn btn-accent" href="/">Home</a>
-        <a class="btn btn-ghost" href="/blog/">Blog</a>
-        <a class="btn btn-ghost" href="/store/">Store</a>
-      </div>
-    </section>
-  </div>
-</Base>
+<Page title="Page not found">
+  <section class="intro">
+    <h1>That page doesn't exist</h1>
+    <p>It may have moved when the site was rebuilt. <a href="/">Everything I've written is listed here</a>.</p>
+  </section>
+</Page>
