@@ -349,29 +349,30 @@
      "note": "Best for ongoing needs on popular targets."
     },
     {
-     "name": "Dataset marketplaces",
-     "access": "One-time",
-     "price": "$3-15 typical indie",
-     "isin": true,
-     "coverage": "Fixed snapshot",
-     "cadence": "Frozen at purchase",
-     "note": "Cheapest for point-in-time analysis."
-    },
-    {
-     "name": "Our datasets (vhsgreed)",
-     "access": "One-time",
-     "price": "$3-5",
-     "isin": true,
-     "coverage": "Verified snapshots w/ methodology docs",
-     "cadence": "Versioned (v4 = 4th revision)",
-     "note": "Verification layer is the product, not just rows."
-    }
-   ],
-   "datapoints": [
-    "Compute cost of a 1,000-page scrape: ~$0.30-2 + 3-6 dev hours",
-    "Maintenance reality: targets change markup ~2-4x/year",
-    "Break-even: one-time analysis favors buying; recurring favors scraping"
-   ]
+        "name": "Dataset marketplaces (Bright Data, ScrapeHero, CoreSignal)",
+        "access": "One-time or subscription",
+        "price": "Enterprise: custom-quoted, often $100s+. Indie listings: $3-15 one-time",
+        "isin": true,
+        "coverage": "Fixed snapshot",
+        "cadence": "Frozen at purchase",
+        "note": "Cheapest for point-in-time analysis. Ask what QA was applied before you buy."
+       },
+       {
+        "name": "Our datasets (vhsgreed)",
+        "access": "One-time",
+        "price": "$2-5 (launch pricing)",
+        "isin": true,
+        "coverage": "Verified snapshots w/ methodology docs",
+        "cadence": "Versioned (v4 = 4th revision)",
+        "note": "Verification layer is the product, not just rows."
+       }
+      ],
+      "datapoints": [
+       "Worked example from our own pipeline, 2026-09-24: 100 Swiss Zefix companies with full register details, 56 seconds runtime, $0.0124 platform compute. That is $0.12 per 1,000 companies; the compute is cheap, the maintenance is the cost.",
+       "Maintenance evidence from a 30-scraper sweep the same day: 25 of 30 delivered data. The 5 failures were 2 upstream outages (crt.sh HTTP 502, Lithuanian KRS HTTP 500), 1 target silently dropping our search filter server-side, and 2 anti-bot blocks (Indeed, Google Jobs). Two of the five failed silently: exit code 0 with zero results.",
+       "Targets change markup and behavior more often than buyers expect. Silent failures mean a scraper can look healthy and return nothing, so recurring scraping needs monitoring or a maintainer either way.",
+       "Break-even: one-time analysis favors buying; recurring favors scraping or maintained actors"
+      ]
   },
   {
    "slug": "company-registry-data-sweden-compared",
